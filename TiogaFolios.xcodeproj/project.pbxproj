@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323945292431A100619645 /* TiogaFoliosApp.swift */; };
+		5C323948292431A100619645 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323947292431A100619645 /* ContentView.swift */; };
+		5C32394A292431A300619645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C323949292431A300619645 /* Assets.xcassets */; };
+		5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C32394C292431A300619645 /* Preview Assets.xcassets */; };
+		5C32394F292431A300619645 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32394E292431A300619645 /* Persistence.swift */; };
+		5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
+		5C32395D292431A300619645 /* TiogaFoliosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32395C292431A300619645 /* TiogaFoliosTests.swift */; };
+		5C323967292431A300619645 /* TiogaFoliosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323966292431A300619645 /* TiogaFoliosUITests.swift */; };
+		5C323969292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5C323959292431A300619645 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C32393A292431A100619645 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C323941292431A100619645;
+			remoteInfo = TiogaFolios;
+		};
+		5C323963292431A300619645 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C32393A292431A100619645 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C323941292431A100619645;
+			remoteInfo = TiogaFolios;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5C323942292431A100619645 /* TiogaFolios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiogaFolios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C323945292431A100619645 /* TiogaFoliosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosApp.swift; sourceTree = "<group>"; };
+		5C323947292431A100619645 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5C323949292431A300619645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5C32394C292431A300619645 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5C32394E292431A300619645 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		5C323951292431A300619645 /* TiogaFolios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TiogaFolios.xcdatamodel; sourceTree = "<group>"; };
+		5C323953292431A300619645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C323958292431A300619645 /* TiogaFoliosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TiogaFoliosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C32395C292431A300619645 /* TiogaFoliosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosTests.swift; sourceTree = "<group>"; };
+		5C323962292431A300619645 /* TiogaFoliosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TiogaFoliosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C323966292431A300619645 /* TiogaFoliosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosUITests.swift; sourceTree = "<group>"; };
+		5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5C32393F292431A100619645 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C323955292431A300619645 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C32395F292431A300619645 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5C323939292431A100619645 = {
+			isa = PBXGroup;
+			children = (
+				5C323944292431A100619645 /* TiogaFolios */,
+				5C32395B292431A300619645 /* TiogaFoliosTests */,
+				5C323965292431A300619645 /* TiogaFoliosUITests */,
+				5C323943292431A100619645 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5C323943292431A100619645 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C323942292431A100619645 /* TiogaFolios.app */,
+				5C323958292431A300619645 /* TiogaFoliosTests.xctest */,
+				5C323962292431A300619645 /* TiogaFoliosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5C323944292431A100619645 /* TiogaFolios */ = {
+			isa = PBXGroup;
+			children = (
+				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
+				5C323947292431A100619645 /* ContentView.swift */,
+				5C323949292431A300619645 /* Assets.xcassets */,
+				5C32394E292431A300619645 /* Persistence.swift */,
+				5C323953292431A300619645 /* Info.plist */,
+				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
+				5C32394B292431A300619645 /* Preview Content */,
+			);
+			path = TiogaFolios;
+			sourceTree = "<group>";
+		};
+		5C32394B292431A300619645 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5C32394C292431A300619645 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5C32395B292431A300619645 /* TiogaFoliosTests */ = {
+			isa = PBXGroup;
+			children = (
+				5C32395C292431A300619645 /* TiogaFoliosTests.swift */,
+			);
+			path = TiogaFoliosTests;
+			sourceTree = "<group>";
+		};
+		5C323965292431A300619645 /* TiogaFoliosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5C323966292431A300619645 /* TiogaFoliosUITests.swift */,
+				5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */,
+			);
+			path = TiogaFoliosUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5C323941292431A100619645 /* TiogaFolios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C32396C292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFolios" */;
+			buildPhases = (
+				5C32393E292431A100619645 /* Sources */,
+				5C32393F292431A100619645 /* Frameworks */,
+				5C323940292431A100619645 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TiogaFolios;
+			productName = TiogaFolios;
+			productReference = 5C323942292431A100619645 /* TiogaFolios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5C323957292431A300619645 /* TiogaFoliosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C32396F292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFoliosTests" */;
+			buildPhases = (
+				5C323954292431A300619645 /* Sources */,
+				5C323955292431A300619645 /* Frameworks */,
+				5C323956292431A300619645 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C32395A292431A300619645 /* PBXTargetDependency */,
+			);
+			name = TiogaFoliosTests;
+			productName = TiogaFoliosTests;
+			productReference = 5C323958292431A300619645 /* TiogaFoliosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5C323961292431A300619645 /* TiogaFoliosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C323972292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFoliosUITests" */;
+			buildPhases = (
+				5C32395E292431A300619645 /* Sources */,
+				5C32395F292431A300619645 /* Frameworks */,
+				5C323960292431A300619645 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C323964292431A300619645 /* PBXTargetDependency */,
+			);
+			name = TiogaFoliosUITests;
+			productName = TiogaFoliosUITests;
+			productReference = 5C323962292431A300619645 /* TiogaFoliosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5C32393A292431A100619645 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					5C323941292431A100619645 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					5C323957292431A300619645 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 5C323941292431A100619645;
+					};
+					5C323961292431A300619645 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 5C323941292431A100619645;
+					};
+				};
+			};
+			buildConfigurationList = 5C32393D292431A100619645 /* Build configuration list for PBXProject "TiogaFolios" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5C323939292431A100619645;
+			productRefGroup = 5C323943292431A100619645 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5C323941292431A100619645 /* TiogaFolios */,
+				5C323957292431A300619645 /* TiogaFoliosTests */,
+				5C323961292431A300619645 /* TiogaFoliosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5C323940292431A100619645 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */,
+				5C32394A292431A300619645 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C323956292431A300619645 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C323960292431A300619645 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5C32393E292431A100619645 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
+				5C32394F292431A300619645 /* Persistence.swift in Sources */,
+				5C323948292431A100619645 /* ContentView.swift in Sources */,
+				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C323954292431A300619645 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C32395D292431A300619645 /* TiogaFoliosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C32395E292431A300619645 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C323967292431A300619645 /* TiogaFoliosUITests.swift in Sources */,
+				5C323969292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5C32395A292431A300619645 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C323941292431A100619645 /* TiogaFolios */;
+			targetProxy = 5C323959292431A300619645 /* PBXContainerItemProxy */;
+		};
+		5C323964292431A300619645 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C323941292431A100619645 /* TiogaFolios */;
+			targetProxy = 5C323963292431A300619645 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5C32396A292431A300619645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5C32396B292431A300619645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5C32396D292431A300619645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFolios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C32396E292431A300619645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFolios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5C323970292431A300619645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFoliosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TiogaFolios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TiogaFolios";
+			};
+			name = Debug;
+		};
+		5C323971292431A300619645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFoliosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TiogaFolios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TiogaFolios";
+			};
+			name = Release;
+		};
+		5C323973292431A300619645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFoliosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TiogaFolios;
+			};
+			name = Debug;
+		};
+		5C323974292431A300619645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFoliosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TiogaFolios;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5C32393D292431A100619645 /* Build configuration list for PBXProject "TiogaFolios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C32396A292431A300619645 /* Debug */,
+				5C32396B292431A300619645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C32396C292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFolios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C32396D292431A300619645 /* Debug */,
+				5C32396E292431A300619645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C32396F292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFoliosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C323970292431A300619645 /* Debug */,
+				5C323971292431A300619645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C323972292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFoliosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C323973292431A300619645 /* Debug */,
+				5C323974292431A300619645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5C323951292431A300619645 /* TiogaFolios.xcdatamodel */,
+			);
+			currentVersion = 5C323951292431A300619645 /* TiogaFolios.xcdatamodel */;
+			path = TiogaFolios.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 5C32393A292431A100619645 /* Project object */;
+}
