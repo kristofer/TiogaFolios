@@ -16,6 +16,7 @@
 		5C32395D292431A300619645 /* TiogaFoliosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32395C292431A300619645 /* TiogaFoliosTests.swift */; };
 		5C323967292431A300619645 /* TiogaFoliosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323966292431A300619645 /* TiogaFoliosUITests.swift */; };
 		5C323969292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */; };
+		5C323977292432E600619645 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323976292432E600619645 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		5C323962292431A300619645 /* TiogaFoliosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TiogaFoliosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C323966292431A300619645 /* TiogaFoliosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosUITests.swift; sourceTree = "<group>"; };
 		5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5C323976292432E600619645 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		5C323978292433E000619645 /* TiogaFolios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TiogaFolios.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +102,8 @@
 		5C323944292431A100619645 /* TiogaFolios */ = {
 			isa = PBXGroup;
 			children = (
-				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
-				5C323947292431A100619645 /* ContentView.swift */,
+				5C323978292433E000619645 /* TiogaFolios.entitlements */,
+				5C323975292432B900619645 /* App */,
 				5C323949292431A300619645 /* Assets.xcassets */,
 				5C32394E292431A300619645 /* Persistence.swift */,
 				5C323953292431A300619645 /* Info.plist */,
@@ -133,6 +136,16 @@
 				5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */,
 			);
 			path = TiogaFoliosUITests;
+			sourceTree = "<group>";
+		};
+		5C323975292432B900619645 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
+				5C323947292431A100619645 /* ContentView.swift */,
+				5C323976292432E600619645 /* Config.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +280,7 @@
 			files = (
 				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
 				5C32394F292431A300619645 /* Persistence.swift in Sources */,
+				5C323977292432E600619645 /* Config.swift in Sources */,
 				5C323948292431A100619645 /* ContentView.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
 			);
@@ -424,6 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
@@ -453,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
