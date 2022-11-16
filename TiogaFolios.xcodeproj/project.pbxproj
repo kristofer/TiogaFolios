@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323945292431A100619645 /* TiogaFoliosApp.swift */; };
-		5C323948292431A100619645 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323947292431A100619645 /* ContentView.swift */; };
 		5C32394A292431A300619645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C323949292431A300619645 /* Assets.xcassets */; };
 		5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C32394C292431A300619645 /* Preview Assets.xcassets */; };
 		5C32394F292431A300619645 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32394E292431A300619645 /* Storage.swift */; };
@@ -18,6 +17,16 @@
 		5C323969292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */; };
 		5C323977292432E600619645 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323976292432E600619645 /* Config.swift */; };
 		5C32397C2925409900619645 /* NotesToDo.md in Resources */ = {isa = PBXBuildFile; fileRef = 5C32397B2925409900619645 /* NotesToDo.md */; };
+		5C32397E29254C0F00619645 /* Folio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32397D29254C0F00619645 /* Folio.swift */; };
+		5C32398129254C5F00619645 /* TemplateSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32397F29254C5E00619645 /* TemplateSources.swift */; };
+		5C32398229254C5F00619645 /* FolioTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398029254C5F00619645 /* FolioTemplates.swift */; };
+		5C32398A29254CCB00619645 /* TagSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398429254CCA00619645 /* TagSources.swift */; };
+		5C32398B29254CCB00619645 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398529254CCA00619645 /* Asset.swift */; };
+		5C32398C29254CCB00619645 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398629254CCA00619645 /* Fetching.swift */; };
+		5C32398D29254CCB00619645 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398729254CCA00619645 /* Tag.swift */; };
+		5C32398E29254CCB00619645 /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398829254CCA00619645 /* Extras.swift */; };
+		5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398929254CCA00619645 /* SelectableTag.swift */; };
+		5C32399429254DFC00619645 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399329254DFC00619645 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +49,6 @@
 /* Begin PBXFileReference section */
 		5C323942292431A100619645 /* TiogaFolios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiogaFolios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C323945292431A100619645 /* TiogaFoliosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosApp.swift; sourceTree = "<group>"; };
-		5C323947292431A100619645 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5C323949292431A300619645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C32394C292431A300619645 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5C32394E292431A300619645 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -55,6 +63,16 @@
 		5C323978292433E000619645 /* TiogaFolios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TiogaFolios.entitlements; sourceTree = "<group>"; };
 		5C32397A29253BFD00619645 /* DataModelNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DataModelNotes.md; sourceTree = "<group>"; };
 		5C32397B2925409900619645 /* NotesToDo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NotesToDo.md; sourceTree = "<group>"; };
+		5C32397D29254C0F00619645 /* Folio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folio.swift; sourceTree = "<group>"; };
+		5C32397F29254C5E00619645 /* TemplateSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateSources.swift; sourceTree = "<group>"; };
+		5C32398029254C5F00619645 /* FolioTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTemplates.swift; sourceTree = "<group>"; };
+		5C32398429254CCA00619645 /* TagSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSources.swift; sourceTree = "<group>"; };
+		5C32398529254CCA00619645 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		5C32398629254CCA00619645 /* Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetching.swift; sourceTree = "<group>"; };
+		5C32398729254CCA00619645 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		5C32398829254CCA00619645 /* Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
+		5C32398929254CCA00619645 /* SelectableTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableTag.swift; sourceTree = "<group>"; };
+		5C32399329254DFC00619645 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +129,7 @@
 				5C323949292431A300619645 /* Assets.xcassets */,
 				5C323953292431A300619645 /* Info.plist */,
 				5C3239792925363700619645 /* DataModel */,
+				5C32399229254D7E00619645 /* Networking */,
 				5C32394B292431A300619645 /* Preview Content */,
 			);
 			path = TiogaFolios;
@@ -145,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
-				5C323947292431A100619645 /* ContentView.swift */,
+				5C32399329254DFC00619645 /* MainView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -153,12 +172,52 @@
 		5C3239792925363700619645 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				5C32399129254CDF00619645 /* Assets */,
+				5C32399029254CD500619645 /* Tags */,
+				5C32398329254C7800619645 /* Folios */,
 				5C323976292432E600619645 /* Config.swift */,
 				5C32394E292431A300619645 /* Storage.swift */,
 				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
 				5C32397A29253BFD00619645 /* DataModelNotes.md */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		5C32398329254C7800619645 /* Folios */ = {
+			isa = PBXGroup;
+			children = (
+				5C32397D29254C0F00619645 /* Folio.swift */,
+				5C32398029254C5F00619645 /* FolioTemplates.swift */,
+				5C32397F29254C5E00619645 /* TemplateSources.swift */,
+			);
+			path = Folios;
+			sourceTree = "<group>";
+		};
+		5C32399029254CD500619645 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				5C32398929254CCA00619645 /* SelectableTag.swift */,
+				5C32398729254CCA00619645 /* Tag.swift */,
+				5C32398429254CCA00619645 /* TagSources.swift */,
+			);
+			path = Tags;
+			sourceTree = "<group>";
+		};
+		5C32399129254CDF00619645 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5C32398529254CCA00619645 /* Asset.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		5C32399229254D7E00619645 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				5C32398829254CCA00619645 /* Extras.swift */,
+				5C32398629254CCA00619645 /* Fetching.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,11 +351,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
+				5C32398D29254CCB00619645 /* Tag.swift in Sources */,
 				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
 				5C32394F292431A300619645 /* Storage.swift in Sources */,
+				5C32398B29254CCB00619645 /* Asset.swift in Sources */,
 				5C323977292432E600619645 /* Config.swift in Sources */,
-				5C323948292431A100619645 /* ContentView.swift in Sources */,
+				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,
+				5C32398129254C5F00619645 /* TemplateSources.swift in Sources */,
+				5C32398A29254CCB00619645 /* TagSources.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
+				5C32397E29254C0F00619645 /* Folio.swift in Sources */,
+				5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */,
+				5C32399429254DFC00619645 /* MainView.swift in Sources */,
+				5C32398229254C5F00619645 /* FolioTemplates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

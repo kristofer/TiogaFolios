@@ -60,26 +60,6 @@ final class Storage {
     }
 
 
-    // for Thumbnails
-    
-//    let prevGen = QLThumbnailGenerator()
-//    let thumbnailSize = CGSize(width: 60, height: 90)
-//    let scale = UIScreen.main.scale
-
-//    func getThumbImage(asset: Asset) -> Image {
-//
-//        let request = QLThumbnailGenerator.Request(fileAt: url, size: self.thumbnailSize, scale: self.scale, representationTypes: .thumbnail)
-//
-//        prevGen.generateBestRepresentation(for: request) { (thumbnail, error) in
-//
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let thumb = thumbnail {
-//                thumb.uiImage // image available
-//            }
-//
-//        }
-//    }
     // for preview
     static var preview: Storage = {
         let result = Storage()
