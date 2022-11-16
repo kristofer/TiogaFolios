@@ -17,45 +17,37 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Tag" inverseName="assets" inverseEntity="Tag"/>
     </entity>
     <entity name="Folio" representedClassName="Folio" syncable="YES" codeGenerationType="class">
-        <attribute name="archivedate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="title" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <relationship name="assets" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Asset" inverseName="folio" inverseEntity="Asset"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Tag" inverseName="folios" inverseEntity="Tag"/>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
-        <attribute name="created" optional="YES" attributeType="Date" defaultDateTimeInterval="610208280" usesScalarValueType="NO"/>
         <attribute name="detailtext" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="modified" optional="YES" attributeType="Date" defaultDateTimeInterval="610208220" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
         <relationship name="asset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="notes" inverseEntity="Asset"/>
     </entity>
     <entity name="OlderBlob" representedClassName="OlderBlob" syncable="YES" codeGenerationType="class">
         <attribute name="blob" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="asset" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Asset" inverseName="olderblobs" inverseEntity="Asset"/>
     </entity>
     <entity name="Preview" representedClassName="Preview" syncable="YES" codeGenerationType="class">
         <attribute name="blob" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="mimetype" optional="YES" attributeType="String"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="asset" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Asset" inverseName="previews" inverseEntity="Asset"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
-        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="kind" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
-        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="ref" optional="YES" attributeType="URI"/>
         <attribute name="refstring" optional="YES" attributeType="String"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>

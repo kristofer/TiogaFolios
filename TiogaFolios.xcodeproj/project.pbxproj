@@ -11,12 +11,13 @@
 		5C323948292431A100619645 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323947292431A100619645 /* ContentView.swift */; };
 		5C32394A292431A300619645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C323949292431A300619645 /* Assets.xcassets */; };
 		5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C32394C292431A300619645 /* Preview Assets.xcassets */; };
-		5C32394F292431A300619645 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32394E292431A300619645 /* Persistence.swift */; };
+		5C32394F292431A300619645 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32394E292431A300619645 /* Storage.swift */; };
 		5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
 		5C32395D292431A300619645 /* TiogaFoliosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32395C292431A300619645 /* TiogaFoliosTests.swift */; };
 		5C323967292431A300619645 /* TiogaFoliosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323966292431A300619645 /* TiogaFoliosUITests.swift */; };
 		5C323969292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */; };
 		5C323977292432E600619645 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323976292432E600619645 /* Config.swift */; };
+		5C32397C2925409900619645 /* NotesToDo.md in Resources */ = {isa = PBXBuildFile; fileRef = 5C32397B2925409900619645 /* NotesToDo.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,7 @@
 		5C323947292431A100619645 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5C323949292431A300619645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C32394C292431A300619645 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5C32394E292431A300619645 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		5C32394E292431A300619645 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		5C323951292431A300619645 /* TiogaFolios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TiogaFolios.xcdatamodel; sourceTree = "<group>"; };
 		5C323953292431A300619645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C323958292431A300619645 /* TiogaFoliosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TiogaFoliosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +53,8 @@
 		5C323968292431A300619645 /* TiogaFoliosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5C323976292432E600619645 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		5C323978292433E000619645 /* TiogaFolios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TiogaFolios.entitlements; sourceTree = "<group>"; };
+		5C32397A29253BFD00619645 /* DataModelNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DataModelNotes.md; sourceTree = "<group>"; };
+		5C32397B2925409900619645 /* NotesToDo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NotesToDo.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 		5C323939292431A100619645 = {
 			isa = PBXGroup;
 			children = (
+				5C32397B2925409900619645 /* NotesToDo.md */,
 				5C323944292431A100619645 /* TiogaFolios */,
 				5C32395B292431A300619645 /* TiogaFoliosTests */,
 				5C323965292431A300619645 /* TiogaFoliosUITests */,
@@ -142,7 +146,6 @@
 			children = (
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
 				5C323947292431A100619645 /* ContentView.swift */,
-				5C323976292432E600619645 /* Config.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -150,8 +153,10 @@
 		5C3239792925363700619645 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				5C32394E292431A300619645 /* Persistence.swift */,
+				5C323976292432E600619645 /* Config.swift */,
+				5C32394E292431A300619645 /* Storage.swift */,
 				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
+				5C32397A29253BFD00619645 /* DataModelNotes.md */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			files = (
 				5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */,
 				5C32394A292431A300619645 /* Assets.xcassets in Resources */,
+				5C32397C2925409900619645 /* NotesToDo.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
-				5C32394F292431A300619645 /* Persistence.swift in Sources */,
+				5C32394F292431A300619645 /* Storage.swift in Sources */,
 				5C323977292432E600619645 /* Config.swift in Sources */,
 				5C323948292431A100619645 /* ContentView.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
