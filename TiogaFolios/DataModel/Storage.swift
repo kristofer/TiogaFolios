@@ -18,8 +18,16 @@ final class Storage {
     lazy var container: NSPersistentCloudKitContainer = {
         NotificationCenter.default.post(name: Notification.Name("starting up NSPersistentCloudKitContainer"), object: nil, userInfo: nil)
         
-        let container = NSPersistentCloudKitContainer(name: Config.containerIdentifier)
+        let container = NSPersistentCloudKitContainer(name: Config.containerName)
 
+        #if DEBUG
+        do {
+            // Use the container to initialize the development schema.
+            try container.initializeCloudKitSchema(options: [])
+        } catch {
+            // Handle any errors.
+        }
+        #endif
 
         //Foundation.NSLog("KKYY Loading: container.loadPersistentStores")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

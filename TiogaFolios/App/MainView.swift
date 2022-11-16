@@ -15,17 +15,17 @@ struct MainView: View {
     
     
     var body: some View {
-        Text("Empty Tioga Folios")
+//        Text("Empty Tioga Folios")
 //            TabView {
 //                TagKindListView()
 //                    .tabItem {
 //                        Label("Main", systemImage: "briefcase")
 //                    }
 //
-//                FolioListView()
-//                    .tabItem {
-//                        Label("Folios", systemImage: "archivebox")
-//                    }
+                FolioListView()
+                    .tabItem {
+                        Label("Folios", systemImage: "archivebox")
+                    }
 //
 //                FolioAddToV(viewModel: FolioVM())
 //                    .tabItem {

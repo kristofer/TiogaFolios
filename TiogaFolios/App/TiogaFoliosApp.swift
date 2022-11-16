@@ -9,37 +9,37 @@ import SwiftUI
 
 @main
 struct TiogaFoliosApp: App {
-    let store = Storage.privdb
+    //let store = Storage.privdb
     @Environment(\.scenePhase) var scenePhase
 
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, store.vc())
+                //.environment(\.managedObjectContext, store.vc())
         }
         .onChange(of: scenePhase) { _ in
             //print("calling persistence Save()")
-            store.save()
+            Storage.privdb.save()
         }
     }
 }
 
-extension UIApplication {
-    struct Constants {
-        static let CFBundleShortVersionString = "CFBundleShortVersionString"
-    }
-    class func appVersion() -> String {
-        return Bundle.main.object(forInfoDictionaryKey: Constants.CFBundleShortVersionString) as! String
-        // CFBundleShortVersionString
-    }
-  
-    class func appBuild() -> String {
-        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-    }
-  
-    class func versionBuild() -> String {
-        let version = appVersion(), build = appBuild()
-      
-        return version == build ? "v\(version)" : "v\(version)(\(build))"
-    }
-}
+//extension UIApplication {
+//    struct Constants {
+//        static let CFBundleShortVersionString = "CFBundleShortVersionString"
+//    }
+//    class func appVersion() -> String {
+//        return Bundle.main.object(forInfoDictionaryKey: Constants.CFBundleShortVersionString) as! String
+//        // CFBundleShortVersionString
+//    }
+//
+//    class func appBuild() -> String {
+//        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+//    }
+//
+//    class func versionBuild() -> String {
+//        let version = appVersion(), build = appBuild()
+//
+//        return version == build ? "v\(version)" : "v\(version)(\(build))"
+//    }
+//}

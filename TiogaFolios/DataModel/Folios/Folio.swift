@@ -57,11 +57,16 @@ extension Folio {
     static func fetchFolios(vc: NSManagedObjectContext) -> [Folio] {
         var fetchedFolios = [Folio]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
-        let dateSort = NSSortDescriptor(key:"modified", ascending:false)
+        let dateSort = NSSortDescriptor(key:"title", ascending:true)
         //let predicate = NSPredicate(format: "kindValue == %i", TagKind.folio.rawValue)
         fetchRequest.sortDescriptors = [dateSort]
         //fetchRequest.predicate = predicate
-        fetchedFolios = try! vc.fetch(fetchRequest) as! [Folio]
+        
+        do {
+            fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
+        } catch {
+            Foundation.NSLog("No folios in store")
+        }
         print("KKYY folio count \(fetchedFolios.count)")
         return fetchedFolios
     }

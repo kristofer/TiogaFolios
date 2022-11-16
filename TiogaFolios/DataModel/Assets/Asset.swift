@@ -51,11 +51,17 @@ extension Asset {
     static func fetchUnassignedAssets(vc: NSManagedObjectContext) -> [Asset] {
         var fetchedAssets = [Asset]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Asset")
-        let dateSort = NSSortDescriptor(key:"modified", ascending:false)
+        let dateSort = NSSortDescriptor(key:"title", ascending:true)
         let predicate = NSPredicate(format: "folio == nil") //(format: "folio == %i", nil)
         fetchRequest.sortDescriptors = [dateSort]
         fetchRequest.predicate = predicate
-        fetchedAssets = try! vc.fetch(fetchRequest) as! [Asset]
+        //fetchedAssets = try! vc.fetch(fetchRequest) as! [Asset]
+        do {
+            fetchedAssets = try vc.fetch(fetchRequest) as? [Asset] ?? []
+        } catch {
+            Foundation.NSLog("No assets in store")
+        }
+
         //print("KKYY folio count \(fetchedAssets.count)")
         return fetchedAssets
     }

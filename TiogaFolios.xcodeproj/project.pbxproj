@@ -27,6 +27,34 @@
 		5C32398E29254CCB00619645 /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398829254CCA00619645 /* Extras.swift */; };
 		5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398929254CCA00619645 /* SelectableTag.swift */; };
 		5C32399429254DFC00619645 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399329254DFC00619645 /* MainView.swift */; };
+		5C3239A02925772B00619645 /* FolioAddToV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239962925772B00619645 /* FolioAddToV.swift */; };
+		5C3239A12925772B00619645 /* FolioCardItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239972925772B00619645 /* FolioCardItems.swift */; };
+		5C3239A22925772B00619645 /* FolioCardV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239982925772B00619645 /* FolioCardV.swift */; };
+		5C3239A32925772B00619645 /* FolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239992925772B00619645 /* FolioCell.swift */; };
+		5C3239A42925772B00619645 /* FolioDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399A2925772B00619645 /* FolioDeltaView.swift */; };
+		5C3239A52925772B00619645 /* FolioEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399B2925772B00619645 /* FolioEditView.swift */; };
+		5C3239A62925772B00619645 /* FolioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399C2925772B00619645 /* FolioListView.swift */; };
+		5C3239A72925772B00619645 /* FolioTagItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399D2925772B00619645 /* FolioTagItems.swift */; };
+		5C3239A82925772B00619645 /* FolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399E2925772B00619645 /* FolioView.swift */; };
+		5C3239A92925772B00619645 /* FolioVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399F2925772B00619645 /* FolioVM.swift */; };
+		5C3239B12925774800619645 /* FolioTemplCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239AC2925774800619645 /* FolioTemplCell.swift */; };
+		5C3239B22925774800619645 /* FolioTemplListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239AD2925774800619645 /* FolioTemplListView.swift */; };
+		5C3239B32925774800619645 /* FolioTemplView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239AE2925774800619645 /* FolioTemplView.swift */; };
+		5C3239BC2925796200619645 /* AttachDocs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239B72925796200619645 /* AttachDocs.swift */; };
+		5C3239BD2925796200619645 /* BlobToTempFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239B82925796200619645 /* BlobToTempFile.swift */; };
+		5C3239BE2925796200619645 /* FileAssetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239B92925796200619645 /* FileAssetDetail.swift */; };
+		5C3239BF2925796200619645 /* FileAssetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239BA2925796200619645 /* FileAssetList.swift */; };
+		5C3239C02925796200619645 /* FileAssetPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239BB2925796200619645 /* FileAssetPreview.swift */; };
+		5C3239CB2925796F00619645 /* ContentTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C22925796F00619645 /* ContentTagView.swift */; };
+		5C3239CC2925796F00619645 /* FlexiblePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C32925796F00619645 /* FlexiblePicker.swift */; };
+		5C3239CD2925796F00619645 /* FolioListByTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C42925796F00619645 /* FolioListByTag.swift */; };
+		5C3239CE2925796F00619645 /* FontWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C52925796F00619645 /* FontWeight.swift */; };
+		5C3239CF2925796F00619645 /* TagEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C62925796F00619645 /* TagEditView.swift */; };
+		5C3239D02925796F00619645 /* TaggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C72925796F00619645 /* TaggerView.swift */; };
+		5C3239D12925796F00619645 /* TagKindListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C82925796F00619645 /* TagKindListView.swift */; };
+		5C3239D22925796F00619645 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C92925796F00619645 /* TagListView.swift */; };
+		5C3239D32925796F00619645 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239CA2925796F00619645 /* TagView.swift */; };
+		5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3239D529257BF700619645 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +101,34 @@
 		5C32398829254CCA00619645 /* Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
 		5C32398929254CCA00619645 /* SelectableTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableTag.swift; sourceTree = "<group>"; };
 		5C32399329254DFC00619645 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5C3239962925772B00619645 /* FolioAddToV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioAddToV.swift; sourceTree = "<group>"; };
+		5C3239972925772B00619645 /* FolioCardItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioCardItems.swift; sourceTree = "<group>"; };
+		5C3239982925772B00619645 /* FolioCardV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioCardV.swift; sourceTree = "<group>"; };
+		5C3239992925772B00619645 /* FolioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioCell.swift; sourceTree = "<group>"; };
+		5C32399A2925772B00619645 /* FolioDeltaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioDeltaView.swift; sourceTree = "<group>"; };
+		5C32399B2925772B00619645 /* FolioEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioEditView.swift; sourceTree = "<group>"; };
+		5C32399C2925772B00619645 /* FolioListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioListView.swift; sourceTree = "<group>"; };
+		5C32399D2925772B00619645 /* FolioTagItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTagItems.swift; sourceTree = "<group>"; };
+		5C32399E2925772B00619645 /* FolioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioView.swift; sourceTree = "<group>"; };
+		5C32399F2925772B00619645 /* FolioVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioVM.swift; sourceTree = "<group>"; };
+		5C3239AC2925774800619645 /* FolioTemplCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTemplCell.swift; sourceTree = "<group>"; };
+		5C3239AD2925774800619645 /* FolioTemplListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTemplListView.swift; sourceTree = "<group>"; };
+		5C3239AE2925774800619645 /* FolioTemplView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTemplView.swift; sourceTree = "<group>"; };
+		5C3239B72925796200619645 /* AttachDocs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachDocs.swift; sourceTree = "<group>"; };
+		5C3239B82925796200619645 /* BlobToTempFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobToTempFile.swift; sourceTree = "<group>"; };
+		5C3239B92925796200619645 /* FileAssetDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAssetDetail.swift; sourceTree = "<group>"; };
+		5C3239BA2925796200619645 /* FileAssetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAssetList.swift; sourceTree = "<group>"; };
+		5C3239BB2925796200619645 /* FileAssetPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAssetPreview.swift; sourceTree = "<group>"; };
+		5C3239C22925796F00619645 /* ContentTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTagView.swift; sourceTree = "<group>"; };
+		5C3239C32925796F00619645 /* FlexiblePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexiblePicker.swift; sourceTree = "<group>"; };
+		5C3239C42925796F00619645 /* FolioListByTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioListByTag.swift; sourceTree = "<group>"; };
+		5C3239C52925796F00619645 /* FontWeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontWeight.swift; sourceTree = "<group>"; };
+		5C3239C62925796F00619645 /* TagEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEditView.swift; sourceTree = "<group>"; };
+		5C3239C72925796F00619645 /* TaggerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggerView.swift; sourceTree = "<group>"; };
+		5C3239C82925796F00619645 /* TagKindListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagKindListView.swift; sourceTree = "<group>"; };
+		5C3239C92925796F00619645 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		5C3239CA2925796F00619645 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		5C3239D529257BF700619645 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +165,7 @@
 				5C32395B292431A300619645 /* TiogaFoliosTests */,
 				5C323965292431A300619645 /* TiogaFoliosUITests */,
 				5C323943292431A100619645 /* Products */,
+				5C3239D429257BF700619645 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				5C323978292433E000619645 /* TiogaFolios.entitlements */,
+				5C3239B52925778000619645 /* AppViews */,
 				5C323975292432B900619645 /* App */,
 				5C323949292431A300619645 /* Assets.xcassets */,
 				5C323953292431A300619645 /* Info.plist */,
@@ -218,6 +277,80 @@
 				5C32398629254CCA00619645 /* Fetching.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		5C3239952925772B00619645 /* Folios */ = {
+			isa = PBXGroup;
+			children = (
+				5C3239962925772B00619645 /* FolioAddToV.swift */,
+				5C3239972925772B00619645 /* FolioCardItems.swift */,
+				5C3239982925772B00619645 /* FolioCardV.swift */,
+				5C3239992925772B00619645 /* FolioCell.swift */,
+				5C32399A2925772B00619645 /* FolioDeltaView.swift */,
+				5C32399B2925772B00619645 /* FolioEditView.swift */,
+				5C32399C2925772B00619645 /* FolioListView.swift */,
+				5C32399D2925772B00619645 /* FolioTagItems.swift */,
+				5C32399E2925772B00619645 /* FolioView.swift */,
+				5C32399F2925772B00619645 /* FolioVM.swift */,
+			);
+			path = Folios;
+			sourceTree = "<group>";
+		};
+		5C3239AA2925774800619645 /* FolioTemplates */ = {
+			isa = PBXGroup;
+			children = (
+				5C3239AC2925774800619645 /* FolioTemplCell.swift */,
+				5C3239AD2925774800619645 /* FolioTemplListView.swift */,
+				5C3239AE2925774800619645 /* FolioTemplView.swift */,
+			);
+			path = FolioTemplates;
+			sourceTree = "<group>";
+		};
+		5C3239B52925778000619645 /* AppViews */ = {
+			isa = PBXGroup;
+			children = (
+				5C3239952925772B00619645 /* Folios */,
+				5C3239B62925796200619645 /* FileAsset */,
+				5C3239C12925796F00619645 /* Tags */,
+				5C3239AA2925774800619645 /* FolioTemplates */,
+			);
+			path = AppViews;
+			sourceTree = "<group>";
+		};
+		5C3239B62925796200619645 /* FileAsset */ = {
+			isa = PBXGroup;
+			children = (
+				5C3239B72925796200619645 /* AttachDocs.swift */,
+				5C3239B82925796200619645 /* BlobToTempFile.swift */,
+				5C3239B92925796200619645 /* FileAssetDetail.swift */,
+				5C3239BA2925796200619645 /* FileAssetList.swift */,
+				5C3239BB2925796200619645 /* FileAssetPreview.swift */,
+			);
+			path = FileAsset;
+			sourceTree = "<group>";
+		};
+		5C3239C12925796F00619645 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				5C3239C22925796F00619645 /* ContentTagView.swift */,
+				5C3239C32925796F00619645 /* FlexiblePicker.swift */,
+				5C3239C42925796F00619645 /* FolioListByTag.swift */,
+				5C3239C52925796F00619645 /* FontWeight.swift */,
+				5C3239C62925796F00619645 /* TagEditView.swift */,
+				5C3239C72925796F00619645 /* TaggerView.swift */,
+				5C3239C82925796F00619645 /* TagKindListView.swift */,
+				5C3239C92925796F00619645 /* TagListView.swift */,
+				5C3239CA2925796F00619645 /* TagView.swift */,
+			);
+			path = Tags;
+			sourceTree = "<group>";
+		};
+		5C3239D429257BF700619645 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C3239D529257BF700619645 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,19 +485,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
+				5C3239B32925774800619645 /* FolioTemplView.swift in Sources */,
 				5C32398D29254CCB00619645 /* Tag.swift in Sources */,
+				5C3239A02925772B00619645 /* FolioAddToV.swift in Sources */,
+				5C3239A32925772B00619645 /* FolioCell.swift in Sources */,
+				5C3239BD2925796200619645 /* BlobToTempFile.swift in Sources */,
+				5C3239A92925772B00619645 /* FolioVM.swift in Sources */,
 				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
+				5C3239A12925772B00619645 /* FolioCardItems.swift in Sources */,
+				5C3239CB2925796F00619645 /* ContentTagView.swift in Sources */,
 				5C32394F292431A300619645 /* Storage.swift in Sources */,
+				5C3239B12925774800619645 /* FolioTemplCell.swift in Sources */,
+				5C3239A62925772B00619645 /* FolioListView.swift in Sources */,
 				5C32398B29254CCB00619645 /* Asset.swift in Sources */,
+				5C3239CD2925796F00619645 /* FolioListByTag.swift in Sources */,
+				5C3239D22925796F00619645 /* TagListView.swift in Sources */,
+				5C3239A52925772B00619645 /* FolioEditView.swift in Sources */,
+				5C3239BC2925796200619645 /* AttachDocs.swift in Sources */,
+				5C3239A42925772B00619645 /* FolioDeltaView.swift in Sources */,
 				5C323977292432E600619645 /* Config.swift in Sources */,
+				5C3239A82925772B00619645 /* FolioView.swift in Sources */,
 				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,
+				5C3239C02925796200619645 /* FileAssetPreview.swift in Sources */,
+				5C3239CE2925796F00619645 /* FontWeight.swift in Sources */,
 				5C32398129254C5F00619645 /* TemplateSources.swift in Sources */,
+				5C3239D02925796F00619645 /* TaggerView.swift in Sources */,
 				5C32398A29254CCB00619645 /* TagSources.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
+				5C3239CC2925796F00619645 /* FlexiblePicker.swift in Sources */,
+				5C3239A22925772B00619645 /* FolioCardV.swift in Sources */,
+				5C3239BF2925796200619645 /* FileAssetList.swift in Sources */,
+				5C3239CF2925796F00619645 /* TagEditView.swift in Sources */,
 				5C32397E29254C0F00619645 /* Folio.swift in Sources */,
 				5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */,
+				5C3239D32925796F00619645 /* TagView.swift in Sources */,
+				5C3239A72925772B00619645 /* FolioTagItems.swift in Sources */,
 				5C32399429254DFC00619645 /* MainView.swift in Sources */,
 				5C32398229254C5F00619645 /* FolioTemplates.swift in Sources */,
+				5C3239B22925774800619645 /* FolioTemplListView.swift in Sources */,
+				5C3239BE2925796200619645 /* FileAssetDetail.swift in Sources */,
+				5C3239D12925796F00619645 /* TagKindListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +692,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,6 +723,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
