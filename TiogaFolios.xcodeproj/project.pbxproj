@@ -105,9 +105,8 @@
 				5C323978292433E000619645 /* TiogaFolios.entitlements */,
 				5C323975292432B900619645 /* App */,
 				5C323949292431A300619645 /* Assets.xcassets */,
-				5C32394E292431A300619645 /* Persistence.swift */,
 				5C323953292431A300619645 /* Info.plist */,
-				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
+				5C3239792925363700619645 /* DataModel */,
 				5C32394B292431A300619645 /* Preview Content */,
 			);
 			path = TiogaFolios;
@@ -146,6 +145,15 @@
 				5C323976292432E600619645 /* Config.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		5C3239792925363700619645 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5C32394E292431A300619645 /* Persistence.swift */,
+				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
