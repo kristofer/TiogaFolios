@@ -11,17 +11,11 @@ import UniformTypeIdentifiers
 
 extension Folio {
     
-    static func createFolio(vc: NSManagedObjectContext) -> (Folio) {
-        return Folio.createFolio(vc: vc, title: "Untitled")
-    }
-    
-    static func createFolio(vc: NSManagedObjectContext, title: String) -> (Folio) {
-        return createFolio(vc: vc, title: title, desc: "")
-    }
-    
+    // designated base constructor
     static func createFolio(vc: NSManagedObjectContext,
                             title: String,
                             desc: String) -> (Folio) {
+        //Foundation.NSLog("KKYY folio create \(vc), \(title)")
         let f = Folio(context: vc)
         f.id = UUID()
         f.title = title
@@ -29,8 +23,16 @@ extension Folio {
         return f
     }
     
+    static func createFolio(vc: NSManagedObjectContext, title: String) -> (Folio) {
+        return createFolio(vc: vc, title: title, desc: "")
+    }
+    
+    static func createFolio(vc: NSManagedObjectContext) -> (Folio) {
+        return Folio.createFolio(vc: vc, title: "Untitled", desc: "")
+    }
+
     static func emptyFolio() -> (Folio) {
-        return Folio.createFolio(vc: Storage.privdb.vc(), title: "Untitled")
+        return Folio.createFolio(vc: Storage.privdb.vc(), title: "Untitled", desc: "description")
     }
     
     static func createFolioFromTemplate(_ template: FolioTemplate) -> Folio {

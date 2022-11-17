@@ -66,18 +66,6 @@ extension Asset {
         return fetchedAssets
     }
 
-//    func attachTo(folio: Folio, vc: NSManagedObjectContext) throws {
-//        folio.addToAssets(self)
-//        //self.addToFolio(folio)
-//        try vc.save()
-//    }
-//
-//    func removeFrom(folio: Folio, vc: NSManagedObjectContext) throws {
-//        folio.removeFromAssets(self)
-//        //self.removeFromTags(folio)
-//        try vc.save()
-//    }
-
     func tempURLFor() -> URL {
         //print("KKYY tempURLFor(document: BlobAsset) -> URL?")
         //print("KKYY tempURLFor \(self)")

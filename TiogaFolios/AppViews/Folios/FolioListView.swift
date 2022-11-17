@@ -11,11 +11,18 @@ import CoreData
 class FolioListViewModel: ObservableObject {
     
     @Published var folios = [Folio]()
-    
+    @Published var newFolio: Folio?
+
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.privdb.vc())
     }
     
+    // generate new folio when the button is pressed...
+    func generateFolio() {
+        if newFolio == nil {
+            newFolio = Folio.emptyFolio()
+        }
+    }
 }
     
 struct FolioListView: View {
@@ -63,6 +70,7 @@ struct FolioListView: View {
 #endif
                 ToolbarItem(placement: .bottomBar) {
                     Button(action:  {
+                        vm.generateFolio()
                         showNewFolio = true
                     }) {
                         HStack {
@@ -72,7 +80,7 @@ struct FolioListView: View {
                     }
                     .sheet(isPresented: $showNewFolio, onDismiss: didDismiss)
                     {
-                        FolioDeltaView(show: $showNewFolio)
+                        FolioDeltaView(objectPassed: vm.newFolio, show: $showNewFolio)
                     }
                 }
             }
@@ -87,6 +95,7 @@ struct FolioListView: View {
     
     func didDismiss() {
         showNewFolio = false
+        vm.newFolio = nil
         vm.fetchData()
     }
     

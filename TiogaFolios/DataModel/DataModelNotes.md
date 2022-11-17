@@ -89,8 +89,11 @@ Used for categorization of Folios and Assets. Both system created and user creat
 A textual file attached to an Asset. TF should be able to edit Note, create/delete Note.
 One Asset to many Notes.
 
+11/17/22 added a mimetype field for tracking text or json or....
+
 - <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
 
+- <attribute name="mimetype" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
 - <attribute name="detailtext" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
 - <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
 - <attribute name="title" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>

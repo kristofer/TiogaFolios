@@ -16,26 +16,26 @@ struct MainView: View {
     
     var body: some View {
 //        Text("Empty Tioga Folios")
-//            TabView {
-//                TagKindListView()
-//                    .tabItem {
-//                        Label("Main", systemImage: "briefcase")
-//                    }
-//
+            TabView {
                 FolioListView()
                     .tabItem {
                         Label("Folios", systemImage: "archivebox")
                     }
-//
-//                FolioAddToV(viewModel: FolioVM())
-//                    .tabItem {
-//                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")
-//                    }
+
+                TagKindListView()
+                    .tabItem {
+                        Label("Tags", systemImage: "briefcase")
+                    }
+
+                FolioAddToV(viewModel: FolioVM())
+                    .tabItem {
+                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")
+                    }
                 
-//                FileAssetList()
-//                    .tabItem {
-//                        Label("Documents", systemImage: "doc.richtext")
-//                    }
+                FileAssetList()
+                    .tabItem {
+                        Label("Documents", systemImage: "doc.richtext")
+                    }
                 
 //                SettingsView()
 //                    .tabItem {
@@ -47,16 +47,16 @@ struct MainView: View {
 //                        Label("Scan", systemImage: "scanner.fill")
 //                    }
 //#endif
-//                TagListView()
-//                    .tabItem {
-//                        Label("Tags", systemImage: "tag")
-//                    }
-//                FolioTemplListView()
-//                    .tabItem {
-//                        Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
-//                    }
-//
-//            }
+                TagListView()
+                    .tabItem {
+                        Label("Tags", systemImage: "tag")
+                    }
+                FolioTemplListView()
+                    .tabItem {
+                        Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
+                    }
+
+            }
     }
     
 }

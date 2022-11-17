@@ -11,10 +11,10 @@ import UniformTypeIdentifiers
 import os
 
 @MainActor final class FileAssetDetailVM: ObservableObject {
-    private static let logger = Logger(
-        subsystem: "com.tiogadigital.halfroll",
-        category: String(describing: FileAssetDetailVM.self)
-    )
+//    private static let logger = Logger(
+//        subsystem: "co.tioga.TiogaFolios",
+//        category: String(describing: FileAssetDetailVM.self)
+//    )
     
     @Published var fileasset: Asset = .init()
     @Published private(set) var isSaving = false
@@ -46,11 +46,11 @@ import os
             }
             try blob!.write(to: tempFile.fileURL)
         } catch {
-            Self.logger.error("KKYY \(error.localizedDescription, privacy: .public)")
+            Foundation.NSLog("KKYY \(error.localizedDescription)")
         }
     }
     func recorderror(_ s: String) {
-        Self.logger.error("\(s, privacy: .public)")
+        Foundation.NSLog("KKYY \(s)")
     }
     
 }

@@ -33,9 +33,15 @@ class DeltaFolioVm: ObservableObject {
 }
 
 struct FolioDeltaView: View {
+    enum FocusField: Hashable {
+      case field
+    }
+
+
     @ObservedObject var vm: DeltaFolioVm
     @Binding var isPresented: Bool
-    
+    @FocusState private var focusedField: FocusField?
+
     init(objectPassed: Folio? = nil, show: Binding<Bool>) {
         if objectPassed == nil {
             vm = DeltaFolioVm()
@@ -51,13 +57,16 @@ struct FolioDeltaView: View {
         VStack {
             Form {
                 Text(vm.ttitle).font(.headline)
-//                HStack{
-//                    Label("As of \(vm.folio.modified!, style: .date), \(vm.folio.modified!, style: .time)", systemImage: "folder")
-//                }
                 TextField("", text: $vm.folio.title ?? "foo")
+                    .focused($focusedField, equals: .field)
+                    .onAppear {
+                          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {  /// Anything over 0.5 seems to work
+                                self.focusedField = .field
+                           }
+                    }
                 TextField("", text: $vm.folio.desc ?? "bar")
                 Button(action: {
-                    try? Storage.privdb.vc().save()
+                    Storage.privdb.save()
                     isPresented = false
                 }) {
                     HStack {

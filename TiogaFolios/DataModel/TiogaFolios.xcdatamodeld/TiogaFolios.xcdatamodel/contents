@@ -28,6 +28,7 @@
     <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
         <attribute name="detailtext" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mimetype" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
         <relationship name="asset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="notes" inverseEntity="Asset"/>
     </entity>

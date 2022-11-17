@@ -55,14 +55,15 @@ final class Storage {
     }
  
     func save() {
+        Foundation.NSLog("KKYY Storage save()")
         let context = Storage.privdb.container.viewContext
 
         if context.hasChanges {
             do {
-                NSLog("KKYY did save main persistence context")
+                Foundation.NSLog("KKYY did save main persistence context")
                 try context.save()
             } catch {
-                // Show some error here
+                Foundation.NSLog("KKYY saving failed \(error.localizedDescription)")
             }
         }
     }
