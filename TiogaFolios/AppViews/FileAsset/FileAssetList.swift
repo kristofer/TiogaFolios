@@ -104,6 +104,7 @@ struct FileAssetList: View {
                                       uttype: typeID)
                 fileasset.setBlob(blob)
                 Storage.privdb.save()
+                vm.fetchData()
             }
         } catch {
             // Handle failure.

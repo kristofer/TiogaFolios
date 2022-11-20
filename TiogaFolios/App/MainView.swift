@@ -27,10 +27,10 @@ struct MainView: View {
                         Label("Tags", systemImage: "briefcase")
                     }
 
-                FolioAddToV(viewModel: FolioVM())
-                    .tabItem {
-                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")
-                    }
+//                FolioAddToV(viewModel: FolioVM())
+//                    .tabItem {
+//                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")
+//                    }
                 
                 FileAssetList()
                     .tabItem {

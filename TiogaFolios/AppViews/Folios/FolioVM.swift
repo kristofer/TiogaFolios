@@ -10,13 +10,13 @@ import SwiftUI
 import CoreData
 
 
-class FolioVM: ObservableObject {
-    
-    // @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(
-        //entity: Tag.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Folio.title, ascending: false)],
-        animation: .default)
-    private var folios: FetchedResults<Folio>
-}
+//class FolioVM: ObservableObject {
+//
+//    // @Environment(\.managedObjectContext) private var viewContext
+//
+//    @FetchRequest(
+//        //entity: Tag.entity(),
+//        sortDescriptors: [NSSortDescriptor(keyPath: \Folio.title, ascending: false)],
+//        animation: .default)
+//    private var folios: FetchedResults<Folio>
+//}

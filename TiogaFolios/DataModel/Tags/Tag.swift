@@ -118,6 +118,7 @@ extension Tag {
         let newTag = Tag(context: vc)
         newTag.id = UUID()
         newTag.title = named
+        newTag.desc = desc
         newTag.kind = kind.rawValue
         newTag.category = TagCat.user.rawValue
         return newTag

@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct TiogaFoliosApp: App {
-    //let store = Storage.privdb
+    let store = Storage.privdb
     @Environment(\.scenePhase) var scenePhase
 
     var body: some Scene {
         WindowGroup {
             MainView()
-                //.environment(\.managedObjectContext, store.vc())
+                .environment(\.managedObjectContext, store.vc())
         }
         .onChange(of: scenePhase) { _ in
             //print("calling persistence Save()")

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FolioAddToV: View {
-    @ObservedObject var viewModel: FolioVM
+    //@ObservedObject var viewModel: FolioVM
     
     @State var selection: Int? = nil
     
