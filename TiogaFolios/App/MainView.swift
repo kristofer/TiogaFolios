@@ -24,7 +24,7 @@ struct MainView: View {
 
                 TagKindListView()
                     .tabItem {
-                        Label("Tags", systemImage: "briefcase")
+                        Label("Categories", systemImage: "briefcase")
                     }
 
 //                FolioAddToV(viewModel: FolioVM())
@@ -32,28 +32,28 @@ struct MainView: View {
 //                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")
 //                    }
                 
-                FileAssetList()
-                    .tabItem {
-                        Label("Documents", systemImage: "doc.richtext")
-                    }
-                
-//                SettingsView()
+//                FileAssetList()
 //                    .tabItem {
-//                        Label("Settings", systemImage: "gear")
+//                        Label("Documents", systemImage: "doc.richtext")
 //                    }
+//
 //#if !os(macOS)
 //                DocScannerView(viewModel: DocScannerViewModel())
 //                    .tabItem {
 //                        Label("Scan", systemImage: "scanner.fill")
 //                    }
 //#endif
-                TagListView()
-                    .tabItem {
-                        Label("Tags", systemImage: "tag")
-                    }
+//                TagListView()
+//                    .tabItem {
+//                        Label("Tags", systemImage: "tag")
+//                    }
                 FolioTemplListView()
                     .tabItem {
                         Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
                     }
 
             }

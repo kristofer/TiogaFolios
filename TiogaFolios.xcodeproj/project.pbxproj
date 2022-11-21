@@ -55,6 +55,8 @@
 		5C3239D22925796F00619645 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C92925796F00619645 /* TagListView.swift */; };
 		5C3239D32925796F00619645 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239CA2925796F00619645 /* TagView.swift */; };
 		5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3239D529257BF700619645 /* CloudKit.framework */; };
+		5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */; };
+		5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF861292BD8F4007CAAB6 /* SplashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,8 @@
 		5C3239C92925796F00619645 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		5C3239CA2925796F00619645 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		5C3239D529257BF700619645 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5C3EF861292BD8F4007CAAB6 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +228,8 @@
 			children = (
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
 				5C32399329254DFC00619645 /* MainView.swift */,
+				5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */,
+				5C3EF861292BD8F4007CAAB6 /* SplashView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -485,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
+				5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */,
 				5C3239B32925774800619645 /* FolioTemplView.swift in Sources */,
 				5C32398D29254CCB00619645 /* Tag.swift in Sources */,
 				5C3239A02925772B00619645 /* FolioAddToV.swift in Sources */,
@@ -505,6 +512,7 @@
 				5C3239A42925772B00619645 /* FolioDeltaView.swift in Sources */,
 				5C323977292432E600619645 /* Config.swift in Sources */,
 				5C3239A82925772B00619645 /* FolioView.swift in Sources */,
+				5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */,
 				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,
 				5C3239C02925796200619645 /* FileAssetPreview.swift in Sources */,
 				5C3239CE2925796F00619645 /* FontWeight.swift in Sources */,
