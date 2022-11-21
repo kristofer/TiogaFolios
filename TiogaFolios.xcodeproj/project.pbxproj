@@ -57,6 +57,20 @@
 		5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3239D529257BF700619645 /* CloudKit.framework */; };
 		5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */; };
 		5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF861292BD8F4007CAAB6 /* SplashView.swift */; };
+		5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF869292BDCA4007CAAB6 /* ShareViewController.swift */; };
+		5C3EF86D292BDCA4007CAAB6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3EF86B292BDCA4007CAAB6 /* MainInterface.storyboard */; };
+		5C3EF871292BDCA4007CAAB6 /* Archive It.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5C3EF867292BDCA4007CAAB6 /* Archive It.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5C3EF87B292BDD02007CAAB6 /* ShareSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF87A292BDD02007CAAB6 /* ShareSelectViewController.swift */; };
+		5C3EF87C292BDD48007CAAB6 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398529254CCA00619645 /* Asset.swift */; };
+		5C3EF87D292BDD4E007CAAB6 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398729254CCA00619645 /* Tag.swift */; };
+		5C3EF87E292BDD52007CAAB6 /* Folio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32397D29254C0F00619645 /* Folio.swift */; };
+		5C3EF87F292BDD57007CAAB6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323976292432E600619645 /* Config.swift */; };
+		5C3EF880292BDD5B007CAAB6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32394E292431A300619645 /* Storage.swift */; };
+		5C3EF881292BDD71007CAAB6 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
+		5C3EF882292BDDAA007CAAB6 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398629254CCA00619645 /* Fetching.swift */; };
+		5C3EF883292BDDF1007CAAB6 /* SelectableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398929254CCA00619645 /* SelectableTag.swift */; };
+		5C3EF884292BDDFB007CAAB6 /* TagSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398429254CCA00619645 /* TagSources.swift */; };
+		5C3EF885292BDE38007CAAB6 /* FolioTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398029254C5F00619645 /* FolioTemplates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +88,28 @@
 			remoteGlobalIDString = 5C323941292431A100619645;
 			remoteInfo = TiogaFolios;
 		};
+		5C3EF86F292BDCA4007CAAB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C32393A292431A100619645 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C3EF866292BDCA4007CAAB6;
+			remoteInfo = "Archive It";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C3EF875292BDCA4007CAAB6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5C3EF871292BDCA4007CAAB6 /* Archive It.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5C323942292431A100619645 /* TiogaFolios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiogaFolios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +168,12 @@
 		5C3239D529257BF700619645 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5C3EF861292BD8F4007CAAB6 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		5C3EF867292BDCA4007CAAB6 /* Archive It.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Archive It.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C3EF869292BDCA4007CAAB6 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		5C3EF86C292BDCA4007CAAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		5C3EF86E292BDCA4007CAAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C3EF87A292BDD02007CAAB6 /* ShareSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSelectViewController.swift; sourceTree = "<group>"; };
+		5C3EF886292BDE89007CAAB6 /* Archive It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Archive It.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +199,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C3EF864292BDCA4007CAAB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -168,6 +216,7 @@
 				5C323944292431A100619645 /* TiogaFolios */,
 				5C32395B292431A300619645 /* TiogaFoliosTests */,
 				5C323965292431A300619645 /* TiogaFoliosUITests */,
+				5C3EF868292BDCA4007CAAB6 /* Archive It */,
 				5C323943292431A100619645 /* Products */,
 				5C3239D429257BF700619645 /* Frameworks */,
 			);
@@ -179,6 +228,7 @@
 				5C323942292431A100619645 /* TiogaFolios.app */,
 				5C323958292431A300619645 /* TiogaFoliosTests.xctest */,
 				5C323962292431A300619645 /* TiogaFoliosUITests.xctest */,
+				5C3EF867292BDCA4007CAAB6 /* Archive It.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -359,6 +409,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5C3EF868292BDCA4007CAAB6 /* Archive It */ = {
+			isa = PBXGroup;
+			children = (
+				5C3EF886292BDE89007CAAB6 /* Archive It.entitlements */,
+				5C3EF869292BDCA4007CAAB6 /* ShareViewController.swift */,
+				5C3EF87A292BDD02007CAAB6 /* ShareSelectViewController.swift */,
+				5C3EF86B292BDCA4007CAAB6 /* MainInterface.storyboard */,
+				5C3EF86E292BDCA4007CAAB6 /* Info.plist */,
+			);
+			path = "Archive It";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -369,10 +431,12 @@
 				5C32393E292431A100619645 /* Sources */,
 				5C32393F292431A100619645 /* Frameworks */,
 				5C323940292431A100619645 /* Resources */,
+				5C3EF875292BDCA4007CAAB6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5C3EF870292BDCA4007CAAB6 /* PBXTargetDependency */,
 			);
 			name = TiogaFolios;
 			productName = TiogaFolios;
@@ -415,6 +479,23 @@
 			productReference = 5C323962292431A300619645 /* TiogaFoliosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		5C3EF866292BDCA4007CAAB6 /* Archive It */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C3EF872292BDCA4007CAAB6 /* Build configuration list for PBXNativeTarget "Archive It" */;
+			buildPhases = (
+				5C3EF863292BDCA4007CAAB6 /* Sources */,
+				5C3EF864292BDCA4007CAAB6 /* Frameworks */,
+				5C3EF865292BDCA4007CAAB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Archive It";
+			productName = "Archive It";
+			productReference = 5C3EF867292BDCA4007CAAB6 /* Archive It.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -436,6 +517,9 @@
 						CreatedOnToolsVersion = 14.1;
 						TestTargetID = 5C323941292431A100619645;
 					};
+					5C3EF866292BDCA4007CAAB6 = {
+						CreatedOnToolsVersion = 14.1;
+					};
 				};
 			};
 			buildConfigurationList = 5C32393D292431A100619645 /* Build configuration list for PBXProject "TiogaFolios" */;
@@ -454,6 +538,7 @@
 				5C323941292431A100619645 /* TiogaFolios */,
 				5C323957292431A300619645 /* TiogaFoliosTests */,
 				5C323961292431A300619645 /* TiogaFoliosUITests */,
+				5C3EF866292BDCA4007CAAB6 /* Archive It */,
 			);
 		};
 /* End PBXProject section */
@@ -480,6 +565,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C3EF865292BDCA4007CAAB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3EF86D292BDCA4007CAAB6 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +646,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C3EF863292BDCA4007CAAB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3EF881292BDD71007CAAB6 /* TiogaFolios.xcdatamodeld in Sources */,
+				5C3EF87D292BDD4E007CAAB6 /* Tag.swift in Sources */,
+				5C3EF880292BDD5B007CAAB6 /* Storage.swift in Sources */,
+				5C3EF885292BDE38007CAAB6 /* FolioTemplates.swift in Sources */,
+				5C3EF87C292BDD48007CAAB6 /* Asset.swift in Sources */,
+				5C3EF882292BDDAA007CAAB6 /* Fetching.swift in Sources */,
+				5C3EF87B292BDD02007CAAB6 /* ShareSelectViewController.swift in Sources */,
+				5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */,
+				5C3EF87E292BDD52007CAAB6 /* Folio.swift in Sources */,
+				5C3EF883292BDDF1007CAAB6 /* SelectableTag.swift in Sources */,
+				5C3EF884292BDDFB007CAAB6 /* TagSources.swift in Sources */,
+				5C3EF87F292BDD57007CAAB6 /* Config.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -566,7 +678,23 @@
 			target = 5C323941292431A100619645 /* TiogaFolios */;
 			targetProxy = 5C323963292431A300619645 /* PBXContainerItemProxy */;
 		};
+		5C3EF870292BDCA4007CAAB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C3EF866292BDCA4007CAAB6 /* Archive It */;
+			targetProxy = 5C3EF86F292BDCA4007CAAB6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5C3EF86B292BDCA4007CAAB6 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C3EF86C292BDCA4007CAAB6 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5C32396A292431A300619645 /* Debug */ = {
@@ -686,6 +814,7 @@
 		5C32396D292431A300619645 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
@@ -717,6 +846,7 @@
 		5C32396E292431A300619645 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
@@ -821,6 +951,60 @@
 			};
 			name = Release;
 		};
+		5C3EF873292BDCA4007CAAB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Archive It/Archive It.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Archive It/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Archive It";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.tioga.TiogaFolios.Archive-It";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C3EF874292BDCA4007CAAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Archive It/Archive It.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S7ZKK95T9U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Archive It/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Archive It";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.tioga.TiogaFolios.Archive-It";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -856,6 +1040,15 @@
 			buildConfigurations = (
 				5C323973292431A300619645 /* Debug */,
 				5C323974292431A300619645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C3EF872292BDCA4007CAAB6 /* Build configuration list for PBXNativeTarget "Archive It" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C3EF873292BDCA4007CAAB6 /* Debug */,
+				5C3EF874292BDCA4007CAAB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
