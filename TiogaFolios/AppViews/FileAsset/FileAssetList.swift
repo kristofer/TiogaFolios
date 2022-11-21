@@ -22,7 +22,7 @@ class FileAssetViewModel: ObservableObject {
 struct FileAssetList: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var vm = FileAssetViewModel()
-
+    
     @State private var showNewDoc = false
     @State private var isImporting: Bool = false
     @State private var showAlert: Bool = false
@@ -71,13 +71,50 @@ struct FileAssetList: View {
             Text("Select a document")
         }
         .onAppear(perform: {
-                 vm.fetchData()
-              })
+            vm.fetchData()
+        })
         .fileImporter(
             isPresented: $isImporting,
             allowedContentTypes: [UTType.content, UTType.compositeContent],
             allowsMultipleSelection: false
-        ) { result in do {
+        ) { result in
+            importFile(result)
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Unable to Archive File"),
+                  message: Text("\(showError!.localizedDescription) \(self.errormsg)"),
+                  dismissButton: .default(Text("Ok")))
+        }
+    }
+    
+    func didDismiss() {
+        showNewDoc = false
+    }
+    
+    private func iconFor(_ doc: Asset) -> String {
+        if let mimetype = doc.mimetype {
+            if mimetype == "text/html"{
+                return "bookmark"
+            }
+            if mimetype == "text/plain"{
+                return "doc.plaintext"
+            }
+            if mimetype.contains("image") {
+                return "photo"
+            }
+        }
+        return "doc.richtext"
+    }
+    
+    private func deleteDocs(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { vm.docs[$0] }.forEach(viewContext.delete)
+            Storage.privdb.save()
+        }
+    }
+    
+    private func importFile(_ result: Result<[URL], Error> ) {
+        do {
             guard let selectedFile: URL = try result.get().first else { return }
             //trying to get access to url contents
             guard selectedFile.startAccessingSecurityScopedResource() else { return }
@@ -111,39 +148,6 @@ struct FileAssetList: View {
             print(error.localizedDescription)
             showAlert = true
             showError = error
-        }
-            
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Unable to Archive File"),
-                  message: Text("\(showError!.localizedDescription) \(self.errormsg)"),
-                  dismissButton: .default(Text("Ok")))
-        }
-    }
-    
-    func didDismiss() {
-        showNewDoc = false
-    }
-    
-    private func iconFor(_ doc: Asset) -> String {
-        if let mimetype = doc.mimetype {
-            if mimetype == "text/html"{
-                return "bookmark"
-            }
-            if mimetype == "text/plain"{
-                return "doc.plaintext"
-            }
-            if mimetype.contains("image") {
-                return "photo"
-            }
-        }
-        return "doc.richtext"
-    }
-    
-    private func deleteDocs(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { vm.docs[$0] }.forEach(viewContext.delete)
-            Storage.privdb.save()
         }
     }
 }

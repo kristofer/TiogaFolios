@@ -33,10 +33,6 @@ struct AttachDocs: View {
                  vm.fetchData()
               })
     }
-    
-    func isMember(_ tag: Asset) -> Bool {
-        return false
-    }
 }
 
 struct AttachDocs_Previews: PreviewProvider {
