@@ -75,7 +75,7 @@ struct FolioView: View {
                 List {
                     ForEach(Array(folio.assets as? Set<Asset> ?? []), id: \.self) { doc in
                         NavigationLink(
-                            destination: FileAssetDetail(anAsset: doc)) { //doc: doc)) {
+                            destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
                                 Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
                             }
                     }

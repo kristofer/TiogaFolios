@@ -8,23 +8,39 @@
 import SwiftUI
 
 struct ChooseFolio: View {
-    @State private var selection: UUID?
+    var assetToAssign: Asset
+    //@State private var selection: UUID?
     @ObservedObject var vm = FolioListViewModel()
     
+    init(asset: Asset) {
+        assetToAssign = asset
+    }
     
     var body: some View {
-        NavigationView {
-            List(vm.folios, id: \.self, selection: $selection) { folio in
-                Text(folio.title!)
+        VStack{
+            Text("Available Folios")
+            Divider()
+            List{
+                ForEach(vm.folios, id: \.id) { folio in
+                    HStack{
+                        Text(folio.title ?? "nothing")
+//                        Button(folio.title!) {
+//                            folio.addToAssets(assetToAssign)
+//                        }
+
+                    }
+                }
             }
+            .buttonStyle(BorderlessButtonStyle())
+            
         }
-        .navigationTitle("Current Folios")
-        //.toolbar { EditButton() }
-        
         .onAppear(perform: {
+            print("KKYY appearing.")
             vm.fetchData()
         })
-        .toolbar { EditButton() }
+        .onDisappear(perform: {
+            print("KKYY disappear")
+        })
 
         
     }
@@ -32,6 +48,6 @@ struct ChooseFolio: View {
 
 struct ChooseFolio_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseFolio()
+        EmptyView()
     }
 }

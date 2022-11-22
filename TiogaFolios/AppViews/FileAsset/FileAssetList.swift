@@ -32,12 +32,12 @@ struct FileAssetList: View {
     var body: some View {
         VStack{
             HStack{
-                NavigationLink(destination: ChooseFolio()) {
-                    HStack {
-                        Text("AssignTo")
-                        Image(systemName: "plus")
-                    }
-                }
+//                NavigationLink(destination: ChooseFolio()) {
+//                    HStack {
+//                        Text("AssignTo")
+//                        Image(systemName: "plus")
+//                    }
+//                }
                 Spacer()
                 Button(action:  {
                     isImporting = false
@@ -57,7 +57,7 @@ struct FileAssetList: View {
             List {
                 ForEach(vm.docs) { doc in
                     NavigationLink(
-                        destination: FileAssetDetail(anAsset: doc)) { //doc: doc)) {
+                        destination: FileAssetDetail(anAsset: doc, showAssignTo: true)) { //doc: doc)) {
                             Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: iconFor(doc))
                         }
                 }

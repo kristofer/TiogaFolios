@@ -15,6 +15,7 @@ class FolioListViewModel: ObservableObject {
 
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.privdb.vc())
+        print("KKYY fetch folios \(self.folios.count)")
     }
     
     // generate new folio when the button is pressed...

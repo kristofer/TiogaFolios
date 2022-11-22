@@ -11,10 +11,10 @@ import UniformTypeIdentifiers
 import os
 
 @MainActor final class FileAssetDetailVM: ObservableObject {
-//    private static let logger = Logger(
-//        subsystem: "co.tioga.TiogaFolios",
-//        category: String(describing: FileAssetDetailVM.self)
-//    )
+    //    private static let logger = Logger(
+    //        subsystem: "co.tioga.TiogaFolios",
+    //        category: String(describing: FileAssetDetailVM.self)
+    //    )
     
     @Published var fileasset: Asset = .init()
     @Published private(set) var isSaving = false
@@ -22,17 +22,21 @@ import os
     @Published var showAlert: Bool = false
     @Published var showError: Error? = nil
     @Published var errormsg = ""
-
+    @Published var showAssign: Bool = false
+    
     @Published var tempFile: TemporaryFile
     @Published var isBlobEmpty = false
     private let context = Storage.privdb.container.viewContext
     
-    init(anAsset: Asset) {
+    init(anAsset: Asset, showAssignTo: Bool) {
         fileasset = anAsset
         let fname = "tempfile." + (UTType(anAsset.uttype!)?.preferredFilenameExtension ?? "txt")
         tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
-
+        
         loadTempFile()
+        //
+        print("KKYY showing assignto \(showAssignTo)")
+        showAssign = showAssignTo
     }
     
     func loadTempFile() {
@@ -60,38 +64,42 @@ struct FileAssetDetail: View {
     @StateObject private var vm : FileAssetDetailVM
     @Environment(\.dismiss) var dismiss
     
-    init(anAsset: Asset) {
-        _vm = StateObject(wrappedValue: FileAssetDetailVM(anAsset: anAsset))
+    init(anAsset: Asset, showAssignTo: Bool) {
+        _vm = StateObject(wrappedValue: FileAssetDetailVM(anAsset: anAsset,
+                                                          showAssignTo: showAssignTo))
     }
     
     var body: some View {
         VStack{
-        VStack{
-            //Text("\(vm.fileasset.title!)").bold()
-            Text("a description of the document")
-                .font(.caption)//\(vm.fileasset.desc!)")
-            Divider()
-            if vm.isBlobEmpty {
-                Button(action:  {
-                    vm.isImporting = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        vm.isImporting = true
-                    }
-                }) {
-                    HStack {
-                        Text("Add")
-                        Image(systemName: "plus")
-                    }
+            VStack{
+                //Text("\(vm.fileasset.title!)").bold()
+                Text("a description of the document")
+                    .font(.caption)//\(vm.fileasset.desc!)")
+                if vm.showAssign == true {
+                    NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
                 }
-            } else {
-                FileAssetPreview(fileUrl: $vm.tempFile.fileURL).padding()
+                Divider()
+                if vm.isBlobEmpty {
+                    Button(action:  {
+                        vm.isImporting = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            vm.isImporting = true
+                        }
+                    }) {
+                        HStack {
+                            Text("Add")
+                            Image(systemName: "plus")
+                        }
+                    }
+                } else {
+                    FileAssetPreview(fileUrl: $vm.tempFile.fileURL).padding()
+                }
             }
-        }
-        Spacer()
+            Spacer()
             Text("Metadata: \(vm.fileasset.mimetype!)")
                 .font(.caption)
-//            Text("Modified: \(vm.fileasset.modified!, formatter: assetFormatter) Archived: \(vm.fileasset.archivedate!, formatter: assetFormatter)")
-//                .font(.caption)
+            //            Text("Modified: \(vm.fileasset.modified!, formatter: assetFormatter) Archived: \(vm.fileasset.archivedate!, formatter: assetFormatter)")
+            //                .font(.caption)
         }
         .onDisappear() {
             do {
@@ -142,7 +150,7 @@ struct FileAssetDetail: View {
         }
             
         }
-
+        
         .navigationTitle("\(vm.fileasset.title!)")
         .navigationBarTitleDisplayMode(.inline)
         
@@ -159,6 +167,7 @@ private let assetFormatter: DateFormatter = {
 
 struct FileAssetDetail_Previews: PreviewProvider {
     static var previews: some View {
-        FileAssetDetail(anAsset: Asset.sampleAsset())
+        EmptyView()
+        
     }
 }
