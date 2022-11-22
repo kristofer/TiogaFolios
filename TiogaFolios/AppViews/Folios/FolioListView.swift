@@ -39,7 +39,8 @@ struct FolioListView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Recent Folios")) {
+                Section(header: Text("Recent Folios"))
+                    {
                     ForEach(vm.folios) { folio in
                         VStack(spacing: 0) {
                         NavigationLink(
@@ -50,8 +51,8 @@ struct FolioListView: View {
 
                     }
                     .onDelete(perform: deleteFolios)
-                    
                 }
+                .headerProminence(.increased).padding(4)
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }

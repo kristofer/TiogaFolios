@@ -7,7 +7,32 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>NSExtensionActivationRule</key>
-			<string>TRUEPREDICATE</string>
+			<string>SUBQUERY (
+extensionItems,
+$extensionItem,
+SUBQUERY (
+$extensionItem.attachments,
+$attachment,
+(
+ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.content&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.data&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.item&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.url&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.file-url&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.text&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.image&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.png&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.jpeg&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.tiff&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;com.adobe.pdf&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;com.microsoft.word.doc&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;org.openxmlformats.wordprocessingml.document&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;com.microsoft.excel.xls&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;com.microsoft.powerpoint.​ppt&quot;
+|| ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;com.apple.keynote.key&quot;
+)
+).@count == $extensionItem.attachments.@count
+).@count == 1</string>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>

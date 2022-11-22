@@ -30,6 +30,29 @@ struct FileAssetList: View {
     @State private var errormsg = ""
     
     var body: some View {
+        VStack{
+            HStack{
+                NavigationLink(destination: ChooseFolio()) {
+                    HStack {
+                        Text("AssignTo")
+                        Image(systemName: "plus")
+                    }
+                }
+                Spacer()
+                Button(action:  {
+                    isImporting = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        isImporting = true
+                    }
+                }) {
+                    HStack {
+                        Text("Add")
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .padding()
+
         NavigationView {
             List {
                 ForEach(vm.docs) { doc in
@@ -46,23 +69,11 @@ struct FileAssetList: View {
                     EditButton()
                 }
 #endif
-                ToolbarItem {
-                    Button(action:  {
-                        isImporting = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            isImporting = true
-                        }
-                    }) {
-                        HStack {
-                            Text("Add")
-                            Image(systemName: "plus")
-                        }
-                    }
                     
-                }
+
             }
 #if os(iOS)
-            .navigationTitle("")
+            .navigationTitle("Unattached Documents")
             .navigationBarTitleDisplayMode(.inline)
 #else
             // mac desktop
@@ -85,6 +96,8 @@ struct FileAssetList: View {
                   message: Text("\(showError!.localizedDescription) \(self.errormsg)"),
                   dismissButton: .default(Text("Ok")))
         }
+        }
+
     }
     
     func didDismiss() {
