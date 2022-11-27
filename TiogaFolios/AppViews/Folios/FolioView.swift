@@ -15,94 +15,65 @@ struct FolioView: View {
     
     @State private var isEditing = false
     @State private var addingItems = false
-    @State private var navigateTo = ""
-    @State private var isActive = false
+    @State private var showTagSelection = false
     
     @State private var isImporting: Bool = false
     @State private var showAlert: Bool = false
     @State private var showError: Error? = nil
     @State private var errormsg = ""
-
+    @State private var message: Message? = nil
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack{
                 Text(folio.desc ?? "-")
                     .font(.body.italic())
                 Spacer()
-            }
-            Divider()
-            HStack{
-//                Text("As of \(folio.modified ?? .now, style: .date), \(folio.modified ?? .now, style: .time)")
-//                    .font(.caption)
-                Spacer()
-                Button("Edit...") {
-                    isEditing = true
+                Menu("Actions") {
+                    Button("Edit Folio Name...", action: editfolio)
+                    Button("Change Tags...") {
+                        self.showTagSelection = true
+                    }
+                    Button("Add to Folio...", action: addtofolio)
+                    Button("Share Folio...", action: sharefolio)
+                }.alert(item: $message) { message in
+                    Alert(
+                        title: Text(message.text),
+                        dismissButton: .cancel()
+                    )
                 }
+                .background(
+                    NavigationLink(destination: ContentTagView(item: folio), isActive: $showTagSelection) {
+                        EmptyView()
+                    })
                 
             }
-            .font(.caption)
             
-            NavigationLink(destination: ContentTagView(item: folio)) {
-                HStack {
-                    FolioTagItems(folio: folio)
-                    Spacer()
-                    Text("Tags...")
-                        .foregroundColor(.white)
-                        .padding(5)
-                        .background(Color.accentColor)
-                        .cornerRadius(5)
+            Divider()
+            FolioTagItems(folio: folio)
+            Divider()
+            
+            Text("Attached Documents").font(.caption2.italic())
+            List {
+                ForEach(Array(folio.assets as? Set<Asset> ?? []), id: \.self) { doc in
+                    NavigationLink(
+                        destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
+                            Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
+                        }
                 }
             }
-            Divider()
-            HStack {
-                Text("Attached Documents").font(.caption2.italic())
-                Spacer()
-                Button(action:  {
-                    isImporting = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        isImporting = true
-                    }
-                })
-                {
-                    HStack {
-                        Text("Add").font(.caption)
-                        Image(systemName: "plus").font(.caption)
-                    }
-                }
+            .fileImporter(
+                isPresented: $isImporting,
+                allowedContentTypes: [UTType.content, UTType.compositeContent],
+                allowsMultipleSelection: false
+            ) { result in
+                importFile(result)
             }
-            Divider()
-            //NavigationView {
-                List {
-                    ForEach(Array(folio.assets as? Set<Asset> ?? []), id: \.self) { doc in
-                        NavigationLink(
-                            destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
-                                Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
-                            }
-                    }
-                }
-                //.navigationBarTitle("Contents", displayMode: .inline)
-                .toolbar{
-                    ToolbarItem {
-//                        NavigationLink(
-//                            destination: AttachDocs(folio: folio)
-//                        )
-                    }
-                }
-                .fileImporter(
-                    isPresented: $isImporting,
-                    allowedContentTypes: [UTType.content, UTType.compositeContent],
-                    allowsMultipleSelection: false
-                ) { result in
-                    importFile(result)
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Unable to Archive File"),
-                          message: Text("\(showError!.localizedDescription) \(self.errormsg)"),
-                          dismissButton: .default(Text("Ok")))
-                }
-
-                
-            //}
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Unable to Archive File"),
+                      message: Text("\(showError!.localizedDescription) \(self.errormsg)"),
+                      dismissButton: .default(Text("Ok")))
+            }
         }
         .padding()
         .navigationTitle(folio.title ?? "?wha?")
@@ -112,8 +83,18 @@ struct FolioView: View {
         }
     }
     
-    func placeOrder() { }
-    func adjustOrder() { }
+    func editfolio() { self.isEditing = true }
+
+    func addtofolio() {
+        self.isImporting = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.isImporting = true
+        }
+    }
+
+    func sharefolio() {
+        self.message = Message(text: "share this folio...")
+    }
     
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
@@ -154,7 +135,7 @@ struct FolioView: View {
             showError = error
         }
     }
-
+    
 }
 
 struct FolioView_Previews: PreviewProvider {
@@ -163,27 +144,3 @@ struct FolioView_Previews: PreviewProvider {
     }
 }
 
-//struct DemoNavigateFromMenu: View {
-//    @State private var navigateTo = ""
-//    @State private var isActive = false
-//    var body: some View {
-//        NavigationView {
-//            Menu {
-//                Button("item1") {
-//                    self.navigateTo = "test1"
-//                    self.isActive = true
-//                }
-//                Button("item2") {
-//                    self.navigateTo = "test2"
-//                    self.isActive = true
-//                }
-//            } label: {
-//                Label("Add", systemImage: "plus")
-//            }
-//            .background(
-//                NavigationLink(destination: Text(self.navigateTo), isActive: $isActive) {
-//                    EmptyView()
-//                })
-//        }
-//    }
-//}

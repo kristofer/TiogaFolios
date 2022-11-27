@@ -16,7 +16,6 @@ struct FolioCell: View {
     @ObservedObject var folio: Folio
     
     let colorratio = 150/255.0
-    @State private var message: Message? = nil
     
     var body: some View {
         HStack(alignment: .top) {
@@ -62,20 +61,6 @@ struct FolioCell: View {
                     
                     Spacer()
                     
-                    VStack {
-                        Button(action: {
-                            self.message = Message(text: "share this folio...")
-                        })  {
-                            HStack {
-                                Image(systemName: "square.and.arrow.up")
-                            }
-                        }
-                    }.alert(item: $message) { message in
-                        Alert(
-                            title: Text(message.text),
-                            dismissButton: .cancel()
-                        )
-                    }
                 }
                 .buttonStyle(.plain)
                 .foregroundColor(.gray)
