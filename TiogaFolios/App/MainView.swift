@@ -27,6 +27,11 @@ struct MainView: View {
                         Label("Categories", systemImage: "briefcase")
                     }
 
+                SearchFolioView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+
 //                FolioAddToV(viewModel: FolioVM())
 //                    .tabItem {
 //                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")

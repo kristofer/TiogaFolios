@@ -73,6 +73,7 @@
 		5C3EF885292BDE38007CAAB6 /* FolioTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398029254C5F00619645 /* FolioTemplates.swift */; };
 		5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */; };
 		5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */; };
+		5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,7 @@
 		5C3EF886292BDE89007CAAB6 /* Archive It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Archive It.entitlements"; sourceTree = "<group>"; };
 		5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFolio.swift; sourceTree = "<group>"; };
 		5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioViewMenu.swift; sourceTree = "<group>"; };
+		5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolioView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +284,7 @@
 			children = (
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
 				5C32399329254DFC00619645 /* MainView.swift */,
+				5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */,
 				5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */,
 				5C3EF861292BD8F4007CAAB6 /* SplashView.swift */,
 			);
@@ -615,6 +618,7 @@
 				5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */,
 				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,
 				5C3239C02925796200619645 /* FileAssetPreview.swift in Sources */,
+				5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */,
 				5C3239CE2925796F00619645 /* FontWeight.swift in Sources */,
 				5C32398129254C5F00619645 /* TemplateSources.swift in Sources */,
 				5C3239D02925796F00619645 /* TaggerView.swift in Sources */,
