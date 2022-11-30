@@ -75,6 +75,7 @@
 		5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */; };
 		5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */; };
 		5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA80E293796F300FCF50B /* set_build_number.sh */; };
+		5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +183,7 @@
 		5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioViewMenu.swift; sourceTree = "<group>"; };
 		5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolioView.swift; sourceTree = "<group>"; };
 		5CDCA80E293796F300FCF50B /* set_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_build_number.sh; sourceTree = "<group>"; };
+		5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAssetDeltaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +395,7 @@
 				5C3239B92925796200619645 /* FileAssetDetail.swift */,
 				5C3239BA2925796200619645 /* FileAssetList.swift */,
 				5C3239BB2925796200619645 /* FileAssetPreview.swift */,
+				5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */,
 			);
 			path = FileAsset;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				5C3239B22925774800619645 /* FolioTemplListView.swift in Sources */,
 				5C3239BE2925796200619645 /* FileAssetDetail.swift in Sources */,
 				5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */,
+				5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */,
 				5C3239D12925796F00619645 /* TagKindListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

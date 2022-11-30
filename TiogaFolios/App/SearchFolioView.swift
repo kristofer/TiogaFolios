@@ -15,7 +15,7 @@ class FolioSearchViewModel: ObservableObject {
 
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.privdb.vc())
-        print("KKYY fetch folios \(self.folios.count)")
+        //print("KKYY fetch folios \(self.folios.count)")
     }
     
     func doSearch(_ srchStr: String) {

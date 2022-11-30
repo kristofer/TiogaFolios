@@ -63,7 +63,10 @@ struct FileAssetDetail: View {
     
     @StateObject private var vm : FileAssetDetailVM
     @Environment(\.dismiss) var dismiss
-    
+    @State private var isEditing: Bool = false
+    @State private var contentText: String = ""
+    @State private var isEditingMetadata = false
+
     init(anAsset: Asset, showAssignTo: Bool) {
         _vm = StateObject(wrappedValue: FileAssetDetailVM(anAsset: anAsset,
                                                           showAssignTo: showAssignTo))
@@ -72,9 +75,23 @@ struct FileAssetDetail: View {
     var body: some View {
         VStack{
             VStack{
-                //Text("\(vm.fileasset.title!)").bold()
-                Text("a description of the document")
-                    .font(.caption)//\(vm.fileasset.desc!)")
+                HStack{
+                    Text(vm.fileasset.desc ?? "")
+                        .font(.caption)
+                        .padding()
+                    Spacer()
+                    Button {
+                        self.isEditingMetadata = true
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                    }
+                        .sheet(isPresented: $isEditingMetadata) {
+                            FileAssetDeltaView(objectPassed: vm.fileasset, show: $isEditingMetadata)
+                        }
+
+                }
+                .padding(5.0)
+                
                 if vm.showAssign == true {
                     NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
                 }
@@ -95,9 +112,48 @@ struct FileAssetDetail: View {
                     FileAssetPreview(fileUrl: $vm.tempFile.fileURL).padding()
                 }
             }
-            Spacer()
-            Text("Metadata: \(vm.fileasset.mimetype!)")
-                .font(.caption)
+            //Spacer()
+            HStack{
+                Text("Metadata: \(vm.fileasset.mimetype!)")
+                    .font(.caption)
+                Spacer()
+                if vm.fileasset.isDocumentEditable() == true {
+                    Button(action: {
+                        contentText = String(decoding: vm.fileasset.blob!, as: UTF8.self)
+                        isEditing = true
+                    }) {
+                        Text(Image(systemName: "square.and.pencil"))
+                    }
+                    .font(.caption)
+                    .padding(5.0)
+                    .foregroundColor(.white)
+                    .background(Color.green)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                }
+            }
+            .padding(5.0)
+            .sheet(isPresented: $isEditing, onDismiss: {}, content: {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        isEditing = false
+                        vm.fileasset.setBlob(contentText.data(using: .utf8)!)
+                        //try? viewContext.save()
+                        Storage.privdb.save()
+                    }) {
+                        Text("Save ")+Text(Image(systemName: "square.and.arrow.down"))
+                    }
+                    .font(.caption)
+                    .padding(5.0)
+                    .foregroundColor(.white)
+                    .background(Color.green)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    
+                }
+                .padding()
+                TextEditor(text: $contentText)
+            })
+            
             //            Text("Modified: \(vm.fileasset.modified!, formatter: assetFormatter) Archived: \(vm.fileasset.archivedate!, formatter: assetFormatter)")
             //                .font(.caption)
         }

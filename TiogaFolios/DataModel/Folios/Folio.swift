@@ -69,7 +69,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("KKYY folio count \(fetchedFolios.count)")
+        //print("KKYY folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
     
