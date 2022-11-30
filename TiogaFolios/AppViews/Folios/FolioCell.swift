@@ -1,6 +1,6 @@
 //
 //  FolioCell.swift
-//  MenYou
+//  front panel folio summary
 //
 //  Created by Kristofer Younger on 1/13/22.
 //
@@ -25,12 +25,6 @@ struct FolioCell: View {
                 HStack {
                     Text(folio.title ?? "-")
                         .bold()
-//                    Group {
-//                        Circle()
-//                            .frame(width: 7, height: 7)
-//                        Text("\(folio.modified ?? .now, style: .date)")
-//                            .font(.caption)
-//                    }
                 }
                 .foregroundColor(Color.accentColor)
 
@@ -39,7 +33,6 @@ struct FolioCell: View {
                     .lineLimit(2)
                     .padding(.bottom, 2)
                 HStack {
-                    //Image(systemName: "doc.richtext")
                     Text("\(folio.assets?.count ?? 0)")
                         .font(.caption.italic())
                     FolioCardItems(folio: folio)
@@ -50,37 +43,13 @@ struct FolioCell: View {
                         .font(.caption.italic())
                     FolioTagItems(folio: folio)
                 }
-//                HStack {
-//                    Button {
-//
-//                    } label: {
-//                        HStack {
-//                            Image(systemName: "doc.richtext")
-//                            Text("\(folio.assets?.count ?? 0)")
-//                        }
-//                    }
-//
-//                    Spacer()
-//                    Button {
-//                    } label: {
-//                        HStack {
-//                            Image(systemName: "tag")
-//                            Text("\(folio.tags?.count ?? 0)")
-//                        }
-//                    }
-//
-//                    Spacer()
-//
-//                }
-//                .buttonStyle(.plain)
-//                .foregroundColor(.gray)
             }
         }
         .padding(5)
-        .background(.white)
+        //.background(.white)
         .overlay(
-            RoundedRectangle(cornerRadius: 5)
-                .stroke(Color(.sRGB, red: colorratio, green: colorratio, blue: colorratio, opacity: 1.0), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color(.sRGB, red: colorratio, green: colorratio, blue: colorratio, opacity: 1.0), lineWidth: 2)
         )
     }
     

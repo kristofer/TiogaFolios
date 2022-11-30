@@ -33,7 +33,7 @@ struct FolioListView: View {
     @State private var showNewFolio = false
 
     init() {
-        UITableView.appearance().backgroundColor = .clear // Uses UIColor
+        //UITableView.appearance().backgroundColor = .clear // Uses UIColor
     }
     
     
@@ -51,7 +51,7 @@ struct FolioListView: View {
                         }
 
                     }
-                    .onDelete(perform: deleteFolios)
+                    //.onDelete(perform: deleteFolios)
                 }
                 .headerProminence(.increased).padding(4)
                 .listRowSeparator(.hidden)

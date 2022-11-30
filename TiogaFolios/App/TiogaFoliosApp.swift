@@ -45,7 +45,6 @@ extension UIApplication {
     }
     class func appVersion() -> String {
         return Bundle.main.object(forInfoDictionaryKey: Constants.CFBundleShortVersionString) as! String
-        // CFBundleShortVersionString
     }
 
     class func appBuild() -> String {
@@ -54,7 +53,7 @@ extension UIApplication {
 
     class func versionBuild() -> String {
         let version = appVersion(), build = appBuild()
-
-        return version == build ? "v\(version)" : "v\(version)(\(build))"
+        NSLog("\(version),\(build)")
+        return version == build ? "v\(version)" : "v\(version),(\(build))"
     }
 }
