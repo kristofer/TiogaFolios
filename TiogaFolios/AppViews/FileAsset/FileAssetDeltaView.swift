@@ -59,6 +59,7 @@ struct FileAssetDeltaView: View {
                 Form {
                     Text(vm.ttitle).font(.headline)
                     TextField("", text: $vm.asset.title ?? "foo")
+                        .font(.body.bold())
                         .focused($focusedField, equals: .field)
                         .onAppear {
                               DispatchQueue.main.asyncAfter(deadline: .now() + 1) {  /// Anything over 0.5 seems to work
@@ -83,13 +84,15 @@ struct FileAssetDeltaView: View {
                 }
                 .padding(20)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottom)
-                
-                Text(vm.asset.pathname ?? "no pathname")
-                    .font(.caption.italic())
-                Text(vm.asset.source?.absoluteString ?? "no source")
-                    .font(.caption.italic())
-                Text(vm.asset.uttype ?? "no uttype")
-                    .font(.caption.italic())
+                VStack(alignment: .leading) {
+                    Text(vm.asset.pathname ?? "no pathname")
+                        .font(.caption.italic())
+                    Text(vm.asset.source?.absoluteString ?? "no source")
+                        .font(.caption.italic())
+                    Text(vm.asset.uttype ?? "no uttype")
+                        .font(.caption.italic())
+
+                }
                 Button(action: {
                     vm.cancel()
                     isPresented = false
