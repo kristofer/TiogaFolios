@@ -38,32 +38,42 @@ struct FolioCell: View {
                     .font(.caption.italic())
                     .lineLimit(2)
                     .padding(.bottom, 2)
-                FolioCardItems(folio: folio)
-                FolioTagItems(folio: folio)
                 HStack {
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Image(systemName: "doc.richtext")
-                            Text("\(folio.assets?.count ?? 0)")
-                        }
-                    }
-                    
-                    Spacer()
-                    Button {
-                    } label: {
-                        HStack {
-                            Image(systemName: "tag")
-                            Text("\(folio.tags?.count ?? 0)")
-                        }
-                    }
-                    
-                    Spacer()
-                    
+                    //Image(systemName: "doc.richtext")
+                    Text("\(folio.assets?.count ?? 0)")
+                        .font(.caption.italic())
+                    FolioCardItems(folio: folio)
                 }
-                .buttonStyle(.plain)
-                .foregroundColor(.gray)
+
+                HStack {
+                    Text("\(folio.tags?.count ?? 0)")
+                        .font(.caption.italic())
+                    FolioTagItems(folio: folio)
+                }
+//                HStack {
+//                    Button {
+//
+//                    } label: {
+//                        HStack {
+//                            Image(systemName: "doc.richtext")
+//                            Text("\(folio.assets?.count ?? 0)")
+//                        }
+//                    }
+//
+//                    Spacer()
+//                    Button {
+//                    } label: {
+//                        HStack {
+//                            Image(systemName: "tag")
+//                            Text("\(folio.tags?.count ?? 0)")
+//                        }
+//                    }
+//
+//                    Spacer()
+//
+//                }
+//                .buttonStyle(.plain)
+//                .foregroundColor(.gray)
             }
         }
         .padding(5)

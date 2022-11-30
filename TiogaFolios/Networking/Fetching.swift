@@ -76,7 +76,8 @@ class Fetching {
         blobasset = Asset(vc: viewContext, title: urlstring, path: urlstring, mimetype: thisMime ?? Asset.defaultBlobMimeType(), uttype: typeID)
         blobasset.source = url
         blobasset.setBlob(data)
-        folio.attachAsset(blobasset)
+        //folio.attachAsset(blobasset)
+        folio.addToAssets(blobasset)
         
         Storage.privdb.save()
     }

@@ -74,6 +74,7 @@
 		5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */; };
 		5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */; };
 		5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */; };
+		5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA80E293796F300FCF50B /* set_build_number.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFolio.swift; sourceTree = "<group>"; };
 		5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioViewMenu.swift; sourceTree = "<group>"; };
 		5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolioView.swift; sourceTree = "<group>"; };
+		5CDCA80E293796F300FCF50B /* set_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_build_number.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		5C323939292431A100619645 = {
 			isa = PBXGroup;
 			children = (
+				5CDCA80E293796F300FCF50B /* set_build_number.sh */,
 				5C32397B2925409900619645 /* NotesToDo.md */,
 				5C323944292431A100619645 /* TiogaFolios */,
 				5C32395B292431A300619645 /* TiogaFoliosTests */,
@@ -437,6 +440,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C32396C292431A300619645 /* Build configuration list for PBXNativeTarget "TiogaFolios" */;
 			buildPhases = (
+				5CDCA8102937972A00FCF50B /* ShellScript */,
 				5C32393E292431A100619645 /* Sources */,
 				5C32393F292431A100619645 /* Frameworks */,
 				5C323940292431A100619645 /* Resources */,
@@ -560,6 +564,7 @@
 				5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */,
 				5C32394A292431A300619645 /* Assets.xcassets in Resources */,
 				5C32397C2925409900619645 /* NotesToDo.md in Resources */,
+				5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +591,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5CDCA8102937972A00FCF50B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/set_build_number.sh",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5C32393E292431A100619645 /* Sources */ = {
@@ -831,11 +857,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 11282022;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -863,11 +890,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 11282022;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

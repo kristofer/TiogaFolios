@@ -13,7 +13,7 @@ struct FolioTagItems: View {
     var body: some View {
         ScrollView (.horizontal, showsIndicators: false) {
             LazyHStack {
-                Label(" ", systemImage: "tag")
+                //Label(" ", systemImage: "tag")
                 ForEach(Array(folio.tags as? Set<Tag> ?? []), id: \.self) { tag in
                     Text(tag.title ?? "??")
                         .font(.caption)

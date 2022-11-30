@@ -77,6 +77,7 @@ struct FolioView: View {
         }
         .padding()
         .navigationTitle(folio.title ?? "?wha?")
+        //.foregroundColor(Color.accentColor)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isEditing) {
             FolioDeltaView(objectPassed: folio, show: $isEditing)
