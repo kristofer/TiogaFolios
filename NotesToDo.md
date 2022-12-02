@@ -4,6 +4,7 @@ For MVP
 
 MVP achieved (28 Nov 2022), but no Sharing (yet)
 
+- BACKUPS
 - SHARING
 - menu additions for
   - scan, photo,

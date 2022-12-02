@@ -91,6 +91,8 @@ struct FileAssetDeltaView: View {
                         .font(.caption.italic())
                     Text(vm.asset.uttype ?? "no uttype")
                         .font(.caption.italic())
+//                    Text(vm.asset.modDate()?.formatted() ?? "no date found.")
+//                        .font(.caption.italic())
 
                 }
                 Button(action: {

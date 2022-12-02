@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 protocol Assetable {
     func attachAsset(_ asset: Asset)
@@ -24,6 +25,7 @@ extension Asset {
         self.pathname = path
         self.mimetype = mimetype
         self.uttype = uttype
+        self.lastmodified = Date()
         //
         // .source and .blob not init'd
     }
@@ -121,10 +123,19 @@ extension Asset {
         return "coerce Blob To Text"
     }
 
-    // setting
-    // document.setBlob(contentText.data(using: .utf8)!)
-    // getting
-    // String(decoding: document.blob!, as: UTF8.self)
+}
+extension Asset: Comparable {
+//    var modDate: Date {
+//        let pc = Storage.privdb.container
+//        let ckr = pc.record(for: self.objectID)
+//        let m = ckr?.modificationDate
+//        
+//        return m!
+//    }
+    
+    public static func <(lhs: Asset, rhs: Asset) -> Bool {
+        lhs.lastmodified! < rhs.lastmodified!
+    }
 }
 
 extension Asset: Taggable {

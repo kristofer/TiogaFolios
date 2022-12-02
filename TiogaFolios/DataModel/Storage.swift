@@ -13,7 +13,10 @@ import QuickLook
 final class Storage {
 
     static let privdb = Storage()
-    private init() {}
+    private init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(contextWillSave(_:)), name: Notification.Name.NSManagedObjectContextWillSave, object: nil)
+
+    }
 
     lazy var container: NSPersistentCloudKitContainer = {
         NotificationCenter.default.post(name: Notification.Name("starting up NSPersistentCloudKitContainer"), object: nil, userInfo: nil)
@@ -54,16 +57,26 @@ final class Storage {
         return Storage.privdb.container.viewContext
     }
  
+    @objc func contextWillSave(_ notification: Notification) {
+        print("KKYY \(notification)")
+        let context = notification.object as? NSManagedObjectContext
+        let changes = context?.updatedObjects
+        print("KKYY changes \(changes)")
+        let saveDate = Date()
+        
+    }
+
     func save() {
-        Foundation.NSLog("KKYY Storage save()")
+        //Foundation.NSLog("KKYY Storage save()")
         let context = Storage.privdb.container.viewContext
 
         if context.hasChanges {
             do {
-                Foundation.NSLog("KKYY did save main persistence context")
+                
                 try context.save()
+                Foundation.NSLog("KKYY did SAVE persistence context")
             } catch {
-                Foundation.NSLog("KKYY saving failed \(error.localizedDescription)")
+                Foundation.NSLog("Storage saving failed \(error.localizedDescription)")
             }
         }
     }

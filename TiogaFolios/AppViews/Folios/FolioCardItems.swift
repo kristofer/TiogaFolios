@@ -13,7 +13,7 @@ struct FolioCardItems: View {
 
     var body: some View {
         ScrollView (.horizontal, showsIndicators: false) {
-             LazyHStack {
+             LazyHStack { //.sorted(by: >)
                  ForEach(Array(folio.assets as? Set<Asset> ?? []), id: \.self) { doc in
                      Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
                          .font(.caption)

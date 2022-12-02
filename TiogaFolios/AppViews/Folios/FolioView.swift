@@ -54,7 +54,7 @@ struct FolioView: View {
             Divider()
             
             Text("Attached Documents").font(.caption2.italic())
-            List {
+            List { //.sorted(by: >)
                 ForEach(Array(folio.assets as? Set<Asset> ?? []), id: \.self) { doc in
                     NavigationLink(
                         destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
