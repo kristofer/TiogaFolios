@@ -45,6 +45,7 @@ extension Asset {
         return 0
     }
 
+    func touch() { self.lastmodified = Date() }
 }
 
 
@@ -134,7 +135,14 @@ extension Asset: Comparable {
 //    }
     
     public static func <(lhs: Asset, rhs: Asset) -> Bool {
-        lhs.lastmodified! < rhs.lastmodified!
+        if lhs.lastmodified == nil && rhs.lastmodified == nil {
+            return true
+        } else if lhs.lastmodified == nil {
+            return false
+        } else if rhs.lastmodified == nil {
+            return true
+        }
+        return lhs.lastmodified! < rhs.lastmodified!
     }
 }
 

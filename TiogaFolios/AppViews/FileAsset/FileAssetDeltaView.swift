@@ -68,6 +68,7 @@ struct FileAssetDeltaView: View {
                         }
                     TextField("", text: $vm.asset.desc ?? "bar")
                     Button(action: {
+                        vm.asset.touch()
                         Storage.privdb.save()
                         isPresented = false
                     }) {

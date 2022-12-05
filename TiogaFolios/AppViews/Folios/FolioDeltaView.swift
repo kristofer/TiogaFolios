@@ -66,6 +66,7 @@ struct FolioDeltaView: View {
                     }
                 TextField("", text: $vm.folio.desc ?? "bar")
                 Button(action: {
+                    vm.folio.touch()
                     Storage.privdb.save()
                     isPresented = false
                 }) {

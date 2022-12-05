@@ -39,6 +39,7 @@ struct TagEditView: View {
                 // Button
                 Button(action: {
                     currentTag.kind = selectedTagKind.rawValue
+                    currentTag.touch()
                     Storage.privdb.save()
                     showNewTag = false
                 }) {

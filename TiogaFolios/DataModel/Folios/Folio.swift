@@ -20,6 +20,7 @@ extension Folio {
         f.id = UUID()
         f.title = title
         f.desc = desc
+        f.lastmodified = Date()
         return f
     }
     
@@ -56,6 +57,8 @@ extension Folio {
         return f
     }
     
+    func touch() { self.lastmodified = Date() }
+
     static func fetchFolios(vc: NSManagedObjectContext) -> [Folio] {
         var fetchedFolios = [Folio]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")

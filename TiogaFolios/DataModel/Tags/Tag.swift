@@ -58,6 +58,8 @@ extension Tag {
         return fetchedTags
     }
     
+    func touch() { self.lastmodified = Date() }
+
     static func getOrCreate(title: String, desc: String,
                             tagkind: TagKind, tagcat: TagCat) -> Tag {
         let currentTags = allByTitleKindCat(title: title, tagkind: tagkind, tagcat: tagcat)

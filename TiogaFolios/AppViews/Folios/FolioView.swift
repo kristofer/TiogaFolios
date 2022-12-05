@@ -126,6 +126,7 @@ struct FolioView: View {
                                       uttype: typeID)
                 fileasset.setBlob(blob)
                 folio.addToAssets(fileasset)
+                folio.touch()
                 Storage.privdb.save()
                 //vm.fetchData()
             }

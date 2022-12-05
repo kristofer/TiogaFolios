@@ -28,6 +28,7 @@ struct FolioEditView: View {
                     .navigationBarItems(trailing: Button(action: {
                         //print("Dismissing folio edit view...")
                         folio.desc = self.descriptiontext
+                        folio.touch()
                         Storage.privdb.save()
                         presentationMode.wrappedValue.dismiss()
                     }) {

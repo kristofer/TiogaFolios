@@ -138,6 +138,7 @@ struct FileAssetDetail: View {
                     Button(action: {
                         isEditing = false
                         vm.fileasset.setBlob(contentText.data(using: .utf8)!)
+                        vm.fileasset.touch()
                         //try? viewContext.save()
                         Storage.privdb.save()
                     }) {
@@ -194,6 +195,7 @@ struct FileAssetDetail: View {
                 vm.fileasset.setBlob(blob)
                 vm.fileasset.mimetype = UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType()
                 vm.fileasset.uttype = typeID
+                vm.fileasset.touch()
                 Storage.privdb.save()
                 vm.isBlobEmpty = false
                 vm.loadTempFile()

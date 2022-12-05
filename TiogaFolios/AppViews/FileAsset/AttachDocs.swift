@@ -19,6 +19,7 @@ struct AttachDocs: View {
             List (vm.docs) { doc in
                     Button(action: {
                         folio.attachAsset(doc)
+                        folio.touch()
                         folio.objectWillChange.send()
                         self.presentationMode.wrappedValue.dismiss()
                         Storage.privdb.save()
