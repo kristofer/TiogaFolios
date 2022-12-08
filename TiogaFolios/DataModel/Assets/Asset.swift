@@ -54,7 +54,7 @@ extension Asset {
     static func fetchUnassignedAssets(vc: NSManagedObjectContext) -> [Asset] {
         var fetchedAssets = [Asset]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Asset")
-        let dateSort = NSSortDescriptor(key:"title", ascending:true)
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
         let predicate = NSPredicate(format: "folio == nil") //(format: "folio == %i", nil)
         fetchRequest.sortDescriptors = [dateSort]
         fetchRequest.predicate = predicate
@@ -67,6 +67,14 @@ extension Asset {
 
         //print("KKYY folio count \(fetchedAssets.count)")
         return fetchedAssets
+    }
+    
+    override public func willSave() {
+        super.willSave()
+
+        if(self.lastmodified == nil) {
+            self.lastmodified = Date()
+        }
     }
 
     func tempURLFor() -> URL {

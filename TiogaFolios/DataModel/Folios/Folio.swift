@@ -62,7 +62,7 @@ extension Folio {
     static func fetchFolios(vc: NSManagedObjectContext) -> [Folio] {
         var fetchedFolios = [Folio]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
-        let dateSort = NSSortDescriptor(key:"title", ascending:true)
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
         //let predicate = NSPredicate(format: "kindValue == %i", TagKind.folio.rawValue)
         fetchRequest.sortDescriptors = [dateSort]
         //fetchRequest.predicate = predicate

@@ -13,7 +13,7 @@ struct TagListView: View {
 
     @FetchRequest(
         //entity: Tag.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Tag.title, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Tag.lastmodified, ascending: false)],
         //predicate: NSPredicate(format: "kindValue == %i", TagKind.folio.rawValue),
         animation: .default)
     private var tags: FetchedResults<Tag>
