@@ -32,6 +32,7 @@ struct TagListView: View {
                 }
                 .onDelete(perform: deleteFolios)
             }
+            .listStyle(PlainListStyle())
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {

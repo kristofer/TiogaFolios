@@ -34,6 +34,7 @@ struct FolioAddToV: View {
                 .padding(20)
             }
         }
+        .listStyle(PlainListStyle())
         .navigationTitle("Import To Folio...")
         }
     }

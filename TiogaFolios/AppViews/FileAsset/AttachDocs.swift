@@ -28,6 +28,7 @@ struct AttachDocs: View {
                     }
             
             }
+            .listStyle(PlainListStyle())
             Text("Select a document")
         }
         .onAppear(perform: {

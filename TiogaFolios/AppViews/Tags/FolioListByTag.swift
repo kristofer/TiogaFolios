@@ -48,6 +48,7 @@ struct FolioListByTag: View {
                 }
             }
         }
+        .listStyle(PlainListStyle())
         .onAppear(){
             
         }

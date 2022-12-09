@@ -63,6 +63,7 @@ struct FileAssetList: View {
                 }
                 .onDelete(perform: deleteDocs)
             }
+            .listStyle(PlainListStyle())
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {

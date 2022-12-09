@@ -13,6 +13,7 @@ struct FolioViewMenu: View {
             Button("Edit Folio...", action: editfolio)
             Button("Tags...", action: edittags)
             Button("Add to Folio...", action: addtofolio)
+            Button("Add Note...", action: addnotetofolio)
             Button("Share Folio...", action: sharefolio)
         }
     }
@@ -20,6 +21,7 @@ struct FolioViewMenu: View {
     func editfolio() { }
     func edittags() { }
     func addtofolio() { }
+    func addnotetofolio() { }
     func sharefolio() { }
 }
 struct FolioViewMenu_Previews: PreviewProvider {

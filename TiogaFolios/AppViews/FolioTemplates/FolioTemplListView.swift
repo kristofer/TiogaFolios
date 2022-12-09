@@ -53,6 +53,7 @@ struct FolioTemplListView: View {
                 //}
                 //.listRowSeparator(.hidden)
             }
+            .listStyle(PlainListStyle())
             .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Life Event Templates")
 #if os(iOS)
             .navigationBarTitle("Create Folios from Templates")
