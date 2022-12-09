@@ -23,8 +23,10 @@ struct NoteEditView: View {
             Button(action: {
                 isEditing = false
                 vm.fileasset.setBlob(contentText.data(using: .utf8)!)
+                vm.fileasset.lastmodified = Date()
                 vm.fileasset.touch()
                 Storage.privdb.save()
+                vm.resetTempFile()
             }) {
                 Text("Save ")+Text(Image(systemName: "square.and.arrow.down"))
             }

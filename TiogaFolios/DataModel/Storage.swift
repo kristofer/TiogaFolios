@@ -58,11 +58,11 @@ final class Storage {
     }
  
     @objc func contextWillSave(_ notification: Notification) {
-        print("KKYY \(notification)")
-        let context = notification.object as? NSManagedObjectContext
-        let changes = context?.updatedObjects
-        print("KKYY changes \(changes)")
-        let saveDate = Date()
+//        print("KKYY \(notification)")
+//        let context = notification.object as? NSManagedObjectContext
+//        let changes = context?.updatedObjects
+//        print("KKYY changes \(changes)")
+//        let saveDate = Date()
         
     }
 

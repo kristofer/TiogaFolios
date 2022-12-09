@@ -53,9 +53,10 @@ struct PreviewController: UIViewControllerRepresentable {
     }
 }
 struct FileAssetPreview: View {
-    @Binding var fileUrl: URL
+    var tFile: TemporaryFile
+    
     var body: some View {
-        PreviewController(url: self.fileUrl)
+        PreviewController(url: self.tFile.fileURL)
             .border(.blue)
     }
 }

@@ -10,11 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import os
 
-@MainActor final class FileAssetDetailVM: ObservableObject {
-    //    private static let logger = Logger(
-    //        subsystem: "co.tioga.TiogaFolios",
-    //        category: String(describing: FileAssetDetailVM.self)
-    //    )
+final class FileAssetDetailVM: ObservableObject {
     
     @Published var fileasset: Asset = .init()
     @Published private(set) var isSaving = false
@@ -26,21 +22,39 @@ import os
     
     @Published var tempFile: TemporaryFile
     @Published var isBlobEmpty = false
-    private let context = Storage.privdb.container.viewContext
     
     init(anAsset: Asset, showAssignTo: Bool) {
         fileasset = anAsset
         let fname = "tempfile." + (UTType(anAsset.uttype!)?.preferredFilenameExtension ?? "txt")
         tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
         
-        loadTempFile()
         //
-        print("KKYY showing assignto \(showAssignTo)")
+        //print("KKYY showing assignto \(showAssignTo)")
         showAssign = showAssignTo
+    }
+
+    func deleteTempFile() {
+        do {
+            try self.tempFile.deleteDirectory()
+            Foundation.NSLog("KKYY deleted temp files")
+        } catch {
+            self.recorderror("\(error.localizedDescription)")
+        }
+    }
+    
+    func resetTempFile() {
+        deleteTempFile()
+        let fname = "tempfile." + (UTType(fileasset.uttype!)?.preferredFilenameExtension ?? "txt")
+        self.tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
+
+        Foundation.NSLog("KKYY NEW temp file \(self.tempFile.fileURL.absoluteString)")
+
+        loadTempFile()
+
     }
     
     func loadTempFile() {
-        print("KKYY loadTempFile \(fileasset.title!) \(tempFile.fileURL)")
+        //print("KKYY loadTempFile \(fileasset.title!) \(tempFile.fileURL)")
         do {
             let blob = fileasset.blob
             if fileasset.blobSize() <= 0 {
@@ -50,11 +64,12 @@ import os
             }
             try blob!.write(to: tempFile.fileURL)
         } catch {
-            Foundation.NSLog("KKYY \(error.localizedDescription)")
+            Foundation.NSLog("KKYY no loadTempFile \(error.localizedDescription)")
         }
     }
+    
     func recorderror(_ s: String) {
-        Foundation.NSLog("KKYY \(s)")
+        Foundation.NSLog("KKYY recorderror \(s)")
     }
     
 }
@@ -89,11 +104,11 @@ struct FileAssetDetail: View {
                         }
 
                 }
-                .padding(5.0)
+                .padding(2)
                 
-                if vm.showAssign == true {
-                    NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
-                }
+//                if vm.showAssign == true {
+//                    NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
+//                }
                 Divider()
                 if vm.isBlobEmpty {
                     Button(action:  {
@@ -108,7 +123,8 @@ struct FileAssetDetail: View {
                         }
                     }
                 } else {
-                    FileAssetPreview(fileUrl: $vm.tempFile.fileURL).padding()
+                    FileAssetPreview(tFile: vm.tempFile)
+                        .padding(2)
                 }
             }
             //Spacer()
@@ -116,7 +132,7 @@ struct FileAssetDetail: View {
                 Text("Metadata: \(vm.fileasset.mimetype!)")
                     .font(.caption)
                 Spacer()
-                if vm.fileasset.isDocumentEditable() == true {
+                if vm.fileasset.isDocumentEditable() {
                     Button(action: {
                         //contentText = String(decoding: vm.fileasset.blob!, as: UTF8.self)
                         isEditing = true
@@ -131,18 +147,16 @@ struct FileAssetDetail: View {
                 }
             }
             .padding(5.0)
-            .sheet(isPresented: $isEditing, onDismiss: {}, content: {
+            .sheet(isPresented: $isEditing, onDismiss: { vm.resetTempFile() }, content: {
                 NoteEditView(vm: vm, isEditing: $isEditing, contentText: String(decoding: vm.fileasset.blob!, as: UTF8.self))
             })
             
         }
         .onDisappear() {
-            do {
-                try vm.tempFile.deleteDirectory()
-                //print("KK deleted temp files")
-            } catch {
-                vm.recorderror("\(error.localizedDescription)")
-            }
+            vm.deleteTempFile()
+        }
+        .onAppear() {
+            vm.loadTempFile()
         }
         .fileImporter(
             isPresented: $vm.isImporting,
