@@ -29,11 +29,11 @@ extension Folio {
     }
     
     static func createFolio(vc: NSManagedObjectContext) -> (Folio) {
-        return Folio.createFolio(vc: vc, title: "Untitled", desc: "")
+        return Folio.createFolio(vc: vc, title: "", desc: "")
     }
 
     static func emptyFolio() -> (Folio) {
-        return Folio.createFolio(vc: Storage.privdb.vc(), title: "Untitled", desc: "description")
+        return Folio.createFolio(vc: Storage.privdb.vc(), title: "", desc: "")
     }
     
     static func createFolioFromTemplate(_ template: FolioTemplate) -> Folio {

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import CloudKit
+import UniformTypeIdentifiers
 
 protocol Assetable {
     func attachAsset(_ asset: Asset)
@@ -131,6 +132,14 @@ extension Asset {
     func coerceBlobToText() -> String {
         return "coerce Blob To Text"
     }
+    
+    static func makeNewTextDoc(named: String, content: String) -> Asset {
+        //print("\(named) \(UTType.text.identifier)")
+        let newDoc = Asset(vc: Storage.privdb.vc(), title: named, path: named+"txt", mimetype: "text/plain", uttype: UTType.plainText.identifier)
+        newDoc.setBlob(content.data(using: .utf8) ?? "".data(using: .utf8)!)
+        return newDoc
+    }
+
 
 }
 extension Asset: Comparable {

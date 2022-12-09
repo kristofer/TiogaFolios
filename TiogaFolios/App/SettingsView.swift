@@ -55,24 +55,6 @@ struct SettingsView: View {
                     reloadAll()
                 }
                 .padding()
-                Button("Create New Text Note...") {
-                    newTextAlertShowing = true
-                }
-                .sheet(isPresented: $newTextAlertShowing, onDismiss: reloadAll, content: {
-                    VStack {
-                        Label("Name", systemImage: "pencil")
-                        TextField("Name: ", text: $newTextDoc)
-                            .padding(20.0)
-                        Label("Contents", systemImage: "pencil")
-                        TextEditor(text: $newTextContent)
-                            .padding(20.0)
-                        Button("Create", action: {
-                            newTextAlertShowing = false
-                            makeNewTextDoc(named:newTextDoc)
-                        })
-                    }
-                })
-                .padding()
                 
                 Spacer()
                 Button("Delete All Tags") {
@@ -102,14 +84,6 @@ struct SettingsView: View {
     
     func reloadAll() {
         viewContext.refreshAllObjects()
-    }
-    func makeNewTextDoc(named: String) {
-        print("\(named) \(UTType.text.identifier)")
-        let pt = named+".txt"
-        let newDoc = Asset(vc: viewContext, title: pt, path: pt, mimetype: "text/plain", uttype: UTType.plainText.identifier)
-        newDoc.setBlob(newTextContent.data(using: .utf8) ?? "".data(using: .utf8)!)
-        //try? viewContext.save()
-        Storage.privdb.save()
     }
 }
 

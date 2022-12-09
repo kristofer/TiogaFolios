@@ -15,7 +15,7 @@ struct Message: Identifiable {
 struct FolioCell: View {
     @ObservedObject var folio: Folio
     
-    let colorratio = 150/255.0
+    let colorratio = 220/255.0
     
     var body: some View {
         HStack(alignment: .top) {

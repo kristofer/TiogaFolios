@@ -7,8 +7,8 @@
 
 import SwiftUI
 import CoreData
-import UniformTypeIdentifiers
 import os
+import UniformTypeIdentifiers
 
 struct FolioView: View {
     @ObservedObject var folio: Folio
@@ -32,41 +32,7 @@ struct FolioView: View {
             HStack{
                 Text(folio.desc ?? "-")
                     .font(.body.italic())
-                Spacer()
-                Menu {
-                    Button("Edit Folio Name...", action: editfolio)
-                    Button("Change Tags...") {
-                        self.showTagSelection = true
-                    }
-                    Button("Add to Folio...", action: addtofolio)
-                    Button("Add Note...", action: addnotetofolio)
-                    Button("Share Folio...", action: sharefolio)
-                } label: {
-                    Label("", systemImage: "contextualmenu.and.cursorarrow")
-                }
-                .alert(item: $message) { message in
-                    Alert(
-                        title: Text(message.text),
-                        dismissButton: .cancel()
-                    )
-                }
-                .sheet(isPresented: $newTextAlertShowing, onDismiss: reloadAll, content: {
-                    //NoteEditView(vm: vm, isEditing: $newTextAlertShowing, contentText: String(decoding: vm.fileasset.blob!, as: UTF8.self))
-
-                    //FolioTextView(objectPassed: folio, show: $newTextAlertShowing)
-                    VStack {
-                        Label("Name", systemImage: "pencil")
-                        TextField("Name: ", text: $newTextDoc)
-                            .padding(20.0)
-                        Label("Contents", systemImage: "pencil")
-                        TextEditor(text: $newTextContent)
-                            .padding(20.0)
-                        Button("Create", action: {
-                            newTextAlertShowing = false
-                            makeNewTextDoc(named:newTextDoc)
-                        })
-                    }
-                })
+                //Spacer()
 
                 .background(
                     NavigationLink(destination: ContentTagView(item: folio), isActive: $showTagSelection) {
@@ -81,7 +47,8 @@ struct FolioView: View {
             
             Text("Attached Documents").font(.caption2.italic())
             List { //.sorted(by: >)
-                ForEach(Array(folio.assets as? Set<Asset> ?? []), id: \.self) { doc in
+                ForEach(Array(folio.assets as? Set<Asset> ?? []),
+                        id: \.self) { doc in
                     NavigationLink(
                         destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
                             Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
@@ -103,9 +70,38 @@ struct FolioView: View {
             }
         }
         .padding()
-        .navigationTitle(folio.title ?? "?wha?")
+        //.navigationTitle(folio.title ?? "?wha?")
         //.foregroundColor(Color.accentColor)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image(systemName: "magazine")
+                        .foregroundColor(Color.accentColor)
+                    Text(folio.title ?? "")
+                        .font(.body.bold())
+                        .foregroundColor(Color.accentColor)
+                    Spacer()
+                    Menu {
+                        Button("Edit Folio Name...", action: editfolio)
+                        Button("Change Tags...") {
+                            self.showTagSelection = true
+                        }
+                        Button("Add to Folio...", action: addtofolio)
+                        Button("Add Note...", action: addnotetofolio)
+                        Button("Share Folio...", action: sharefolio)
+                    } label: {
+                        Label("", systemImage: "contextualmenu.and.cursorarrow")
+                    }
+                    .alert(item: $message) { message in
+                        Alert(
+                            title: Text(message.text),
+                            dismissButton: .cancel()
+                        )
+                    }
+                }
+            }
+        }
         .sheet(isPresented: $isEditing) {
             FolioDeltaView(objectPassed: folio, show: $isEditing)
         }
@@ -121,22 +117,16 @@ struct FolioView: View {
     }
 
     func addnotetofolio() {
-        //self.message = Message(text: "add a text note...")
-        self.newTextAlertShowing = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.newTextAlertShowing = true
-        }
+//        self.newTextAlertShowing = false
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            self.newTextAlertShowing = true
+//        }
+        folio.addToAssets(Asset.makeNewTextDoc(named: "Untitled", content: " "))
+        Storage.privdb.save()
     }
     
     func reloadAll() {
         Storage.privdb.vc().refreshAllObjects()
-    }
-    func makeNewTextDoc(named: String) {
-        //print("\(named) \(UTType.text.identifier)")
-        let pt = named
-        let newDoc = Asset(vc: Storage.privdb.vc(), title: pt, path: pt, mimetype: "text/plain", uttype: UTType.plainText.identifier)
-        newDoc.setBlob(newTextContent.data(using: .utf8) ?? "".data(using: .utf8)!)
-        Storage.privdb.save()
     }
 
     func sharefolio() {

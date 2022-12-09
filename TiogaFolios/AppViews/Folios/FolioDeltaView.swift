@@ -15,7 +15,7 @@ class DeltaFolioVm: ObservableObject {
     init(objectPassed: Folio? = nil) {
         if objectPassed == nil {
             creating = true
-            folio = Folio.createFolio(vc: Storage.privdb.vc(), title: "Untitled", desc: "description")
+            folio = Folio.createFolio(vc: Storage.privdb.vc(), title: "", desc: "")
             ttitle = "Creating New Folio"
         } else {
             creating = false
@@ -57,14 +57,14 @@ struct FolioDeltaView: View {
         VStack {
             Form {
                 Text(vm.ttitle).font(.headline)
-                TextField("", text: $vm.folio.title ?? "foo")
+                TextField("Untitled", text: $vm.folio.title ?? "")
                     .focused($focusedField, equals: .field)
                     .onAppear {
                           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {  /// Anything over 0.5 seems to work
                                 self.focusedField = .field
                            }
                     }
-                TextField("", text: $vm.folio.desc ?? "bar")
+                TextField("description", text: $vm.folio.desc ?? "")
                 Button(action: {
                     vm.folio.touch()
                     Storage.privdb.save()

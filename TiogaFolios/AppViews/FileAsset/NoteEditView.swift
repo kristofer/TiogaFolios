@@ -35,6 +35,7 @@ struct NoteEditView: View {
             .clipShape(RoundedRectangle(cornerRadius: 5))
             
         }
+        .padding()
         VStack {
             TextField("Title", text: $vm.fileasset.title.toUnwrapped(defaultValue: ""))
                 .padding(5)
