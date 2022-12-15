@@ -63,6 +63,10 @@ final class FileAssetDetailVM: ObservableObject {
                 isBlobEmpty = false
             }
             try blob!.write(to: tempFile.fileURL)
+            if fileasset.thumbnail == nil {
+                fileasset.thumbnailCreate(tempFile.fileURL)
+                Storage.privdb.save()
+            }
         } catch {
             Foundation.NSLog("KKYY no loadTempFile \(error.localizedDescription)")
         }

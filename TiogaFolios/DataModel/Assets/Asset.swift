@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 import CloudKit
 import UniformTypeIdentifiers
+import SwiftUI
+import QuickLookThumbnailing
 
 protocol Assetable {
     func attachAsset(_ asset: Asset)
@@ -49,6 +51,29 @@ extension Asset {
     func touch() { self.lastmodified = Date() }
 }
 
+extension Asset {
+    func thumbnailCreate(_ url: URL) {
+        print("thumbnailCreate start")
+        let previewGenerator = QLThumbnailGenerator()
+        let thumbnailSize = CGSize(width: 60, height: 90)
+        let scale = UIScreen.main.scale
+
+        //guard let tmpUrl = url else { print("No url for thumb"); return }
+        let request = QLThumbnailGenerator.Request(fileAt: url, size: thumbnailSize, scale: scale, representationTypes: .thumbnail)
+        previewGenerator.generateBestRepresentation(for: request) { (thumbnail, error) in
+            print("thumbnailCreate generating")
+
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else if let thumb = thumbnail {
+                self.thumbnail = thumb.uiImage.pngData() // image available
+                //self.store.saveMainContext()
+            }
+        }
+    }
+
+}
 
 extension Asset {
 
@@ -175,26 +200,3 @@ extension Asset: Taggable {
     
     
 }
-
-
-// for Thumbnails
-
-//    let prevGen = QLThumbnailGenerator()
-//    let thumbnailSize = CGSize(width: 60, height: 90)
-//    let scale = UIScreen.main.scale
-
-//    func getThumbImage(asset: Asset) -> Image {
-//
-//        let request = QLThumbnailGenerator.Request(fileAt: url, size: self.thumbnailSize, scale: self.scale, representationTypes: .thumbnail)
-//
-//        prevGen.generateBestRepresentation(for: request) { (thumbnail, error) in
-//
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let thumb = thumbnail {
-//                thumb.uiImage // image available
-//            }
-//
-//        }
-//    }
-

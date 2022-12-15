@@ -51,7 +51,13 @@ struct FolioView: View {
                         id: \.self) { doc in
                     NavigationLink(
                         destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
-                            Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
+                            AssetRow(asset: doc)
+//                            if let thumbn = doc.thumbnail {
+//                                Label("\(String(describing: (doc.title ?? "nil doc name")))", UIImage(data: thumbn) )
+//
+//                            } else {
+//                                Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
+//                            }
                         }
                 }
             }
