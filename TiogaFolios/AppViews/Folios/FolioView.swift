@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 import os
 import UniformTypeIdentifiers
+import CloudKit
 
 struct FolioView: View {
     @ObservedObject var folio: Folio
@@ -26,6 +27,11 @@ struct FolioView: View {
     @State var newTextAlertShowing = false
     @State var newTextDoc = "untitled"
     @State var newTextContent = "untitled"
+    
+    @State private var share: CKShare?
+    @State private var showEditSheet = false
+    private let store = Storage.shared
+    @State private var showShareSheet = false
 
     var body: some View {
         VStack(alignment: .leading){
@@ -46,20 +52,35 @@ struct FolioView: View {
             Divider()
             
             Text("Attached Documents").font(.caption2.italic())
-            List { //.sorted(by: >)
+            List { Section {
                 ForEach(Array(folio.assets as? Set<Asset> ?? []),
                         id: \.self) { doc in
                     NavigationLink(
                         destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
                             AssetRow(asset: doc)
-//                            if let thumbn = doc.thumbnail {
-//                                Label("\(String(describing: (doc.title ?? "nil doc name")))", UIImage(data: thumbn) )
-//
-//                            } else {
-//                                Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
-//                            }
                         }
+                }}
+                
+                Section {
+                  if let share = share {
+                    ForEach(share.participants, id: \.self) { participant in
+                      VStack(alignment: .leading) {
+                        Text(participant.userIdentity.nameComponents?.formatted(.name(style: .long)) ?? "")
+                          .font(.headline)
+                        Text("Acceptance Status: \(string(for: participant.acceptanceStatus))")
+                          .font(.subheadline)
+                        Text("Role: \(string(for: participant.role))")
+                          .font(.subheadline)
+                        Text("Permissions: \(string(for: participant.permission))")
+                          .font(.subheadline)
+                      }
+                      .padding(.bottom, 8)
+                    }
+                  }
+                } header: {
+                  Text("Shared With")
                 }
+
             }
             .listStyle(PlainListStyle())
             .fileImporter(
@@ -79,6 +100,18 @@ struct FolioView: View {
         //.navigationTitle(folio.title ?? "?wha?")
         //.foregroundColor(Color.accentColor)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showShareSheet, content: {
+          if let share = share {
+            CloudSharingView(
+              share: share,
+              container: store.ckContainer,
+              folio: folio
+            )
+          } else {Text("Share unavailable")}
+        })
+        .onAppear(perform: {
+          self.share = store.getShare(folio)
+        })
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
@@ -123,20 +156,23 @@ struct FolioView: View {
     }
 
     func addnotetofolio() {
-//        self.newTextAlertShowing = false
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//            self.newTextAlertShowing = true
-//        }
         folio.addToAssets(Asset.makeNewTextDoc(named: "Untitled", content: " "))
-        Storage.privdb.save()
+        Storage.shared.save()
     }
     
     func reloadAll() {
-        Storage.privdb.vc().refreshAllObjects()
+        Storage.shared.vc.refreshAllObjects()
     }
 
     func sharefolio() {
-        self.message = Message(text: "share this folio...")
+        //self.message = Message(text: "share this folio...")
+        if !store.isShared(object: folio) {
+          Task {
+            await createShare(folio)
+          }
+        }
+        showShareSheet = true
+
     }
     
     private func importFile(_ result: Result<[URL], Error> ) {
@@ -161,7 +197,7 @@ struct FolioView: View {
             selectedFile.stopAccessingSecurityScopedResource()
             
             if let typeID = typeID, let blob = blob {
-                let viewContext = Storage.privdb.vc()
+                let viewContext = Storage.shared.vc
                 let fileasset = Asset(vc: viewContext, title: selectedFile.lastPathComponent,
                                       path: selectedFile.absoluteString,
                                       mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(),
@@ -169,7 +205,7 @@ struct FolioView: View {
                 fileasset.setBlob(blob)
                 folio.addToAssets(fileasset)
                 folio.touch()
-                Storage.privdb.save()
+                Storage.shared.save()
                 //vm.fetchData()
             }
         } catch {
@@ -186,5 +222,65 @@ struct FolioView_Previews: PreviewProvider {
     static var previews: some View {
         EmptyView()
     }
+}
+
+// MARK: Returns CKShare participant permission
+extension FolioView {
+  private func string(for permission: CKShare.ParticipantPermission) -> String {
+    switch permission {
+    case .unknown:
+      return "Unknown"
+    case .none:
+      return "None"
+    case .readOnly:
+      return "Read-Only"
+    case .readWrite:
+      return "Read-Write"
+    @unknown default:
+      fatalError("A new value added to CKShare.Participant.Permission")
+    }
+  }
+
+  private func string(for role: CKShare.ParticipantRole) -> String {
+    switch role {
+    case .owner:
+      return "Owner"
+    case .privateUser:
+      return "Private User"
+    case .publicUser:
+      return "Public User"
+    case .unknown:
+      return "Unknown"
+    @unknown default:
+      fatalError("A new value added to CKShare.Participant.Role")
+    }
+  }
+
+  private func string(for acceptanceStatus: CKShare.ParticipantAcceptanceStatus) -> String {
+    switch acceptanceStatus {
+    case .accepted:
+      return "Accepted"
+    case .removed:
+      return "Removed"
+    case .pending:
+      return "Invited"
+    case .unknown:
+      return "Unknown"
+    @unknown default:
+      fatalError("A new value added to CKShare.Participant.AcceptanceStatus")
+    }
+  }
+  
+  private func createShare(_ folio: Folio) async {
+    do {
+      let (_, share, _) =
+      try await store.container.share([folio], to: nil)
+      share[CKShare.SystemFieldKey.title] = folio.title
+      self.share = share
+    } catch {
+      print("Failed to create share")
+    }
+  }
+
 }
 

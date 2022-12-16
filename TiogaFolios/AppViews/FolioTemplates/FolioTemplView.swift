@@ -50,7 +50,7 @@ struct FolioTemplView: View {
             .listStyle(PlainListStyle())
             Button(action: {
                 let _ = Folio.createFolioFromTemplate(template)
-                Storage.privdb.save()
+                Storage.shared.save()
                 presentation.wrappedValue.dismiss()
             }) {
                 HStack {

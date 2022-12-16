@@ -33,7 +33,7 @@ extension Asset {
         // .source and .blob not init'd
     }
     static func sampleAsset() -> Asset {
-        return Asset.init(vc: Storage.privdb.vc(), title: "sample", path: "empty", mimetype: "plain/text", uttype: "")
+        return Asset.init(vc: Storage.shared.vc, title: "sample", path: "empty", mimetype: "plain/text", uttype: "")
     }
     static func defaultBlobMimeType() -> String {
         return "application/octet-stream"
@@ -160,7 +160,7 @@ extension Asset {
     
     static func makeNewTextDoc(named: String, content: String) -> Asset {
         //print("\(named) \(UTType.text.identifier)")
-        let newDoc = Asset(vc: Storage.privdb.vc(), title: named, path: named+"txt", mimetype: "text/plain", uttype: UTType.plainText.identifier)
+        let newDoc = Asset(vc: Storage.shared.vc, title: named, path: named+"txt", mimetype: "text/plain", uttype: UTType.plainText.identifier)
         newDoc.setBlob(content.data(using: .utf8) ?? "".data(using: .utf8)!)
         return newDoc
     }
@@ -169,7 +169,7 @@ extension Asset {
 }
 extension Asset: Comparable {
 //    var modDate: Date {
-//        let pc = Storage.privdb.container
+//        let pc = Storage.shared.container
 //        let ckr = pc.record(for: self.objectID)
 //        let m = ckr?.modificationDate
 //        

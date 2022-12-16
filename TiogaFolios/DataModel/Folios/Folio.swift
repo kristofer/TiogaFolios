@@ -33,11 +33,11 @@ extension Folio {
     }
 
     static func emptyFolio() -> (Folio) {
-        return Folio.createFolio(vc: Storage.privdb.vc(), title: "", desc: "")
+        return Folio.createFolio(vc: Storage.shared.vc, title: "", desc: "")
     }
     
     static func createFolioFromTemplate(_ template: FolioTemplate) -> Folio {
-        let vc = Storage.privdb.vc()
+        let vc = Storage.shared.vc
         
         let f = createFolio(vc: vc, title: template.title, desc: template.title)
         // do tags

@@ -14,12 +14,12 @@ class FolioSearchViewModel: ObservableObject {
     @Published var searchQuery = ""
 
     func fetchData() {
-        self.folios = Folio.fetchFolios(vc: Storage.privdb.vc())
+        self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
         //print("KKYY fetch folios \(self.folios.count)")
     }
     
     func doSearch(_ srchStr: String) {
-        let persistentContainer = Storage.privdb
+        let persistentContainer = Storage.shared
         // Create a fetch request with a compound predicate
         //let fetchRequest: NSFetchRequest<Folio>
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
@@ -53,7 +53,7 @@ class FolioSearchViewModel: ObservableObject {
         )
         
         // Get a reference to a NSManagedObjectContext
-        let context = persistentContainer.vc()
+        let context = persistentContainer.vc
         
         // Perform the fetch request to get the objects
         // matching the compound predicate

@@ -77,7 +77,7 @@ struct TagListView: View {
         withAnimation {
             offsets.map { tags[$0] }.forEach(viewContext.delete)
 
-            Storage.privdb.save()
+            Storage.shared.save()
         }
     }
     

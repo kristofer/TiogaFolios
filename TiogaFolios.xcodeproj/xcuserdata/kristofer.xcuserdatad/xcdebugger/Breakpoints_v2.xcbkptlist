@@ -30,10 +30,200 @@
             filePath = "TiogaFolios/DataModel/Storage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "contextWillSave(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6FA9A4B8-C586-4BA0-930F-FDD4D603191D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/FolioView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "sharefolio()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08467C60-17C2-4DEC-9F05-4BB4CE6D845E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/FolioView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "createShare(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08467C60-17C2-4DEC-9F05-4BB4CE6D845E - d6af8a89d7a76b71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for TiogaFolios.FolioView.createShare(TiogaFolios.Folio) async -&gt; ()"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/FolioView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "277"
+                  endingLineNumber = "277"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "08467C60-17C2-4DEC-9F05-4BB4CE6D845E - 489a3982bb51b359"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for TiogaFolios.FolioView.createShare(TiogaFolios.Folio) async -&gt; ()"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/FolioView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "277"
+                  endingLineNumber = "277"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "08467C60-17C2-4DEC-9F05-4BB4CE6D845E - a1e8aa0456ba2973"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for TiogaFolios.FolioView.createShare(TiogaFolios.Folio) async -&gt; ()"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/FolioView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "277"
+                  endingLineNumber = "277"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "08467C60-17C2-4DEC-9F05-4BB4CE6D845E - 6847ddc5114b4e72"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for TiogaFolios.FolioView.createShare(TiogaFolios.Folio) async -&gt; ()"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/FolioView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "277"
+                  endingLineNumber = "277"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C92637D9-A1A9-42E1-BF13-EEE5F8FF5CE2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/CloudSharingController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "makeUIViewController(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C92637D9-A1A9-42E1-BF13-EEE5F8FF5CE2 - e2326d8037e06d45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TiogaFolios.CloudSharingView.makeUIViewController(context: SwiftUI.UIViewControllerRepresentableContext&lt;TiogaFolios.CloudSharingView&gt;) -&gt; __C.UICloudSharingController"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/CloudSharingController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "C92637D9-A1A9-42E1-BF13-EEE5F8FF5CE2 - e2326d8037e06d45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TiogaFolios.CloudSharingView.makeUIViewController(context: SwiftUI.UIViewControllerRepresentableContext&lt;TiogaFolios.CloudSharingView&gt;) -&gt; __C.UICloudSharingController"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/CloudSharingController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "404">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "42BFE41C-64DF-4E0E-817D-5841073A9197"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/FolioView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "42BFE41C-64DF-4E0E-817D-5841073A9197 - d2af25b1d656ef08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI._ConditionalContent&lt;TiogaFolios.CloudSharingView, SwiftUI.Text&gt; in TiogaFolios.FolioView.body.getter : some"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/FolioView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "42BFE41C-64DF-4E0E-817D-5841073A9197 - d2af25b1d656ef08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI._ConditionalContent&lt;TiogaFolios.CloudSharingView, SwiftUI.Text&gt; in TiogaFolios.FolioView.body.getter : some"
+                  moduleName = "TiogaFolios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/AppViews/Folios/FolioView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "1228">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

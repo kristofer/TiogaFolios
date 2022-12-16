@@ -40,7 +40,7 @@ struct TagEditView: View {
                 Button(action: {
                     currentTag.kind = selectedTagKind.rawValue
                     currentTag.touch()
-                    Storage.privdb.save()
+                    Storage.shared.save()
                     showNewTag = false
                 }) {
                     HStack {

@@ -14,7 +14,7 @@ class FolioListViewModel: ObservableObject {
     @Published var newFolio: Folio?
 
     func fetchData() {
-        self.folios = Folio.fetchFolios(vc: Storage.privdb.vc())
+        self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
         //print("KKYY fetch folios \(self.folios.count)")
     }
     
@@ -104,9 +104,9 @@ struct FolioListView: View {
     
     private func deleteFolios(offsets: IndexSet) {
         withAnimation {
-            offsets.map { vm.folios[$0] }.forEach(Storage.privdb.vc().delete)
+            offsets.map { vm.folios[$0] }.forEach(Storage.shared.vc.delete)
         }
-        Storage.privdb.save()
+        Storage.shared.save()
         vm.fetchData()
     }
 }

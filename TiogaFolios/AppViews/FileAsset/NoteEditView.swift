@@ -25,7 +25,7 @@ struct NoteEditView: View {
                 vm.fileasset.setBlob(contentText.data(using: .utf8)!)
                 vm.fileasset.lastmodified = Date()
                 vm.fileasset.touch()
-                Storage.privdb.save()
+                Storage.shared.save()
                 vm.resetTempFile()
             }) {
                 Text("Save ")+Text(Image(systemName: "square.and.arrow.down"))

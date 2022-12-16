@@ -13,7 +13,7 @@ extension Tag {
 
     static func allTags() -> [Tag] {
         //print("KKYY running fetch on all tags")
-        let vc = Storage.privdb.vc()
+        let vc = Storage.shared.vc
         var fetchedTags = [Tag]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
         let dateSort = NSSortDescriptor(key:"title", ascending:true)
@@ -31,7 +31,7 @@ extension Tag {
     }
     
     static func allByKind(tagkind: TagKind) -> [Tag] {
-        let vc = Storage.privdb.vc()
+        let vc = Storage.shared.vc
         var fetchedTags = [Tag]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
         let dateSort = NSSortDescriptor(key:"title", ascending:true)
@@ -48,7 +48,7 @@ extension Tag {
     }
     
     static func allByTitleKindCat(title: String, tagkind: TagKind, tagcat: TagCat) -> [Tag] {
-        let vc = Storage.privdb.vc()
+        let vc = Storage.shared.vc
         var fetchedTags = [Tag]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
         let predicate = NSPredicate(format: "title == %@ AND kind == %@ AND category == %@", title, tagkind.rawValue, tagcat.rawValue)
@@ -66,7 +66,7 @@ extension Tag {
         if currentTags.count == 1 {
             return currentTags[0]
         }
-        let newTag = createTag(vc: Storage.privdb.vc(),
+        let newTag = createTag(vc: Storage.shared.vc,
                                named: title, desc: desc, kind: tagkind, category: tagcat)
         return newTag
     }
@@ -74,7 +74,7 @@ extension Tag {
     static func createIfNotExists(title: String, tagkind: TagKind, tagcat: TagCat) -> Bool{
         let currentTags = allByTitleKindCat(title: tagkind.rawValue, tagkind: tagkind, tagcat: tagcat)
         if currentTags.count == 0 {
-            _ = createTagApp(vc: Storage.privdb.vc(), named: tagkind.rawValue, kind: tagkind)
+            _ = createTagApp(vc: Storage.shared.vc, named: tagkind.rawValue, kind: tagkind)
             return true
         }
         return false

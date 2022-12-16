@@ -14,13 +14,13 @@ import UniformTypeIdentifiers
 class ShareViewController: SLComposeServiceViewController {
     
     
-    private var folios = Folio.fetchFolios(vc: Storage.privdb.vc())
-    let vc = Storage.privdb.vc()
+    private var folios = Folio.fetchFolios(vc: Storage.shared.vc)
+    let vc = Storage.shared.vc
     private var selectedFolio: Folio?
     var folioName = ""
 
     override func viewDidLoad() {
-        folios = Folio.fetchFolios(vc: Storage.privdb.vc())
+        folios = Folio.fetchFolios(vc: Storage.shared.vc)
         super.viewDidLoad()
         selectedFolio = folios.first
         folioName = selectedFolio?.title ?? "unknown"

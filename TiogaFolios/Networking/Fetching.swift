@@ -28,7 +28,7 @@ class Fetching {
                 blobasset.desc = contentNote
                 folio.attachAsset(blobasset)
 
-                Storage.privdb.save()
+                Storage.shared.save()
             } catch {
                 NSLog("KKYY error in saveLocalFile \(error)")
             }
@@ -79,7 +79,7 @@ class Fetching {
         //folio.attachAsset(blobasset)
         folio.addToAssets(blobasset)
         
-        Storage.privdb.save()
+        Storage.shared.save()
     }
     
     static func uttypeFor(_ fileextension: String) -> UTType {

@@ -22,7 +22,7 @@ struct AttachDocs: View {
                         folio.touch()
                         folio.objectWillChange.send()
                         self.presentationMode.wrappedValue.dismiss()
-                        Storage.privdb.save()
+                        Storage.shared.save()
                     }) { //doc: doc)) {
                         Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
                     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct TiogaFoliosApp: App {
-    let store = Storage.privdb
+    let store = Storage.shared
     @Environment(\.scenePhase) var scenePhase
     @State var mainActive:Bool = false
     
@@ -18,7 +18,7 @@ struct TiogaFoliosApp: App {
             VStack {
                 if self.mainActive {
                     MainView()
-                        .environment(\.managedObjectContext, store.vc())
+                        .environment(\.managedObjectContext, store.vc)
                 } else {
                     SplashView()
                 }
@@ -34,7 +34,7 @@ struct TiogaFoliosApp: App {
         }
         .onChange(of: scenePhase) { _ in
             //print("calling persistence Save()")
-            Storage.privdb.save()
+            Storage.shared.save()
         }
     }
 }

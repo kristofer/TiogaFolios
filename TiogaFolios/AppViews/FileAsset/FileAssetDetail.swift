@@ -65,7 +65,7 @@ final class FileAssetDetailVM: ObservableObject {
             try blob!.write(to: tempFile.fileURL)
             if fileasset.thumbnail == nil {
                 fileasset.thumbnailCreate(tempFile.fileURL)
-                Storage.privdb.save()
+                Storage.shared.save()
             }
         } catch {
             Foundation.NSLog("KKYY no loadTempFile \(error.localizedDescription)")
@@ -192,7 +192,7 @@ struct FileAssetDetail: View {
                 vm.fileasset.mimetype = UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType()
                 vm.fileasset.uttype = typeID
                 vm.fileasset.touch()
-                Storage.privdb.save()
+                Storage.shared.save()
                 vm.isBlobEmpty = false
                 vm.loadTempFile()
             }

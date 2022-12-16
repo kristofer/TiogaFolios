@@ -29,7 +29,7 @@ struct FolioEditView: View {
                         //print("Dismissing folio edit view...")
                         folio.desc = self.descriptiontext
                         folio.touch()
-                        Storage.privdb.save()
+                        Storage.shared.save()
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Done").bold()
@@ -40,7 +40,7 @@ struct FolioEditView: View {
                 .padding()
                 .border(Color.gray)
                 .onAppear() {
-                    self.descriptiontext = folio.desc ?? "Edit Description Here..."// getOrCreateFolioDescription(vc: PersistenceController.shared.vc())
+                    self.descriptiontext = folio.desc ?? "Edit Description Here..."// getOrCreateFolioDescription(vc: PersistenceController.shared.vc)
                 }
             //Text(String(describing: folio.id!) )
             //Text(String(describing: folio.kind))

@@ -42,7 +42,7 @@ struct ContentTagView: View {
             viewModel.initTags(f: tfolio)
         }
         .onDisappear() {
-            Storage.privdb.save()
+            Storage.shared.save()
         }
     }
     

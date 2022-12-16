@@ -75,6 +75,7 @@
 		5C84346229437E9A005B0051 /* NoteEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84346129437E9A005B0051 /* NoteEditView.swift */; };
 		5C85EDE32938F6390087EFBE /* 1DecSchema.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5C85EDE22938F6390087EFBE /* 1DecSchema.txt */; };
 		5CC74C07294A821D00BE831F /* AssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC74C06294A821D00BE831F /* AssetRow.swift */; };
+		5CC74C09294B75C000BE831F /* CloudSharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC74C08294B75BF00BE831F /* CloudSharingController.swift */; };
 		5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */; };
 		5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */; };
 		5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA80E293796F300FCF50B /* set_build_number.sh */; };
@@ -186,6 +187,7 @@
 		5C84346129437E9A005B0051 /* NoteEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditView.swift; sourceTree = "<group>"; };
 		5C85EDE22938F6390087EFBE /* 1DecSchema.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1DecSchema.txt; sourceTree = "<group>"; };
 		5CC74C06294A821D00BE831F /* AssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRow.swift; sourceTree = "<group>"; };
+		5CC74C08294B75BF00BE831F /* CloudSharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSharingController.swift; sourceTree = "<group>"; };
 		5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioViewMenu.swift; sourceTree = "<group>"; };
 		5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolioView.swift; sourceTree = "<group>"; };
 		5CDCA80E293796F300FCF50B /* set_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_build_number.sh; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				5C32399F2925772B00619645 /* FolioVM.swift */,
 				5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */,
 				5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */,
+				5CC74C08294B75BF00BE831F /* CloudSharingController.swift */,
 			);
 			path = Folios;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				5C3239BF2925796200619645 /* FileAssetList.swift in Sources */,
 				5C3239CF2925796F00619645 /* TagEditView.swift in Sources */,
 				5C84346229437E9A005B0051 /* NoteEditView.swift in Sources */,
+				5CC74C09294B75C000BE831F /* CloudSharingController.swift in Sources */,
 				5C32397E29254C0F00619645 /* Folio.swift in Sources */,
 				5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */,
 				5C3239D32925796F00619645 /* TagView.swift in Sources */,
@@ -878,6 +882,7 @@
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TiogaFolios/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -911,6 +916,7 @@
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TiogaFolios/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

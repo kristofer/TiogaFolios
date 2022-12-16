@@ -14,7 +14,7 @@ class FileAssetViewModel: ObservableObject {
     @Published var docs = [Asset]()
     
     func fetchData() {
-        self.docs = Asset.fetchUnassignedAssets(vc: Storage.privdb.vc())
+        self.docs = Asset.fetchUnassignedAssets(vc: Storage.shared.vc)
     }
     
 }
@@ -123,7 +123,7 @@ struct FileAssetList: View {
     private func deleteDocs(offsets: IndexSet) {
         withAnimation {
             offsets.map { vm.docs[$0] }.forEach(viewContext.delete)
-            Storage.privdb.save()
+            Storage.shared.save()
         }
     }
     
@@ -154,7 +154,7 @@ struct FileAssetList: View {
                                       mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(),
                                       uttype: typeID)
                 fileasset.setBlob(blob)
-                Storage.privdb.save()
+                Storage.shared.save()
                 vm.fetchData()
             }
         } catch {
