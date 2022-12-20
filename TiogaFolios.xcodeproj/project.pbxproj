@@ -877,7 +877,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "CloudKit push notifications require the 'remote-notification' background mode in your info plist.";
+				CURRENT_PROJECT_VERSION = 12192022;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
@@ -911,7 +911,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "CloudKit push notifications require the 'remote-notification' background mode in your info plist.";
+				CURRENT_PROJECT_VERSION = 12192022;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
