@@ -61,25 +61,25 @@ struct FolioView: View {
                         }
                 }}
                 
-                Section {
-                  if let share = share {
-                    ForEach(share.participants, id: \.self) { participant in
-                      VStack(alignment: .leading) {
-                        Text(participant.userIdentity.nameComponents?.formatted(.name(style: .long)) ?? "")
-                          .font(.headline)
-                        Text("Acceptance Status: \(string(for: participant.acceptanceStatus))")
-                          .font(.subheadline)
-                        Text("Role: \(string(for: participant.role))")
-                          .font(.subheadline)
-                        Text("Permissions: \(string(for: participant.permission))")
-                          .font(.subheadline)
-                      }
-                      .padding(.bottom, 8)
-                    }
-                  }
-                } header: {
-                  Text("Shared With")
-                }
+//                Section {
+//                  if let share = share {
+//                    ForEach(share.participants, id: \.self) { participant in
+//                      VStack(alignment: .leading) {
+//                        Text(participant.userIdentity.nameComponents?.formatted(.name(style: .long)) ?? "")
+//                          .font(.headline)
+//                        Text("Acceptance Status: \(string(for: participant.acceptanceStatus))")
+//                          .font(.subheadline)
+//                        Text("Role: \(string(for: participant.role))")
+//                          .font(.subheadline)
+//                        Text("Permissions: \(string(for: participant.permission))")
+//                          .font(.subheadline)
+//                      }
+//                      .padding(.bottom, 8)
+//                    }
+//                  }
+//                } header: {
+//                  Text("Shared With")
+//                }
 
             }
             .listStyle(PlainListStyle())
@@ -110,7 +110,7 @@ struct FolioView: View {
           } else {Text("Share unavailable")}
         })
         .onAppear(perform: {
-          self.share = store.getShare(folio)
+          //self.share = store.getShare(folio)
         })
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -165,13 +165,13 @@ struct FolioView: View {
     }
 
     func sharefolio() {
-        //self.message = Message(text: "share this folio...")
-        if !store.isShared(object: folio) {
-          Task {
-            await createShare(folio)
-          }
-        }
-        showShareSheet = true
+        self.message = Message(text: "sharing is unavailable")
+//        if !store.isShared(object: folio) {
+//          Task {
+//            await createShare(folio)
+//          }
+//        }
+//        showShareSheet = true
 
     }
     

@@ -127,10 +127,6 @@ final class Storage {
 
     }()
  
-//    func vc -> NSManagedObjectContext {
-//        return Storage.shared.container.viewContext
-//    }
- 
     @objc func contextWillSave(_ notification: Notification) {
 //        print("KKYY \(notification)")
 //        let context = notification.object as? NSManagedObjectContext

@@ -34,7 +34,7 @@ struct FolioTemplListView: View {
     
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             List {
                 //Section(header: Text("Life Event Templates")) {
                 ForEach(searchResults, id: \.self) { template in
@@ -62,7 +62,7 @@ struct FolioTemplListView: View {
 #else
             // mac desktop
 #endif
-        }
+//        }
     }
     
     func didDismiss() {

@@ -11,6 +11,7 @@ import SwiftUI
 struct TiogaFoliosApp: App {
     let store = Storage.shared
     @Environment(\.scenePhase) var scenePhase
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State var mainActive:Bool = false
     
     var body: some Scene {
@@ -40,6 +41,7 @@ struct TiogaFoliosApp: App {
 }
 
 extension UIApplication {
+    static var _versionBuild = ""
     struct Constants {
         static let CFBundleShortVersionString = "CFBundleShortVersionString"
     }
@@ -52,8 +54,11 @@ extension UIApplication {
     }
 
     class func versionBuild() -> String {
+        if _versionBuild != "" { return _versionBuild }
+        
         let version = appVersion(), build = appBuild()
         NSLog("\(version),\(build)")
-        return version == build ? "v\(version)" : "v\(version),(\(build))"
+        _versionBuild = version == build ? "v\(version)" : "v\(version),(\(build))"
+        return _versionBuild
     }
 }

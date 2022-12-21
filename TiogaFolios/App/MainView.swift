@@ -13,55 +13,23 @@ import CoreData
 struct MainView: View {
     // @Environment(\.managedObjectContext) private var viewContext
     
+#if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+#endif
     
+    @ViewBuilder
     var body: some View {
-//        Text("Empty Tioga Folios")
-            TabView {
-                FolioListView()
-                    .tabItem {
-                        Label("Folios", systemImage: "archivebox")
-                    }
-
-                TagKindListView()
-                    .tabItem {
-                        Label("Categories", systemImage: "briefcase")
-                    }
-
-                SearchFolioView()
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-
-//                FolioAddToV(viewModel: FolioVM())
-//                    .tabItem {
-//                        Label("Import", systemImage: "square.and.arrow.down.on.square.fill")
-//                    }
-                
-//                FileAssetList()
-//                    .tabItem {
-//                        Label("Documents", systemImage: "doc.richtext")
-//                    }
-//
-//#if !os(macOS)
-//                DocScannerView(viewModel: DocScannerViewModel())
-//                    .tabItem {
-//                        Label("Scan", systemImage: "scanner.fill")
-//                    }
-//#endif
-//                TagListView()
-//                    .tabItem {
-//                        Label("Tags", systemImage: "tag")
-//                    }
-                FolioTemplListView()
-                    .tabItem {
-                        Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
-                    }
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-
-            }
+#if os(iOS)
+        if horizontalSizeClass == .compact {
+            TabBarNavigationView() // For iPhone
+        }
+        else {
+            SidebarNavigationView() // For iPad
+        }
+#else
+        SidebarNavigationView() // For mac
+            .frame(minWidth: 900, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
+#endif
     }
     
 }

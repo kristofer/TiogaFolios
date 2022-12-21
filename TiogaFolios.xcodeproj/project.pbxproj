@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C2B2BE8295249F90056EFF3 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */; };
+		5C2B2BEA29524CB60056EFF3 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */; };
+		5C2B2BEC29536EE40056EFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */; };
 		5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323945292431A100619645 /* TiogaFoliosApp.swift */; };
 		5C32394A292431A300619645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C323949292431A300619645 /* Assets.xcassets */; };
 		5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C32394C292431A300619645 /* Preview Assets.xcassets */; };
@@ -121,6 +124,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
+		5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
+		5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C323942292431A100619645 /* TiogaFolios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiogaFolios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C323945292431A100619645 /* TiogaFoliosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiogaFoliosApp.swift; sourceTree = "<group>"; };
 		5C323949292431A300619645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -297,7 +303,10 @@
 			isa = PBXGroup;
 			children = (
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
+				5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */,
 				5C32399329254DFC00619645 /* MainView.swift */,
+				5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */,
+				5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */,
 				5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */,
 				5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */,
 				5C3EF861292BD8F4007CAAB6 /* SplashView.swift */,
@@ -677,13 +686,16 @@
 				5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */,
 				5C3239D32925796F00619645 /* TagView.swift in Sources */,
 				5C3239A72925772B00619645 /* FolioTagItems.swift in Sources */,
+				5C2B2BE8295249F90056EFF3 /* TabBarNavigationView.swift in Sources */,
 				5C32399429254DFC00619645 /* MainView.swift in Sources */,
 				5C32398229254C5F00619645 /* FolioTemplates.swift in Sources */,
 				5C3239B22925774800619645 /* FolioTemplListView.swift in Sources */,
+				5C2B2BEA29524CB60056EFF3 /* SidebarNavigationView.swift in Sources */,
 				5C3239BE2925796200619645 /* FileAssetDetail.swift in Sources */,
 				5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */,
 				5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */,
 				5C3239D12925796F00619645 /* TagKindListView.swift in Sources */,
+				5C2B2BEC29536EE40056EFF3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

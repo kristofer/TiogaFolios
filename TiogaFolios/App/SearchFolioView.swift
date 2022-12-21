@@ -72,7 +72,7 @@ struct SearchFolioView: View {
     
     var body: some View {
         VStack {
-            NavigationView {
+//            //NavigationView {
                 List {
                     Section(header: Text("Folios"))
                     {
@@ -98,7 +98,7 @@ struct SearchFolioView: View {
 //                    .navigationBarTitle("Search")
 //                    .navigationBarHidden(true)
 //                }
-            }
+//            }
         }
         .searchable(text: $vm.searchQuery)
         .onSubmit(of: .search) {

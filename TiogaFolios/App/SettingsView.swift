@@ -21,20 +21,22 @@ struct SettingsView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 Text("Version: \(UIApplication.versionBuild())")
+                Text("These are some app extras")
+                Text("Will be more here soon")
 //                NavigationLink("Digital Access Trust Details...") {
 //                    TrustView()
 //                }
 //                .padding()
-                NavigationLink("Manage Tags...") {
-                    TagListView()
-                }
-                .padding()
-                NavigationLink("Manage Documents...") {
+//                NavigationLink("Manage Tags...") {
+//                    TagListView()
+//                }
+//                .padding()
+                NavigationLink("Manage Unattached Documents...") {
                     FileAssetList()
                 }
                 .padding()
                 NavigationLink("Connect to Email...") {
-                    Text("Gmail Info")
+                    Text("Gmail Info (not implemented yet")
                 }
                 .padding()
                 Button("Test Fetching TD...") {
@@ -64,7 +66,7 @@ struct SettingsView: View {
                 .border(Color.blue, width: 1.0)
                 .disabled(true)
             }
-            .navigationBarTitle("Settings")
+            .navigationBarTitle("Tioga Folios")
             
         }
         

@@ -38,7 +38,7 @@ struct FolioListView: View {
     
     
     var body: some View {
-        NavigationView {
+// moved to "superview" NavigationView {
             List {
                 Section(header: Text("Recent Folios"))
                     {
@@ -93,7 +93,7 @@ struct FolioListView: View {
 #else
             // mac desktop
 #endif
-        }
+//        }
     }
     
     func didDismiss() {

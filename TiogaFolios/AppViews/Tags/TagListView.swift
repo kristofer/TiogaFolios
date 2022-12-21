@@ -22,7 +22,7 @@ struct TagListView: View {
     @State private var newTag: Tag?
     
     var body: some View {
-        NavigationView {
+//            NavigationView {
             List {
                 ForEach(tags) { tag in
                     NavigationLink(
@@ -65,8 +65,8 @@ struct TagListView: View {
             
 #endif
 
-            Text("Select a tag")
-        }
+//            Text("Select a tag")
+//        }
     }
 
     func didDismiss() {
