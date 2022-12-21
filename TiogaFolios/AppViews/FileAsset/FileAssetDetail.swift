@@ -32,7 +32,7 @@ final class FileAssetDetailVM: ObservableObject {
         //print("KKYY showing assignto \(showAssignTo)")
         showAssign = showAssignTo
     }
-
+    
     func deleteTempFile() {
         do {
             try self.tempFile.deleteDirectory()
@@ -46,11 +46,11 @@ final class FileAssetDetailVM: ObservableObject {
         deleteTempFile()
         let fname = "tempfile." + (UTType(fileasset.uttype!)?.preferredFilenameExtension ?? "txt")
         self.tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
-
+        
         Foundation.NSLog("KKYY NEW temp file \(self.tempFile.fileURL.absoluteString)")
-
+        
         loadTempFile()
-
+        
     }
     
     func loadTempFile() {
@@ -84,35 +84,48 @@ struct FileAssetDetail: View {
     @Environment(\.dismiss) var dismiss
     @State var isEditing: Bool = false
     @State var isEditingMetadata = false
-
+    
     init(anAsset: Asset, showAssignTo: Bool) {
         _vm = StateObject(wrappedValue: FileAssetDetailVM(anAsset: anAsset,
                                                           showAssignTo: showAssignTo))
     }
     
     var body: some View {
-        VStack{
-            VStack{
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
                 HStack{
                     Text(vm.fileasset.desc ?? "")
                         .font(.caption)
                         .padding()
                     Spacer()
-                    Button {
-                        self.isEditingMetadata = true
-                    } label: {
-                        Image(systemName: "square.and.pencil")
-                    }
+                    if vm.fileasset.isDocumentEditable() {
+                        Button(action: {
+                            isEditing = true
+                        }) {
+                            Text(Image(systemName: "square.and.pencil"))
+                        }
+                        .font(.caption)
+                        .padding(5.0)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                    } else {
+                        Button {
+                            self.isEditingMetadata = true
+                        } label: {
+                            Image(systemName: "square.and.pencil")
+                        }
                         .sheet(isPresented: $isEditingMetadata) {
                             FileAssetDeltaView(objectPassed: vm.fileasset, show: $isEditingMetadata)
                         }
-
+                    }
+                    
                 }
                 .padding(2)
                 
-//                if vm.showAssign == true {
-//                    NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
-//                }
+                //                if vm.showAssign == true {
+                //                    NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
+                //                }
                 Divider()
                 if vm.isBlobEmpty {
                     Button(action:  {
@@ -131,24 +144,11 @@ struct FileAssetDetail: View {
                         .padding(2)
                 }
             }
-            //Spacer()
+            Spacer()
             HStack{
-                Text("Metadata: \(vm.fileasset.mimetype!)")
+                Text("Filetype: \(vm.fileasset.mimetype!)")
                     .font(.caption)
                 Spacer()
-                if vm.fileasset.isDocumentEditable() {
-                    Button(action: {
-                        //contentText = String(decoding: vm.fileasset.blob!, as: UTF8.self)
-                        isEditing = true
-                    }) {
-                        Text(Image(systemName: "square.and.pencil"))
-                    }
-                    .font(.caption)
-                    .padding(5.0)
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                }
             }
             .padding(5.0)
             .sheet(isPresented: $isEditing, onDismiss: { vm.resetTempFile() }, content: {

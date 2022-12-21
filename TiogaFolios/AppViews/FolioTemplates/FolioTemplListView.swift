@@ -34,9 +34,7 @@ struct FolioTemplListView: View {
     
     
     var body: some View {
-//        NavigationView {
             List {
-                //Section(header: Text("Life Event Templates")) {
                 ForEach(searchResults, id: \.self) { template in
                     VStack(spacing: 4) {
                         NavigationLink(
@@ -48,17 +46,12 @@ struct FolioTemplListView: View {
                     
                 }
                 
-                // .onDelete(perform: deleteFolios)
-                
-                //}
-                //.listRowSeparator(.hidden)
             }
             .listStyle(PlainListStyle())
             .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Life Event Templates")
 #if os(iOS)
             .navigationBarTitle("Create Folios from Templates")
             .navigationBarTitleDisplayMode(.inline)
-            //.navigationBarHidden(true)
 #else
             // mac desktop
 #endif

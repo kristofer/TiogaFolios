@@ -160,7 +160,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Major Home Repair Incident"
             }
         ],
@@ -179,13 +179,18 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Home Improvement Project"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
+                "title": "Cost Estimate",
+                "desc": "notes on the cost of project",
+                "mimetype": "plain/empty"
+            },
+            {
+                "title": "Notes",
                 "desc": "desc_placeholder",
                 "mimetype": "plain/empty"
             }
@@ -204,8 +209,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Notes",
+                "desc": "Notes on Project",
                 "mimetype": "plain/empty"
             }
         ]
@@ -223,8 +228,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Information on Claim",
+                "desc": "Notes on claim number, etc.",
                 "mimetype": "plain/empty"
             }
         ]
@@ -242,8 +247,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Information on Claim",
+                "desc": "Notes on claim number, etc.",
                 "mimetype": "plain/empty"
             }
         ]
@@ -261,8 +266,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Information on Claim",
+                "desc": "Notes on claim number, etc.",
                 "mimetype": "plain/empty"
             }
         ]
@@ -280,29 +285,16 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Information on Claim",
+                "desc": "Notes on claim number, etc.",
+                "mimetype": "plain/empty"
+            },
+            {
+                "title": "Insurance information",
+                "desc": "flood insurance docs",
                 "mimetype": "plain/empty"
             }
-        ]
-    },
-    {
-        "title": "Other Claim",
-        "desc": "",
-        "tags": [
-            {
-                "category": "app",
-                "desc": "",
-                "kind": "insurance",
-                "title": "Other Claim"
-            }
-        ],
-        "assets": [
-            {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
-                "mimetype": "plain/empty"
-            }
+
         ]
     },
     {
@@ -318,8 +310,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Notes",
+                "desc": "information on the bequest, inheritance, etc.",
                 "mimetype": "plain/empty"
             }
         ]
@@ -330,15 +322,20 @@ let templateSources = """
         "tags": [
             {
                 "category": "app",
-                "desc": "",
+                "desc": "track all the data around a new job",
                 "kind": "occupation",
                 "title": "New Job"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Offer Letter",
+                "desc": "",
+                "mimetype": "plain/empty"
+            },
+            {
+                "title": "Details on Offer",
+                "desc": "insurance, bank details, ",
                 "mimetype": "plain/empty"
             }
         ]
@@ -349,34 +346,20 @@ let templateSources = """
         "tags": [
             {
                 "category": "app",
-                "desc": "",
+                "desc": "Resignation and COBRA info on insurance, etc.",
                 "kind": "occupation",
                 "title": "Leave Job"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
-                "mimetype": "plain/empty"
-            }
-        ]
-    },
-    {
-        "title": "HR Information",
-        "desc": "",
-        "tags": [
-            {
-                "category": "app",
+                "title": "Resignation Letter",
                 "desc": "",
-                "kind": "occupation",
-                "title": "HR Information"
-            }
-        ],
-        "assets": [
+                "mimetype": "plain/empty"
+            },
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Insurance details",
+                "desc": "",
                 "mimetype": "plain/empty"
             }
         ]
@@ -394,8 +377,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Notes",
+                "desc": "anything related to finished at a school for a person",
                 "mimetype": "plain/empty"
             }
         ]
@@ -413,8 +396,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Notes & Details of Transition",
+                "desc": "Discharge info, Insurance, Pension details",
                 "mimetype": "plain/empty"
             }
         ]
@@ -432,15 +415,20 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Ceremony Notes",
+                "desc": "things about the ceremony",
+                "mimetype": "plain/empty"
+            },
+            {
+                "title": "Reception/Party Notes",
+                "desc": "things about the reception",
                 "mimetype": "plain/empty"
             }
         ]
     },
     {
         "title": "Marriage Documents",
-        "desc": "",
+        "desc": "docs related to your marriage",
         "tags": [
             {
                 "category": "app",
@@ -451,8 +439,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Marriage License",
+                "desc": "scan or import of license doc",
                 "mimetype": "plain/empty"
             }
         ]
@@ -470,8 +458,13 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Appraisal",
+                "desc": "docs about the value of the jewelry",
+                "mimetype": "plain/empty"
+            },
+            {
+                "title": "Insurance",
+                "desc": "docs regarding the insurance of the items",
                 "mimetype": "plain/empty"
             }
         ]
@@ -497,7 +490,7 @@ let templateSources = """
     },
     {
         "title": "Retirement Account",
-        "desc": "",
+        "desc": "any docs related to your retirement money",
         "tags": [
             {
                 "category": "app",
@@ -508,8 +501,8 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Notes on Your Retirement Money",
+                "desc": "",
                 "mimetype": "plain/empty"
             }
         ]
@@ -527,7 +520,7 @@ let templateSources = """
         ],
         "assets": [
             {
-                "title": "placeholder",
+                "title": "Retirement Notes",
                 "desc": "desc_placeholder",
                 "mimetype": "plain/empty"
             }
@@ -635,7 +628,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Sold Real Estate"
             }
         ],
@@ -820,19 +813,19 @@ let templateSources = """
     },
     {
         "title": "Electric",
-        "desc": "",
+        "desc": "electric service account details",
         "tags": [
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Electric"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -844,14 +837,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Water/Sewer"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -863,14 +856,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Landline Phone"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -882,14 +875,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Cable/Satellite TV"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -901,33 +894,33 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Trash"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
     },
     {
-        "title": "Wireless Internet",
+        "title": "Wireless or Internet",
         "desc": "",
         "tags": [
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Wireless Internet"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -939,14 +932,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Yard/Pool Service"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Account Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -958,14 +951,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Electrician Repair"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Repair Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -977,14 +970,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Plumber Repair"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Repair Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -996,14 +989,14 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Contractor Repair"
             }
         ],
         "assets": [
             {
-                "title": "placeholder",
-                "desc": "desc_placeholder",
+                "title": "Repair Details and Notes",
+                "desc": "information about the account",
                 "mimetype": "plain/empty"
             }
         ]
@@ -1015,7 +1008,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Purchase Residence"
             }
         ],
@@ -1034,7 +1027,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Lease/Rent residence"
             }
         ],
@@ -1053,7 +1046,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Sold a Residence"
             }
         ],
@@ -1072,7 +1065,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Leave Old Residence"
             }
         ],
@@ -1091,7 +1084,7 @@ let templateSources = """
             {
                 "category": "app",
                 "desc": "",
-                "kind": "house",
+                "kind": "home",
                 "title": "Move into New Residence"
             }
         ],
@@ -1560,14 +1553,14 @@ let templateSources = """
         ]
     },
     {
-        "title": "Accidents",
+        "title": "Accident",
         "desc": "",
         "tags": [
             {
                 "category": "app",
                 "desc": "",
                 "kind": "medical",
-                "title": "Accidents"
+                "title": "Accident"
             }
         ],
         "assets": [

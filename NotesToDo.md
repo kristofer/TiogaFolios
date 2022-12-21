@@ -6,12 +6,19 @@ MVP achieved (28 Nov 2022), but no Sharing (yet)
 
 - BACKUPS
 - SHARING
+- unify the LifeEvents into the NewFolio view
+- some startup help screens
 - menu additions for
   - scan, photo,
 - text note editing
 - help pages
 - intro (first time start) pages
 - file search ? (can spotlight do this? why the hell not?)
+- URL scheme inside app,
+- scene storage of the selected folio
+- calendar view of folios?
+- load a folder full of stuff to a folio
+- move assets among folios
 
 - Create ops for Notes, OlderBlobs, Previews?
 
