@@ -25,6 +25,7 @@ struct AssetRow: View {
             image?
             .resizable()
             .frame(width: 40, height: 60)
+            .border(.gray)
             VStack(alignment: .leading) {
                 Text("\(asset.title ?? "none")")
             }

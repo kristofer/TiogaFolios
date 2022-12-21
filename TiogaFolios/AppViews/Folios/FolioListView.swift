@@ -12,7 +12,7 @@ class FolioListViewModel: ObservableObject {
     
     @Published var folios = [Folio]()
     @Published var newFolio: Folio?
-
+    
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
         //print("KKYY fetch folios \(self.folios.count)")
@@ -25,75 +25,75 @@ class FolioListViewModel: ObservableObject {
         }
     }
 }
-    
+
 struct FolioListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var vm = FolioListViewModel()
-
+    
     @State private var showNewFolio = false
-
+    
     init() {
         //UITableView.appearance().backgroundColor = .clear // Uses UIColor
     }
     
     
     var body: some View {
-// moved to "superview" NavigationView {
-            List {
-                Section(header: Text("Recent Folios"))
-                    {
-                    ForEach(vm.folios) { folio in
-                        VStack(spacing: 0) {
+        // moved to "superview" NavigationView {
+        List {
+            Section(header: Text("Recent Folios"))
+            {
+                ForEach(vm.folios) { folio in
+                    VStack(spacing: 0) {
                         NavigationLink(
                             destination: FolioView(folio: folio )) {
                                 FolioCell(folio: folio)
                             }
-                        }
-
                     }
-                    //.onDelete(perform: deleteFolios)
+                    
                 }
-                .headerProminence(.increased).padding(4)
-                .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                //.onDelete(perform: deleteFolios)
             }
-            .listStyle(PlainListStyle())
-            .refreshable {
-                
-            }
-            .onAppear(){
-                vm.fetchData()
-            }
-            .toolbar {
+            .headerProminence(.increased).padding(4)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        }
+        .listStyle(PlainListStyle())
+        .refreshable {
+            
+        }
+        .onAppear(){
+            vm.fetchData()
+        }
+        .toolbar {
 #if os(iOS)
-                ToolbarItem(placement: .bottomBar) {
-                    EditButton()
-                }
-                
+            ToolbarItem(placement: .bottomBar) {
+                EditButton()
+            }
+            
 #endif
-                ToolbarItem(placement: .bottomBar) {
-                    Button(action:  {
-                        vm.generateFolio()
-                        showNewFolio = true
-                    }) {
-                        HStack {
-                            Text("New Folio")
-                            Image(systemName: "plus")
-                        }
-                    }
-                    .sheet(isPresented: $showNewFolio, onDismiss: didDismiss)
-                    {
-                        FolioDeltaView(objectPassed: vm.newFolio, show: $showNewFolio)
+            ToolbarItem(placement: .bottomBar) {
+                Button(action:  {
+                    vm.generateFolio()
+                    showNewFolio = true
+                }) {
+                    HStack {
+                        Text("New Folio")
+                        Image(systemName: "plus")
                     }
                 }
+                .sheet(isPresented: $showNewFolio, onDismiss: didDismiss)
+                {
+                    FolioDeltaView(objectPassed: vm.newFolio, show: $showNewFolio)
+                }
             }
+        }
 #if os(iOS)
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
 #else
-            // mac desktop
+        // mac desktop
 #endif
-//        }
+        //        }
     }
     
     func didDismiss() {

@@ -24,7 +24,7 @@ struct CloudSharingView: UIViewControllerRepresentable {
         let controller = UICloudSharingController(share: share, container: container)
         controller.modalPresentationStyle = .formSheet
         controller.delegate = context.coordinator
-        controller.modalPresentationStyle = .none
+        //controller.modalPresentationStyle = .none
         return controller
     }
     

@@ -31,7 +31,7 @@ struct TiogaFoliosApp: App {
                     }
                 }
             }
-
+            
         }
         .onChange(of: scenePhase) { _ in
             //print("calling persistence Save()")
@@ -48,11 +48,11 @@ extension UIApplication {
     class func appVersion() -> String {
         return Bundle.main.object(forInfoDictionaryKey: Constants.CFBundleShortVersionString) as! String
     }
-
+    
     class func appBuild() -> String {
         return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
-
+    
     class func versionBuild() -> String {
         if _versionBuild != "" { return _versionBuild }
         
