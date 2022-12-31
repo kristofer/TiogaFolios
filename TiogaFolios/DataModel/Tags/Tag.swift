@@ -16,7 +16,7 @@ extension Tag {
         let vc = Storage.shared.vc
         var fetchedTags = [Tag]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
-        let dateSort = NSSortDescriptor(key:"title", ascending:true)
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:true)
         fetchRequest.sortDescriptors = [dateSort]
         fetchedTags = try! vc.fetch(fetchRequest) as! [Tag]
 //        for t in fetchedTags {
@@ -123,6 +123,11 @@ extension Tag {
         newTag.desc = desc
         newTag.kind = kind.rawValue
         newTag.category = TagCat.user.rawValue
+        newTag.lastmodified = .now
+        newTag.favorite = false
+        newTag.ref = URL(string: "")
+        newTag.refstring = ""
+        newTag.thumbnail = Data()
         return newTag
     }
 

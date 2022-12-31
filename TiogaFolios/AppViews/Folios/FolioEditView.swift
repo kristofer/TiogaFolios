@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct FolioEditView: View {
     @ObservedObject var folio: Folio
     @Environment(\.presentationMode) var presentationMode

@@ -17,8 +17,11 @@ struct NoteEditView: View {
     @Binding var isEditing: Bool
     @State var contentText: String = ""
 
+
     var body: some View {
         HStack {
+            Text("Editing...")
+                .font(.caption)
             Spacer()
             Button(action: {
                 isEditing = false
@@ -47,7 +50,9 @@ struct NoteEditView: View {
         }
         Divider()
         TextEditor(text: $contentText)
-            .padding()
+            //.onAppear(perform: { UITextView.appearance().backgroundColor = .clear })
+            .border(.gray)
+            .padding(2)
     }
 }
 

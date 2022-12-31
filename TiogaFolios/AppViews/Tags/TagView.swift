@@ -48,7 +48,7 @@ struct TagView: View {
         .navigationTitle("")
         .navigationViewStyle(.automatic)
         .sheet(isPresented: $isEditing) {
-            TagEditView(showNewTag: $isEditing, currentTag: tag)
+            TagEditView(objectPassed: tag, show: $isEditing)
         }
         Spacer()
 

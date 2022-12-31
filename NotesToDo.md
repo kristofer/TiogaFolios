@@ -6,8 +6,10 @@ MVP achieved (28 Nov 2022), but no Sharing (yet)
 
 - BACKUPS
 - SHARING
+- Tag addding crash
 - unify the LifeEvents into the NewFolio view
-- some startup help screens
+- some onboarding views
+- deleting folios, with some kind of "backup""
 - menu additions for
   - scan, photo,
 - text note editing

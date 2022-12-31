@@ -14,6 +14,12 @@ let templateSources = """
 { "data":
 [
     {
+        "title": "Untitled",
+        "desc": "an empty folio",
+        "tags": [],
+        "assets": []
+    },
+    {
         "title": "Estate Documents",
         "desc": "Will and other items to track with it",
         "tags": [

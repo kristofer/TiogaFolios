@@ -60,11 +60,11 @@ struct SettingsView: View {
                 
                 Spacer()
                 Button("Delete All Tags") {
-                    //deleteAll("Tag")
+                    deleteAll("Tag")
                 }
                 .padding(20.0)
                 .border(Color.blue, width: 1.0)
-                .disabled(true)
+                //.disabled(true)
             }
             .navigationBarTitle("Tioga Folios")
             

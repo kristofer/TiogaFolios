@@ -17,9 +17,8 @@ class FolioTemplListViewModel: ObservableObject {
 
 struct FolioTemplListView: View {
     @ObservedObject var vm = FolioTemplListViewModel()
-    
-    @State private var showNewFolio = false
-    
+    //@Binding var rootIsActive : Bool
+
     var searchResults: [FolioTemplate] {
         if vm.searchText.isEmpty {
             return vm.templates
@@ -28,8 +27,9 @@ struct FolioTemplListView: View {
         }
     }
     
-    init() {
+    init() {//rootIsActive: Binding<Bool>) {
         UITableView.appearance().backgroundColor = .clear // Uses UIColor
+        //rootIsActive = rootIsActive
     }
     
     
@@ -37,10 +37,11 @@ struct FolioTemplListView: View {
             List {
                 ForEach(searchResults, id: \.self) { template in
                     VStack(spacing: 4) {
-                        NavigationLink(
-                            destination: FolioTemplView(template: template )) {
+                        NavigationLink(destination: FolioTemplView(template: template)) //, shouldPopToRootView: self.$rootIsActive))
+                        {
                                 FolioTemplCell(template: template)
                             }
+                        .isDetailLink(false)
                     }
                     .listRowInsets(EdgeInsets(top: 2, leading: 2, bottom: 4, trailing: 0))
                     
@@ -50,7 +51,7 @@ struct FolioTemplListView: View {
             .listStyle(PlainListStyle())
             .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Life Event Templates")
 #if os(iOS)
-            .navigationBarTitle("Create Folios from Templates")
+            .navigationBarTitle("New Folio from Template")
             .navigationBarTitleDisplayMode(.inline)
 #else
             // mac desktop
@@ -59,7 +60,7 @@ struct FolioTemplListView: View {
     }
     
     func didDismiss() {
-        showNewFolio = false
+        //isActive = false
     }
 }
 

@@ -48,13 +48,14 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.taglist)
             
-            NavigationView {
-                FolioTemplListView()
-            }
-            .tabItem {
-                Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
-            }
-            .tag(NavItem.templatelist)
+//            NavigationView {
+//                FolioTemplListView()
+//                
+//            }
+//            .tabItem {
+//                Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
+//            }
+//            .tag(NavItem.templatelist)
             
             SettingsView()
                 .tabItem {

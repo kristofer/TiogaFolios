@@ -30,7 +30,7 @@ struct FolioListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var vm = FolioListViewModel()
     
-    @State private var showNewFolio = false
+    @State private var isTemplatesActive = false
     
     init() {
         //UITableView.appearance().backgroundColor = .clear // Uses UIColor
@@ -51,7 +51,7 @@ struct FolioListView: View {
                     }
                     
                 }
-                //.onDelete(perform: deleteFolios)
+                .onDelete(perform: deleteFolios)
             }
             .headerProminence(.increased).padding(4)
             .listRowSeparator(.hidden)
@@ -72,19 +72,15 @@ struct FolioListView: View {
             
 #endif
             ToolbarItem(placement: .bottomBar) {
-                Button(action:  {
-                    vm.generateFolio()
-                    showNewFolio = true
-                }) {
-                    HStack {
-                        Text("New Folio")
-                        Image(systemName: "plus")
+                NavigationLink(destination: FolioTemplListView())//rootIsActive: self.$isTemplatesActive),
+                    //isActive: self.$isTemplatesActive,
+                    {
+                        HStack {
+                            Text("New Folio")
+                            Image(systemName: "plus")
+                        }
                     }
-                }
-                .sheet(isPresented: $showNewFolio, onDismiss: didDismiss)
-                {
-                    FolioDeltaView(objectPassed: vm.newFolio, show: $showNewFolio)
-                }
+                    .isDetailLink(false)
             }
         }
 #if os(iOS)
@@ -97,7 +93,7 @@ struct FolioListView: View {
     }
     
     func didDismiss() {
-        showNewFolio = false
+        isTemplatesActive = false
         vm.newFolio = nil
         vm.fetchData()
     }

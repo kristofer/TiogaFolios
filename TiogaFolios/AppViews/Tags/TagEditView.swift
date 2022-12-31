@@ -6,28 +6,73 @@
 //
 
 import SwiftUI
+class DeltaTagVm: ObservableObject {
+    //@Binding var showNewTag: Bool
+    @Published var tag: Tag
+    @Published var selectedTagKind = TagKind.plain
+    @Published var selectedTagCat = TagCat.user
+    var ttitle: String
+    var creating = false
+    
+    init(objectPassed: Tag? = nil) {
+        if objectPassed == nil {
+            creating = true
+            tag = Tag.createTag(vc: Storage.shared.vc, named: "NewTag", kind: .plain)
+            ttitle = "Creating New Tag"
+        } else {
+            creating = false
+            tag = objectPassed!
+            ttitle = "Editing Tag"
+        }
+    }
+    
+    func cancel() {
+        if creating {
+                tag.managedObjectContext?.delete(tag)
+        }
+    }
+
+}
+
 
 struct TagEditView: View {
 
-    @Binding var showNewTag: Bool
-    @State var currentTag: Tag
-    @State private var selectedTagKind = TagKind.plain
-    @State private var selectedTagCat = TagCat.user
+//    enum FocusField: Hashable {
+//      case field
+//    }
+
+
+    @ObservedObject var vm: DeltaTagVm
+    @Binding var isPresented: Bool
+//    @FocusState private var focusedField: FocusField?
+
+    init(objectPassed: Tag? = nil, show: Binding<Bool>) {
+        if objectPassed == nil {
+            vm = DeltaTagVm()
+            self._isPresented = show
+        } else {
+            vm = DeltaTagVm(objectPassed: objectPassed)
+            self._isPresented = show
+        }
+    }
+
 
     var body: some View {
         Form(content: {
             Section(header: Text("Tag Metadata")) {
                 // Text field
-                TextField("Name", text: Binding($currentTag.title, "Untitled"))
-                TextField("Description", text: Binding($currentTag.desc, ""))
-                Picker(currentTag.kind!, selection: $selectedTagKind ) {
+                TextField("Name", text: Binding($vm.tag.title, ""))
+//                TextField("Description", Binding(vm.tag?.desc?, ""))
+                //TextField("Name", text: ((vm.tag).title?) ?? "")
+                //TextField("Description", (vm.tag?).desc?)
+                Picker(vm.tag.kind!, selection: $vm.selectedTagKind ) {
                     ForEach(TagKind.allCases) { kind in
                         Text(kind.rawValue.capitalized).tag(kind)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
                 Text("leave as user for now")
-                Picker(currentTag.category!, selection: $selectedTagCat ) {
+                Picker(vm.tag.category!, selection: $vm.selectedTagCat ) {
                     ForEach(TagCat.allCases) { cat in
                         Text(cat.rawValue.capitalized).tag(cat)
                     }
@@ -38,10 +83,10 @@ struct TagEditView: View {
             Section {
                 // Button
                 Button(action: {
-                    currentTag.kind = selectedTagKind.rawValue
-                    currentTag.touch()
+                    vm.tag.kind = vm.selectedTagKind.rawValue
+                    vm.tag.touch()
                     Storage.shared.save()
-                    showNewTag = false
+                    isPresented = false
                 }) {
                     HStack {
                         Spacer()
@@ -71,9 +116,9 @@ struct TagEditView: View {
             }
 
         })
-        .navigationBarTitle("Add a New Tag")
+        .navigationBarTitle(vm.ttitle)
         .onDisappear(perform: {
-            print("save tag")
+            //vm.cancel()
         })
     }
 }

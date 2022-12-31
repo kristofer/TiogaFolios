@@ -10,6 +10,8 @@ import SwiftUI
 struct FolioTemplView: View {
     @Environment(\.presentationMode) var presentation
     var template: FolioTemplate
+    //@Binding var shouldPopToRootView : Bool
+
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5.0){
@@ -51,6 +53,7 @@ struct FolioTemplView: View {
             Button(action: {
                 let _ = Folio.createFolioFromTemplate(template)
                 Storage.shared.save()
+                //self.shouldPopToRootView = false
                 presentation.wrappedValue.dismiss()
             }) {
                 HStack {

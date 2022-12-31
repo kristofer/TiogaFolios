@@ -7,32 +7,53 @@
 
 import SwiftUI
 
+@MainActor class ListTagVm: ObservableObject {
+
+    @Published var tags: [Tag]
+
+    @Published var showNewTag = false
+    @Published var newTag: Tag?
+
+    init() {
+        tags = Tag.allTags()
+        newTag = nil;
+    }
+    
+    func refreshTags() {
+        tags = Tag.allTags()
+    }
+    func reload() async {
+        refreshTags()
+    }
+}
+
 struct TagListView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
+    //@Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        //entity: Tag.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Tag.lastmodified, ascending: false)],
-        //predicate: NSPredicate(format: "kindValue == %i", TagKind.folio.rawValue),
-        animation: .default)
-    private var tags: FetchedResults<Tag>
+    @ObservedObject var vm: ListTagVm
 
-    @State var showNewTag = false
-    @State private var newTag: Tag?
+    init() {
+        vm = ListTagVm()
+    }
+    
     
     var body: some View {
 //            NavigationView {
             List {
-                ForEach(tags) { tag in
-                    NavigationLink(
-                        destination: TagView(tag: tag)) {
-                            Label("\(String(describing: (tag.title ?? "nil folio name")))", systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind!) ?? TagKind.plain))
+                ForEach(vm.tags) { tag in
+                    NavigationLink( destination: TagView(tag: tag)) {
+                        Label("\(String(describing: (tag.title ?? "huh?")))",
+                              systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind!)! )
+                                  )
                         }
                 }
-                .onDelete(perform: deleteFolios)
+                .onDelete(perform: deleteTags)
             }
             .listStyle(PlainListStyle())
+            .refreshable {
+                await vm.reload()
+            }
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,20 +62,16 @@ struct TagListView: View {
 #endif
                 ToolbarItem {
                     Button(action:  {
-                        self.showNewTag = true
-                        // if newTag == nil {
-                            newTag = Tag.createTag(vc: viewContext, named: "NewTag", kind: .plain)
-                        // }
+                        vm.showNewTag = true
                     }) {
                     HStack {
                         Text("Add Tag")
                         Image(systemName: "plus")
                         }
                     }
-                    .sheet(isPresented: $showNewTag, onDismiss: didDismiss)
+                    .sheet(isPresented: $vm.showNewTag, onDismiss: didDismiss)
                     {
-                        TagEditView(showNewTag: $showNewTag,
-                                    currentTag: newTag!)
+                        TagEditView(objectPassed: vm.newTag, show: $vm.showNewTag)
                     }
                 }
             }
@@ -70,14 +87,16 @@ struct TagListView: View {
     }
 
     func didDismiss() {
-        showNewTag = false
+        vm.showNewTag = false
+        vm.refreshTags()
     }
     
-    private func deleteFolios(offsets: IndexSet) {
+    private func deleteTags(offsets: IndexSet) {
         withAnimation {
-            offsets.map { tags[$0] }.forEach(viewContext.delete)
+            offsets.map { vm.tags[$0] }.forEach(Storage.shared.vc.delete)
 
             Storage.shared.save()
+            vm.refreshTags()
         }
     }
     
