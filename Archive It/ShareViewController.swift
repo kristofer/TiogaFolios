@@ -14,7 +14,7 @@ import UniformTypeIdentifiers
 class ShareViewController: SLComposeServiceViewController {
     
     
-    private var folios = Folio.fetchFolios(vc: Storage.shared.vc)
+    private var folios = Folio.fetchFoliosAnd(vc: Storage.shared.vc, relations: ["assets"])
     let vc = Storage.shared.vc
     private var selectedFolio: Folio?
     var folioName = ""
@@ -64,6 +64,8 @@ class ShareViewController: SLComposeServiceViewController {
             print("TFdebug registeredTypeIdentifier \(s)")
         }
     }
+    
+    
     private func handleSharedFile() {
         let ct = contentText ?? ""
         
@@ -82,55 +84,97 @@ class ShareViewController: SLComposeServiceViewController {
         //            print("supertype \(sup)")
         //        }
         for provider in attachments {
-            printProvider(prov: provider)
+            //printProvider(prov: provider)
             // Check if the content type is the same as we expected
             let variousKinds = provider.registeredTypeIdentifiers
-            print("TFdebug found variousKinds \(variousKinds)")
+            print("TFdebug found variousKinds ***\n*** \(variousKinds)")
             print("TFdebug will attach to folio  \(String(describing: selectedFolio?.title))")
             for kind in variousKinds {
+                print("***Current Kind is \(kind)")
                 if provider.hasItemConformingToTypeIdentifier("com.adobe.pdf") { // was kind
                     print("TFdebug found a \(kind)")
                     provider.loadItem(forTypeIdentifier: "com.adobe.pdf", // public.item
                                       options: nil) { data, error in
                         let url = data as! URL
-                        print("TFdebug found a PUBLIC ITEM \(url.absoluteString)")
+                        print("TFdebug found a PDF \(url.absoluteString)")
                         Task.detached { [self] in
                             try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                         }
                     }
-//                    provider.loadItem(forTypeIdentifier: kind,
-//                                      options: nil) { [unowned self] (data, error) in
-//                        // Handle the error here if you want
-//                        guard error == nil else { return }
-//
-//                        if let url = data as? URL {
-//                            if url.isFileURL{
-//                                print("TFdebug found a FILE URL \(url.absoluteString)")
-//                                Task.detached { [self] in
-//                                    try await Fetching.saveLocalFile(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
-//                                }
-//                            } else {
-//                                print("TFdebug found URL \(url.absoluteString)")
-//                                Task.detached {
-//                                    try await Fetching.getDistantUrl(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
-//                                }
-//                            }
-//                        } else {
-//                            // Handle this situation as you prefer
-//                            print("Failed to load data from provider")
-//                        }
-//                    }
+                    return
+                }
+                // from files (not pdf)
+                // a web site (not the page, just the URL)
+                // files from web sites
+                else if provider.hasItemConformingToTypeIdentifier("public.content") { // was kind
+                    print("TFdebug found a \(kind)")
+                    provider.loadItem(forTypeIdentifier: "public.content", // public.item
+                                      options: nil) { data, error in
+                        let url = data as! URL
+                        print("TFdebug found a fileurl \(url.absoluteString)")
+                        Task.detached { [self] in
+                            try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+                        }
+                    }
+                    return
+                }
+                
+                else if provider.hasItemConformingToTypeIdentifier("public.url") { // was kind
+                    
+                    provider.loadItem(forTypeIdentifier: "public.url",
+                                      options: nil) { [unowned self] (data, error) in
+                        // Handle the error here if you want
+                        guard error == nil else { return }
+                        
+                        if let url = data as? URL {
+                            if url.isFileURL{
+                                print("TFdebug found a FILE URL \(url.absoluteString)")
+                                Task.detached { [self] in
+                                    try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+//                                    try await Fetching().saveLocalFile(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+                                }
+                            } else {
+                                print("TFdebug found URL \(url.absoluteString)")
+                                Task.detached {
+                                    try await Fetching().getDistantUrl(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+                                }
+                            }
+                        } else {
+                            // Handle this situation as you prefer
+                            print("Failed to load data from provider")
+                        }
+                    }
+                    return
+                }
+                
+                else if provider.hasItemConformingToTypeIdentifier("public.file-url") { // was kind
+                    
+                    provider.loadItem(forTypeIdentifier: "public.file-url",
+                                      options: nil) { //[unowned self]
+                        (data, error) in
+                        // Handle the error here if you want
+                        guard error == nil else { return }
+                        
+                        if let url = data as? URL {
+                            if url.isFileURL{
+                                print("TFdebug found a FILE URL \(url.absoluteString)")
+                                Task.detached { [self] in
+                                    //    try await
+                                    try? await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+                                    //                                    try await Fetching().saveLocalFile(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+                                }
+                            }
+                        } else {
+                            // Handle this situation as you prefer
+                            print("Failed to load data from provider")
+                        }
+                    }
+                    return
                 }
             }
+            
         }
     }
-    
-    //    private func save(_ data: Data, key: String, value: Any) {
-    //        // You must use the userdefaults of an app group, otherwise the main app don't have access to it.
-    //        //      let userDefaults = UserDefaults(suiteName: appGroupName)
-    //        //      userDefaults.set(data, forKey: key)
-    //        NSLog("TFdebug private func save(_ data: Data, key: String, value: Any)")
-    //    }
 }
 
 extension ShareViewController: ShareSelectViewControllerDelegate {

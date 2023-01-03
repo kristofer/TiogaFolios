@@ -15,7 +15,7 @@ class Fetching {
     func savePublicItem(_ url: URL,
                                folio: Folio,
                                viewContext: NSManagedObjectContext,
-                               contentNote: String) async throws {
+                        contentNote: String) async throws {
         do {
             
             if url.startAccessingSecurityScopedResource() {
@@ -27,21 +27,24 @@ class Fetching {
                     let data = try Data(contentsOf: url)
                     
                     let typeID = self.uttypeFor(url.pathExtension).identifier
+                    let mimetype = UTType(typeID)?.preferredMIMEType
                     
-                    let fileasset = Asset(vc: viewContext, title: url.lastPathComponent, path: "", mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(), uttype: typeID)
+                    let fileasset = Asset(vc: viewContext, title: url.lastPathComponent, path: "",
+                                          mimetype: mimetype ?? Asset.defaultBlobMimeType(), uttype: typeID)
                     fileasset.setBlob(data)
                     fileasset.desc = contentNote
                     //folio.attachAsset(blobasset)
                     folio.addToAssets(fileasset)
+                    //fileasset.folio = folio
                     
                     Storage.shared.save()
                 }
             } else {
                 // Handle denied access
-                NSLog("TFdebug error in saveLocalFile DENIED ACCESS")
+                NSLog("TFdebug error in savePublicItem DENIED ACCESS")
             }
         } catch {
-            NSLog("TFdebug error in saveLocalFile \(error)")
+            NSLog("TFdebug error in savePublicItem \(error)")
         }
         
     }

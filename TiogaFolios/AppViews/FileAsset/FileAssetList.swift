@@ -58,7 +58,7 @@ struct FileAssetList: View {
                 ForEach(vm.docs) { doc in
                     NavigationLink(
                         destination: FileAssetDetail(anAsset: doc, showAssignTo: true)) { //doc: doc)) {
-                            Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: iconFor(doc))
+                            Label("\(String(describing: (doc.title ?? "nil doc name"))) \(String(describing: (doc.desc ?? "")))", systemImage: iconFor(doc))
                         }
                 }
                 .onDelete(perform: deleteDocs)

@@ -252,8 +252,8 @@
             filePath = "Archive It/ShareViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "handleSharedFile()"
             landmarkType = "7">
             <Locations>
@@ -294,46 +294,46 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TiogaFolios/Networking/Fetching.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "saveLocalFile(_:folio:viewContext:contentNote:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7dd7ac76b8a9a257"
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7455ee6a277bd3fd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for static Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "Archive It"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7dd7ac76b8a9a257"
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7455ee6a277bd3fd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for static Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "Archive It"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "2328">
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "2336">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -364,10 +364,74 @@
             filePath = "Archive It/ShareViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "handleSharedFile()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C501CEAA-69DB-4EBC-A6D2-F783BB8ABC49"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Archive It/ShareViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "handleSharedFile()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B49C145-4C2D-4D29-947A-9DD0A9F79281"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Networking/Fetching.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "savePublicItem(_:folio:viewContext:contentNote:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B49C145-4C2D-4D29-947A-9DD0A9F79281 - cb86a239fa99cf6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () throws -&gt; () in Archive_It.Fetching.savePublicItem(_: Foundation.URL, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  moduleName = "Archive It"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "948">
+               </Location>
+               <Location
+                  uuid = "2B49C145-4C2D-4D29-947A-9DD0A9F79281 - cb86a239fa99cf6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () throws -&gt; () in Archive_It.Fetching.savePublicItem(_: Foundation.URL, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  moduleName = "Archive It"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "1076">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
