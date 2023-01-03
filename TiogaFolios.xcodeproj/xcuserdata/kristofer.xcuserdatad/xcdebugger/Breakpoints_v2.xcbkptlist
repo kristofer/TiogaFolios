@@ -30,8 +30,8 @@
             filePath = "TiogaFolios/DataModel/Storage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "contextWillSave(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -229,16 +229,144 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "67FFAD89-30EB-4274-A0D7-72CDC0E56E3B"
+            uuid = "32297343-CCB3-4F32-B952-5E71A6509ED1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TiogaFolios/AppViews/Tags/TagEditView.swift"
+            filePath = "Archive It/ShareViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "init(objectPassed:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7348979D-90DB-4E6C-8C4D-C210424400D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Archive It/ShareViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "handleSharedFile()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7348979D-90DB-4E6C-8C4D-C210424400D8 - 888f6f140402fc6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Archive_It.ShareViewController.handleSharedFile() -&gt; ()"
+                  moduleName = "Archive It"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/Archive%20It/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  uuid = "7348979D-90DB-4E6C-8C4D-C210424400D8 - 888f6f140402fc6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Archive_It.ShareViewController.handleSharedFile() -&gt; ()"
+                  moduleName = "Archive It"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/Archive%20It/ShareViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "272">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Networking/Fetching.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "saveLocalFile(_:folio:viewContext:contentNote:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7dd7ac76b8a9a257"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for static Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  moduleName = "Archive It"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7dd7ac76b8a9a257"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for static Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  moduleName = "Archive It"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "2328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B825A2C-20CD-45D4-9EB9-8326DAB90A27"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Networking/Fetching.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "savePublicItem(_:folio:viewContext:contentNote:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31BF9DDE-8907-4E51-9CAB-3928EF4A5862"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Archive It/ShareViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "handleSharedFile()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

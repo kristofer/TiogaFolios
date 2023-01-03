@@ -29,14 +29,14 @@ final class FileAssetDetailVM: ObservableObject {
         tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
         
         //
-        //print("KKYY showing assignto \(showAssignTo)")
+        //print("TFdebug showing assignto \(showAssignTo)")
         showAssign = showAssignTo
     }
     
     func deleteTempFile() {
         do {
             try self.tempFile.deleteDirectory()
-            Foundation.NSLog("KKYY deleted temp files")
+            Foundation.NSLog("TFdebug deleted temp files")
         } catch {
             self.recorderror("\(error.localizedDescription)")
         }
@@ -47,14 +47,14 @@ final class FileAssetDetailVM: ObservableObject {
         let fname = "tempfile." + (UTType(fileasset.uttype!)?.preferredFilenameExtension ?? "txt")
         self.tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
         
-        Foundation.NSLog("KKYY NEW temp file \(self.tempFile.fileURL.absoluteString)")
+        Foundation.NSLog("TFdebug NEW temp file \(self.tempFile.fileURL.absoluteString)")
         
         loadTempFile()
         
     }
     
     func loadTempFile() {
-        //print("KKYY loadTempFile \(fileasset.title!) \(tempFile.fileURL)")
+        //print("TFdebug loadTempFile \(fileasset.title!) \(tempFile.fileURL)")
         do {
             let blob = fileasset.blob
             if fileasset.blobSize() <= 0 {
@@ -68,12 +68,12 @@ final class FileAssetDetailVM: ObservableObject {
                 Storage.shared.save()
             }
         } catch {
-            Foundation.NSLog("KKYY no loadTempFile \(error.localizedDescription)")
+            Foundation.NSLog("TFdebug no loadTempFile \(error.localizedDescription)")
         }
     }
     
     func recorderror(_ s: String) {
-        Foundation.NSLog("KKYY recorderror \(s)")
+        Foundation.NSLog("TFdebug recorderror \(s)")
     }
     
 }
@@ -140,8 +140,13 @@ struct FileAssetDetail: View {
                         }
                     }
                 } else {
-                    FileAssetPreview(tFile: vm.tempFile)
-                        .padding(2)
+                    if vm.fileasset.isDocumentWebpage() {
+                        WebView(url: URL(string: vm.fileasset.pathname ?? "https://tiogadigital.com")!)
+                            .padding(2)
+                    } else {
+                        FileAssetPreview(tFile: vm.tempFile)
+                            .padding(2)
+                    }
                 }
             }
             Spacer()

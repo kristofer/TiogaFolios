@@ -12,7 +12,7 @@ struct PreviewController: UIViewControllerRepresentable {
     let url: URL
     
     func makeUIViewController(context: Context) -> QLPreviewController {
-        //print("KKYY makeUIViewController")
+        //print("TFdebug makeUIViewController")
 
         let controller = QLPreviewController()
         controller.dataSource = context.coordinator
@@ -21,7 +21,7 @@ struct PreviewController: UIViewControllerRepresentable {
     
     func updateUIViewController(
         _ uiViewController: QLPreviewController, context: Context) {
-            //print("KKYY updateUIViewController")
+            //print("TFdebug updateUIViewController")
         }
     
     
@@ -45,7 +45,7 @@ struct PreviewController: UIViewControllerRepresentable {
             _ controller: QLPreviewController,
             previewItemAt index: Int
         ) -> QLPreviewItem {
-            //print("KKYY previewController previewItemAt:")
+            //print("TFdebug previewController previewItemAt:")
 
             return parent.url as NSURL
         }

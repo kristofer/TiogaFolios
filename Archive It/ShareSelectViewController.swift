@@ -30,7 +30,7 @@ class ShareSelectViewController: UIViewController, UITableViewDataSource, UITabl
     }
     //extension ShareSelectViewController: UITableViewDelegate {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            //print("KKYY selected row \(indexPath.row) \(String(describing: folioTags[indexPath.row].title))")
+            //print("TFdebug selected row \(indexPath.row) \(String(describing: folioTags[indexPath.row].title))")
             delegate?.selected(f: folios[indexPath.row])
         }
     //}

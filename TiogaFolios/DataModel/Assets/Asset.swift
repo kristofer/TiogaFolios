@@ -91,7 +91,7 @@ extension Asset {
             Foundation.NSLog("No assets in store")
         }
 
-        //print("KKYY folio count \(fetchedAssets.count)")
+        //print("TFdebug folio count \(fetchedAssets.count)")
         return fetchedAssets
     }
     
@@ -104,8 +104,8 @@ extension Asset {
     }
 
     func tempURLFor() -> URL {
-        //print("KKYY tempURLFor(document: BlobAsset) -> URL?")
-        //print("KKYY tempURLFor \(self)")
+        //print("TFdebug tempURLFor(document: BlobAsset) -> URL?")
+        //print("TFdebug tempURLFor \(self)")
         if self.mimetype == "text/html" {
             return URL(string: self.source!.absoluteString)!
         }
@@ -117,7 +117,7 @@ extension Asset {
             try data?.write(to: temporaryFileURL, options: .completeFileProtection)
             return temporaryFileURL
         } catch {
-            print("KKYY unable to create temporary version of blob for display")
+            print("TFdebug unable to create temporary version of blob for display")
             return URL(string:"https://tiogadigital.com/")!
         }
     }
@@ -145,12 +145,21 @@ extension Asset {
         let docType = self.uttype
         if let docType = docType {
             if (docType == targettype) {
-                //                print("iseditable")
                 return true
             }
-            //print(">>> ", String(describing: docType))
         }
-        //        print("NOT EDITABLE")
+        return false
+    }
+    
+    func isDocumentWebpage() -> Bool {
+        let targettype: String = "public.html"
+        let docType = self.uttype
+        if let docType = docType {
+            //print("TFdebug \(docType) is Webpage?")
+            if (docType == targettype) {
+                return true
+            }
+        }
         return false
     }
     

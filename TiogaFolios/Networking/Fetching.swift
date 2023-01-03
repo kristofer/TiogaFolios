@@ -12,67 +12,110 @@ import os.log
 
 class Fetching {
     
-    static func saveLocalFile(_ urlstring: String,
+    func savePublicItem(_ url: URL,
+                               folio: Folio,
+                               viewContext: NSManagedObjectContext,
+                               contentNote: String) async throws {
+        do {
+            
+            if url.startAccessingSecurityScopedResource() {
+                
+                defer { url.stopAccessingSecurityScopedResource() }
+                
+                let taskContext = Storage.shared.container.newBackgroundContext()
+                try await taskContext.perform {
+                    let data = try Data(contentsOf: url)
+                    
+                    let typeID = self.uttypeFor(url.pathExtension).identifier
+                    
+                    let fileasset = Asset(vc: viewContext, title: url.lastPathComponent, path: "", mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(), uttype: typeID)
+                    fileasset.setBlob(data)
+                    fileasset.desc = contentNote
+                    //folio.attachAsset(blobasset)
+                    folio.addToAssets(fileasset)
+                    
+                    Storage.shared.save()
+                }
+            } else {
+                // Handle denied access
+                NSLog("TFdebug error in saveLocalFile DENIED ACCESS")
+            }
+        } catch {
+            NSLog("TFdebug error in saveLocalFile \(error)")
+        }
+        
+    }
+    
+    
+    func saveLocalFile(_ urlstring: String,
                               folio: Folio,
                               viewContext: NSManagedObjectContext,
                               contentNote: String) async throws {
-        guard let url = URL(string: urlstring) else {  NSLog("KKYY saveLocalFile urlstring error"); return }
-            do {
+        do {
+            guard let url: URL = URL(string: urlstring) else { return }
+            if url.startAccessingSecurityScopedResource() {
+                
+                defer { url.stopAccessingSecurityScopedResource() }
+                //guard let url = URL(string: urlstring) else {  NSLog("TFdebug saveLocalFile urlstring error"); return }
                 
                 let data = try Data(contentsOf: url)
                 
-                let typeID = uttypeFor(url.pathExtension).identifier
-
+                let typeID = self.uttypeFor(url.pathExtension).identifier
+                
                 let blobasset = Asset(vc: viewContext, title: url.lastPathComponent, path: "", mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(), uttype: typeID)
                 blobasset.setBlob(data)
                 blobasset.desc = contentNote
                 folio.attachAsset(blobasset)
-
+                
                 Storage.shared.save()
-            } catch {
-                NSLog("KKYY error in saveLocalFile \(error)")
+            } else {
+                // Handle denied access
+                NSLog("TFdebug error in saveLocalFile DENIED ACCESS")
             }
+        } catch {
+            NSLog("TFdebug error in saveLocalFile \(error)")
+        }
         
     }
     
-    static func getDistantUrl(_ urlstring: String,
+    func getDistantUrl(_ urlstring: String,
                               folio: Folio,
                               viewContext: NSManagedObjectContext,
                               contentNote: String) async throws {
-        NSLog("KKYY getDistantUrl")
-
+        NSLog("TFdebug getDistantUrl")
+        
         guard let url = URL(string: urlstring) else { return }
         
-//        guard url.startAccessingSecurityScopedResource() else {
-//            NSLog("KKYY getDistantUrl: unable to startAccessingSecurityScopedResource")
-//            return
-//        }
+        //        guard url.startAccessingSecurityScopedResource() else {
+        //            NSLog("TFdebug getDistantUrl: unable to startAccessingSecurityScopedResource")
+        //            return
+        //        }
         
         let urlRequest = URLRequest(url: url)
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             print(response)
-            fatalError("KKYY Error while fetching data")
+            fatalError("TFdebug Error while fetching data")
         }
         
         //url.stopAccessingSecurityScopedResource()
         
-        NSLog("KKYY getting a \(String(describing: response.mimeType))")
+        NSLog("TFdebug getting a \(String(describing: response.mimeType))")
         var typeID: String = ""
         var blobasset: Asset
         var thisMime = response.mimeType
         
         if  thisMime == "text/html" {
-            typeID = uttypeFor("html").identifier
+            typeID = self.uttypeFor("html").identifier
             thisMime = UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType()
         }
         
         if  thisMime != "text/html" {
-            typeID = uttypeFor(url.pathExtension).identifier
+            typeID = self.uttypeFor(url.pathExtension).identifier
             thisMime = UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType()
         }
-
+        
         blobasset = Asset(vc: viewContext, title: urlstring, path: urlstring, mimetype: thisMime ?? Asset.defaultBlobMimeType(), uttype: typeID)
         blobasset.source = url
         blobasset.setBlob(data)
@@ -82,7 +125,7 @@ class Fetching {
         Storage.shared.save()
     }
     
-    static func uttypeFor(_ fileextension: String) -> UTType {
+    func uttypeFor(_ fileextension: String) -> UTType {
         return UTType.types(tag: fileextension, tagClass: .filenameExtension, conformingTo: nil).first!
     }
     

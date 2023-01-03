@@ -37,14 +37,12 @@ struct FolioTemplListView: View {
             List {
                 ForEach(searchResults, id: \.self) { template in
                     VStack(spacing: 4) {
-                        NavigationLink(destination: FolioTemplView(template: template)) //, shouldPopToRootView: self.$rootIsActive))
+                        NavigationLink(destination: FolioTemplView(template: template))
                         {
                                 FolioTemplCell(template: template)
                             }
                         .isDetailLink(false)
                     }
-                    .listRowInsets(EdgeInsets(top: 2, leading: 2, bottom: 4, trailing: 0))
-                    
                 }
                 
             }

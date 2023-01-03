@@ -35,11 +35,11 @@ struct ChooseFolio: View {
             
         }
         .onAppear(perform: {
-            print("KKYY appearing.")
+            print("TFdebug appearing.")
             vm.fetchData()
         })
         .onDisappear(perform: {
-            print("KKYY disappear")
+            print("TFdebug disappear")
         })
 
         

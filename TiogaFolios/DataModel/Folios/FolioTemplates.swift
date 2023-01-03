@@ -89,18 +89,18 @@ func decodeTemplatesFromString(_ data: Data) -> [ FolioTemplate ] {
     } catch DecodingError.dataCorrupted(let context) {
         print(context)
     } catch DecodingError.keyNotFound(let key, let context) {
-        print("KKYY Key '\(key)' not found:", context.debugDescription)
-        print("KKYY codingPath:", context.codingPath)
+        print("TFdebug Key '\(key)' not found:", context.debugDescription)
+        print("TFdebug codingPath:", context.codingPath)
     } catch DecodingError.valueNotFound(let value, let context) {
-        print("KKYY Value '\(value)' not found:", context.debugDescription)
-        print("KKYY codingPath:", context.codingPath)
+        print("TFdebug Value '\(value)' not found:", context.debugDescription)
+        print("TFdebug codingPath:", context.codingPath)
     } catch DecodingError.typeMismatch(let type, let context) {
-        print("KKYY Type '\(type)' mismatch:", context.debugDescription)
-        print("KKYY codingPath:", context.codingPath)
+        print("TFdebug Type '\(type)' mismatch:", context.debugDescription)
+        print("TFdebug codingPath:", context.codingPath)
     } catch {
-        print("KKYY error: ", error)
+        print("TFdebug error: ", error)
     }//    } catch {
-//        print("KKYY \(error.localizedDescription)")
+//        print("TFdebug \(error.localizedDescription)")
 //    }
     return []
 }

@@ -44,11 +44,11 @@ final class CloudSharingCoordinator: NSObject, UICloudSharingControllerDelegate 
     }
     
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
-        print("Failed to save share: \(error)")
+        print("TFdebug Failed to save share: \(error)")
     }
     
     func cloudSharingControllerDidSaveShare(_ csc: UICloudSharingController) {
-        print("Saved the share")
+        print("TFdebug Saved the share")
     }
     
     func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController) {

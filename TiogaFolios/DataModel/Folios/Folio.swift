@@ -15,7 +15,7 @@ extension Folio {
     static func createFolio(vc: NSManagedObjectContext,
                             title: String,
                             desc: String) -> (Folio) {
-        //Foundation.NSLog("KKYY folio create \(vc), \(title)")
+        //Foundation.NSLog("TFdebug folio create \(vc), \(title)")
         let f = Folio(context: vc)
         f.id = UUID()
         f.title = title
@@ -72,7 +72,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        //print("KKYY folio count \(fetchedFolios.count)")
+        print("TFdebug folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
     

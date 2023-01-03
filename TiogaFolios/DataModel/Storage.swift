@@ -19,6 +19,7 @@ final class Storage {
         
     }
     var vc: NSManagedObjectContext {
+        
         self.container.viewContext.automaticallyMergesChangesFromParent = true
         return container.viewContext
     }
@@ -96,10 +97,10 @@ final class Storage {
         // TODO: 4
         
         
-        Foundation.NSLog("KKYY Loading: container.loadPersistentStores")
+        Foundation.NSLog("TFdebug Loading: container.loadPersistentStores")
         container.loadPersistentStores { loadedStoreDescription, error in
             if let error = error as NSError? {
-                fatalError("KKYY Failed to load persistent stores: \(error)")
+                fatalError("TFdebug Failed to load persistent stores: \(error)")
             } else if let cloudKitContainerOptions = loadedStoreDescription
                 .cloudKitContainerOptions {
                 guard let loadedStoreDescritionURL = loadedStoreDescription.url else {
@@ -109,12 +110,12 @@ final class Storage {
                     let privateStore = container.persistentStoreCoordinator
                         .persistentStore(for: loadedStoreDescritionURL)
                     self._privatePersistentStore = privateStore
-                    Foundation.NSLog("KKYY Loading: _privatePersistentStore")
+                    Foundation.NSLog("TFdebug Loading: _privatePersistentStore")
                 } else if cloudKitContainerOptions.databaseScope == .shared {
                     let sharedStore = container.persistentStoreCoordinator
                         .persistentStore(for: loadedStoreDescritionURL)
                     self._sharedPersistentStore = sharedStore
-                    Foundation.NSLog("KKYY Loading: _sharedPersistentStore")
+                    Foundation.NSLog("TFdebug Loading: _sharedPersistentStore")
                 }
             }
         }
@@ -128,23 +129,23 @@ final class Storage {
     }()
     
     @objc func contextWillSave(_ notification: Notification) {
-        //        print("KKYY \(notification)")
+        //        print("TFdebug \(notification)")
         //        let context = notification.object as? NSManagedObjectContext
         //        let changes = context?.updatedObjects
-        //        print("KKYY changes \(changes)")
+        //        print("TFdebug changes \(changes)")
         //        let saveDate = Date()
         
     }
     
     func save() {
-        //Foundation.NSLog("KKYY Storage save()")
+        //Foundation.NSLog("TFdebug Storage save()")
         let context = Storage.shared.container.viewContext
         
         if context.hasChanges {
             do {
                 
                 try context.save()
-                Foundation.NSLog("KKYY did SAVE persistence context")
+                Foundation.NSLog("TFdebug did SAVE persistence context")
             } catch {
                 Foundation.NSLog("Storage saving failed \(error.localizedDescription)")
             }

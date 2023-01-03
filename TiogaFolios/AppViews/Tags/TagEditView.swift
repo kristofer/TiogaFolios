@@ -45,7 +45,6 @@ struct TagEditView: View {
     @ObservedObject var vm: DeltaTagVm
     @Binding var isPresented: Bool
 //    @FocusState private var focusedField: FocusField?
-
     init(objectPassed: Tag? = nil, show: Binding<Bool>) {
         if objectPassed == nil {
             vm = DeltaTagVm()

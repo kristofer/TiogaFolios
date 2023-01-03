@@ -15,7 +15,7 @@ class FolioListViewModel: ObservableObject {
     
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
-        //print("KKYY fetch folios \(self.folios.count)")
+        //print("TFdebug fetch folios \(self.folios.count)")
     }
     
     // generate new folio when the button is pressed...
@@ -72,7 +72,7 @@ struct FolioListView: View {
             
 #endif
             ToolbarItem(placement: .bottomBar) {
-                NavigationLink(destination: FolioTemplListView())//rootIsActive: self.$isTemplatesActive),
+                NavigationLink(destination: FolioTemplListView().padding(2))//rootIsActive: self.$isTemplatesActive),
                     //isActive: self.$isTemplatesActive,
                     {
                         HStack {

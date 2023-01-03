@@ -37,7 +37,7 @@ class TestFetch {
             let folios = Folio.fetchFolios(vc: vc)
             let lastfolio = folios.count > 0 ? folios.first! : Folio.createFolio(vc: vc, title: "Import")
 
-            try await Fetching.getDistantUrl(testy, folio: lastfolio, viewContext: vc, contentNote: "foo")
+            try await Fetching().getDistantUrl(testy, folio: lastfolio, viewContext: vc, contentNote: "foo")
         } catch {
             print("unable to fetch url")
         }
@@ -48,7 +48,7 @@ class TestFetch {
             let folios = Folio.fetchFolios(vc: vc)
             let lastfolio = folios.count > 0 ? folios.first! : Folio.createFolio(vc: vc, title: "Import")
 
-            try await Fetching.getDistantUrl(testy, folio: lastfolio, viewContext: vc, contentNote: "Zip Code Wilmington")
+            try await Fetching().getDistantUrl(testy, folio: lastfolio, viewContext: vc, contentNote: "Zip Code Wilmington")
         } catch {
             print("unable to fetch url")
         }
