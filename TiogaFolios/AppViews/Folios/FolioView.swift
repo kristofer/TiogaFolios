@@ -32,6 +32,7 @@ struct FolioView: View {
     @State private var showEditSheet = false
     private let store = Storage.shared
     @State private var showShareSheet = false
+    @State private var isScanning = false
 
     var body: some View {
         VStack(alignment: .leading){
@@ -40,11 +41,15 @@ struct FolioView: View {
                     .font(.body.italic())
                 //Spacer()
 
-                .background(
-                    NavigationLink(destination: ContentTagView(item: folio), isActive: $showTagSelection) {
-                        EmptyView()
-                    })
-                
+                    .background(
+                        NavigationLink(destination: ContentTagView(item: folio), isActive: $showTagSelection) {
+                            EmptyView()
+                        })
+                    .background(
+                        NavigationLink(destination: ScannerView(folio: folio), isActive: $isScanning) {
+                            EmptyView()
+                        })
+
             }
             
             Divider()
@@ -126,7 +131,11 @@ struct FolioView: View {
                         Button("Change Tags...") {
                             self.showTagSelection = true
                         }
+
                         Button("Add to Folio...", action: addtofolio)
+                        Button("Scan to Folio...") {
+                            self.isScanning = true
+                        }
                         Button("Add Note...", action: addnotetofolio)
                         Button("Share Folio...", action: sharefolio)
                     } label: {

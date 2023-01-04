@@ -46,8 +46,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "sharefolio()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "createShare(_:)"
             landmarkType = "7">
             <Locations>
@@ -188,8 +188,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -306,12 +306,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7455ee6a277bd3fd"
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 93d329b6b8717ecd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
-                  moduleName = "Archive It"
+                  symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.saveLocalFile(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -321,12 +321,12 @@
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 7455ee6a277bd3fd"
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 93d329b6b8717ecd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Archive_It.Fetching.saveLocalFile(_: Swift.String, folio: Archive_It.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
-                  moduleName = "Archive It"
+                  symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.saveLocalFile(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
+                  moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -432,6 +432,22 @@
                   offsetFromSymbolStart = "1076">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5FD9B9BB-4BB6-4FAB-B938-99E72D284FE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Scanner/ScannerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "savePDFtoFolio()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

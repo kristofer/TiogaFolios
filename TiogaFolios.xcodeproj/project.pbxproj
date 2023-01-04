@@ -85,6 +85,7 @@
 		5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */; };
 		5CEDC3BA2963312300FDB600 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3B92963312300FDB600 /* WebView.swift */; };
 		5CEDC3BC2964C61400FDB600 /* SUBQUERY in Resources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BB2964C61400FDB600 /* SUBQUERY */; };
+		5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BE2964D67400FDB600 /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +203,7 @@
 		5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAssetDeltaView.swift; sourceTree = "<group>"; };
 		5CEDC3B92963312300FDB600 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		5CEDC3BB2964C61400FDB600 /* SUBQUERY */ = {isa = PBXFileReference; lastKnownFileType = text; path = SUBQUERY; sourceTree = "<group>"; };
+		5CEDC3BE2964D67400FDB600 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +404,7 @@
 		5C3239B52925778000619645 /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
+				5CEDC3BD2964D65700FDB600 /* Scanner */,
 				5C3239952925772B00619645 /* Folios */,
 				5C3239B62925796200619645 /* FileAsset */,
 				5C3239C12925796F00619645 /* Tags */,
@@ -461,6 +464,14 @@
 				5CEDC3BB2964C61400FDB600 /* SUBQUERY */,
 			);
 			path = "Archive It";
+			sourceTree = "<group>";
+		};
+		5CEDC3BD2964D65700FDB600 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				5CEDC3BE2964D67400FDB600 /* ScannerView.swift */,
+			);
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -659,6 +670,7 @@
 				5C3239A32925772B00619645 /* FolioCell.swift in Sources */,
 				5C3239BD2925796200619645 /* BlobToTempFile.swift in Sources */,
 				5C3239A92925772B00619645 /* FolioVM.swift in Sources */,
+				5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */,
 				5CC74C07294A821D00BE831F /* AssetRow.swift in Sources */,
 				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
 				5C3239A12925772B00619645 /* FolioCardItems.swift in Sources */,
