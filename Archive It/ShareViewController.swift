@@ -18,23 +18,25 @@ class ShareViewController: SLComposeServiceViewController {
     let vc = Storage.shared.vc
     private var selectedFolio: Folio?
     var folioName = ""
+    var ssvc: ShareSelectViewController?
     
     override func viewDidLoad() {
-        folios = Folio.fetchFolios(vc: Storage.shared.vc)
         super.viewDidLoad()
+    }
+    
+    override func presentationAnimationDidFinish() {
+        folios = Folio.fetchFolios(vc: Storage.shared.vc)
         selectedFolio = folios.first
         folioName = selectedFolio?.title ?? "unknown"
+        reloadConfigurationItems()
     }
     
     override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
         return true
     }
     
     override func didSelectPost() {
-        // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
         handleSharedFile()
-        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         //self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
         super.didSelectPost()
     }
@@ -43,11 +45,11 @@ class ShareViewController: SLComposeServiceViewController {
         if let deck = SLComposeSheetConfigurationItem() {
             deck.title = "Add to Folio"
             deck.value = self.folioName
-            deck.tapHandler = {
-                let ssvc = ShareSelectViewController()
-                ssvc.folios = self.folios
-                ssvc.delegate = self
-                self.pushConfigurationViewController(ssvc)
+            deck.tapHandler = { [self] in
+                self.ssvc = ShareSelectViewController()
+                self.ssvc!.folios = self.folios
+                self.ssvc!.delegate = self
+                self.pushConfigurationViewController(ssvc!)
             }
             return [deck]
         }
@@ -83,6 +85,12 @@ class ShareViewController: SLComposeServiceViewController {
         //        for sup in setSuper {
         //            print("supertype \(sup)")
         //        }
+        print("TFdebug # of attachments == \(attachments.count)")
+        for provider in attachments {
+            let foo = provider.suggestedName
+            let variousKinds = provider.registeredTypeIdentifiers
+            print("TFdebug found \(foo) variousKinds ***\n*** \(variousKinds)")
+        }
         for provider in attachments {
             //printProvider(prov: provider)
             // Check if the content type is the same as we expected
@@ -91,6 +99,12 @@ class ShareViewController: SLComposeServiceViewController {
             print("TFdebug will attach to folio  \(String(describing: selectedFolio?.title))")
             for kind in variousKinds {
                 print("***Current Kind is \(kind)")
+
+                if provider.hasItemConformingToTypeIdentifier("public.plain-text") {
+                    print("TFdebug found a \(kind)")
+                    break
+                }
+
                 if provider.hasItemConformingToTypeIdentifier("com.adobe.pdf") { // was kind
                     print("TFdebug found a \(kind)")
                     provider.loadItem(forTypeIdentifier: "com.adobe.pdf", // public.item
@@ -131,7 +145,7 @@ class ShareViewController: SLComposeServiceViewController {
                                 print("TFdebug found a FILE URL \(url.absoluteString)")
                                 Task.detached { [self] in
                                     try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
-//                                    try await Fetching().saveLocalFile(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
+                                    //                                    try await Fetching().saveLocalFile(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                                 }
                             } else {
                                 print("TFdebug found URL \(url.absoluteString)")

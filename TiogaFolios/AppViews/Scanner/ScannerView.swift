@@ -37,14 +37,26 @@ struct ScannerView: View {
     @State var index = 0
     @State var scanArray = [Image]()
     @State var isScanning = false
+    @State var hasScanned = false
     @State var pdfResult: Data?
     
     var body: some View {
         List {
             Section {
-                Text("This camera can scan documents. In this demo, the scans are added to a PageView.")
+                Text("Scan your documents in this folio.")
             }
-            
+            Section(header: Text("Actions")) {
+                Button(action: openCamera) {
+                    Text("Open Scanner")
+                }
+                .buttonStyle(.bordered)
+                Button(action: savePDFtoFolio) {
+                    Text("Save PDF")
+                }
+                .disabled(!hasScanned)
+                .buttonStyle(.bordered)
+            }
+
             if scanArray.count > 0 {
                 Section(header: Text("Scans")) {
                     //                        PageView(pages: scans.map { $0
@@ -61,14 +73,6 @@ struct ScannerView: View {
                 }
             }
             
-            Section(header: Text("Actions")) {
-                Button(action: openCamera) {
-                    Text("Open Scanner")
-                }
-                Button(action: savePDFtoFolio) {
-                    Text("Save PDF")
-                }
-            }
         }
         .navigationBarTitle("DocumentCamera")
         .sheet(isPresented: $isScanning, content: {
@@ -97,6 +101,9 @@ struct ScannerView: View {
         switch result {
         case .failure: dismissCamera()
         case .success(let scan): do {
+            if scan.scans.count > 0 {
+                hasScanned = true
+            }
             saveImages(scan.scans)
             savePDF(scan.makePDFFromScans)
         }

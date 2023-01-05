@@ -16,25 +16,30 @@ class ShareSelectViewController: UIViewController, UITableViewDataSource, UITabl
     
     var folios = [Folio]()
     weak var delegate: ShareSelectViewControllerDelegate?
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return folios.count
     }
+    func tableView(_ tableView: UITableView, numberOfSections sections: Int) -> Int {
+        return 1
+    }
+
+//    func tableView(_)
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.FolioCell, for: indexPath)
         cell.textLabel?.text = folios[indexPath.row].title
         cell.backgroundColor = .clear
         return cell
-
-    }
-    //extension ShareSelectViewController: UITableViewDelegate {
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            //print("TFdebug selected row \(indexPath.row) \(String(describing: folioTags[indexPath.row].title))")
-            delegate?.selected(f: folios[indexPath.row])
-        }
-    //}
         
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.selected(f: folios[indexPath.row])
+    }
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.view.frame)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -44,14 +49,14 @@ class ShareSelectViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifiers.FolioCell)
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        //navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         title = "Select Folio"
         view.addSubview(tableView)
     }
-
+    
 }
 
 private extension ShareSelectViewController {

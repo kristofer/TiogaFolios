@@ -83,6 +83,7 @@
 		5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */; };
 		5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA80E293796F300FCF50B /* set_build_number.sh */; };
 		5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */; };
+		5CE60D2F296628870050304D /* CustomShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE60D2E296628870050304D /* CustomShareViewController.swift */; };
 		5CEDC3BA2963312300FDB600 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3B92963312300FDB600 /* WebView.swift */; };
 		5CEDC3BC2964C61400FDB600 /* SUBQUERY in Resources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BB2964C61400FDB600 /* SUBQUERY */; };
 		5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BE2964D67400FDB600 /* ScannerView.swift */; };
@@ -201,6 +202,7 @@
 		5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolioView.swift; sourceTree = "<group>"; };
 		5CDCA80E293796F300FCF50B /* set_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_build_number.sh; sourceTree = "<group>"; };
 		5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAssetDeltaView.swift; sourceTree = "<group>"; };
+		5CE60D2E296628870050304D /* CustomShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareViewController.swift; sourceTree = "<group>"; };
 		5CEDC3B92963312300FDB600 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		5CEDC3BB2964C61400FDB600 /* SUBQUERY */ = {isa = PBXFileReference; lastKnownFileType = text; path = SUBQUERY; sourceTree = "<group>"; };
 		5CEDC3BE2964D67400FDB600 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 			children = (
 				5C3EF886292BDE89007CAAB6 /* Archive It.entitlements */,
 				5C3EF869292BDCA4007CAAB6 /* ShareViewController.swift */,
+				5CE60D2E296628870050304D /* CustomShareViewController.swift */,
 				5C3EF87A292BDD02007CAAB6 /* ShareSelectViewController.swift */,
 				5C3EF86B292BDCA4007CAAB6 /* MainInterface.storyboard */,
 				5C3EF86E292BDCA4007CAAB6 /* Info.plist */,
@@ -746,6 +749,7 @@
 				5C3EF885292BDE38007CAAB6 /* FolioTemplates.swift in Sources */,
 				5C3EF87C292BDD48007CAAB6 /* Asset.swift in Sources */,
 				5C3EF882292BDDAA007CAAB6 /* Fetching.swift in Sources */,
+				5CE60D2F296628870050304D /* CustomShareViewController.swift in Sources */,
 				5C3EF87B292BDD02007CAAB6 /* ShareSelectViewController.swift in Sources */,
 				5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */,
 				5C3EF87E292BDD52007CAAB6 /* Folio.swift in Sources */,
@@ -909,7 +913,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12312022;
+				CURRENT_PROJECT_VERSION = 01042023;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
@@ -943,7 +947,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12312022;
+				CURRENT_PROJECT_VERSION = 01042023;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
@@ -1050,7 +1054,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Archive It/Archive It.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12312022;
+				CURRENT_PROJECT_VERSION = 01042023;
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Archive It/Info.plist";
@@ -1077,7 +1081,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Archive It/Archive It.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12312022;
+				CURRENT_PROJECT_VERSION = 01042023;
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Archive It/Info.plist";
