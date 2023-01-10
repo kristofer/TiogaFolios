@@ -102,13 +102,14 @@ struct FileAssetDetail: View {
                         Button(action: {
                             isEditing = true
                         }) {
-                            Text(Image(systemName: "square.and.pencil"))
+                            Label("Edit ", systemImage: "square.and.pencil")
                         }
                         .font(.caption)
-                        .padding(5.0)
-                        .foregroundColor(.white)
-                        .background(Color.green)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .buttonStyle(.borderedProminent)
+//                        .padding(5.0)
+//                        .foregroundColor(.white)
+//                        .background(Color.green)
+//                        .clipShape(RoundedRectangle(cornerRadius: 5))
                     } else {
                         Button {
                             self.isEditingMetadata = true

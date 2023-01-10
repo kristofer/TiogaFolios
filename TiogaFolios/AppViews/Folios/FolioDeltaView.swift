@@ -94,9 +94,7 @@ struct FolioDeltaView: View {
                     Spacer()
                 }
             }
-            .foregroundColor(Color.accentColor)
-            .padding(10)
-            .cornerRadius(8)
+            .buttonStyle(.bordered)
             // will this be confusing?
             //FolioTemplListView()
         }

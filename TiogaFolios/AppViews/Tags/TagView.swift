@@ -21,7 +21,7 @@ struct TagView: View {
                 .font(.body)
             HStack{
                 Label(tag.kind ?? TagKind.plain.rawValue,
-                      systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind!) ?? TagKind.plain))
+                      systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind ?? TagKind.plain.rawValue) ?? TagKind.plain))
                     .font(.body)
                 
             }

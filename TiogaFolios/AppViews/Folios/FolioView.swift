@@ -55,8 +55,15 @@ struct FolioView: View {
             Divider()
             FolioTagItems(folio: folio)
             Divider()
-            
-            Text("Attached Documents").font(.caption2.italic())
+            HStack {
+                Text("Attached Documents").font(.caption2.italic())
+                Spacer()
+                NavigationLink(
+                    destination: FileAssetEditList(folio: folio)) { //doc: doc)) {
+                        Label("Edit List ", systemImage: "square.and.pencil")
+                            .font(.caption2)
+                    }
+            }
             List { Section {
                 ForEach(Array(folio.assets as? Set<Asset> ?? []),
                         id: \.self) { doc in

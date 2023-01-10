@@ -84,6 +84,7 @@
 		5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA80E293796F300FCF50B /* set_build_number.sh */; };
 		5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */; };
 		5CE60D2F296628870050304D /* CustomShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE60D2E296628870050304D /* CustomShareViewController.swift */; };
+		5CE60D31296C84490050304D /* FileAssetEditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE60D30296C84490050304D /* FileAssetEditList.swift */; };
 		5CEDC3BA2963312300FDB600 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3B92963312300FDB600 /* WebView.swift */; };
 		5CEDC3BC2964C61400FDB600 /* SUBQUERY in Resources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BB2964C61400FDB600 /* SUBQUERY */; };
 		5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BE2964D67400FDB600 /* ScannerView.swift */; };
@@ -203,6 +204,7 @@
 		5CDCA80E293796F300FCF50B /* set_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_build_number.sh; sourceTree = "<group>"; };
 		5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAssetDeltaView.swift; sourceTree = "<group>"; };
 		5CE60D2E296628870050304D /* CustomShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareViewController.swift; sourceTree = "<group>"; };
+		5CE60D30296C84490050304D /* FileAssetEditList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAssetEditList.swift; sourceTree = "<group>"; };
 		5CEDC3B92963312300FDB600 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		5CEDC3BB2964C61400FDB600 /* SUBQUERY */ = {isa = PBXFileReference; lastKnownFileType = text; path = SUBQUERY; sourceTree = "<group>"; };
 		5CEDC3BE2964D67400FDB600 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				5C3239B92925796200619645 /* FileAssetDetail.swift */,
 				5C84346129437E9A005B0051 /* NoteEditView.swift */,
 				5C3239BA2925796200619645 /* FileAssetList.swift */,
+				5CE60D30296C84490050304D /* FileAssetEditList.swift */,
 				5C3239BB2925796200619645 /* FileAssetPreview.swift */,
 				5CDCA8112937B6B100FCF50B /* FileAssetDeltaView.swift */,
 				5CC74C06294A821D00BE831F /* AssetRow.swift */,
@@ -700,6 +703,7 @@
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
 				5C3239CC2925796F00619645 /* FlexiblePicker.swift in Sources */,
 				5C3239A22925772B00619645 /* FolioCardV.swift in Sources */,
+				5CE60D31296C84490050304D /* FileAssetEditList.swift in Sources */,
 				5C3239BF2925796200619645 /* FileAssetList.swift in Sources */,
 				5C3239CF2925796F00619645 /* TagEditView.swift in Sources */,
 				5C84346229437E9A005B0051 /* NoteEditView.swift in Sources */,

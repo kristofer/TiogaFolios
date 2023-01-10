@@ -34,10 +34,11 @@ struct NoteEditView: View {
                 Text("Save ")+Text(Image(systemName: "square.and.arrow.down"))
             }
             .font(.caption)
-            .padding(5.0)
-            .foregroundColor(.white)
-            .background(Color.green)
-            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .buttonStyle(.borderedProminent)
+//            .padding(5.0)
+//            .foregroundColor(.white)
+//            .background(Color.green)
+//            .clipShape(RoundedRectangle(cornerRadius: 5))
             
         }
         .padding()

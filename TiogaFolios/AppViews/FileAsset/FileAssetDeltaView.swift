@@ -78,10 +78,11 @@ struct FileAssetDeltaView: View {
                             Spacer()
                         }
                     }
-                    .foregroundColor(.white)
-                    .padding(10)
-                    .background(Color.accentColor)
-                    .cornerRadius(8)
+                    .buttonStyle(.borderedProminent)
+//                    .foregroundColor(.white)
+//                    .padding(10)
+//                    .background(Color.accentColor)
+//                    .cornerRadius(8)
                 }
                 .padding(20)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottom)
@@ -106,9 +107,10 @@ struct FileAssetDeltaView: View {
                         Spacer()
                     }
                 }
-                .foregroundColor(Color.accentColor)
-                .padding(10)
-                .cornerRadius(8)
+                .buttonStyle(.bordered)
+//                .foregroundColor(Color.accentColor)
+//                .padding(10)
+//                .cornerRadius(8)
             }
         }
 

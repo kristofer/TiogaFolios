@@ -10,19 +10,30 @@ import CoreData
 import UniformTypeIdentifiers
 import os
 
-class FileAssetViewModel: ObservableObject {
+class FileAssetEditViewModel: ObservableObject {
     @Published var docs = [Asset]()
+    @Published var folio: Folio
     
-    func fetchData() {
-        self.docs = Asset.fetchUnassignedAssets(vc: Storage.shared.vc)
+//    func fetchData() {
+//        self.docs = Array(folio.assets as? Set<Asset> ?? [])
+//    }
+    
+    init(docs: [Asset] = [Asset](), folio: Folio) {
+        self.folio = folio
+        self.docs = Array(folio.assets as? Set<Asset> ?? [])
     }
     
 }
 
-struct FileAssetList: View {
+struct FileAssetEditList: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var vm = FileAssetViewModel()
+    var folio: Folio?
+    @ObservedObject var vm: FileAssetEditViewModel
     
+    init(folio: Folio) {
+        self.folio = folio
+        vm = FileAssetEditViewModel(docs: [], folio: folio)
+    }
     @State private var showNewDoc = false
     @State private var isImporting: Bool = false
     @State private var showAlert: Bool = false
@@ -31,22 +42,23 @@ struct FileAssetList: View {
     
     var body: some View {
         VStack{
-            HStack{
-                EditButton()
-                Spacer()
-                Button(action:  {
-                    isImporting = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        isImporting = true
-                    }
-                }) {
-                    HStack {
-                        Text("Add")
-                        Image(systemName: "plus")
-                    }
-                }
-            }
-            .padding()
+            Text("\(folio!.title!)")
+//            HStack{
+//                EditButton()
+//                Spacer()
+//                Button(action:  {
+//                    isImporting = false
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                        isImporting = true
+//                    }
+//                }) {
+//                    HStack {
+//                        Text("Add")
+//                        Image(systemName: "plus")
+//                    }
+//                }
+//            }
+//            .padding()
 
         NavigationView {
             List {
@@ -69,7 +81,7 @@ struct FileAssetList: View {
 
             }
 #if os(iOS)
-            .navigationTitle("Unattached Documents")
+            .navigationTitle(Text("Edit Items in Folio"))
             .navigationBarTitleDisplayMode(.inline)
 #else
             // mac desktop
@@ -78,7 +90,7 @@ struct FileAssetList: View {
             Text("Select a document")
         }
         .onAppear(perform: {
-            vm.fetchData()
+            //vm.fetchData()
         })
         .fileImporter(
             isPresented: $isImporting,
@@ -150,7 +162,7 @@ struct FileAssetList: View {
                                       uttype: typeID)
                 fileasset.setBlob(blob)
                 Storage.shared.save()
-                vm.fetchData()
+                //vm.fetchData()
             }
         } catch {
             // Handle failure.
@@ -161,8 +173,8 @@ struct FileAssetList: View {
     }
 }
 
-struct FileAssetList_Previews: PreviewProvider {
+struct FileAssetEditList_Previews: PreviewProvider {
     static var previews: some View {
-        FileAssetList()
+        EmptyView()
     }
 }

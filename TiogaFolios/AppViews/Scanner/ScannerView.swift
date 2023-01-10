@@ -25,13 +25,12 @@ class ScanViewModel: ObservableObject {
         
     }
     
-//    func displayScanningController() {
-//        guard VNDocumentCameraViewController.isSupported else { return }
-//    }
 }
 
 
 struct ScannerView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var folio: Folio
     
     @State var index = 0
@@ -43,7 +42,7 @@ struct ScannerView: View {
     var body: some View {
         List {
             Section {
-                Text("Scan your documents in this folio.")
+                Text("Scan a document into this folio.")
             }
             Section(header: Text("Actions")) {
                 Button(action: openCamera) {
@@ -122,6 +121,8 @@ struct ScannerView: View {
         // attach to folio
         folio.attachAsset(newAsset)
         Storage.shared.save()
+        
+        self.presentationMode.wrappedValue.dismiss()
     }
     
     func savePDF(_ pdfGen: () -> Data) {

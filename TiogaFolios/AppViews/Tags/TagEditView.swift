@@ -93,10 +93,11 @@ struct TagEditView: View {
                         Spacer()
                     }
                 }
-                .foregroundColor(.white)
-                .padding(10)
-                .background(Color.accentColor)
-                .cornerRadius(8)
+                .buttonStyle(.borderedProminent)
+//                .foregroundColor(.white)
+//                .padding(10)
+//                .background(Color.accentColor)
+//                .cornerRadius(8)
                 Spacer()
                 Button(action: {
                     Tag.loadAppTags()
