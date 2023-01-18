@@ -63,9 +63,9 @@ extension Folio {
         var fetchedFolios = [Folio]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
         let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
-        //let predicate = NSPredicate(format: "kindValue == %i", TagKind.folio.rawValue)
         fetchRequest.sortDescriptors = [dateSort]
-        //fetchRequest.predicate = predicate
+        let notLocked = NSPredicate(format: "locked == %@", false as NSNumber)
+        fetchRequest.predicate = notLocked
         
         do {
             fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
@@ -81,9 +81,26 @@ extension Folio {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
         fetchRequest.relationshipKeyPathsForPrefetching = relations
         let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
-        //let predicate = NSPredicate(format: "kindValue == %i", TagKind.folio.rawValue)
         fetchRequest.sortDescriptors = [dateSort]
-        //fetchRequest.predicate = predicate
+        let notLocked = NSPredicate(format: "locked == %@", false as NSNumber)
+        fetchRequest.predicate = notLocked
+
+        do {
+            fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
+        } catch {
+            Foundation.NSLog("No folios in store")
+        }
+        print("TFdebug folio count \(fetchedFolios.count)")
+        return fetchedFolios
+    }
+
+    static func fetchArchivedFolios(vc: NSManagedObjectContext) -> [Folio] {
+        var fetchedFolios = [Folio]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
+        fetchRequest.sortDescriptors = [dateSort]
+        let notLocked = NSPredicate(format: "locked == %@", true as NSNumber)
+        fetchRequest.predicate = notLocked
         
         do {
             fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
@@ -94,6 +111,7 @@ extension Folio {
         return fetchedFolios
     }
     
+
 //    var folioSize: Int32 {
 //        get {
 //            return 0

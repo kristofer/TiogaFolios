@@ -27,43 +27,44 @@ struct SettingsView: View {
 //                    TrustView()
 //                }
 //                .padding()
-//                NavigationLink("Manage Tags...") {
-//                    TagListView()
-//                }
-//                .padding()
+                
+                NavigationLink("Archived Folios...") {
+                    ArchivedListView()
+                }
+                .padding()
                 NavigationLink("Manage Unattached Documents...") {
                     FileAssetList()
                 }
                 .padding()
                 NavigationLink("Connect to Email...") {
-                    Text("Gmail Info (not implemented yet")
+                    Text("Gmail Info (not implemented yet)")
                 }
                 .padding()
-                Button("Test Fetching TD...") {
-                    Task(priority: .medium) {
-                        let foo = TestFetch(viewContext)
-                        await foo.runTest()
-                    }
-                }
-                .padding()
-                Button("Test Fetching Zip Code Web Site...") {
-                    Task(priority: .medium) {
-                        let foo = TestFetch(viewContext)
-                        await foo.runTest2()
-                    }
-                }
+//                Button("Test Fetching TD...") {
+//                    Task(priority: .medium) {
+//                        let foo = TestFetch(viewContext)
+//                        await foo.runTest()
+//                    }
+//                }
+//                .padding()
+//                Button("Test Fetching Zip Code Web Site...") {
+//                    Task(priority: .medium) {
+//                        let foo = TestFetch(viewContext)
+//                        await foo.runTest2()
+//                    }
+//                }
                 .padding()
                 Button("Refresh All Data...") {
                     reloadAll()
                 }
                 .padding()
                 
-                Spacer()
-                Button("Delete All Tags") {
-                    deleteAll("Tag")
-                }
-                .padding(20.0)
-                .border(Color.blue, width: 1.0)
+//                Spacer()
+//                Button("Delete All Tags") {
+//                    deleteAll("Tag")
+//                }
+//                .padding(20.0)
+//                .border(Color.blue, width: 1.0)
                 //.disabled(true)
             }
             .navigationBarTitle("Tioga Folios")

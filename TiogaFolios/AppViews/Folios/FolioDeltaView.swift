@@ -42,6 +42,9 @@ struct FolioDeltaView: View {
     @Binding var isPresented: Bool
     @FocusState private var focusedField: FocusField?
 
+    @State var isChecked:Bool = false
+    var title:String = "Archive This Folio"
+
     init(objectPassed: Folio? = nil, show: Binding<Bool>) {
         if objectPassed == nil {
             vm = DeltaFolioVm()
@@ -49,6 +52,7 @@ struct FolioDeltaView: View {
         } else {
             vm = DeltaFolioVm(objectPassed: objectPassed)
             self._isPresented = show
+            self.isChecked = vm.folio.locked
         }
     }
 
@@ -65,6 +69,16 @@ struct FolioDeltaView: View {
                            }
                     }
                 TextField("description", text: $vm.folio.desc ?? "")
+                Button(action: {
+                    isChecked = !isChecked
+                    vm.folio.locked = isChecked
+                }){
+                    HStack{
+                        Image(systemName: isChecked ? "checkmark.square": "square")
+                        Text(title)
+                    }
+                }
+                Divider()
                 Button(action: {
                     vm.folio.touch()
                     Storage.shared.save()
