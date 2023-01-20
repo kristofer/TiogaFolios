@@ -129,17 +129,21 @@ struct FileAssetDetail: View {
                 //                }
                 Divider()
                 if vm.isBlobEmpty {
-                    Button(action:  {
-                        vm.isImporting = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            vm.isImporting = true
+                    VStack {
+                        Button(action:  {
+                            vm.isImporting = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                vm.isImporting = true
+                            }
+                        }) {
+                            HStack {
+                                Text("Add")
+                                Image(systemName: "plus")
+                            }
                         }
-                    }) {
-                        HStack {
-                            Text("Add")
-                            Image(systemName: "plus")
-                        }
+                        MissingAssetView()
                     }
+                    .padding()
                 } else {
                     if vm.fileasset.isDocumentWebpage() {
                         WebView(url: URL(string: vm.fileasset.pathname ?? "https://tiogadigital.com")!)
