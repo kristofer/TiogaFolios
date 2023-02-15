@@ -86,11 +86,11 @@ class ShareViewController: SLComposeServiceViewController {
         //            print("supertype \(sup)")
         //        }
         print("TFdebug # of attachments == \(attachments.count)")
-        for provider in attachments {
-            let foo = provider.suggestedName
-            let variousKinds = provider.registeredTypeIdentifiers
-            print("TFdebug found \(foo) variousKinds ***\n*** \(variousKinds)")
-        }
+        // for provider in attachments {
+            //let foo = provider.suggestedName
+            //let variousKinds = provider.registeredTypeIdentifiers
+            //print("TFdebug found \(foo) variousKinds ***\n*** \(variousKinds)")
+        // }
         for provider in attachments {
             //printProvider(prov: provider)
             // Check if the content type is the same as we expected
