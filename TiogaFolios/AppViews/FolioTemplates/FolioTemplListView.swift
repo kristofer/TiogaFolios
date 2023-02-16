@@ -16,8 +16,10 @@ class FolioTemplListViewModel: ObservableObject {
 
 
 struct FolioTemplListView: View {
-    @ObservedObject var vm = FolioTemplListViewModel()
-    //@Binding var rootIsActive : Bool
+    @Environment(\.dismiss) private var dismiss
+
+    @Binding var isTemplatesActive: Bool
+    @ObservedObject var vm: FolioTemplListViewModel
 
     var searchResults: [FolioTemplate] {
         if vm.searchText.isEmpty {
@@ -27,9 +29,10 @@ struct FolioTemplListView: View {
         }
     }
     
-    init() {//rootIsActive: Binding<Bool>) {
+    init(isActive:  Binding<Bool>) {
         UITableView.appearance().backgroundColor = .clear // Uses UIColor
-        //rootIsActive = rootIsActive
+        _isTemplatesActive = isActive
+        vm = FolioTemplListViewModel()
     }
     
     
@@ -37,7 +40,7 @@ struct FolioTemplListView: View {
             List {
                 ForEach(searchResults, id: \.self) { template in
                     VStack(spacing: 4) {
-                        NavigationLink(destination: FolioTemplView(template: template))
+                        NavigationLink(destination: FolioTemplView(template: template, isActive: $isTemplatesActive))
                         {
                                 FolioTemplCell(template: template)
                             }
@@ -45,6 +48,10 @@ struct FolioTemplListView: View {
                     }
                 }
                 
+            }
+            .onAppear(){ if isTemplatesActive {
+                dismiss()
+            }
             }
             .listStyle(PlainListStyle())
             .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Life Event Templates")

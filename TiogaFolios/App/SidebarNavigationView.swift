@@ -35,13 +35,13 @@ struct SidebarNavigationView: View {
                     .imageScale(.medium) })
             }
             .tag(NavItem.taglist)
-            NavigationLink(destination: FolioTemplListView()) {
-                Label(title: { Text("Life Events") },
-                      icon: { Image(systemName: "square.grid.3x1.folder.badge.plus")
-                        .font(.headline)
-                    .imageScale(.medium) })
-            }
-            .tag(NavItem.templatelist)
+//            NavigationLink(destination: FolioTemplListView()) {
+//                Label(title: { Text("Life Events") },
+//                      icon: { Image(systemName: "square.grid.3x1.folder.badge.plus")
+//                        .font(.headline)
+//                    .imageScale(.medium) })
+//            }
+//            .tag(NavItem.templatelist)
             NavigationLink(destination: SettingsView()) {
                 Label(title: { Text("Settings") },
                       icon: { Image(systemName: "gear")

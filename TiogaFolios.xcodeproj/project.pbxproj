@@ -278,6 +278,7 @@
 		5C323944292431A100619645 /* TiogaFolios */ = {
 			isa = PBXGroup;
 			children = (
+				5CB910DF299EB1620027E41C /* Sharing */,
 				5C323978292433E000619645 /* TiogaFolios.entitlements */,
 				5C3C5A11299D570D00081F8D /* CoreDataHelper.swift */,
 				5C3239B52925778000619645 /* AppViews */,
@@ -479,6 +480,13 @@
 				5CEDC3BB2964C61400FDB600 /* SUBQUERY */,
 			);
 			path = "Archive It";
+			sourceTree = "<group>";
+		};
+		5CB910DF299EB1620027E41C /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sharing;
 			sourceTree = "<group>";
 		};
 		5CEDC3BD2964D65700FDB600 /* Scanner */ = {

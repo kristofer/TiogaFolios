@@ -32,10 +32,7 @@ struct FolioListView: View {
     
     @State private var isTemplatesActive = false
     
-    init() {
-        //UITableView.appearance().backgroundColor = .clear // Uses UIColor
-    }
-    
+    init() { }
     
     var body: some View {
         // moved to "superview" NavigationView {
@@ -69,18 +66,13 @@ struct FolioListView: View {
             ToolbarItem(placement: .bottomBar) {
                 EditButton()
             }
-            
 #endif
             ToolbarItem(placement: .bottomBar) {
-                NavigationLink(destination: FolioTemplListView().padding(2))//rootIsActive: self.$isTemplatesActive),
-                    //isActive: self.$isTemplatesActive,
-                    {
-                        HStack {
-                            Text("New Folio")
-                            Image(systemName: "plus")
-                        }
+                NavigationLink(
+                    destination:FolioTemplListView(isActive: $isTemplatesActive)) {
+                        Label("New Folio", systemImage: "plus")
                     }
-                    .isDetailLink(false)
+                //.isDetailLink(false)
             }
         }
 #if os(iOS)
