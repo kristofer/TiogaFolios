@@ -8,19 +8,28 @@
 import SwiftUI
 
 struct FolioTemplView: View {
-    @Environment(\.presentationMode) var presentation
+    @Environment(\.dismiss) private var dismiss
+
     var template: FolioTemplate
+    @Binding var isActive: Bool
+
+    @State private var tempTitle: String = ""
+    @State private var tempDesc: String = ""
+
     //@Binding var shouldPopToRootView : Bool
 
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5.0){
-            Text("\(template.title)")
+            TextField("Title", text: $tempTitle)
                 .font(.largeTitle)
                 .padding()
-            Text("\(template.desc)")
+                .border(.secondary)
+
+            TextField("", text: $tempDesc)
                 .font(.body.italic())
                 .padding()
+                .border(.secondary)
             Divider()
             HStack{
                 ForEach(Array(template.tags ?? []), id: \.self) { tag in
@@ -51,10 +60,15 @@ struct FolioTemplView: View {
             }
             .listStyle(PlainListStyle())
             Button(action: {
-                let _ = Folio.createFolioFromTemplate(template)
+                var templ = template
+                templ.title = tempTitle
+                templ.desc = tempDesc
+                let _ = Folio.createFolioFromTemplate(templ)
                 Storage.shared.save()
-                //self.shouldPopToRootView = false
-                presentation.wrappedValue.dismiss()
+                isActive = true
+                //self.isActive = false
+                dismiss()
+                
             }) {
                 HStack {
                     Spacer()
@@ -69,6 +83,10 @@ struct FolioTemplView: View {
 
         }
         .padding()
+        .onAppear(){
+            tempTitle = template.title
+            tempDesc = template.desc
+        }
     }
 }
 

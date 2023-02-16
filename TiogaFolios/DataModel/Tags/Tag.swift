@@ -63,7 +63,7 @@ extension Tag {
     static func getOrCreate(title: String, desc: String,
                             tagkind: TagKind, tagcat: TagCat) -> Tag {
         let currentTags = allByTitleKindCat(title: title, tagkind: tagkind, tagcat: tagcat)
-        if currentTags.count == 1 {
+        if currentTags.count >= 1 {
             return currentTags[0]
         }
         let newTag = createTag(vc: Storage.shared.vc,
