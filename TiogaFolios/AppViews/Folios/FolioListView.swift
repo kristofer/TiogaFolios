@@ -42,7 +42,7 @@ struct FolioListView: View {
                 ForEach(vm.folios) { folio in
                     VStack(spacing: 0) {
                         NavigationLink(
-                            destination: FolioView(folio: folio )) {
+                            destination: FolioDetailView(folio: folio )) {
                                 FolioCell(folio: folio)
                             }
                     }

@@ -58,12 +58,7 @@ struct ScannerView: View {
 
             if scanArray.count > 0 {
                 Section(header: Text("Scans")) {
-                    //                        PageView(pages: scans.map { $0
-                    //                            .resizable()
-                    //                            .aspectRatio(contentMode: .fit)
-                    //                            .frame(height: 300)
-                    //                        }, currentPageIndex: $index)
-                    ForEach(0..<scanArray.count) { imageIdx in
+                    ForEach(0 ..< scanArray.count) { imageIdx in
                         scanArray[imageIdx]
                        .resizable()
                        .frame(width: 400, height: 600)

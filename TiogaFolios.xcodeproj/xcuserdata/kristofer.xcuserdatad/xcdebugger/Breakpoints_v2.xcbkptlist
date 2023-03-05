@@ -382,9 +382,9 @@
             filePath = "TiogaFolios/AppViews/Scanner/ScannerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "savePDFtoFolio()"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "openCamera()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
