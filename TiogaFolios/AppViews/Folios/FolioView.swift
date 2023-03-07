@@ -58,11 +58,11 @@ struct FolioView: View {
             HStack {
                 Text("Attached Documents").font(.caption2.italic())
                 Spacer()
-                NavigationLink(
-                    destination: FileAssetEditList(folio: folio)) { //doc: doc)) {
-                        Label("Edit List ", systemImage: "square.and.pencil")
-                            .font(.caption2)
-                    }
+//                NavigationLink(
+//                    destination: FileAssetEditList(folio: folio)) { //doc: doc)) {
+//                        Label("Edit List ", systemImage: "square.and.pencil")
+//                            .font(.caption2)
+//                    }
             }
             List { Section {
                 ForEach(Array(folio.assets as? Set<Asset> ?? []),

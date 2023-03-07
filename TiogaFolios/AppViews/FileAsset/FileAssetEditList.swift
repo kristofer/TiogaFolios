@@ -1,130 +1,76 @@
 //
-//  ContentView.swift
-//  HalfRoll
+//  FileAssetEditList.swift
+//  TiogaFolios
 //
 //  Created by Kristofer Younger on 8/11/22.
+//  Cleaned by Kristofer Younger on 3/7/23.
 //
 
 import SwiftUI
-import CoreData
-import UniformTypeIdentifiers
-import os
 
 class FileAssetEditViewModel: ObservableObject {
     @Published var docs = [Asset]()
     @Published var folio: Folio
-    
-//    func fetchData() {
-//        self.docs = Array(folio.assets as? Set<Asset> ?? [])
-//    }
     
     init(docs: [Asset] = [Asset](), folio: Folio) {
         self.folio = folio
         self.docs = Array(folio.assets as? Set<Asset> ?? [])
     }
     
+    func refresh() {
+        self.docs = Array(folio.assets as? Set<Asset> ?? [])
+    }
+
+    
 }
 
 struct FileAssetEditList: View {
     @Environment(\.managedObjectContext) private var viewContext
-    var folio: Folio?
+
     @ObservedObject var vm: FileAssetEditViewModel
     
-    init(folio: Folio) {
-        self.folio = folio
+    @Binding var activeSheet: ActiveSheet?
+    
+    init(activeSheet: Binding<ActiveSheet?>, folio: Folio) {
+        _activeSheet = activeSheet
         vm = FileAssetEditViewModel(docs: [], folio: folio)
     }
-    @State private var showNewDoc = false
-    @State private var isImporting: Bool = false
-    @State private var showAlert: Bool = false
-    @State private var showError: Error? = nil
-    @State private var errormsg = ""
     
     var body: some View {
         VStack{
-            Text("\(folio!.title!)")
-//            HStack{
-//                EditButton()
-//                Spacer()
-//                Button(action:  {
-//                    isImporting = false
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                        isImporting = true
-//                    }
-//                }) {
-//                    HStack {
-//                        Text("Add")
-//                        Image(systemName: "plus")
-//                    }
-//                }
-//            }
-//            .padding()
-
-        NavigationView {
-            List {
-                ForEach(vm.docs) { doc in
-                    NavigationLink(
-                        destination: FileAssetDetail(anAsset: doc, showAssignTo: true)) { //doc: doc)) {
-                            Label("\(String(describing: (doc.title ?? "nil doc name"))) \(String(describing: (doc.desc ?? "")))", systemImage: iconFor(doc))
-                        }
+            HStack {
+                Text("Attached Documents to \(vm.folio.title ?? "??")")
+                    .font(.body.bold())
+                    .foregroundColor(Color.accentColor)
+                    .padding(5)
+                Spacer()
+                Button("Done."){
+                    vm.folio.touch()
+                    Storage.shared.save()
+                    activeSheet = nil
                 }
-                .onDelete(perform: deleteDocs)
             }
-            .listStyle(PlainListStyle())
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            Divider()
+            NavigationView {
+                List {
+                    ForEach(vm.docs) { doc in
+                        NavigationLink(
+                            destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) {
+                                AssetRow(asset: doc)
+                            }
+                    }
+                    .onDelete(perform: deleteDocs)
                 }
-#endif
-                    
-
-            }
+                .listStyle(PlainListStyle())
 #if os(iOS)
-            .navigationTitle(Text("Edit Items in Folio"))
-            .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(Text("Swipe left to Delete"))
+                .navigationBarTitleDisplayMode(.inline)
 #else
-            // mac desktop
+                // mac desktop
 #endif
-            
-            Text("Select a document")
-        }
-        .onAppear(perform: {
-            //vm.fetchData()
-        })
-        .fileImporter(
-            isPresented: $isImporting,
-            allowedContentTypes: [UTType.content, UTType.compositeContent],
-            allowsMultipleSelection: false
-        ) { result in
-            importFile(result)
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Unable to Archive File"),
-                  message: Text("\(showError!.localizedDescription) \(self.errormsg)"),
-                  dismissButton: .default(Text("Ok")))
-        }
-        }
-
-    }
-    
-    func didDismiss() {
-        showNewDoc = false
-    }
-    
-    private func iconFor(_ doc: Asset) -> String {
-        if let mimetype = doc.mimetype {
-            if mimetype == "text/html"{
-                return "bookmark"
-            }
-            if mimetype == "text/plain"{
-                return "doc.plaintext"
-            }
-            if mimetype.contains("image") {
-                return "photo"
+                Text("No files attached.")
             }
         }
-        return "doc.richtext"
     }
     
     private func deleteDocs(offsets: IndexSet) {
@@ -132,44 +78,7 @@ struct FileAssetEditList: View {
             offsets.map { vm.docs[$0] }.forEach(viewContext.delete)
             Storage.shared.save()
         }
-    }
-    
-    private func importFile(_ result: Result<[URL], Error> ) {
-        do {
-            guard let selectedFile: URL = try result.get().first else { return }
-            //trying to get access to url contents
-            guard selectedFile.startAccessingSecurityScopedResource() else { return }
-            //print(selectedFile)
-            let teststr = selectedFile.absoluteString
-            if let range3 = teststr.range(of: ".rtfd", options: .caseInsensitive) {
-                // match
-                self.errormsg = "error: unable to archive an RTFD file, \(selectedFile)"
-                print("error: found an RTFD file",selectedFile,range3)
-            } else {
-                print("continue")
-            }
-            
-            let blob = try Data(contentsOf: selectedFile) as Data?
-            
-            let typeID = try selectedFile.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier
-            
-            selectedFile.stopAccessingSecurityScopedResource()
-            
-            if let typeID = typeID, let blob = blob {
-                let fileasset = Asset(vc: viewContext, title: selectedFile.lastPathComponent,
-                                      path: selectedFile.absoluteString,
-                                      mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(),
-                                      uttype: typeID)
-                fileasset.setBlob(blob)
-                Storage.shared.save()
-                //vm.fetchData()
-            }
-        } catch {
-            // Handle failure.
-            print(error.localizedDescription)
-            showAlert = true
-            showError = error
-        }
+        vm.refresh()
     }
 }
 

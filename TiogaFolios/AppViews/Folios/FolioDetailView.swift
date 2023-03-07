@@ -13,6 +13,7 @@ import UniformTypeIdentifiers
 
 enum ActiveSheet: Identifiable, Equatable {
     case filePicker
+    case participantView(CKShare)
     case cloudSharingSheet(CKShare)
     case managingSharesView
     case sharePicker(Folio)
@@ -20,7 +21,7 @@ enum ActiveSheet: Identifiable, Equatable {
     case addNoteView(Folio)
     case deltaFolioView(Folio)
     case scanningView(Folio)
-    case participantView(CKShare)
+    case editAssetsView(Folio)
     /**
      Use the enumeration member name string as the identifier for Identifiable.
      In the case where an enumeration has an associated value, use the label, which is equal to the member name string.
@@ -37,45 +38,49 @@ enum ActiveSheet: Identifiable, Equatable {
 
 class FolioVM: ObservableObject {
     @Published var folio: Folio
-    @Published var isEditing = false
-    @Published var addingItems = false
-    @Published var showTagSelection = false
+    @Published var assetList: [Asset]
     
     @Published var isImporting: Bool = false
     @Published var showAlert: Bool = false
     @Published var showError: Error? = nil
     @Published var errormsg = ""
     @Published var message: Message? = nil
-    
-    @Published var newTextAlertShowing = false
-    @Published var newTextDoc = "untitled"
-    @Published var newTextContent = "untitled"
-    
+        
     @Published var share: CKShare?
-    @Published var showEditSheet = false
-    let store = Storage.shared
     @Published var showShareSheet = false
-    @Published var isScanning = false
+
+    let store = Storage.shared
 
     init(folio: Folio) {
         self.folio = folio
+        self.assetList = Array(folio.assets as? Set<Asset> ?? [])
     }
+    
+    func refresh() {
+        print("refreshing asset list")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.assetList = //Asset.fetchAssets(vc: self.store.vc, folio: self.folio)
+                    Array(self.folio.assets as? Set<Asset> ?? [])
+        }
+    }
+    
 }
 
 struct FolioDetailView: View {
-    @ObservedObject var vm: FolioVM
+    @Environment(\.managedObjectContext) private var viewContext
 
+    @ObservedObject var vm: FolioVM
+    
     @State private var activeSheet: ActiveSheet?
     /**
      The next active sheet to present after dismissing the current sheet.
      ManagingSharesView uses this variable to switch to UICloudSharingController or participant view.
      */
     @State private var nextSheet: ActiveSheet?
-
-    private let persistenceController = Storage.shared
-
+    
     init(folio: Folio) {
         vm = FolioVM(folio: folio)
+        //assets = FolioVM.assetsForFolio(folio)
     }
     
     var body: some View {
@@ -83,40 +88,29 @@ struct FolioDetailView: View {
             HStack{
                 Text(vm.folio.desc ?? "-")
                     .font(.body.italic())
-                //Spacer()
-
-//                    .background(
-//                        NavigationLink(destination: ContentTagView(item: vm.folio), isActive: $vm.showTagSelection) {
-//                            EmptyView()
-//                        })
-//                    .background(
-//                        NavigationLink(destination: ScannerView(folio: vm.folio), isActive: $vm.isScanning) {
-//                            EmptyView()
-//                        })
-
             }
-            
             Divider()
             FolioTagItems(folio: vm.folio)
             Divider()
             HStack {
                 Text("Attached Documents").font(.caption2.italic())
                 Spacer()
-                NavigationLink(
-                    destination: FileAssetEditList(folio: vm.folio)) { //doc: doc)) {
-                        Label("Edit List ", systemImage: "square.and.pencil")
-                            .font(.caption2)
-                    }
+                Button("Edit List") { activeSheet = .editAssetsView(vm.folio) }
             }
             List { Section {
-                ForEach(Array(vm.folio.assets as? Set<Asset> ?? []),
-                        id: \.self) { doc in
+                ForEach(vm.assetList, id: \.self) { doc in
                     NavigationLink(
                         destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
                             AssetRow(asset: doc)
                         }
                 }}
                 
+            }
+            .refreshable {
+                vm.refresh()
+            }
+            .onAppear(){
+                vm.refresh()
             }
             .listStyle(PlainListStyle())
             .fileImporter(
@@ -133,38 +127,30 @@ struct FolioDetailView: View {
             }
         }
         .padding()
-        //.navigationTitle(vm.folio.title ?? "?wha?")
-        //.foregroundColor(Color.accentColor)
+        .toolbar { toolbarItems() } // title display here.
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $vm.showShareSheet, content: {
             if let share = vm.share {
-            CloudSharingView(
-              share: share,
-              container: vm.store.ckContainer,
-              folio: vm.folio
-            )
-          } else {Text("Share unavailable")}
+                CloudSharingView(
+                    share: share,
+                    container: vm.store.ckContainer,
+                    folio: vm.folio
+                )
+            } else {Text("Share unavailable")}
         })
-        .onAppear(perform: {
-          //self.share = store.getShare(vm.folio)
-        })
-        .toolbar { toolbarItems() }
-//        .sheet(isPresented: $vm.isEditing) {
-//            FolioDeltaView(objectPassed: vm.folio, show: $vm.isEditing)
-//        }
         .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
             sheetView(with: item)
         }
-
+        
     }
     
     @ViewBuilder
     private func sheetView(with item: ActiveSheet) -> some View {
         switch item {
         case .filePicker:
-//            FilePicker(activeSheet: $activeSheet)
+            //            FilePicker(activeSheet: $activeSheet)
             EmptyView()
-
+            
         case .cloudSharingSheet(_):
             /**
              Reserve this case for something like CloudSharingSheet(activeSheet: $activeSheet, share: share).
@@ -172,31 +158,34 @@ struct FolioDetailView: View {
             EmptyView()
             
         case .managingSharesView:
-//            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
+            //            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
             EmptyView()
-
-//
+            
+            //
         case .sharePicker(let folio):
-//            AddToExistingShareView(activeSheet: $activeSheet, photo: photo)
+            //            AddToExistingShareView(activeSheet: $activeSheet, photo: photo)
             EmptyView()
-
-
+            
+            
         case .taggingView(let folio):
             ContentTagView(activeSheet: $activeSheet, folio: folio)
-
+            
         case .deltaFolioView(let folio):
             FolioDeltaView(activeSheet: $activeSheet, folio: folio)
-
+            
         case .addNoteView(let folio):
             NewNoteView(activeSheet: $activeSheet, folio: folio)
             
         case .scanningView(let folio):
             ScannerView(activeSheet: $activeSheet, folio: folio)
             
+        case .editAssetsView(let folio):
+            FileAssetEditList(activeSheet: $activeSheet, folio: folio)
+            
         case .participantView(let share):
-//            ParticipantView(activeSheet: $activeSheet, share: share)
+            //            ParticipantView(activeSheet: $activeSheet, share: share)
             EmptyView()
-
+            
         }
     }
     @ToolbarContentBuilder
@@ -212,11 +201,8 @@ struct FolioDetailView: View {
                 Menu {
                     Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }
                     Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
-                    
                     Button("Add to Folio...", action: addtofolio)
-                    Button("Scan to Folio...") {
-                        activeSheet = .scanningView(vm.folio)
-                    }
+                    Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
                     Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                     Button("Share Folio...", action: sharefolio)
                 } label: {
@@ -231,7 +217,7 @@ struct FolioDetailView: View {
             }
         }
     }
-
+    
     /**
      Present the next active sheet, if necessary.
      Dispatch asynchronously to the next run loop so the presentation occurs after the current sheet's dismissal.
@@ -251,10 +237,9 @@ struct FolioDetailView: View {
             }
         }
         nextSheet = nil
+        vm.refresh()
     }
-
-//    func editfolio() { activeSheet = .deltaFolioView(vm.folio) }
-
+        
     func addtofolio() {
         self.vm.isImporting = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -262,24 +247,15 @@ struct FolioDetailView: View {
         }
     }
 
-//    func addnotetofolio() {
-//        vm.folio.addToAssets(Asset.makeNewTextDoc(named: "Untitled", content: " "))
-//        Storage.shared.save()
-//    }
-    
-    func reloadAll() {
-        Storage.shared.vc.refreshAllObjects()
-    }
-
     func sharefolio() {
         self.vm.message = Message(text: "sharing is unavailable")
-//        if !store.isShared(object: folio) {
-//          Task {
-//            await createShare(folio)
-//          }
-//        }
-//        showShareSheet = true
-
+        //        if !store.isShared(object: folio) {
+        //          Task {
+        //            await createShare(folio)
+        //          }
+        //        }
+        //        showShareSheet = true
+        
     }
     
     private func importFile(_ result: Result<[URL], Error> ) {
@@ -313,7 +289,7 @@ struct FolioDetailView: View {
                 vm.folio.addToAssets(fileasset)
                 vm.folio.touch()
                 Storage.shared.save()
-                //vm.fetchData()
+                vm.refresh()
             }
         } catch {
             // Handle failure.
@@ -322,7 +298,7 @@ struct FolioDetailView: View {
             vm.showError = error
         }
     }
-   
+    
 }
 
 struct FolioDetailView_Previews: PreviewProvider {

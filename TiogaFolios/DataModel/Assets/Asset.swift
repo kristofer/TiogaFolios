@@ -95,6 +95,24 @@ extension Asset {
         return fetchedAssets
     }
     
+    static func fetchAssets(vc: NSManagedObjectContext, folio: Folio) -> [Asset] {
+        var fetchedAssets = [Asset]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Asset")
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
+        let predicate = NSPredicate(format: "folio == %i", folio)
+        fetchRequest.sortDescriptors = [dateSort]
+        fetchRequest.predicate = predicate
+        //fetchedAssets = try! vc.fetch(fetchRequest) as! [Asset]
+        do {
+            fetchedAssets = try vc.fetch(fetchRequest) as? [Asset] ?? []
+        } catch {
+            Foundation.NSLog("No assets in store")
+        }
+
+        //print("TFdebug folio count \(fetchedAssets.count)")
+        return fetchedAssets
+    }
+    
     override public func willSave() {
         super.willSave()
 

@@ -106,10 +106,6 @@ struct FileAssetDetail: View {
                         }
                         .font(.caption)
                         .buttonStyle(.borderedProminent)
-//                        .padding(5.0)
-//                        .foregroundColor(.white)
-//                        .background(Color.green)
-//                        .clipShape(RoundedRectangle(cornerRadius: 5))
                     } else {
                         Button {
                             self.isEditingMetadata = true
@@ -124,9 +120,6 @@ struct FileAssetDetail: View {
                 }
                 .padding(2)
                 
-                //                if vm.showAssign == true {
-                //                    NavigationLink("AssignTo", destination: ChooseFolio(asset: vm.fileasset) )
-                //                }
                 Divider()
                 if vm.isBlobEmpty {
                     VStack {
