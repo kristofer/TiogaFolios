@@ -63,7 +63,6 @@ struct FolioDetailView: View {
     @ObservedObject var vm: FolioVM
 
     @State private var activeSheet: ActiveSheet?
-    @State private var activeCover: ActiveCover?
     /**
      The next active sheet to present after dismissing the current sheet.
      ManagingSharesView uses this variable to switch to UICloudSharingController or participant view.
@@ -83,10 +82,10 @@ struct FolioDetailView: View {
                     .font(.body.italic())
                 //Spacer()
 
-                    .background(
-                        NavigationLink(destination: ContentTagView(item: vm.folio), isActive: $vm.showTagSelection) {
-                            EmptyView()
-                        })
+//                    .background(
+//                        NavigationLink(destination: ContentTagView(item: vm.folio), isActive: $vm.showTagSelection) {
+//                            EmptyView()
+//                        })
                     .background(
                         NavigationLink(destination: ScannerView(folio: vm.folio), isActive: $vm.isScanning) {
                             EmptyView()
@@ -160,7 +159,9 @@ struct FolioDetailView: View {
     private func sheetView(with item: ActiveSheet) -> some View {
         switch item {
         case .filePicker:
-            FilePicker(activeSheet: $activeSheet)
+//            FilePicker(activeSheet: $activeSheet)
+            EmptyView()
+
             
         case .cloudSharingSheet(_):
             /**
@@ -168,16 +169,23 @@ struct FolioDetailView: View {
              */
             EmptyView()
         case .managingSharesView:
-            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
+//            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
+            EmptyView()
 
-        case .sharePicker(let photo):
-            AddToExistingShareView(activeSheet: $activeSheet, photo: photo)
+//
+        case .sharePicker(let folio):
+//            AddToExistingShareView(activeSheet: $activeSheet, photo: photo)
+            EmptyView()
 
-        case .taggingView(let photo):
-            TaggingView(activeSheet: $activeSheet, photo: photo)
+
+        case .taggingView(let folio):
+            ContentTagView(activeSheet: $activeSheet, folio: folio)
+            //TaggingView(activeSheet: $activeSheet, photo: photo)
 
         case .participantView(let share):
-            ParticipantView(activeSheet: $activeSheet, share: share)
+//            ParticipantView(activeSheet: $activeSheet, share: share)
+            EmptyView()
+
         }
     }
     @ToolbarContentBuilder
@@ -193,7 +201,8 @@ struct FolioDetailView: View {
                 Menu {
                     Button("Edit Folio Name...", action: editfolio)
                     Button("Change Tags...") {
-                        self.vm.showTagSelection = true
+                        //self.vm.showTagSelection = true
+                        activeSheet = .taggingView(vm.folio)
                     }
                     
                     Button("Add to Folio...", action: addtofolio)

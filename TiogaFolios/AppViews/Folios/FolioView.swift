@@ -41,10 +41,10 @@ struct FolioView: View {
                     .font(.body.italic())
                 //Spacer()
 
-                    .background(
-                        NavigationLink(destination: ContentTagView(item: folio), isActive: $showTagSelection) {
-                            EmptyView()
-                        })
+//                    .background(
+//                        NavigationLink(destination: ContentTagView(activeSheet: nil, folio: folio), isActive: $showTagSelection) {
+//                            EmptyView()
+//                        })
                     .background(
                         NavigationLink(destination: ScannerView(folio: folio), isActive: $isScanning) {
                             EmptyView()

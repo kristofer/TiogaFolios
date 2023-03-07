@@ -31,7 +31,17 @@ class FlexTagViewModel: ObservableObject {
 struct ContentTagView: View {
     
     @ObservedObject var viewModel: FlexTagViewModel
+    
+    @Binding var activeSheet: ActiveSheet?
+
     var tfolio: Folio
+
+    init(activeSheet: Binding<ActiveSheet?>, folio: Folio) {
+        _activeSheet = activeSheet
+        tfolio = folio
+        viewModel = FlexTagViewModel()
+        viewModel.initTags(f: tfolio)
+    }
     
     var body: some View {
         VStack{
@@ -44,12 +54,6 @@ struct ContentTagView: View {
         .onDisappear() {
             Storage.shared.save()
         }
-    }
-    
-    init(item: Folio) {
-        tfolio = item
-        viewModel = FlexTagViewModel()
-        viewModel.initTags(f: tfolio)
     }
     
 }
