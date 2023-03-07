@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct NewNoteView: View {
+    enum FocusedField {
+        case editor
+    }
+
     @ObservedObject var vm : FileAssetDetailVM
     @State var contentText: String = ""
     
@@ -20,19 +24,20 @@ struct NewNoteView: View {
         self.folio = folio
         let newasset = Asset.makeNewTextDoc(named: "", content: "")
         folio.addToAssets(newasset)
-        //Storage.shared.save()
         vm = FileAssetDetailVM(anAsset: newasset, showAssignTo: false)
     }
 
-    
+    @FocusState private var focusedField: FocusedField?
+
     var body: some View {
         HStack {
-            Text("Editing...")
+            Text("Add a New Text Note...")
                 .font(.caption)
             Spacer()
             Button(action: {
                 activeSheet = nil
-                if vm.fileasset.title == "", let firstParagraph = contentText.components(separatedBy: CharacterSet.newlines).first {
+                if vm.fileasset.title == "",
+                    let firstParagraph = contentText.components(separatedBy: CharacterSet.newlines).first {
                     vm.fileasset.title = String(firstParagraph.prefix(20))
                 }
                 vm.fileasset.setBlob(contentText.data(using: .utf8)!)
@@ -57,8 +62,12 @@ struct NewNoteView: View {
         }
         Divider()
         TextEditor(text: $contentText)
+            .focused($focusedField, equals: .editor)
             .border(.gray)
             .padding(2)
+            .onAppear {
+                focusedField = .editor
+            }
     }
 }
 
