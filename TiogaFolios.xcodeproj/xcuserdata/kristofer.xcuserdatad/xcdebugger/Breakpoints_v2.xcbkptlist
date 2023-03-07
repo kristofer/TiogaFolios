@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "984213F3-7FAA-4F11-ACDD-E5F94A39E0EB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TiogaFolios/AppViews/Folios/FolioDeltaView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "init(folio:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "26C812CF-39E4-4097-8D2B-C4A7D11E4485"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -382,9 +366,9 @@
             filePath = "TiogaFolios/AppViews/Scanner/ScannerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "openCamera()"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "savePDFtoFolio()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

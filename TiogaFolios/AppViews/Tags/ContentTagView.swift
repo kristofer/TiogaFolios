@@ -30,29 +30,29 @@ class FlexTagViewModel: ObservableObject {
 
 struct ContentTagView: View {
     
-    @ObservedObject var viewModel: FlexTagViewModel
+    @ObservedObject var vm: FlexTagViewModel
     
     @Binding var activeSheet: ActiveSheet?
 
-    var tfolio: Folio
+    var folio: Folio
 
     init(activeSheet: Binding<ActiveSheet?>, folio: Folio) {
         _activeSheet = activeSheet
-        tfolio = folio
-        viewModel = FlexTagViewModel()
-        viewModel.initTags(f: tfolio)
+        self.folio = folio
+        vm = FlexTagViewModel()
+        vm.initTags(f: folio)
     }
     
     var body: some View {
         VStack{
             Text("Tags assigned")
-            FlexiblePicker<SelectableTagModel>(inputData: $viewModel.tags, item: tfolio)
+            FlexiblePicker<SelectableTagModel>(inputData: $vm.tags, item: folio)
             Spacer()
             Button("Done.") { activeSheet = nil }
                 .buttonStyle(.bordered)
         }
         .onAppear(){
-            viewModel.initTags(f: tfolio)
+            vm.initTags(f: folio)
         }
         .onDisappear() {
             Storage.shared.save()

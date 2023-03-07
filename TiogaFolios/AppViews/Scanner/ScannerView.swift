@@ -31,7 +31,13 @@ class ScanViewModel: ObservableObject {
 struct ScannerView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    @Binding var activeSheet: ActiveSheet?
     var folio: Folio
+    
+    init(activeSheet: Binding<ActiveSheet?>, folio: Folio) {
+        _activeSheet = activeSheet
+        self.folio = folio
+    }
     
     @State var index = 0
     @State var scanArray = [Image]()

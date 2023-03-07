@@ -17,7 +17,9 @@ enum ActiveSheet: Identifiable, Equatable {
     case managingSharesView
     case sharePicker(Folio)
     case taggingView(Folio)
+    case addNoteView(Folio)
     case deltaFolioView(Folio)
+    case scanningView(Folio)
     case participantView(CKShare)
     /**
      Use the enumeration member name string as the identifier for Identifiable.
@@ -87,10 +89,10 @@ struct FolioDetailView: View {
 //                        NavigationLink(destination: ContentTagView(item: vm.folio), isActive: $vm.showTagSelection) {
 //                            EmptyView()
 //                        })
-                    .background(
-                        NavigationLink(destination: ScannerView(folio: vm.folio), isActive: $vm.isScanning) {
-                            EmptyView()
-                        })
+//                    .background(
+//                        NavigationLink(destination: ScannerView(folio: vm.folio), isActive: $vm.isScanning) {
+//                            EmptyView()
+//                        })
 
             }
             
@@ -185,6 +187,12 @@ struct FolioDetailView: View {
         case .deltaFolioView(let folio):
             FolioDeltaView(activeSheet: $activeSheet, folio: folio)
 
+        case .addNoteView(let folio):
+            NewNoteView(activeSheet: $activeSheet, folio: folio)
+            
+        case .scanningView(let folio):
+            ScannerView(activeSheet: $activeSheet, folio: folio)
+            
         case .participantView(let share):
 //            ParticipantView(activeSheet: $activeSheet, share: share)
             EmptyView()
@@ -207,9 +215,9 @@ struct FolioDetailView: View {
                     
                     Button("Add to Folio...", action: addtofolio)
                     Button("Scan to Folio...") {
-                        self.vm.isScanning = true
+                        activeSheet = .scanningView(vm.folio)
                     }
-                    Button("Add Note...", action: addnotetofolio)
+                    Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                     Button("Share Folio...", action: sharefolio)
                 } label: {
                     Label("", systemImage: "contextualmenu.and.cursorarrow")
@@ -245,7 +253,7 @@ struct FolioDetailView: View {
         nextSheet = nil
     }
 
-    func editfolio() { activeSheet = .deltaFolioView(vm.folio) }
+//    func editfolio() { activeSheet = .deltaFolioView(vm.folio) }
 
     func addtofolio() {
         self.vm.isImporting = false
@@ -254,10 +262,10 @@ struct FolioDetailView: View {
         }
     }
 
-    func addnotetofolio() {
-        vm.folio.addToAssets(Asset.makeNewTextDoc(named: "Untitled", content: " "))
-        Storage.shared.save()
-    }
+//    func addnotetofolio() {
+//        vm.folio.addToAssets(Asset.makeNewTextDoc(named: "Untitled", content: " "))
+//        Storage.shared.save()
+//    }
     
     func reloadAll() {
         Storage.shared.vc.refreshAllObjects()
