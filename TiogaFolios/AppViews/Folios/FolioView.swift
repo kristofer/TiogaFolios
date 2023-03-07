@@ -157,9 +157,9 @@ struct FolioView: View {
                 }
             }
         }
-        .sheet(isPresented: $isEditing) {
-            FolioDeltaView(objectPassed: folio, show: $isEditing)
-        }
+//        .sheet(isPresented: $isEditing) {
+//            FolioDeltaView(objectPassed: folio, show: $isEditing)
+//        }
     }
     
     func editfolio() { self.isEditing = true }

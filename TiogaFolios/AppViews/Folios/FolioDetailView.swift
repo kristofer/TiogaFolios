@@ -17,6 +17,7 @@ enum ActiveSheet: Identifiable, Equatable {
     case managingSharesView
     case sharePicker(Folio)
     case taggingView(Folio)
+    case deltaFolioView(Folio)
     case participantView(CKShare)
     /**
      Use the enumeration member name string as the identifier for Identifiable.
@@ -146,9 +147,9 @@ struct FolioDetailView: View {
           //self.share = store.getShare(vm.folio)
         })
         .toolbar { toolbarItems() }
-        .sheet(isPresented: $vm.isEditing) {
-            FolioDeltaView(objectPassed: vm.folio, show: $vm.isEditing)
-        }
+//        .sheet(isPresented: $vm.isEditing) {
+//            FolioDeltaView(objectPassed: vm.folio, show: $vm.isEditing)
+//        }
         .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
             sheetView(with: item)
         }
@@ -162,12 +163,12 @@ struct FolioDetailView: View {
 //            FilePicker(activeSheet: $activeSheet)
             EmptyView()
 
-            
         case .cloudSharingSheet(_):
             /**
              Reserve this case for something like CloudSharingSheet(activeSheet: $activeSheet, share: share).
              */
             EmptyView()
+            
         case .managingSharesView:
 //            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
             EmptyView()
@@ -180,7 +181,9 @@ struct FolioDetailView: View {
 
         case .taggingView(let folio):
             ContentTagView(activeSheet: $activeSheet, folio: folio)
-            //TaggingView(activeSheet: $activeSheet, photo: photo)
+
+        case .deltaFolioView(let folio):
+            FolioDeltaView(activeSheet: $activeSheet, folio: folio)
 
         case .participantView(let share):
 //            ParticipantView(activeSheet: $activeSheet, share: share)
@@ -199,11 +202,8 @@ struct FolioDetailView: View {
                     .foregroundColor(Color.accentColor)
                 Spacer()
                 Menu {
-                    Button("Edit Folio Name...", action: editfolio)
-                    Button("Change Tags...") {
-                        //self.vm.showTagSelection = true
-                        activeSheet = .taggingView(vm.folio)
-                    }
+                    Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }
+                    Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
                     
                     Button("Add to Folio...", action: addtofolio)
                     Button("Scan to Folio...") {
@@ -245,7 +245,7 @@ struct FolioDetailView: View {
         nextSheet = nil
     }
 
-    func editfolio() { self.vm.isEditing = true }
+    func editfolio() { activeSheet = .deltaFolioView(vm.folio) }
 
     func addtofolio() {
         self.vm.isImporting = false

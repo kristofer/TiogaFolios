@@ -47,6 +47,9 @@ struct ContentTagView: View {
         VStack{
             Text("Tags assigned")
             FlexiblePicker<SelectableTagModel>(inputData: $viewModel.tags, item: tfolio)
+            Spacer()
+            Button("Done.") { activeSheet = nil }
+                .buttonStyle(.bordered)
         }
         .onAppear(){
             viewModel.initTags(f: tfolio)

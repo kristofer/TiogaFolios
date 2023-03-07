@@ -8,27 +8,18 @@
 import SwiftUI
 
 class DeltaFolioVm: ObservableObject {
-    @Published var folio: Folio
+    @Published var tfolio: Folio
+    @Published var isChecked: Bool
     var ttitle: String
-    var creating = false
     
-    init(objectPassed: Folio? = nil) {
-        if objectPassed == nil {
-            creating = true
-            folio = Folio.createFolio(vc: Storage.shared.vc, title: "", desc: "")
-            ttitle = "Creating New Folio"
-        } else {
-            creating = false
-            folio = objectPassed!
+    init(folio: Folio) {
+            tfolio = folio
             ttitle = "Editing Folio"
-        }
+        if folio.locked { print("folio \(folio.title) locked.") }
+        isChecked = folio.locked
     }
     
-    func cancel() {
-        if creating {
-            self.folio.managedObjectContext?.delete(self.folio)
-        }
-    }
+    func cancel() { }
 
 }
 
@@ -37,52 +28,40 @@ struct FolioDeltaView: View {
       case field
     }
 
-
     @ObservedObject var vm: DeltaFolioVm
-    @Binding var isPresented: Bool
+    @Binding var activeSheet: ActiveSheet?
     @FocusState private var focusedField: FocusField?
 
-    @State var isChecked:Bool = false
     var title:String = "Archive This Folio"
 
-    init(objectPassed: Folio? = nil, show: Binding<Bool>) {
-        if objectPassed == nil {
-            vm = DeltaFolioVm()
-            self._isPresented = show
-        } else {
-            vm = DeltaFolioVm(objectPassed: objectPassed)
-            self._isPresented = show
-            self.isChecked = vm.folio.locked
-        }
+    init(activeSheet: Binding<ActiveSheet?>, folio: Folio) {
+        _activeSheet = activeSheet
+        vm = DeltaFolioVm(folio: folio)
     }
 
-    
     var body: some View {
         VStack {
             Form {
                 Text(vm.ttitle).font(.headline)
-                TextField("Untitled", text: $vm.folio.title ?? "")
+                TextField("Untitled", text: $vm.tfolio.title ?? "")
                     .focused($focusedField, equals: .field)
                     .onAppear {
                           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {  /// Anything over 0.5 seems to work
                                 self.focusedField = .field
                            }
                     }
-                TextField("description", text: $vm.folio.desc ?? "")
-                Button(action: {
-                    isChecked = !isChecked
-                    vm.folio.locked = isChecked
-                }){
-                    HStack{
-                        Image(systemName: isChecked ? "checkmark.square": "square")
-                        Text(title)
-                    }
+                TextField("description", text: $vm.tfolio.desc ?? "")
+                Toggle(title, isOn: $vm.isChecked)
+                if vm.isChecked {
+                    Text("Folio Locked!")
                 }
+
                 Divider()
                 Button(action: {
-                    vm.folio.touch()
+                    vm.tfolio.locked = vm.isChecked
+                    vm.tfolio.touch()
                     Storage.shared.save()
-                    isPresented = false
+                    activeSheet = nil
                 }) {
                     HStack {
                         Spacer()
@@ -97,24 +76,8 @@ struct FolioDeltaView: View {
             }
             .padding(20)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottom)
-            
-            Button(action: {
-                vm.cancel()
-                isPresented = false
-            }) {
-                HStack {
-                    Spacer()
-                    Text("Cancel")
-                    Spacer()
-                }
-            }
-            .buttonStyle(.bordered)
-            // will this be confusing?
-            //FolioTemplListView()
         }
     }
-    
-    
 }
 
 
