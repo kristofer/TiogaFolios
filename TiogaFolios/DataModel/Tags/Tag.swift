@@ -11,6 +11,10 @@ import CoreData
 // this is used to store the String in Core Data, but it is a ENUM in the data model.
 extension Tag {
 
+    enum Schema: String {
+        case name, uuid, title, desc
+    }
+
     static func allTags() -> [Tag] {
         //print("TFdebug running fetch on all tags")
         let vc = Storage.shared.vc

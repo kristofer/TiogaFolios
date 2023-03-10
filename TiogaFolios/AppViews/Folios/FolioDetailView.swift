@@ -158,13 +158,13 @@ struct FolioDetailView: View {
             EmptyView()
             
         case .managingSharesView:
-            //            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
-            EmptyView()
+            ManagingSharesView(activeSheet: $activeSheet, nextSheet: $nextSheet)
+            //EmptyView()
             
             //
         case .sharePicker(let folio):
-            //            AddToExistingShareView(activeSheet: $activeSheet, photo: photo)
-            EmptyView()
+            AddToExistingShareView(activeSheet: $activeSheet, folio: folio)
+            //EmptyView()
             
             
         case .taggingView(let folio):
@@ -183,8 +183,8 @@ struct FolioDetailView: View {
             FileAssetEditList(activeSheet: $activeSheet, folio: folio)
             
         case .participantView(let share):
-            //            ParticipantView(activeSheet: $activeSheet, share: share)
-            EmptyView()
+            ParticipantView(activeSheet: $activeSheet, share: share)
+            //EmptyView()
             
         }
     }
@@ -205,6 +205,8 @@ struct FolioDetailView: View {
                     Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
                     Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                     Button("Share Folio...", action: sharefolio)
+                    Button("Manage Shares") { activeSheet = .managingSharesView }
+
                 } label: {
                     Label("", systemImage: "contextualmenu.and.cursorarrow")
                 }
@@ -229,7 +231,7 @@ struct FolioDetailView: View {
         switch nextActiveSheet {
         case .cloudSharingSheet(let share):
             DispatchQueue.main.async {
-                //persistenceController.presentCloudSharingController(share: share)
+                Storage.shared.presentCloudSharingController(share: share)
             }
         default:
             DispatchQueue.main.async {
@@ -248,7 +250,8 @@ struct FolioDetailView: View {
     }
 
     func sharefolio() {
-        self.vm.message = Message(text: "sharing is unavailable")
+        createNewShare(folio: self.vm.folio)
+        //self.vm.message = Message(text: "sharing is unavailable")
         //        if !store.isShared(object: folio) {
         //          Task {
         //            await createShare(folio)
@@ -258,6 +261,23 @@ struct FolioDetailView: View {
         
     }
     
+    /**
+     Sharing a folio can take a while, so dispatch to a global queue so SwiftUI has a chance to show the progress view.
+     @State variables are thread-safe, so there's no need to dispatch back the main queue.
+     */
+    private func createNewShare(folio: Folio) {
+        //toggleProgress.toggle()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            Storage.shared.shareObject(folio, to: nil) { share, error in
+                //toggleProgress.toggle()
+                if let share = share {
+                    nextSheet = .participantView(share)
+                    activeSheet = nil
+                }
+            }
+        }
+    }
+
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
             guard let selectedFile: URL = try result.get().first else { return }

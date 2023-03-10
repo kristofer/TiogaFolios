@@ -60,6 +60,11 @@
 		5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3239D529257BF700619645 /* CloudKit.framework */; };
 		5C3C5A12299D570D00081F8D /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A11299D570D00081F8D /* CoreDataHelper.swift */; };
 		5C3C5A1429B7849800081F8D /* NewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1329B7849800081F8D /* NewNoteView.swift */; };
+		5C3C5A1629BA267800081F8D /* ManagingSharesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */; };
+		5C3C5A1829BA268100081F8D /* ParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1729BA268100081F8D /* ParticipantView.swift */; };
+		5C3C5A1A29BA269200081F8D /* AddToExistingShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */; };
+		5C3C5A1C29BA26DD00081F8D /* SharePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */; };
+		5C3C5A1E29BA276A00081F8D /* PersistenceController+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1D29BA276A00081F8D /* PersistenceController+Share.swift */; };
 		5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */; };
 		5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF861292BD8F4007CAAB6 /* SplashView.swift */; };
 		5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF869292BDCA4007CAAB6 /* ShareViewController.swift */; };
@@ -193,6 +198,11 @@
 		5C3239D529257BF700619645 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5C3C5A11299D570D00081F8D /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		5C3C5A1329B7849800081F8D /* NewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteView.swift; sourceTree = "<group>"; };
+		5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagingSharesView.swift; sourceTree = "<group>"; };
+		5C3C5A1729BA268100081F8D /* ParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantView.swift; sourceTree = "<group>"; };
+		5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToExistingShareView.swift; sourceTree = "<group>"; };
+		5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePickerView.swift; sourceTree = "<group>"; };
+		5C3C5A1D29BA276A00081F8D /* PersistenceController+Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Share.swift"; sourceTree = "<group>"; };
 		5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5C3EF861292BD8F4007CAAB6 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		5C3EF867292BDCA4007CAAB6 /* Archive It.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Archive It.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -401,6 +411,10 @@
 				5C32399D2925772B00619645 /* FolioTagItems.swift */,
 				5C32399E2925772B00619645 /* FolioView.swift */,
 				5CB910E029AFE85C0027E41C /* FolioDetailView.swift */,
+				5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */,
+				5C3C5A1729BA268100081F8D /* ParticipantView.swift */,
+				5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */,
+				5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */,
 				5C32399F2925772B00619645 /* FolioVM.swift */,
 				5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */,
 				5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */,
@@ -491,6 +505,7 @@
 		5CB910DF299EB1620027E41C /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
+				5C3C5A1D29BA276A00081F8D /* PersistenceController+Share.swift */,
 			);
 			path = Sharing;
 			sourceTree = "<group>";
@@ -668,6 +683,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C3C5A1629BA267800081F8D /* ManagingSharesView.swift in Sources */,
 				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
 				5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */,
 				5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */,
@@ -678,6 +694,7 @@
 				5C3239BD2925796200619645 /* BlobToTempFile.swift in Sources */,
 				5C3239A92925772B00619645 /* FolioVM.swift in Sources */,
 				5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */,
+				5C3C5A1C29BA26DD00081F8D /* SharePickerView.swift in Sources */,
 				5CC74C07294A821D00BE831F /* AssetRow.swift in Sources */,
 				5C323952292431A300619645 /* TiogaFolios.xcdatamodeld in Sources */,
 				5C3239A12925772B00619645 /* FolioCardItems.swift in Sources */,
@@ -695,11 +712,13 @@
 				5C323977292432E600619645 /* Config.swift in Sources */,
 				5C3239A82925772B00619645 /* FolioView.swift in Sources */,
 				5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */,
+				5C3C5A1A29BA269200081F8D /* AddToExistingShareView.swift in Sources */,
 				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,
 				5C3239C02925796200619645 /* FileAssetPreview.swift in Sources */,
 				5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */,
 				5C3239CE2925796F00619645 /* FontWeight.swift in Sources */,
 				5C32398129254C5F00619645 /* TemplateSources.swift in Sources */,
+				5C3C5A1829BA268100081F8D /* ParticipantView.swift in Sources */,
 				5C3239D02925796F00619645 /* TaggerView.swift in Sources */,
 				5C32398A29254CCB00619645 /* TagSources.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
@@ -721,6 +740,7 @@
 				5C32399429254DFC00619645 /* MainView.swift in Sources */,
 				5C32398229254C5F00619645 /* FolioTemplates.swift in Sources */,
 				5C3239B22925774800619645 /* FolioTemplListView.swift in Sources */,
+				5C3C5A1E29BA276A00081F8D /* PersistenceController+Share.swift in Sources */,
 				5C2B2BEA29524CB60056EFF3 /* SidebarNavigationView.swift in Sources */,
 				5C3239BE2925796200619645 /* FileAssetDetail.swift in Sources */,
 				5C3C5A12299D570D00081F8D /* CoreDataHelper.swift in Sources */,
