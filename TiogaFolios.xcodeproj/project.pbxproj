@@ -65,6 +65,7 @@
 		5C3C5A1A29BA269200081F8D /* AddToExistingShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */; };
 		5C3C5A1C29BA26DD00081F8D /* SharePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */; };
 		5C3C5A1E29BA276A00081F8D /* PersistenceController+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1D29BA276A00081F8D /* PersistenceController+Share.swift */; };
+		5C3C5A2029BB879600081F8D /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A11299D570D00081F8D /* CoreDataHelper.swift */; };
 		5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */; };
 		5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF861292BD8F4007CAAB6 /* SplashView.swift */; };
 		5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF869292BDCA4007CAAB6 /* ShareViewController.swift */; };
@@ -294,7 +295,6 @@
 			children = (
 				5CB910DF299EB1620027E41C /* Sharing */,
 				5C323978292433E000619645 /* TiogaFolios.entitlements */,
-				5C3C5A11299D570D00081F8D /* CoreDataHelper.swift */,
 				5C3239B52925778000619645 /* AppViews */,
 				5C323975292432B900619645 /* App */,
 				5C323949292431A300619645 /* Assets.xcassets */,
@@ -353,7 +353,7 @@
 				5C32399029254CD500619645 /* Tags */,
 				5C32398329254C7800619645 /* Folios */,
 				5C323976292432E600619645 /* Config.swift */,
-				5C32394E292431A300619645 /* Storage.swift */,
+				5C3C5A1F29BB878200081F8D /* Storage */,
 				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
 				5C32397A29253BFD00619645 /* DataModelNotes.md */,
 			);
@@ -400,6 +400,7 @@
 		5C3239952925772B00619645 /* Folios */ = {
 			isa = PBXGroup;
 			children = (
+				5C3C5A2129BB87AE00081F8D /* Sharing */,
 				5C3239962925772B00619645 /* FolioAddToV.swift */,
 				5C3239972925772B00619645 /* FolioCardItems.swift */,
 				5C3239982925772B00619645 /* FolioCardV.swift */,
@@ -411,14 +412,9 @@
 				5C32399D2925772B00619645 /* FolioTagItems.swift */,
 				5C32399E2925772B00619645 /* FolioView.swift */,
 				5CB910E029AFE85C0027E41C /* FolioDetailView.swift */,
-				5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */,
-				5C3C5A1729BA268100081F8D /* ParticipantView.swift */,
-				5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */,
-				5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */,
 				5C32399F2925772B00619645 /* FolioVM.swift */,
 				5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */,
 				5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */,
-				5CC74C08294B75BF00BE831F /* CloudSharingController.swift */,
 			);
 			path = Folios;
 			sourceTree = "<group>";
@@ -486,6 +482,27 @@
 				5C3239D529257BF700619645 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C3C5A1F29BB878200081F8D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				5C3C5A11299D570D00081F8D /* CoreDataHelper.swift */,
+				5C32394E292431A300619645 /* Storage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		5C3C5A2129BB87AE00081F8D /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */,
+				5C3C5A1729BA268100081F8D /* ParticipantView.swift */,
+				5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */,
+				5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */,
+				5CC74C08294B75BF00BE831F /* CloudSharingController.swift */,
+			);
+			path = Sharing;
 			sourceTree = "<group>";
 		};
 		5C3EF868292BDCA4007CAAB6 /* Archive It */ = {
@@ -783,6 +800,7 @@
 				5C3EF87B292BDD02007CAAB6 /* ShareSelectViewController.swift in Sources */,
 				5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */,
 				5C3EF87E292BDD52007CAAB6 /* Folio.swift in Sources */,
+				5C3C5A2029BB879600081F8D /* CoreDataHelper.swift in Sources */,
 				5C3EF883292BDDF1007CAAB6 /* SelectableTag.swift in Sources */,
 				5C3EF884292BDDFB007CAAB6 /* TagSources.swift in Sources */,
 				5C3EF87F292BDD57007CAAB6 /* Config.swift in Sources */,

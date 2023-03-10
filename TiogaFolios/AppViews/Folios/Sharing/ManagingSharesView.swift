@@ -12,20 +12,20 @@ import CloudKit
 struct ManagingSharesView: View {
     @Binding var activeSheet: ActiveSheet?
     @Binding var nextSheet: ActiveSheet?
+    var folio: Folio
 
     @State private var toggleProgress: Bool = false
-    @State private var selection: String?
 
     var body: some View {
-        ZStack {
-            SharePickerView(activeSheet: $activeSheet, selection: $selection) {
-                if  let shareTitle = selection, let share = Storage.shared.share(with: shareTitle) {
+        VStack {
+            //SharePickerView(activeSheet: $activeSheet, selection: $selection) {
+            if  let share = Storage.shared.existingShare(folio: folio) {
                     actionButtons(for: share)
                 }
-            }
-            if toggleProgress {
-                ProgressView()
-            }
+            //}
+//            if toggleProgress {
+//                ProgressView()
+//            }
         }
     }
     
@@ -35,29 +35,24 @@ struct ManagingSharesView: View {
         let isPrivateStore = (persistentStore == Storage.shared.privatePersistentStore)
         
         Button(isPrivateStore ? "Manage Participants" : "View Participants") {
-            if let share = Storage.shared.share(with: selection!) {
+            if let share = Storage.shared.existingShare(folio: folio) {
                 nextSheet = .participantView(share)
                 activeSheet = nil
             }
         }
-        .disabled(selection == nil)
         
         Button(isPrivateStore ? "Stop Sharing" : "Remove Me") {
-            if let share = Storage.shared.share(with: selection!) {
+            if let share = Storage.shared.existingShare(folio: folio) {
                 purgeShare(share, in: persistentStore)
             }
         }
-        .disabled(selection == nil)
 
-        #if os(iOS)
         Button("Manage With UICloudSharingController") {
-            if let share = Storage.shared.share(with: selection!) {
+            if let share = Storage.shared.existingShare(folio: folio) {
                 nextSheet = .cloudSharingSheet(share)
                 activeSheet = nil
             }
         }
-        .disabled(selection == nil)
-        #endif
     }
     
     private func purgeShare(_ share: CKShare, in persistentStore: NSPersistentStore?) {

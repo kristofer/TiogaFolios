@@ -66,7 +66,7 @@ extension Storage {
              */
             self.container.share([unsharedFolio], to: nil) { objectIDs, share, container, error in
                 if let share = share {
-                    self.configure(share: share)
+                    self.configure(share: share, with: unsharedFolio)
                 }
                 completion(share, container, error)
             }
@@ -125,7 +125,7 @@ extension Storage: UICloudSharingControllerDelegate {
     }
     
     func itemTitle(for csc: UICloudSharingController) -> String? {
-        return csc.share?.title ?? "A cool folio"
+        return csc.share?.title ?? "Shared Folio"
     }
 }
 #endif
@@ -210,7 +210,11 @@ extension Storage {
     }
     
     private func configure(share: CKShare, with folio: Folio? = nil) {
-        share[CKShare.SystemFieldKey.title] = "A cool folio"
+        if let folio = folio {
+            share[CKShare.SystemFieldKey.title] = folio.title
+            return
+        }
+        share[CKShare.SystemFieldKey.title] = "Shared Folio"
     }
 }
 
