@@ -15,14 +15,15 @@ struct ManagingSharesView: View {
     var folio: Folio
 
     @State private var toggleProgress: Bool = false
+    @State private var selection: String?
 
     var body: some View {
         VStack {
-            //SharePickerView(activeSheet: $activeSheet, selection: $selection) {
+            SharePickerView(activeSheet: $activeSheet, selection: $selection) {
             if  let share = Storage.shared.existingShare(folio: folio) {
                     actionButtons(for: share)
                 }
-            //}
+            }
 //            if toggleProgress {
 //                ProgressView()
 //            }
