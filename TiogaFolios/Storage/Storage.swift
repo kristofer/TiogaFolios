@@ -341,11 +341,11 @@ extension Storage {
      */
     private func processHistoryAsynchronously(storeUUID: String) {
         historyQueue.addOperation {
-//            let taskContext = self.container.newTaskContext()
-//            taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//            taskContext.performAndWait {
-//                self.performHistoryProcessing(storeUUID: storeUUID, performingContext: taskContext)
-//            }
+            let taskContext = self.container.newTaskContext()
+            taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            taskContext.performAndWait {
+                self.performHistoryProcessing(storeUUID: storeUUID, performingContext: taskContext)
+            }
         }
     }
     

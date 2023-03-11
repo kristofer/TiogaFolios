@@ -295,11 +295,12 @@
 			children = (
 				5CB910DF299EB1620027E41C /* Sharing */,
 				5C323978292433E000619645 /* TiogaFolios.entitlements */,
+				5C3C5A1F29BB878200081F8D /* Storage */,
+				5C3239792925363700619645 /* DataModel */,
 				5C3239B52925778000619645 /* AppViews */,
 				5C323975292432B900619645 /* App */,
 				5C323949292431A300619645 /* Assets.xcassets */,
 				5C323953292431A300619645 /* Info.plist */,
-				5C3239792925363700619645 /* DataModel */,
 				5C32399229254D7E00619645 /* Networking */,
 				5C32394B292431A300619645 /* Preview Content */,
 			);
@@ -353,7 +354,6 @@
 				5C32399029254CD500619645 /* Tags */,
 				5C32398329254C7800619645 /* Folios */,
 				5C323976292432E600619645 /* Config.swift */,
-				5C3C5A1F29BB878200081F8D /* Storage */,
 				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
 				5C32397A29253BFD00619645 /* DataModelNotes.md */,
 			);
