@@ -257,7 +257,7 @@ extension Storage {
     func isOwner(object: NSManagedObject) -> Bool {
         guard isShared(object: object) else { return false }
         guard let share = try? container.fetchShares(matching: [object.objectID])[object.objectID] else {
-            print("Get ckshare error")
+            print("TFdebug Get ckshare error")
             return false
         }
         if let currentUser = share.currentUserParticipant, currentUser == share.owner {
@@ -281,7 +281,7 @@ extension Storage {
         let storeDescription = container.persistentStoreDescriptions.first
         guard let identifier = storeDescription?
             .cloudKitContainerOptions?.containerIdentifier else {
-            fatalError("Unable to get container identifier")
+            fatalError("TFdebug Unable to get container identifier")
         }
         return CKContainer(identifier: identifier)
     }
@@ -290,7 +290,7 @@ extension Storage {
         guard isShared(object: folio) else { return nil }
         guard let shareDictionary = try? container.fetchShares(matching: [folio.objectID]),
               let share = shareDictionary[folio.objectID] else {
-            print("Unable to get CKShare")
+            print("TFdebug Unable to get CKShare")
             return nil
         }
         share[CKShare.SystemFieldKey.title] = folio.title
@@ -310,7 +310,7 @@ extension Storage {
     func storeRemoteChange(_ notification: Notification) {
         guard let storeUUID = notification.userInfo?[NSStoreUUIDKey] as? String,
               [privatePersistentStore.identifier, sharedPersistentStore.identifier].contains(storeUUID) else {
-            print("\(#function): Ignore a store remote Change notification because of no valid storeUUID.")
+            print("TFdebug \(#function): Ignore a store remote Change notification because of no valid storeUUID.")
             return
         }
         processHistoryAsynchronously(storeUUID: storeUUID)
@@ -323,11 +323,11 @@ extension Storage {
     func containerEventChanged(_ notification: Notification) {
          guard let value = notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey],
               let event = value as? NSPersistentCloudKitContainer.Event else {
-            print("\(#function): Failed to retrieve the container event from notification.userInfo.")
+            print("TFdebug \(#function): Failed to retrieve the container event from notification.userInfo.")
             return
         }
         if event.error != nil {
-            print("\(#function): Received a persistent CloudKit container event changed notification.\n\(event)")
+            print("TFdebug \(#function): Received a persistent CloudKit container event changed notification.\n\(event)")
         }
     }
 }

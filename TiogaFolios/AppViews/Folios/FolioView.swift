@@ -287,14 +287,14 @@ extension FolioView {
     }
   }
   
-  private func createShare(_ folio: Folio) async {
+  private func createShare(folio: Folio) async {
     do {
       let (_, share, _) =
       try await store.container.share([folio], to: nil)
       share[CKShare.SystemFieldKey.title] = folio.title
       self.share = share
     } catch {
-      print("Failed to create share")
+      print("TFdebug Failed to create share")
     }
   }
 

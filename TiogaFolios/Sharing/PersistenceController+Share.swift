@@ -113,14 +113,14 @@ extension Storage: UICloudSharingControllerDelegate {
         if let share = csc.share, let persistentStore = share.persistentStore {
             container.persistUpdatedShare(share, in: persistentStore) { (share, error) in
                 if let error = error {
-                    print("KKYY \(#function): Failed to persist updated share: \(error)")
+                    print("TFdebug \(#function): Failed to persist updated share: \(error)")
                 }
             }
         }
     }
 
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
-        print("KKYY \(#function): Failed to save a share: \(error)")
+        print("TFdebug \(#function): Failed to save a share: \(error)")
     }
     
     func itemTitle(for csc: UICloudSharingController) -> String? {
@@ -198,10 +198,10 @@ extension Storage {
         let shares = try? container.fetchShares(in: stores)
         if let shares = shares {
             for sh in shares {
-                print("KKYY share is \(sh.title)")
+                print("TFdebug share is \(sh.title)")
             }
         } else {
-            print("KKYY no shares found.")
+            print("TFdebug no shares found.")
         }
         return shares?.map { $0.title } ?? []
     }
