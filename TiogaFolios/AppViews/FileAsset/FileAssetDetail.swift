@@ -29,7 +29,7 @@ final class FileAssetDetailVM: ObservableObject {
         tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
         
         //
-        //print("TFdebug showing assignto \(showAssignTo)")
+        //tfDebug("showing assignto \(showAssignTo)")
         showAssign = showAssignTo
     }
     
@@ -54,7 +54,7 @@ final class FileAssetDetailVM: ObservableObject {
     }
     
     func loadTempFile() {
-        //print("TFdebug loadTempFile \(fileasset.title!) \(tempFile.fileURL)")
+        //tfDebug("loadTempFile \(fileasset.title!) \(tempFile.fileURL)")
         do {
             let blob = fileasset.blob
             if fileasset.blobSize() <= 0 {
@@ -178,9 +178,9 @@ struct FileAssetDetail: View {
             if let range3 = teststr.range(of: ".rtfd", options: .caseInsensitive) {
                 // match
                 vm.errormsg = "error: unable to archive an RTFD file, \(selectedFile)"
-                print("error: found an RTFD file",selectedFile,range3)
+                tfDebug("error: found an RTFD file",selectedFile,range3)
             } else {
-                print("continue")
+                tfDebug("continue")
             }
             
             let blob = try Data(contentsOf: selectedFile) as Data?

@@ -382,3 +382,75 @@ folios are still the only "special" tag.
 ""
 
 
+
+See: https://medium.com/@adammillers/cksharing-step-by-step-33800c8950d2
+
+01. Public database: this is where you’d store things you want everyone to be able to access. There are no custom zones in Public databases, everything exists in the default zone.
+02. Private database: This is where you store records that you don’t want the public to see. The private database has a default zone, and users can create custom zones. Important: put anything you want to share in custom zones in your private database.
+03. Shared database: This database holds the “windows into objects” that you have been given access to. The records you see in the shared database exist on other people’s private databases. You just have a window into that object. Another way of saying it is that you are a “contributor” to the items in your shared database, not the owner.
+04. Don’t let the term “shared zone” trip you up. There’s no such thing as a CKRecordZone that you put records in where it’s just automatically shared with another user. The shared zone is just a zone created for you to access and add shared records, but it by itself does not cause the objects to be shared, more on this later.
+05. The CKShare ObjectCKShare is a CKRecord that acts like a portal from you private database to another user’s shared database. The CKShare is attached to a CKRecord by the server, all you do is create the CKShare and indicate which record you want to attach it to. You add it just like any other CKRecord, through a CKModifyRecordsOperation. When you add a CKShare object, it will create a record type in your dashboard, which you can inspect. It even tells you through drop downs who the various users are and if they’ve accepted the invitation or not!
+06. There are two ways to identify who you want to share something with. One is a “Custom” route, and the other way is the UICloudSharingController route.
+
+A. Custom: I’m not going to go too much into the custom route, but it involves getting permission for userDiscoverability using:
+
+CKContainer.default().requestApplicationPermission(...)
+
+You’ll need to include that you’re requesting .userDiscoverability, and set a completionHandler. This method will get let other users see that you have used this app and allows you to be discovered. This will allows users to find and manipulate CKUserIdentity objects, which let them set up sharing. You can make some pretty easy to use experiences doing this, but its a lot more development work. There’s an easier way…
+
+B. UICloudSharingController: As you can tell from the “UI” part, this is a view that you present to the user that lets them select who they’d like to share with. In creating this view, you also have to indicate the object you’re going to share, as well as creating the CKShare object.
+
+// Note: employeeRecord is the CKRecord I need to sharelet share = CKShare(rootRecord: employeeRecord)share[CKShareTitleKey] = "Some title" as CKRecordValue?share[CKShareTypeKey] = "Some type" as CKRecordValue?let sharingController = UICloudSharingController    (preparationHandler: {(UICloudSharingController, handler:       @escaping (CKShare?, CKContainer?, Error?) -> Void) in    let modifyOp = CKModifyRecordsOperation(recordsToSave:         [employeeRecord, share], recordIDsToDelete: nil)    modifyOp.modifyRecordsCompletionBlock = { (record, recordID,         error) in        handler(share, CKContainer.default(), error)    }    CKContainer.default().privateCloudDatabase.add(modifyOp)})sharingController.availablePermissions = [.allowReadWrite,        .allowPrivate]sharingController.delegate = selfself.present(sharingController, animated:true, completion:nil)
+
+
+First we create a CKShare object using the root record we’d like to share. In our instance, we’re going to share an Employee record (more on why this is in a bit)
+Then we set title and type keys. These show up in your dashboard, I wish i could tell you what these do, but I haven’t figured out exactly what their purpose is yet :-)
+Then we create our UICloudSharingController, which takes a preparationHandler as an argument. In the preparationHandler you need to add both the share and the Employee record to the private database at the same time, so they’re available to be shared.
+Then we set permissions, like if we want anyone to be able to access this Employee, or just people we invite. Then we set the delegate to ourselves, and present the sharingController.
+Voila!
+
+The name in the middle of the screen is the title of the object that I’m trying to share. In this case I’m sharing an “Employee” record so I’m using Alice’s name, but if you’re sharing a document it would be the document name, etc… The email address below is your iCloud email address. You set the image in the middle of the screen and the title through delegate methods.
+func cloudSharingController(_ controller: UICloudSharingController, failedToSaveShareWithError error: Error) {    // Failed to save, handle the error better than I did :-)    // Also, this method is required!    print(error)}func itemThumbnailData(for: UICloudSharingController) -> Data? {    // This sets the image in the middle, nil is the default           document image you see, this method is not required    return nil}func itemTitle(for: UICloudSharingController) -> String? {    // Set the title here, this method is required!    // returning nil or failing to implement delegate methods        results in "Untitled"    return "Alice Campbell"}// There are additional delegate methods, see the docs.
+This whole interface is intended to help you send a link to another user. The link is a URL that when opened, will open the app on the other user’s device and call a method in the App Delegate called userDidAcceptCloudKitShare… You need to implement this method in your app delegate, or else the user will not be able to accept a share.
+func application(_ application: UIApplication,     userDidAcceptCloudKitShareWith cloudKitShareMetadata:     CKShareMetadata) {        let acceptShareOperation: CKAcceptSharesOperation =         CKAcceptSharesOperation(shareMetadatas:         [cloudKitShareMetadata])        acceptShareOperation.qualityOfService = .userInteractive    acceptShareOperation.perShareCompletionBlock = {meta, share,         error in        print("share was accepted")    }    acceptShareOperation.acceptSharesCompletionBlock = {        error in        /// Send your user to where they need to go in your app    }    CKContainer(identifier:        cloudKitShareMetadata.containerIdentifier).add        (acceptShareOperation)}
+TL;DR, we’re accepting the share here, and we have an opportunity to put the user in the correct place in our UI to indicate success.
+Employee with, access this new record I’m creating.
+
+That’s basically it.
+A. Create your records in your private database in custom zones
+B. Share those records using a CKShare record once you know who you’re sharing it with.
+C. Access records shared with you from the shared database, but remember this is just a window into someone else’s private database.
+D. Share additional records by adding the originally shared record under the Parent property of your new records•Subscriptions work from their respective databases, ie. creators subscribe through their private database, and contributors subscribe through the shared database.
+
+
+
+## Zones and Records Oh My
+
+'''
+func addRecordToCustomZone() {       
+    let ckRecordZoneID = CKRecordZone(zoneName: "CustomZoneName")
+    let ckRecordID = CKRecord.ID(zoneID: ckRecordZoneID.zoneID)
+    // let ckRecordID = CKRecord.ID(recordName: "SomeUniqueName", zoneID: ckRecordZoneID.zoneID)
+    let aRecord = CKRecord(recordType: "Cars", recordID: ckRecordID)// Cars is the data Type
+
+    aRecord["carMake"] = "Porche" // carMake is a field in the Cars Type.
+    aRecord["carModel"] = "Carrera" // carModel is a field in the Cars Type.
+    
+    privateDatabase.save(aRecord, completionHandler: { (record, error) -> Void in
+        if let error = error {
+            print(error)
+        }
+        else {
+            print("record saved successfully")
+        }
+    })
+}
+'''
+
+Please note that you also have the option of adding your own record name if you like by specifying it in the `CKRecord.ID` as follow.
+
+'''
+'let ckRecordID = CKRecord.ID(recordName: "SomeUniqueName", zoneID: ckRecordZoneID.zoneID)
+'''
+
+

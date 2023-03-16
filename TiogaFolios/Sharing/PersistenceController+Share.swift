@@ -75,12 +75,12 @@ extension Storage {
     private var rootViewController: UIViewController? {
         for scene in UIApplication.shared.connectedScenes {
             if scene.activationState == .foregroundActive,
-               let sceneDeleate = (scene as? UIWindowScene)?.delegate as? UIWindowSceneDelegate,
-               let window = sceneDeleate.window {
+               let sceneDelegate = (scene as? UIWindowScene)?.delegate as? UIWindowSceneDelegate,
+               let window = sceneDelegate.window {
                 return window?.rootViewController
             }
         }
-        print("\(#function): Failed to retrieve the window's root view controller.")
+        tfDebug("\(#function): Failed to retrieve the window's root view controller.")
         return nil
     }
 }
@@ -104,6 +104,7 @@ extension Storage: UICloudSharingControllerDelegate {
      the UI, if necessary.
      */
     func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController) {
+        
         if let share = csc.share {
             purgeObjectsAndRecords(with: share)
         }
@@ -113,14 +114,16 @@ extension Storage: UICloudSharingControllerDelegate {
         if let share = csc.share, let persistentStore = share.persistentStore {
             container.persistUpdatedShare(share, in: persistentStore) { (share, error) in
                 if let error = error {
-                    print("TFdebug \(#function): Failed to persist updated share: \(error)")
+                    tfDebug("\(#function): Failed to persist updated share: \(error)")
+                } else {
+                    tfDebug("\(#function): successful")
                 }
             }
         }
     }
 
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
-        print("TFdebug \(#function): Failed to save a share: \(error)")
+        tfDebug("\(#function): Failed to save a share: \(error)")
     }
     
     func itemTitle(for csc: UICloudSharingController) -> String? {
@@ -135,7 +138,7 @@ extension Storage {
     {
         container.share([unsharedObject], to: existingShare) { (objectIDs, share, container, error) in
             guard error == nil, let share = share else {
-                print("\(#function): Failed to share an object: \(error!))")
+                tfDebug("\(#function): Failed to share an object: \(error!))")
                 completionHandler?(share, error)
                 return
             }
@@ -155,7 +158,7 @@ extension Storage {
              */
             self.container.persistUpdatedShare(share, in: self.privatePersistentStore) { (share, error) in
                 if let error = error {
-                    print("\(#function): Failed to persist updated share: \(error)")
+                    tfDebug("\(#function): Failed to persist updated share: \(error)")
                 }
                 completionHandler?(share, error)
             }
@@ -167,15 +170,15 @@ extension Storage {
      */
     func purgeObjectsAndRecords(with share: CKShare, in persistentStore: NSPersistentStore? = nil) {
         guard let store = (persistentStore ?? share.persistentStore) else {
-            print("\(#function): Failed to find the persistent store for share. \(share))")
+            tfDebug("\(#function): Failed to find the persistent store for share. \(share))")
             return
         }
-        print("\(#function): Would purge objects and records!!")
-//        container.purgeObjectsAndRecordsInZone(with: share.recordID.zoneID, in: store) { (zoneID, error) in
-//            if let error = error {
-//                print("\(#function): Failed to purge objects and records: \(error)")
-//            }
-//        }
+        tfDebug("\(#function): Would purge objects and records!!")
+        container.purgeObjectsAndRecordsInZone(with: share.recordID.zoneID, in: store) { (zoneID, error) in
+            if let error = error {
+                tfDebug("\(#function): Failed to purge objects and records: \(error)")
+            }
+        }
     }
 
     func existingShare(folio: Folio) -> CKShare? {
@@ -198,10 +201,10 @@ extension Storage {
         let shares = try? container.fetchShares(in: stores)
         if let shares = shares {
             for sh in shares {
-                print("TFdebug share is \(sh.title)")
+                tfDebug("share is \(sh.title)")
             }
         } else {
-            print("TFdebug no shares found.")
+            tfDebug("no shares found.")
         }
         return shares?.map { $0.title } ?? []
     }
@@ -237,7 +240,7 @@ extension Storage {
             
             self.container.persistUpdatedShare(share, in: persistentStore) { (share, error) in
                 if let error = error {
-                    print("\(#function): Failed to persist updated share: \(error)")
+                    tfDebug("\(#function): Failed to persist updated share: \(error)")
                 }
                 completionHandler?(share, error)
             }
@@ -254,7 +257,7 @@ extension Storage {
          */
         container.persistUpdatedShare(share, in: privatePersistentStore) { (share, error) in
             if let error = error {
-                print("\(#function): Failed to persist updated share: \(error)")
+                tfDebug("\(#function): Failed to persist updated share: \(error)")
             }
             completionHandler?(share, error)
         }
@@ -297,3 +300,103 @@ extension CKShare {
         return nil
     }
 }
+
+
+extension NSManagedObject {
+    
+    enum DeepCopyError: Error {
+        case missingContext
+        case missingEntityName(NSManagedObject)
+        case unmanagedObject(Any)
+    }
+    
+    func deepcopy(context: NSManagedObjectContext? = nil) throws -> NSManagedObject {
+        
+        if let context = context ?? managedObjectContext {
+            
+            var cache = Dictionary<NSManagedObjectID, NSManagedObject>()
+            return try deepcopy(context: context, cache: &cache)
+            
+        } else {
+            throw DeepCopyError.missingContext
+        }
+    }
+
+    private func deepcopy(context: NSManagedObjectContext, cache alreadyCopied: inout Dictionary<NSManagedObjectID, NSManagedObject>) throws -> NSManagedObject {
+                
+        guard let entityName = self.entity.name else {
+            throw DeepCopyError.missingEntityName(self)
+        }
+        
+        if let storedCopy = alreadyCopied[self.objectID] {
+            return storedCopy
+        }
+
+        let cloned = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+        alreadyCopied[self.objectID] = cloned
+        
+        // Loop through all attributes and assign then to the clone
+        NSEntityDescription
+            .entity(forEntityName: entityName, in: context)?
+            .attributesByName
+            .forEach { attribute in
+                cloned.setValue(value(forKey: attribute.key), forKey: attribute.key)
+            }
+        
+        // Loop through all relationships, and clone them.
+        try NSEntityDescription
+            .entity(forEntityName: entityName, in: context)?
+            .relationshipsByName
+            .forEach { relation in
+                
+                if relation.value.isToMany {
+                    if relation.value.isOrdered {
+                        
+                        // Get a set of all objects in the relationship
+                        let sourceSet = mutableOrderedSetValue(forKey: relation.key)
+                        let clonedSet = cloned.mutableOrderedSetValue(forKey: relation.key)
+                        
+                        for object in sourceSet.objectEnumerator() {
+                            if let relatedObject = object as? NSManagedObject {
+                                
+                                // Clone it, and add clone to the set
+                                let clonedRelatedObject = try relatedObject.deepcopy(context: context, cache: &alreadyCopied)
+                                clonedSet.add(clonedRelatedObject as Any)
+                                
+                            } else {
+                                throw DeepCopyError.unmanagedObject(object)
+                            }
+                        }
+                        
+                    } else {
+                        
+                        // Get a set of all objects in the relationship
+                        let sourceSet = mutableSetValue(forKey: relation.key)
+                        let clonedSet = cloned.mutableSetValue(forKey: relation.key)
+                        
+                        for object in sourceSet.objectEnumerator() {
+                            if let relatedObject = object as? NSManagedObject {
+                                
+                                // Clone it, and add clone to the set
+                                let clonedRelatedObject = try relatedObject.deepcopy(context: context, cache: &alreadyCopied)
+                                clonedSet.add(clonedRelatedObject as Any)
+                                
+                            } else {
+                                throw DeepCopyError.unmanagedObject(object)
+                            }
+                        }
+                    }
+                    
+                } else if let relatedObject = self.value(forKey: relation.key) as? NSManagedObject {
+                    
+                    // Clone it, and assign then to the clone
+                    let clonedRelatedObject = try relatedObject.deepcopy(context: context, cache: &alreadyCopied)
+                    cloned.setValue(clonedRelatedObject, forKey: relation.key)
+                    
+                }
+            }
+        
+        return cloned
+    }
+}
+

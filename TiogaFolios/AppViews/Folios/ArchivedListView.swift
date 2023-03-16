@@ -13,7 +13,7 @@ class ArchivedListViewModel: ObservableObject {
     
     func fetchData() {
         self.folios = Folio.fetchArchivedFolios(vc: Storage.shared.vc)
-        //print("TFdebug fetch folios \(self.folios.count)")
+        //tfDebug("fetch folios \(self.folios.count)")
     }
     
 }

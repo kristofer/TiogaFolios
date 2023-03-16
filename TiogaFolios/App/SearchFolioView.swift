@@ -15,7 +15,7 @@ class FolioSearchViewModel: ObservableObject {
 
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
-        //print("TFdebug fetch folios \(self.folios.count)")
+        //tfDebug("fetch folios \(self.folios.count)")
     }
     
     func doSearch(_ srchStr: String) {

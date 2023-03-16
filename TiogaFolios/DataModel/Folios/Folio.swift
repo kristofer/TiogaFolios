@@ -72,7 +72,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("TFdebug folio count \(fetchedFolios.count)")
+        tfDebug("folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
     
@@ -90,7 +90,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("TFdebug folio count \(fetchedFolios.count)")
+        tfDebug("folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
 
@@ -107,7 +107,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("TFdebug folio count \(fetchedFolios.count)")
+        tfDebug("folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
     

@@ -17,9 +17,9 @@ class ScanViewModel: ObservableObject {
     
     init() {
         camera = DocumentCamera(
-            cancelAction: { print("User did cancel") },
+            cancelAction: { tfDebug("User did cancel") },
             resultAction: { result in
-                print("Scanned \(result)")
+                tfDebug("Scanned \(result)")
             }             // Mandatory
         )
         
@@ -191,7 +191,7 @@ private extension VNDocumentCameraScan {
  
  ```swift
  let camera = DocumentCamera(
- cancelAction: { print("User did cancel") }  // Optional
+ cancelAction: { tfDebug("User did cancel") }  // Optional
  resultAction: { result in ... }             // Mandatory
  }
  ```

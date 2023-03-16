@@ -84,6 +84,8 @@
 		5C3EF885292BDE38007CAAB6 /* FolioTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398029254C5F00619645 /* FolioTemplates.swift */; };
 		5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */; };
 		5C7533E6297ADABB006867D3 /* MissingAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7533E5297ADABB006867D3 /* MissingAssetView.swift */; };
+		5C7D96DF29BF664A00D9948D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D96DE29BF664A00D9948D /* Globals.swift */; };
+		5C7D96E029BF665A00D9948D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D96DE29BF664A00D9948D /* Globals.swift */; };
 		5C820580297877860007CF70 /* ArchivedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82057F297877860007CF70 /* ArchivedListView.swift */; };
 		5C84346229437E9A005B0051 /* NoteEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84346129437E9A005B0051 /* NoteEditView.swift */; };
 		5C85EDE32938F6390087EFBE /* 1DecSchema.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5C85EDE22938F6390087EFBE /* 1DecSchema.txt */; };
@@ -214,6 +216,7 @@
 		5C3EF886292BDE89007CAAB6 /* Archive It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Archive It.entitlements"; sourceTree = "<group>"; };
 		5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFolio.swift; sourceTree = "<group>"; };
 		5C7533E5297ADABB006867D3 /* MissingAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingAssetView.swift; sourceTree = "<group>"; };
+		5C7D96DE29BF664A00D9948D /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		5C82057F297877860007CF70 /* ArchivedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedListView.swift; sourceTree = "<group>"; };
 		5C84346129437E9A005B0051 /* NoteEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditView.swift; sourceTree = "<group>"; };
 		5C85EDE22938F6390087EFBE /* 1DecSchema.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1DecSchema.txt; sourceTree = "<group>"; };
@@ -343,6 +346,7 @@
 				5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */,
 				5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */,
 				5C3EF861292BD8F4007CAAB6 /* SplashView.swift */,
+				5C7D96DE29BF664A00D9948D /* Globals.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -761,6 +765,7 @@
 				5C2B2BEA29524CB60056EFF3 /* SidebarNavigationView.swift in Sources */,
 				5C3239BE2925796200619645 /* FileAssetDetail.swift in Sources */,
 				5C3C5A12299D570D00081F8D /* CoreDataHelper.swift in Sources */,
+				5C7D96DF29BF664A00D9948D /* Globals.swift in Sources */,
 				5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */,
 				5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */,
 				5CEDC3BA2963312300FDB600 /* WebView.swift in Sources */,
@@ -798,6 +803,7 @@
 				5C3EF882292BDDAA007CAAB6 /* Fetching.swift in Sources */,
 				5CE60D2F296628870050304D /* CustomShareViewController.swift in Sources */,
 				5C3EF87B292BDD02007CAAB6 /* ShareSelectViewController.swift in Sources */,
+				5C7D96E029BF665A00D9948D /* Globals.swift in Sources */,
 				5C3EF86A292BDCA4007CAAB6 /* ShareViewController.swift in Sources */,
 				5C3EF87E292BDD52007CAAB6 /* Folio.swift in Sources */,
 				5C3C5A2029BB879600081F8D /* CoreDataHelper.swift in Sources */,

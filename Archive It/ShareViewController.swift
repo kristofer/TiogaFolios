@@ -63,7 +63,7 @@ class ShareViewController: SLComposeServiceViewController {
         // what could I send in for fileOptions:?
         //let g = prov.registeredTypeIdentifiers(fileOptions: NSItemProviderFileOptions)
         for s in f {
-            print("TFdebug registeredTypeIdentifier \(s)")
+            tfDebug("registeredTypeIdentifier \(s)")
         }
     }
     
@@ -83,34 +83,34 @@ class ShareViewController: SLComposeServiceViewController {
         
         //        let setSuper = UTType.content.supertypes
         //        for sup in setSuper {
-        //            print("supertype \(sup)")
+        //            tfDebug("supertype \(sup)")
         //        }
-        print("TFdebug # of attachments == \(attachments.count)")
+        tfDebug("# of attachments == \(attachments.count)")
         // for provider in attachments {
             //let foo = provider.suggestedName
             //let variousKinds = provider.registeredTypeIdentifiers
-            //print("TFdebug found \(foo) variousKinds ***\n*** \(variousKinds)")
+            //tfDebug("found \(foo) variousKinds ***\n*** \(variousKinds)")
         // }
         for provider in attachments {
             //printProvider(prov: provider)
             // Check if the content type is the same as we expected
             let variousKinds = provider.registeredTypeIdentifiers
-            print("TFdebug found variousKinds ***\n*** \(variousKinds)")
-            print("TFdebug will attach to folio  \(String(describing: selectedFolio?.title))")
+            tfDebug("found variousKinds ***\n*** \(variousKinds)")
+            tfDebug("will attach to folio  \(String(describing: selectedFolio?.title))")
             for kind in variousKinds {
-                print("***Current Kind is \(kind)")
+                tfDebug("***Current Kind is \(kind)")
 
                 if provider.hasItemConformingToTypeIdentifier("public.plain-text") {
-                    print("TFdebug found a \(kind)")
+                    tfDebug("found a \(kind)")
                     break
                 }
 
                 if provider.hasItemConformingToTypeIdentifier("com.adobe.pdf") { // was kind
-                    print("TFdebug found a \(kind)")
+                    tfDebug("found a \(kind)")
                     provider.loadItem(forTypeIdentifier: "com.adobe.pdf", // public.item
                                       options: nil) { data, error in
                         let url = data as! URL
-                        print("TFdebug found a PDF \(url.absoluteString)")
+                        tfDebug("found a PDF \(url.absoluteString)")
                         Task.detached { [self] in
                             try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                         }
@@ -121,11 +121,11 @@ class ShareViewController: SLComposeServiceViewController {
                 // a web site (not the page, just the URL)
                 // files from web sites
                 else if provider.hasItemConformingToTypeIdentifier("public.content") { // was kind
-                    print("TFdebug found a \(kind)")
+                    tfDebug("found a \(kind)")
                     provider.loadItem(forTypeIdentifier: "public.content", // public.item
                                       options: nil) { data, error in
                         let url = data as! URL
-                        print("TFdebug found a fileurl \(url.absoluteString)")
+                        tfDebug("found a fileurl \(url.absoluteString)")
                         Task.detached { [self] in
                             try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                         }
@@ -142,20 +142,20 @@ class ShareViewController: SLComposeServiceViewController {
                         
                         if let url = data as? URL {
                             if url.isFileURL{
-                                print("TFdebug found a FILE URL \(url.absoluteString)")
+                                tfDebug("found a FILE URL \(url.absoluteString)")
                                 Task.detached { [self] in
                                     try await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                                     //                                    try await Fetching().saveLocalFile(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                                 }
                             } else {
-                                print("TFdebug found URL \(url.absoluteString)")
+                                tfDebug("found URL \(url.absoluteString)")
                                 Task.detached {
                                     try await Fetching().getDistantUrl(url.absoluteString, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
                                 }
                             }
                         } else {
                             // Handle this situation as you prefer
-                            print("Failed to load data from provider")
+                            tfDebug("Failed to load data from provider")
                         }
                     }
                     return
@@ -171,7 +171,7 @@ class ShareViewController: SLComposeServiceViewController {
                         
                         if let url = data as? URL {
                             if url.isFileURL{
-                                print("TFdebug found a FILE URL \(url.absoluteString)")
+                                tfDebug("found a FILE URL \(url.absoluteString)")
                                 Task.detached { [self] in
                                     //    try await
                                     try? await Fetching().savePublicItem(url, folio: self.selectedFolio!, viewContext: self.vc, contentNote: ct)
@@ -180,7 +180,7 @@ class ShareViewController: SLComposeServiceViewController {
                             }
                         } else {
                             // Handle this situation as you prefer
-                            print("Failed to load data from provider")
+                            tfDebug("Failed to load data from provider")
                         }
                     }
                     return
@@ -195,7 +195,7 @@ extension ShareViewController: ShareSelectViewControllerDelegate {
     func selected(f: Folio) {
         selectedFolio = f
         folioName = f.title ?? "unknown"
-        print("TFdebug will attach to folio  \(String(describing: selectedFolio?.title))")
+        tfDebug("will attach to folio  \(String(describing: selectedFolio?.title))")
         reloadConfigurationItems()
         popConfigurationViewController()
     }

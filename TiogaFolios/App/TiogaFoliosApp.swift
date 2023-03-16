@@ -29,7 +29,7 @@ struct TiogaFoliosApp: App {
                                         buttons: [
                                             .cancel { print(self.encourageiCloudLogin) },
                                             .default(Text("Take me to iCloud Login")){
-                                                print("sending to prefs:root=CASTLE")
+                                                tfDebug("sending to prefs:root=CASTLE")
                                                 let settingsCloudKitUrl = URL(string:"App-Prefs:root=CASTLE")
                                                 if let url = settingsCloudKitUrl {
                                                     if #available(iOS 10, *) {
@@ -56,18 +56,18 @@ struct TiogaFoliosApp: App {
                 }
                 CKContainer.default().accountStatus { (accountStat, error) in
                     if (accountStat == .available) {
-                            print("iCloud is available")
+                            tfDebug("iCloud is available")
                             encourageiCloudLogin = false
                           }
                           else {
-                              print("iCloud is not available")
+                              tfDebug("iCloud is not available")
                               encourageiCloudLogin = true
                           }
                         }
             }
         }
         .onChange(of: scenePhase) { _ in
-            //print("calling persistence Save()")
+            //tfDebug("calling persistence Save()")
             Storage.shared.save()
         }
     }

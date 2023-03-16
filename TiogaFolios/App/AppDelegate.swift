@@ -29,9 +29,9 @@ final class SceneDelegate: NSObject, UIWindowSceneDelegate {
             from: [cloudKitShareMetadata], into: shareStore
         ) { _, error in
             if let error = error {
-                print("acceptShareInvitation error :\(error)")
+                tfDebug("acceptShareInvitation error :\(error)")
             }
-            print("TFdebug accepting a share invitation")
+            tfDebug("accepting a share invitation")
         }
     }
     

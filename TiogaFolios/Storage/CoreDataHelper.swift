@@ -54,7 +54,7 @@ extension NSManagedObjectContext {
             do {
                 try save()
             } catch {
-                print("\(#function): Failed to save Core Data context for \(contextualInfo.rawValue): \(error)")
+                tfDebug("\(#function): Failed to save Core Data context for \(contextualInfo.rawValue): \(error)")
             }
         }
     }
@@ -80,7 +80,7 @@ extension NSPersistentCloudKitContainer {
                 let shares = try fetchShares(in: persistentStore)
                 results += shares
             } catch let error {
-                print("Failed to fetch shares in \(persistentStore).")
+                tfDebug("Failed to fetch shares in \(persistentStore).")
                 throw error
             }
         }
@@ -123,7 +123,7 @@ extension Storage {
          */
         guard let tag = performingContext.object(with: tagObjectID) as? Tag,
               let tagName = tag.title else {
-            print("\(#function): Ignore a tag that was deleted: \(tagObjectID)")
+            tfDebug("\(#function): Ignore a tag that was deleted: \(tagObjectID)")
             return
         }
         /**
@@ -152,7 +152,7 @@ extension Storage {
         /**
          Pick the first tag as the winner.
          */
-        print("\(#function): Deduplicating tag with name: \(tagName), count: \(duplicatedTags.count)")
+        tfDebug("\(#function): Deduplicating tag with name: \(tagName), count: \(duplicatedTags.count)")
         let winner = duplicatedTags.first!
         duplicatedTags.removeFirst()
         remove(duplicatedTags: duplicatedTags, winner: winner, performingContext: performingContext)

@@ -15,7 +15,7 @@ class DeltaFolioVm: ObservableObject {
     init(folio: Folio) {
         self.folio = folio
         ttitle = "Editing Folio"
-        //if folio.locked { print("folio \(folio.title) locked.") }
+        //if folio.locked { tfDebug("folio \(folio.title) locked.") }
         isChecked = folio.locked
     }
     

@@ -170,10 +170,10 @@ final class Storage: NSObject, ObservableObject  {
     }()
     
 //    @objc func contextWillSave(_ notification: Notification) {
-//        //        print("TFdebug \(notification)")
+//        //        tfDebug("\(notification)")
 //        //        let context = notification.object as? NSManagedObjectContext
 //        //        let changes = context?.updatedObjects
-//        //        print("TFdebug changes \(changes)")
+//        //        tfDebug("changes \(changes)")
 //        //        let saveDate = Date()
 //
 //    }
@@ -247,7 +247,7 @@ extension Storage {
                         isShared = true
                     }
                 } catch {
-                    print("Failed to fetch share for \(objectID): \(error)")
+                    tfDebug("Failed to fetch share for \(objectID): \(error)")
                 }
             }
         }
@@ -257,7 +257,7 @@ extension Storage {
     func isOwner(object: NSManagedObject) -> Bool {
         guard isShared(object: object) else { return false }
         guard let share = try? container.fetchShares(matching: [object.objectID])[object.objectID] else {
-            print("TFdebug Get ckshare error")
+            tfDebug("Get ckshare error")
             return false
         }
         if let currentUser = share.currentUserParticipant, currentUser == share.owner {
@@ -290,7 +290,7 @@ extension Storage {
         guard isShared(object: folio) else { return nil }
         guard let shareDictionary = try? container.fetchShares(matching: [folio.objectID]),
               let share = shareDictionary[folio.objectID] else {
-            print("TFdebug Unable to get CKShare")
+            tfDebug("Unable to get CKShare")
             return nil
         }
         share[CKShare.SystemFieldKey.title] = folio.title
@@ -310,7 +310,7 @@ extension Storage {
     func storeRemoteChange(_ notification: Notification) {
         guard let storeUUID = notification.userInfo?[NSStoreUUIDKey] as? String,
               [privatePersistentStore.identifier, sharedPersistentStore.identifier].contains(storeUUID) else {
-            print("TFdebug \(#function): Ignore a store remote Change notification because of no valid storeUUID.")
+            tfDebug("\(#function): Ignore a store remote Change notification because of no valid storeUUID.")
             return
         }
         processHistoryAsynchronously(storeUUID: storeUUID)
@@ -323,11 +323,11 @@ extension Storage {
     func containerEventChanged(_ notification: Notification) {
          guard let value = notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey],
               let event = value as? NSPersistentCloudKitContainer.Event else {
-            print("TFdebug \(#function): Failed to retrieve the container event from notification.userInfo.")
+            tfDebug("\(#function): Failed to retrieve the container event from notification.userInfo.")
             return
         }
         if event.error != nil {
-            print("TFdebug \(#function): Received a persistent CloudKit container event changed notification.\n\(event)")
+            tfDebug("\(#function): Received a persistent CloudKit container event changed notification.\n\(event)")
         }
     }
 }
@@ -369,7 +369,7 @@ extension Storage {
         guard let transactions = result?.result as? [NSPersistentHistoryTransaction] else {
             return
         }
-        // print("\(#function): Processing transactions: \(transactions.count).")
+        // tfDebug("\(#function): Processing transactions: \(transactions.count).")
 
         /**
          Post transactions so observers can update the UI, if necessary, even when transactions is empty
@@ -388,9 +388,13 @@ extension Storage {
          Limit to the private store so only owners can deduplicate the tags. Owners have full access to the private database, and so
          don't need to worry about the permissions.
          */
-        guard !transactions.isEmpty, storeUUID == privatePersistentStore.identifier else {
-            return
-        }
+        //guard !transactions.isEmpty, storeUUID == privatePersistentStore.identifier else {
+        //    return
+        //}
+        // REMOVED because of https://developer.apple.com/forums/thread/689774
+        
+        
+        
         /**
          Deduplicate the new tags.
          This only deduplicates the tags that aren't shared or have the same share.

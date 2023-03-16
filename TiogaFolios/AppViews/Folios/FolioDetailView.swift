@@ -45,8 +45,8 @@ class FolioVM: ObservableObject {
     @Published var errormsg = ""
     @Published var message: Message? = nil
     
-    @Published var share: CKShare?
-    @Published var showShareSheet = false
+    //@Published var share: CKShare?
+    //@Published var showShareSheet = false
     
     let store = Storage.shared
     
@@ -56,7 +56,7 @@ class FolioVM: ObservableObject {
     }
     
     func refresh() {
-        print("TFdebug refreshing asset list")
+        tfDebug("refreshing asset list")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.assetList = //Asset.fetchAssets(vc: self.store.vc, folio: self.folio)
             Array(self.folio.assets as? Set<Asset> ?? [])
@@ -77,7 +77,7 @@ struct FolioDetailView: View {
      */
     @State private var nextSheet: ActiveSheet?
     @State private var share: CKShare?
-
+    
     init(folio: Folio) {
         vm = FolioVM(folio: folio)
         //assets = FolioVM.assetsForFolio(folio)
@@ -136,15 +136,15 @@ struct FolioDetailView: View {
         })
         .toolbar { toolbarItems() } // title display here.
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $vm.showShareSheet, content: {
-            if let share = vm.share {
-                CloudSharingView(
-                    share: share,
-                    container: vm.store.ckContainer,
-                    folio: vm.folio
-                )
-            } else {Text("Share unavailable")}
-        })
+//        .sheet(isPresented: $vm.showShareSheet, content: {
+//            if let share = share {
+//                CloudSharingView(
+//                    share: share,
+//                    container: vm.store.ckContainer,
+//                    folio: vm.folio
+//                )
+//            } else {Text("Share unavailable")}
+//        })
         .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
             sheetView(with: item)
         }
@@ -156,8 +156,8 @@ struct FolioDetailView: View {
         switch item {
             
         case .cloudSharingSheet(_):
-//            CloudSharingSheet(activeSheet: $activeSheet, share: share)
-                EmptyView()
+            //            CloudSharingSheet(activeSheet: $activeSheet, share: share)
+            EmptyView()
             
         case .participantView(let share):
             ParticipantView(activeSheet: $activeSheet, share: share)
@@ -212,10 +212,10 @@ struct FolioDetailView: View {
                     Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                     //if Storage.shared.privatePersistentStore.contains(manageObject: vm.folio) {
                     //if self.share != nil {
-                        Button("Manage Share") { manageParticipation(folio: vm.folio) }
+                    Button("Manage Share") { manageParticipation(folio: vm.folio) }
                     //} else {
                     Button("Share Folio...") { createNewShare(folio: vm.folio) }
-                    Button("Delete Share") { deleteShareFor(folio: vm.folio) }
+                    Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
                     //}
                 } label: {
                     Label("", systemImage: "contextualmenu.and.cursorarrow")
@@ -268,20 +268,25 @@ struct FolioDetailView: View {
         Storage.shared.presentCloudSharingController(folio: folio)
     }
     
-    private func deleteShareFor(folio: Folio) {
+    private func deleteShareFor(folio: Folio) async {
         if let share = self.share {
-            
-            let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [share.recordID])
-
-            operation.database = Storage.shared.sharedPersistentStore
-              operation.queuePriority = .veryHigh
-              operation.configuration =  CKOperation.Configuration()
-              operation.configuration.qualityOfService = .userInteractive
-              operation.start()
+            tfDebug("share \(share.title) will be deleted")
+            let ckContainer = Storage.shared.cloudKitContainer
+            do {
+                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+                Storage.shared.save()
+            } catch {
+                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
+            }
+            self.share = nil
         } else {
-            print("no share to delete")
+            tfDebug("no share to delete")
         }
     }
+    private func deleteShare(_ share: CKShare) async {
+    }
+    
+    
     /**
      Sharing a folio can take a while, so dispatch to a global queue so SwiftUI has a chance to show the progress view.
      @State variables are thread-safe, so there's no need to dispatch back the main queue.
@@ -290,19 +295,19 @@ struct FolioDetailView: View {
         //toggleProgress.toggle()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             let exShare = Storage.shared.existingShare(folio: folio)
-            print("TFdebug exshare is  \(String(describing: exShare))")
+            tfDebug("exshare is  \(String(describing: exShare))")
             let shrs = Storage.shareTitles(Storage.shared)
-            print("TFdebug ### \(String(describing: shrs))")
+            tfDebug("### \(String(describing: shrs))")
             Storage.shared.shareObject(folio, to: ((exShare != nil) ? exShare : nil) ) { share, error in
                 guard error == nil else {
-                    print("TFdebug error in create share \(error.debugDescription)\nTFdebug share is \(share)")
+                    tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(share)")
                     return
                 }
                 
                 //toggleProgress.toggle()
                 if let share = share {
                     //share.title = folio.title + " Share"
-                    print("TFdebug setting up for managing a share \(share.title)")
+                    tfDebug("setting up for managing a share \(share.title)")
                     nextSheet = .participantView(share)
                     activeSheet = .managingSharesView(folio)
                 }
@@ -311,61 +316,61 @@ struct FolioDetailView: View {
     }
     
     private func string(for permission: CKShare.ParticipantPermission) -> String {
-      switch permission {
-      case .unknown:
-        return "Unknown"
-      case .none:
-        return "None"
-      case .readOnly:
-        return "Read-Only"
-      case .readWrite:
-        return "Read-Write"
-      @unknown default:
-        fatalError("A new value added to CKShare.Participant.Permission")
-      }
+        switch permission {
+        case .unknown:
+            return "Unknown"
+        case .none:
+            return "None"
+        case .readOnly:
+            return "Read-Only"
+        case .readWrite:
+            return "Read-Write"
+        @unknown default:
+            fatalError("A new value added to CKShare.Participant.Permission")
+        }
     }
-
+    
     private func string(for role: CKShare.ParticipantRole) -> String {
-      switch role {
-      case .owner:
-        return "Owner"
-      case .privateUser:
-        return "Private User"
-      case .publicUser:
-        return "Public User"
-      case .unknown:
-        return "Unknown"
-      @unknown default:
-        fatalError("A new value added to CKShare.Participant.Role")
-      }
+        switch role {
+        case .owner:
+            return "Owner"
+        case .privateUser:
+            return "Private User"
+        case .publicUser:
+            return "Public User"
+        case .unknown:
+            return "Unknown"
+        @unknown default:
+            fatalError("A new value added to CKShare.Participant.Role")
+        }
     }
-
+    
     private func string(for acceptanceStatus: CKShare.ParticipantAcceptanceStatus) -> String {
-      switch acceptanceStatus {
-      case .accepted:
-        return "Accepted"
-      case .removed:
-        return "Removed"
-      case .pending:
-        return "Invited"
-      case .unknown:
-        return "Unknown"
-      @unknown default:
-        fatalError("A new value added to CKShare.Participant.AcceptanceStatus")
-      }
+        switch acceptanceStatus {
+        case .accepted:
+            return "Accepted"
+        case .removed:
+            return "Removed"
+        case .pending:
+            return "Invited"
+        case .unknown:
+            return "Unknown"
+        @unknown default:
+            fatalError("A new value added to CKShare.Participant.AcceptanceStatus")
+        }
     }
     
     private func createShare(folio: Folio) async {
-      do {
-        let (_, share, _) =
-          try await Storage.shared.container.share([folio], to: nil)
-        share[CKShare.SystemFieldKey.title] = folio.title
-        self.share = share
-      } catch {
-        print("TFdebug Failed to create share")
-      }
+        do {
+            let (_, share, _) =
+            try await Storage.shared.container.share([folio], to: nil)
+            share[CKShare.SystemFieldKey.title] = folio.title
+            self.share = share
+        } catch {
+            tfDebug("Failed to create share")
+        }
     }
-
+    
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
             guard let selectedFile: URL = try result.get().first else { return }
@@ -376,9 +381,9 @@ struct FolioDetailView: View {
             if let range3 = teststr.range(of: ".rtfd", options: .caseInsensitive) {
                 // match
                 self.vm.errormsg = "error: unable to archive an RTFD file, \(selectedFile)"
-                print("error: found an RTFD file",selectedFile,range3)
+                tfDebug("error: found an RTFD file",selectedFile,range3)
             } else {
-                print("continue")
+                tfDebug("continue")
             }
             
             let blob = try Data(contentsOf: selectedFile) as Data?

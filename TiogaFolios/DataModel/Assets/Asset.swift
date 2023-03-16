@@ -53,15 +53,15 @@ extension Asset {
 
 extension Asset {
     func thumbnailCreate(_ url: URL) {
-        print("thumbnailCreate start")
+        tfDebug("thumbnailCreate start")
         let previewGenerator = QLThumbnailGenerator()
         let thumbnailSize = CGSize(width: 60, height: 90)
         let scale = UIScreen.main.scale
 
-        //guard let tmpUrl = url else { print("No url for thumb"); return }
+        //guard let tmpUrl = url else { tfDebug("No url for thumb"); return }
         let request = QLThumbnailGenerator.Request(fileAt: url, size: thumbnailSize, scale: scale, representationTypes: .thumbnail)
         previewGenerator.generateBestRepresentation(for: request) { (thumbnail, error) in
-            print("thumbnailCreate generating")
+            tfDebug("thumbnailCreate generating")
 
             if let error = error {
                 print(error.localizedDescription)
@@ -91,7 +91,7 @@ extension Asset {
             Foundation.NSLog("No assets in store")
         }
 
-        //print("TFdebug folio count \(fetchedAssets.count)")
+        //tfDebug("folio count \(fetchedAssets.count)")
         return fetchedAssets
     }
     
@@ -109,7 +109,7 @@ extension Asset {
             Foundation.NSLog("No assets in store")
         }
 
-        //print("TFdebug folio count \(fetchedAssets.count)")
+        //tfDebug("folio count \(fetchedAssets.count)")
         return fetchedAssets
     }
     
@@ -122,8 +122,8 @@ extension Asset {
     }
 
     func tempURLFor() -> URL {
-        //print("TFdebug tempURLFor(document: BlobAsset) -> URL?")
-        //print("TFdebug tempURLFor \(self)")
+        //tfDebug("tempURLFor(document: BlobAsset) -> URL?")
+        //tfDebug("tempURLFor \(self)")
         if self.mimetype == "text/html" {
             return URL(string: self.source!.absoluteString)!
         }
@@ -135,7 +135,7 @@ extension Asset {
             try data?.write(to: temporaryFileURL, options: .completeFileProtection)
             return temporaryFileURL
         } catch {
-            print("TFdebug unable to create temporary version of blob for display")
+            tfDebug("unable to create temporary version of blob for display")
             return URL(string:"https://tiogadigital.com/")!
         }
     }
@@ -149,12 +149,12 @@ extension Asset {
                 // Delete file
                 try fileManager.removeItem(atPath: filePath)
             } else {
-                print("File does not exist")
+                tfDebug("File does not exist")
             }
          
         }
         catch let error as NSError {
-            print("An error took place: \(error)")
+            tfDebug("An error took place: \(error)")
         }
     }
 
@@ -173,7 +173,7 @@ extension Asset {
         let targettype: String = "public.html"
         let docType = self.uttype
         if let docType = docType {
-            //print("TFdebug \(docType) is Webpage?")
+            //tfDebug("\(docType) is Webpage?")
             if (docType == targettype) {
                 return true
             }
@@ -186,7 +186,7 @@ extension Asset {
     }
     
     static func makeNewTextDoc(named: String, content: String) -> Asset {
-        //print("\(named) \(UTType.text.identifier)")
+        //tfDebug("\(named) \(UTType.text.identifier)")
         let newDoc = Asset(vc: Storage.shared.vc, title: named, path: named+"txt", mimetype: "text/plain", uttype: UTType.plainText.identifier)
         newDoc.setBlob(content.data(using: .utf8) ?? "".data(using: .utf8)!)
         return newDoc
