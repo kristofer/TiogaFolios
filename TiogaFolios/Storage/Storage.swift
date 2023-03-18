@@ -149,7 +149,7 @@ final class Storage: NSObject, ObservableObject  {
         do {
             try container.viewContext.setQueryGenerationFrom(.current)
         } catch {
-            fatalError("#\(#function): Failed to pin viewContext to the current generation:\(error)")
+            fatalError("TFdebug \(#function): Failed to pin viewContext to the current generation:\(error)")
         }
         
         /**

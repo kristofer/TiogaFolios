@@ -214,7 +214,7 @@ struct FolioDetailView: View {
                     //if self.share != nil {
                     Button("Manage Share") { manageParticipation(folio: vm.folio) }
                     //} else {
-                    Button("Share Folio...") { createNewShare(folio: vm.folio) }
+                    Button("Share Folio...") { Task { await createShare(folio: vm.folio) } }
                     Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
                     //}
                 } label: {
@@ -269,24 +269,39 @@ struct FolioDetailView: View {
     }
     
     private func deleteShareFor(folio: Folio) async {
+        
+        let newFolio = try? folio.deepcopy(context: Storage.shared.vc)
+        
         if let share = self.share {
             tfDebug("share \(share.title) will be deleted")
             let ckContainer = Storage.shared.cloudKitContainer
-            do {
-                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
-                Storage.shared.save()
-            } catch {
-                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
-            }
+//            do {
+//                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+//                Storage.shared.save()
+//            } catch {
+//                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
+//            }
             self.share = nil
         } else {
             tfDebug("no share to delete")
         }
     }
-    private func deleteShare(_ share: CKShare) async {
+//    private func deleteShare(_ share: CKShare) async {
+//    }
+    
+    private func createShare(folio: Folio) async {
+        do {
+            let (shared, share, container) =
+            try await Storage.shared.container.share([folio], to: nil)
+            tfDebug("\(shared), \(share), \(container)")
+            share[CKShare.SystemFieldKey.title] = folio.title
+            self.share = share
+        } catch {
+            tfDebug("Failed to create share")
+        }
     }
     
-    
+
     /**
      Sharing a folio can take a while, so dispatch to a global queue so SwiftUI has a chance to show the progress view.
      @State variables are thread-safe, so there's no need to dispatch back the main queue.
@@ -360,16 +375,6 @@ struct FolioDetailView: View {
         }
     }
     
-    private func createShare(folio: Folio) async {
-        do {
-            let (_, share, _) =
-            try await Storage.shared.container.share([folio], to: nil)
-            share[CKShare.SystemFieldKey.title] = folio.title
-            self.share = share
-        } catch {
-            tfDebug("Failed to create share")
-        }
-    }
     
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
