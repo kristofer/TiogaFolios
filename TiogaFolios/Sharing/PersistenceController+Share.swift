@@ -179,11 +179,11 @@ extension Storage {
             return
         }
         tfDebug("\(#function): Would purge objects and records!!")
-//        container.purgeObjectsAndRecordsInZone(with: share.recordID.zoneID, in: store) { (zoneID, error) in
-//            if let error = error {
-//                tfDebug("\(#function): Failed to purge objects and records: \(error)")
-//            }
-//        }
+        container.purgeObjectsAndRecordsInZone(with: share.recordID.zoneID, in: store) { (zoneID, error) in
+            if let error = error {
+                tfDebug("\(#function): Failed to purge objects and records: \(error)")
+            }
+        }
     }
 
     func existingShare(folio: Folio) -> CKShare? {

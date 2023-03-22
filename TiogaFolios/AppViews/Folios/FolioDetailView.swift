@@ -58,6 +58,7 @@ class FolioVM: ObservableObject {
     func refresh() {
         tfDebug("refreshing asset list")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.folio.touch()
             self.assetList = //Asset.fetchAssets(vc: self.store.vc, folio: self.folio)
             Array(self.folio.assets as? Set<Asset> ?? [])
         }
@@ -212,7 +213,15 @@ struct FolioDetailView: View {
                     Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                     //if Storage.shared.privatePersistentStore.contains(manageObject: vm.folio) {
                     //if self.share != nil {
-                    Button("Manage Share") { manageParticipation(folio: vm.folio) }
+                    Button("Manage Share") {
+                        if let share = share {
+                        //share.title = folio.title + " Share"
+                            tfDebug("setting up for managing a share \(share.title)")
+                            nextSheet = .participantView(share)
+                            activeSheet = .managingSharesView(vm.folio)
+                        }
+                    }
+                    //Button("Manage Share") { manageParticipation(folio: vm.folio) }
                     //} else {
                     Button("Share Folio...") { Task { await createShare(folio: vm.folio) } }
                     Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
@@ -263,6 +272,7 @@ struct FolioDetailView: View {
     //    private func createNewShare(folio: Folio) {
     //         Storage.shared.presentCloudSharingController(folio: folio)
     //    }
+    // error The owner stopped sharing, or you don’t have permission to open it.
     
     private func manageParticipation(folio: Folio) {
         Storage.shared.presentCloudSharingController(folio: folio)
@@ -271,16 +281,18 @@ struct FolioDetailView: View {
     private func deleteShareFor(folio: Folio) async {
         
         let newFolio = try? folio.deepcopy(context: Storage.shared.vc)
+        Storage.shared.save()
+        
         
         if let share = self.share {
             tfDebug("share \(share.title) will be deleted")
             let ckContainer = Storage.shared.cloudKitContainer
-//            do {
-//                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
-//                Storage.shared.save()
-//            } catch {
-//                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
-//            }
+            do {
+                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+                Storage.shared.save()
+            } catch {
+                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
+            }
             self.share = nil
         } else {
             tfDebug("no share to delete")

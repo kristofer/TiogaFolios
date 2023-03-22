@@ -31,11 +31,12 @@ struct TransactionAuthor {
 final class Storage: NSObject, ObservableObject  {
     
     static let shared = Storage()
+    
     private override init() {
+        Foundation.NSLog("TFdebug INIT'ing STORAGE")
         super.init()
-//        NotificationCenter.default.addObserver(self, selector: #selector(contextWillSave(_:)), name: Notification.Name.NSManagedObjectContextWillSave, object: self.vc)
-        
     }
+    
     var vc: NSManagedObjectContext {
         
         self.container.viewContext.automaticallyMergesChangesFromParent = true
@@ -61,6 +62,7 @@ final class Storage: NSObject, ObservableObject  {
     
     lazy var container: NSPersistentCloudKitContainer = {
         
+        Foundation.NSLog("TFdebug AT NSPersistentCloudKitContainer(name: Config.containerName)")
         let container = NSPersistentCloudKitContainer(name: Config.containerName)
         
 #if DEBUG
@@ -77,17 +79,18 @@ final class Storage: NSObject, ObservableObject  {
         }
         let storesURL = privateStoreDescription.url?.deletingLastPathComponent()
         privateStoreDescription.url = storesURL?.appendingPathComponent("TiogaFolios.sqlite") // would be TiogaFolios.sqlite
+
         privateStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+        //let privateStoreOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+
+        privateStoreDescription.cloudKitContainerOptions?.databaseScope = .private
+        //privateStoreDescription.cloudKitContainerOptions = privateStoreOptions
+        
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        let remoteChangeKey = "NSPersistentStoreRemoteChangeNotificationOptionKey"
-        privateStoreDescription.setOption(true as NSNumber, forKey: remoteChangeKey)
-        let cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+        //privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationOptionKey)
 
-        cloudKitContainerOptions.databaseScope = .private
-        privateStoreDescription.cloudKitContainerOptions = cloudKitContainerOptions
-
-        // TODO: 1
+        
         guard let sharedStoreDescription = privateStoreDescription
             .copy() as? NSPersistentStoreDescription else {
             fatalError(
@@ -97,25 +100,32 @@ final class Storage: NSObject, ObservableObject  {
         let sharedStoreURL = storesURL?.appendingPathComponent("TFshared.sqlite")
         sharedStoreDescription.url = sharedStoreURL
         
-        // TODO: 2
-        guard let containerIdentifier = privateStoreDescription
-            .cloudKitContainerOptions?.containerIdentifier else {
-            fatalError("Unable to get containerIdentifier")
-        }
-        let sharedStoreOptions = NSPersistentCloudKitContainerOptions(
-            containerIdentifier: containerIdentifier
-        )
-        sharedStoreOptions.databaseScope = .shared
-        sharedStoreDescription.cloudKitContainerOptions = sharedStoreOptions
+//        guard let containerIdentifier = privateStoreDescription
+//            .cloudKitContainerOptions?.containerIdentifier else {
+//            fatalError("Unable to get containerIdentifier")
+//        }
+        
+        sharedStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+        sharedStoreDescription.cloudKitContainerOptions?.databaseScope = .shared
         sharedStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         sharedStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        sharedStoreDescription.setOption(true as NSNumber, forKey: remoteChangeKey)
+        //sharedStoreDescription.setOption(true as NSNumber, forKey: "NSPersistentStoreRemoteChangeNotificationOptionKey")
         
-        // TODO: 3
         container.persistentStoreDescriptions.append(sharedStoreDescription)
         
-        // TODO: 4
-        
+        /** Observe the following notifications:
+        - The remote change notifications from container.persistentStoreCoordinator.
+        - The .NSManagedObjectContextDidSave notifications from any context.
+        - The event change notifications from the container.
+        */
+       NotificationCenter.default.addObserver(self, selector:  #selector(type(of: self).storeRemoteChange(_:)),
+                                              name: .NSPersistentStoreRemoteChange,
+                                              object: container.persistentStoreCoordinator)
+
+//       NotificationCenter.default.addObserver(self, selector: #selector(containerEventChanged(_:)),
+//                                              name: NSPersistentCloudKitContainer.eventChangedNotification,
+//                                              object: container)
+
         
         Foundation.NSLog("TFdebug Loading: container.loadPersistentStores")
         container.loadPersistentStores { loadedStoreDescription, error in
@@ -152,31 +162,9 @@ final class Storage: NSObject, ObservableObject  {
             fatalError("TFdebug \(#function): Failed to pin viewContext to the current generation:\(error)")
         }
         
-        /**
-         Observe the following notifications:
-         - The remote change notifications from container.persistentStoreCoordinator.
-         - The .NSManagedObjectContextDidSave notifications from any context.
-         - The event change notifications from the container.
-         */
-        NotificationCenter.default.addObserver(self, selector: #selector(storeRemoteChange(_:)),
-                                               name: .NSPersistentStoreRemoteChange,
-                                               object: container.persistentStoreCoordinator)
-        NotificationCenter.default.addObserver(self, selector: #selector(containerEventChanged(_:)),
-                                               name: NSPersistentCloudKitContainer.eventChangedNotification,
-                                               object: container)
-
         return container
         
     }()
-    
-//    @objc func contextWillSave(_ notification: Notification) {
-//        //        tfDebug("\(notification)")
-//        //        let context = notification.object as? NSManagedObjectContext
-//        //        let changes = context?.updatedObjects
-//        //        tfDebug("changes \(changes)")
-//        //        let saveDate = Date()
-//
-//    }
     
     func save() {
         //Foundation.NSLog("TFdebug Storage save()")
