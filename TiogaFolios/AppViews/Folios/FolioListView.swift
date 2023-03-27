@@ -43,8 +43,8 @@ struct FolioListView: View {
     var body: some View {
         // moved to "superview" NavigationView {
         List {
-            Text("All Folios") // Placeholder
-                .font(.headline)
+//            Text("All Folios") // Placeholder
+//                .font(.headline)
             Section(header: Text("Private Folios"))
             {
                 if vm.folios.isEmpty {
