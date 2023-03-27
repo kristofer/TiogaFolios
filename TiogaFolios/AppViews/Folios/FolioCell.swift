@@ -16,7 +16,8 @@ struct FolioCell: View {
     @ObservedObject var folio: Folio
     
     let colorratio = 220/255.0
-    
+    private let storage = Storage.shared
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             HStack(alignment: .top) {
@@ -54,15 +55,13 @@ struct FolioCell: View {
             )
             topLeftButton()
         }
-        
     }
     
     @ViewBuilder
     private func topLeftButton() -> some View {
-        if Storage.shared.sharedPersistentStore.contains(manageObject: folio) {
+        if storage.sharedPersistentStore.contains(manageObject: folio) {
             Image(systemName: "person.2.circle")
                 .foregroundColor(.gray)
-                .padding(5)
         }
     }
 
