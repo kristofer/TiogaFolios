@@ -23,6 +23,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 final class SceneDelegate: NSObject, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene,
                      userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
+        
         tfDebug("windowScene userDidAcceptCloudKitShareWith \(cloudKitShareMetadata.share.title)")
         let shareStore = Storage.shared.sharedPersistentStore
         let persistentContainer = Storage.shared.container
@@ -37,3 +38,21 @@ final class SceneDelegate: NSObject, UIWindowSceneDelegate {
     }
     
 }
+
+//func windowScene(_ windowScene: UIWindowScene,
+//    userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
+//   
+//    acceptCloudKitShare(metadata: cloudKitShareMetadata) { [weak self] result in
+//        switch result {
+//        case .success:
+//            DispatchQueue.main.async {
+//                let viewController: ViewController =
+//                     self?.window?.rootViewController as! ViewController
+//                viewController.fetchShare(cloudKitShareMetadata)
+//            }
+//        case .failure(let error):
+//            print(error.localizedDescription )
+//        }
+//    }
+//}
+

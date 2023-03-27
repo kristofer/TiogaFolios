@@ -13,6 +13,14 @@ For MVP
     completion(result)
 ```
     
+SHARING is working but brittle.
+
+- adding a folio to an existing share.
+- what does a share "mean"? is it a container between you and a set of Identities?
+- stop Sharing w/o losing data of folios
+- deduplicate of tags that get shared.
+
+
 MVP achieved (28 Nov 2022), but no Sharing (yet)
 
 - BACKUPS
