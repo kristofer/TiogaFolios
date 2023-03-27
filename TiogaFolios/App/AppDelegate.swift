@@ -23,6 +23,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 final class SceneDelegate: NSObject, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene,
                      userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
+        tfDebug("windowScene userDidAcceptCloudKitShareWith \(cloudKitShareMetadata.share.title)")
         let shareStore = Storage.shared.sharedPersistentStore
         let persistentContainer = Storage.shared.container
         persistentContainer.acceptShareInvitations(

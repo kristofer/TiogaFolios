@@ -38,7 +38,6 @@
 		5C3239A52925772B00619645 /* FolioEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399B2925772B00619645 /* FolioEditView.swift */; };
 		5C3239A62925772B00619645 /* FolioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399C2925772B00619645 /* FolioListView.swift */; };
 		5C3239A72925772B00619645 /* FolioTagItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399D2925772B00619645 /* FolioTagItems.swift */; };
-		5C3239A82925772B00619645 /* FolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399E2925772B00619645 /* FolioView.swift */; };
 		5C3239A92925772B00619645 /* FolioVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32399F2925772B00619645 /* FolioVM.swift */; };
 		5C3239B12925774800619645 /* FolioTemplCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239AC2925774800619645 /* FolioTemplCell.swift */; };
 		5C3239B22925774800619645 /* FolioTemplListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239AD2925774800619645 /* FolioTemplListView.swift */; };
@@ -179,7 +178,6 @@
 		5C32399B2925772B00619645 /* FolioEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioEditView.swift; sourceTree = "<group>"; };
 		5C32399C2925772B00619645 /* FolioListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioListView.swift; sourceTree = "<group>"; };
 		5C32399D2925772B00619645 /* FolioTagItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTagItems.swift; sourceTree = "<group>"; };
-		5C32399E2925772B00619645 /* FolioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioView.swift; sourceTree = "<group>"; };
 		5C32399F2925772B00619645 /* FolioVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioVM.swift; sourceTree = "<group>"; };
 		5C3239AC2925774800619645 /* FolioTemplCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTemplCell.swift; sourceTree = "<group>"; };
 		5C3239AD2925774800619645 /* FolioTemplListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolioTemplListView.swift; sourceTree = "<group>"; };
@@ -414,7 +412,6 @@
 				5C32399C2925772B00619645 /* FolioListView.swift */,
 				5C82057F297877860007CF70 /* ArchivedListView.swift */,
 				5C32399D2925772B00619645 /* FolioTagItems.swift */,
-				5C32399E2925772B00619645 /* FolioView.swift */,
 				5CB910E029AFE85C0027E41C /* FolioDetailView.swift */,
 				5C32399F2925772B00619645 /* FolioVM.swift */,
 				5C3EF887292C0FB0007CAAB6 /* ChooseFolio.swift */,
@@ -731,7 +728,6 @@
 				5C7533E6297ADABB006867D3 /* MissingAssetView.swift in Sources */,
 				5C3239A42925772B00619645 /* FolioDeltaView.swift in Sources */,
 				5C323977292432E600619645 /* Config.swift in Sources */,
-				5C3239A82925772B00619645 /* FolioView.swift in Sources */,
 				5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */,
 				5C3C5A1A29BA269200081F8D /* AddToExistingShareView.swift in Sources */,
 				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,

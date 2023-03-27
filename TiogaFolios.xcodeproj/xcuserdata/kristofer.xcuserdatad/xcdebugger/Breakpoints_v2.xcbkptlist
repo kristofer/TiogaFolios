@@ -477,8 +477,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "deleteShareFor(folio:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -509,8 +509,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "deleteShareFor(folio:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -573,8 +573,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "FolioDetailView"
             landmarkType = "14">
          </BreakpointContent>

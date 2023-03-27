@@ -138,15 +138,6 @@ struct FolioDetailView: View {
         })
         .toolbar { toolbarItems() } // title display here.
         .navigationBarTitleDisplayMode(.inline)
-        //        .sheet(isPresented: $vm.showShareSheet, content: {
-        //            if let share = share {
-        //                CloudSharingView(
-        //                    share: share,
-        //                    container: vm.store.ckContainer,
-        //                    folio: vm.folio
-        //                )
-        //            } else {Text("Share unavailable")}
-        //        })
         .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
             sheetView(with: item)
         }
@@ -218,7 +209,7 @@ struct FolioDetailView: View {
                     Divider()
                     Button("Start Share Folio...") { Task { await createShare(folio: vm.folio) } }
                     Button("Manage Share") { manageParticipation(folio: vm.folio) }
-                    Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
+                    //Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
                     //}
                 } label: {
                     Label("", systemImage: "contextualmenu.and.cursorarrow")
