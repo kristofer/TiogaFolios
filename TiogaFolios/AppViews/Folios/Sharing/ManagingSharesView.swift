@@ -19,11 +19,14 @@ struct ManagingSharesView: View {
 
     var body: some View {
         VStack {
-            SharePickerView(activeSheet: $activeSheet, selection: $selection) {
             if  let share = Storage.shared.existingShare(folio: folio) {
-                    actionButtons(for: share)
-                }
+                Text("Share for \(self.folio.title!) ")
+                    .padding(20)
+                actionButtons(for: share)
+            } else {
+                Text("No Folio/Share for Sharing.")
             }
+            
 //            if toggleProgress {
 //                ProgressView()
 //            }
@@ -41,12 +44,14 @@ struct ManagingSharesView: View {
                 activeSheet = nil
             }
         }
-        
+        .padding(20)
+        Divider()
         Button(isPrivateStore ? "Stop Sharing" : "Remove Me") {
             if let share = Storage.shared.existingShare(folio: folio) {
                 purgeShare(share, in: persistentStore)
             }
         }
+        .padding(20)
 
         Button("Manage With UICloudSharingController") {
             if let share = Storage.shared.existingShare(folio: folio) {
@@ -54,6 +59,7 @@ struct ManagingSharesView: View {
                 activeSheet = nil
             }
         }
+        .padding(20)
     }
     
     private func purgeShare(_ share: CKShare, in persistentStore: NSPersistentStore?) {

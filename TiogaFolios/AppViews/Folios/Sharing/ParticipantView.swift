@@ -181,6 +181,10 @@ private struct ParticipantListHeader: View {
      If the participant already exists, there's no need to do anything.
      */
     private func addParticipant() {
+        guard emailAddress != "" else {
+            print("empty emailAddress!!")
+            return
+        }
         let isExistingParticipant = share.participants.contains {
             $0.userIdentity.lookupInfo?.emailAddress == emailAddress
         }
@@ -197,6 +201,9 @@ private struct ParticipantListHeader: View {
                         emailAddress = ""
                         toggleProgress.toggle()
                     }
+                }
+                if error != nil {
+                    print("unable to add participant to share \(String(describing: error))")
                 }
             }
         }

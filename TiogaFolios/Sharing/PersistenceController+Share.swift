@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-Extensions that wrap the related methods for sharing.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ Extensions that wrap the related methods for sharing.
+ */
 
 import Foundation
 import CoreData
@@ -18,11 +18,12 @@ extension Storage {
          Grab the share if the folio is already shared.
          */
         var folioShare: CKShare?
-        if let shareSet = try? container.fetchShares(matching: [folio.objectID]),
-           let (_, share) = shareSet.first {
-            folioShare = share
-        }
-
+//        if let shareSet = try? container.fetchShares(matching: [folio.objectID]),
+//           let (_, share) = shareSet.first {
+//            folioShare = share
+//        }
+        folioShare = Storage.shared.existingShare(folio: folio)
+        
         let sharingController: UICloudSharingController
         if folioShare == nil {
             sharingController = newSharingController(unsharedFolio: folio, persistenceController: self)
@@ -56,7 +57,7 @@ extension Storage {
             /**
              The app doesn't specify a share intentionally, so Core Data creates a new share (zone).
              CloudKit has a limit on how many zones a database can have, so this app provides an option for users to use an existing share.
-
+             
              If the share's publicPermission is CKShareParticipantPermissionNone, only private participants can accept the share.
              Private participants mean the participants an app adds to a share by calling CKShare.addParticipant.
              If the share is more permissive, and is, therefore, a public share, anyone with the shareURL can accept it,
@@ -71,7 +72,7 @@ extension Storage {
             }
         }
     }
-
+    
     private var rootViewController: UIViewController? {
         for scene in UIApplication.shared.connectedScenes {
             if scene.activationState == .foregroundActive,
@@ -114,7 +115,7 @@ extension Storage: UICloudSharingControllerDelegate {
             purgeObjectsAndRecords(with: share)
         }
     }
-
+    
     func cloudSharingControllerDidSaveShare(_ csc: UICloudSharingController) {
         if let share = csc.share, let persistentStore = share.persistentStore {
             container.persistUpdatedShare(share, in: persistentStore) { (share, error) in
@@ -126,7 +127,7 @@ extension Storage: UICloudSharingControllerDelegate {
             }
         }
     }
-
+    
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
         tfDebug("\(#function): Failed to save a share: \(error)")
     }
@@ -185,7 +186,7 @@ extension Storage {
             }
         }
     }
-
+    
     func existingShare(folio: Folio) -> CKShare? {
         if let shareSet = try? container.fetchShares(matching: [folio.objectID]),
            let (_, share) = shareSet.first {
@@ -232,13 +233,13 @@ extension Storage {
          */
         let lookupInfo = CKUserIdentity.LookupInfo(emailAddress: emailAddress)
         let persistentStore = privatePersistentStore //share.persistentStore!
-
+        
         container.fetchParticipants(matching: [lookupInfo], into: persistentStore) { (results, error) in
             guard let participants = results, let participant = participants.first, error == nil else {
                 completionHandler?(share, error)
                 return
             }
-                  
+            
             participant.permission = permission
             participant.role = .privateUser
             share.addParticipant(participant)
@@ -277,13 +278,16 @@ extension CKShare.ParticipantAcceptanceStatus {
 
 extension CKShare {
     var title: String {
-        guard let date = creationDate else {
-            return "Share-\(UUID().uuidString)"
-        }
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return "Share-" + formatter.string(from: date)
+
+        //        guard let date = creationDate else {
+        //            return "Share-\(UUID().uuidString)"
+        //        }
+        //        let formatter = DateFormatter()
+        //        formatter.dateStyle = .short
+        //        formatter.timeStyle = .short
+        //        return "Share-" + formatter.string(from: date)
+
+        return self[SystemFieldKey.title] as? String ?? "folio share"
     }
     
     var persistentStore: NSPersistentStore? {
@@ -326,9 +330,9 @@ extension NSManagedObject {
             throw DeepCopyError.missingContext
         }
     }
-
+    
     private func deepcopy(context: NSManagedObjectContext, cache alreadyCopied: inout Dictionary<NSManagedObjectID, NSManagedObject>) throws -> NSManagedObject {
-                
+        
         guard let entityName = self.entity.name else {
             throw DeepCopyError.missingEntityName(self)
         }
@@ -336,7 +340,7 @@ extension NSManagedObject {
         if let storedCopy = alreadyCopied[self.objectID] {
             return storedCopy
         }
-
+        
         let cloned = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
         alreadyCopied[self.objectID] = cloned
         
@@ -403,5 +407,125 @@ extension NSManagedObject {
         
         return cloned
     }
+}
+
+
+extension Storage {
+    // See <https://developer.apple.com/documentation/uikit/uicloudsharingcontroller>
+    // from a post by Reinhard Männer
+    
+    // For sharing see https://developer.apple.com/documentation/cloudkit/shared_records
+    func share(folio: Folio, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) {
+        if #available(iOS 15, *) {
+            // iOS 15++
+            let recordZoneID = CKRecordZone.ID(zoneName: "com.apple.coredata.cloudkit.zone", ownerName: CKCurrentUserDefaultName)
+            let shareRecord = CKShare(recordZoneID: recordZoneID)
+            
+            // Configure the share so the system displays the shopping lists name and logo
+            // when the user initiates sharing or accepts an invitation to participate.
+            shareRecord[CKShare.SystemFieldKey.title] = folio.title
+            //                let image = UIImage(named: kFileNameLogo)!.pngData()
+            //                shareRecord[CKShare.SystemFieldKey.thumbnailImageData] = image
+            // Include a custom UTI that describes the share's content.
+            shareRecord[CKShare.SystemFieldKey.shareType] = "co.tioga.TiogaFolios.folio"
+            
+            
+            let recordsToSave = [shareRecord]
+            let container = CKContainer.default()
+            let privateDatabase = container.privateCloudDatabase
+            let operation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
+            operation.perRecordProgressBlock = { (record, progress) in
+                if progress < 1.0 {
+                    print("CloudKit error: Could not save record completely")
+                }
+            }
+            
+            operation.modifyRecordsResultBlock = { result in
+                switch result {
+                case .success:
+                    completion(shareRecord, container, nil)
+                case .failure(let error):
+                    completion(nil, nil, error)
+                }
+            }
+            
+            privateDatabase.add(operation)
+            
+            
+        } else {
+            // iOS <15
+            fatalError("Sharing is only available in iOS 15")
+        }
+    }
+    
+    func getShareRecord(completion: @escaping (Result<CKShare?, Error>) -> Void) {
+        let container = Storage.shared.container
+        let existingShares = try? container.fetchShares(in: privatePersistentStore)
+        if let shares = existingShares{
+            switch shares.count {
+            case 0:
+                completion(.success(nil))
+                return
+            case 1:
+                let recordResult = Result(catching: {shares.first! })
+                switch recordResult {
+                case .success(let ckRecord):
+                    completion(.success(ckRecord as CKShare))
+                    return
+                case .failure(let error):
+                    completion(.failure(error))
+                    return
+                }
+            default:
+                tfDebug("More than 1 CKShare record")
+                for sh in shares {
+                    print("share: \(sh.debugDescription)")
+                }
+            }
+        } else {
+            //completion(.failure(Error("no shares found.")))
+            tfDebug("unable to get shares from privatePersistentStore")
+            return
+        }
+    }
+        //let query = CKQuery(recordType: "cloudkit.share", predicate: NSPredicate(value: true))
+        
+        // doc
+//        func fetch(
+//            withQuery query: CKQuery,
+//            inZoneWith zoneID: CKRecordZone.ID? = nil,
+//            desiredKeys: [CKRecord.FieldKey]? = nil,
+//            resultsLimit: Int = CKQueryOperation.maximumResults,
+//            completionHandler: @escaping (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, Error>)], queryCursor: CKQueryOperation.Cursor?), Error>) -> Void
+//        )
+//        privateDatabase.fetch(withQuery: query) { result in
+//            switch result {
+//            case .success(let returned):
+//                // .success((matchResults: [CKRecord.ID : Result<CKRecord, Error>], queryCursor: CKQueryOperation.Cursor?))
+//                let matchResults = returned.0 // [CKRecord.ID : Result<CKRecord, Error>]
+//                switch matchResults.count {
+//                case 0:
+//                    completion(.success(nil))
+//                    return
+//                case 1:
+//                    let recordResult = matchResults.values.first!
+//                    switch recordResult {
+//                    case .success(let ckRecord):
+//                        completion(.success(ckRecord as? CKShare))
+//                        return
+//                    case .failure(let error):
+//                        completion(.failure(error))
+//                        return
+//                    }
+//                default:
+//                    fatalError("More than 1 CKShare record")
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//                return
+//            }
+//        }
+    
+    
 }
 

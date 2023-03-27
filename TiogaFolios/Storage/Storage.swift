@@ -62,7 +62,7 @@ final class Storage: NSObject, ObservableObject  {
     
     lazy var container: NSPersistentCloudKitContainer = {
         
-        Foundation.NSLog("TFdebug AT NSPersistentCloudKitContainer(name: Config.containerName)")
+        tfDebug("AT NSPersistentCloudKitContainer(name: Config.containerName)")
         let container = NSPersistentCloudKitContainer(name: Config.containerName)
         
 #if DEBUG
@@ -152,6 +152,7 @@ final class Storage: NSObject, ObservableObject  {
         
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.transactionAuthor = TransactionAuthor.app
 
         /**
          Pin the viewContext to the current generation token and set it to keep itself up-to-date with local changes.
@@ -265,14 +266,14 @@ extension Storage {
         )
     }
     
-    var ckContainer: CKContainer {
-        let storeDescription = container.persistentStoreDescriptions.first
-        guard let identifier = storeDescription?
-            .cloudKitContainerOptions?.containerIdentifier else {
-            fatalError("TFdebug Unable to get container identifier")
-        }
-        return CKContainer(identifier: identifier)
-    }
+//    var ckContainer: CKContainer {
+//        let storeDescription = container.persistentStoreDescriptions.first
+//        guard let identifier = storeDescription?
+//            .cloudKitContainerOptions?.containerIdentifier else {
+//            fatalError("TFdebug Unable to get container identifier")
+//        }
+//        return CKContainer(identifier: identifier)
+//    }
     
     func getShare(_ folio: Folio) -> CKShare? {
         guard isShared(object: folio) else { return nil }

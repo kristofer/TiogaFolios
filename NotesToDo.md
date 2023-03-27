@@ -2,6 +2,17 @@
 
 For MVP
 
+## a great idea 
+
+```
+    let result = Result(catching: {
+      try sometingthat_throws()
+    })
+    // will auto wrap an error, if you get one, 
+    // otherwise result is .success and has the rsultant obj(s)
+    completion(result)
+```
+    
 MVP achieved (28 Nov 2022), but no Sharing (yet)
 
 - BACKUPS

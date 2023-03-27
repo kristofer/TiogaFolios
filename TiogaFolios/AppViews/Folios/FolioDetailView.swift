@@ -91,7 +91,8 @@ struct FolioDetailView: View {
                 Text(vm.folio.desc ?? "-")
                     .font(.body.italic())
                 if let share = share {
-                    Text(" s:\(share.title)")
+                    Text("{ \(share.title) }")
+                        .font(.caption.italic())
                 }
             }
             Divider()
@@ -137,15 +138,15 @@ struct FolioDetailView: View {
         })
         .toolbar { toolbarItems() } // title display here.
         .navigationBarTitleDisplayMode(.inline)
-//        .sheet(isPresented: $vm.showShareSheet, content: {
-//            if let share = share {
-//                CloudSharingView(
-//                    share: share,
-//                    container: vm.store.ckContainer,
-//                    folio: vm.folio
-//                )
-//            } else {Text("Share unavailable")}
-//        })
+        //        .sheet(isPresented: $vm.showShareSheet, content: {
+        //            if let share = share {
+        //                CloudSharingView(
+        //                    share: share,
+        //                    container: vm.store.ckContainer,
+        //                    folio: vm.folio
+        //                )
+        //            } else {Text("Share unavailable")}
+        //        })
         .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
             sheetView(with: item)
         }
@@ -208,22 +209,15 @@ struct FolioDetailView: View {
                 Menu {
                     Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }
                     Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
+                    Divider()
                     Button("Add to Folio...", action: addtofolio)
                     Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
                     Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                     //if Storage.shared.privatePersistentStore.contains(manageObject: vm.folio) {
                     //if self.share != nil {
-                    Button("Manage Share") {
-                        if let share = share {
-                        //share.title = folio.title + " Share"
-                            tfDebug("setting up for managing a share \(share.title)")
-                            nextSheet = .participantView(share)
-                            activeSheet = .managingSharesView(vm.folio)
-                        }
-                    }
-                    //Button("Manage Share") { manageParticipation(folio: vm.folio) }
-                    //} else {
-                    Button("Share Folio...") { Task { await createShare(folio: vm.folio) } }
+                    Divider()
+                    Button("Start Share Folio...") { Task { await createShare(folio: vm.folio) } }
+                    Button("Manage Share") { manageParticipation(folio: vm.folio) }
                     Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
                     //}
                 } label: {
@@ -269,18 +263,25 @@ struct FolioDetailView: View {
         }
     }
     
-    //    private func createNewShare(folio: Folio) {
-    //         Storage.shared.presentCloudSharingController(folio: folio)
-    //    }
     // error The owner stopped sharing, or you don’t have permission to open it.
     
-    private func manageParticipation(folio: Folio) {
-        Storage.shared.presentCloudSharingController(folio: folio)
+    // private
+    func manageParticipation(folio: Folio) {
+        //Storage.shared.presentCloudSharingController(folio: folio)
+        self.share = Storage.shared.existingShare(folio: vm.folio)
+        if let share = self.share {
+            //share.title = folio.title + " Share"
+            tfDebug("setting up for managing a share \(share.title)")
+            nextSheet = .participantView(share)
+            activeSheet = .managingSharesView(vm.folio)
+        }
+
     }
     
-    private func deleteShareFor(folio: Folio) async {
-        
-        let newFolio = try? folio.deepcopy(context: Storage.shared.vc)
+    // private
+    func deleteShareFor(folio: Folio) async {
+        let thisContext = Storage.shared.container.viewContext
+        let newFolio = try? folio.deepcopy(context: thisContext)
         Storage.shared.save()
         
         
@@ -289,6 +290,7 @@ struct FolioDetailView: View {
             let ckContainer = Storage.shared.cloudKitContainer
             do {
                 try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+                thisContext.delete(folio)
                 Storage.shared.save()
             } catch {
                 tfDebug("Failed to delete ckshare in icloud, error: \(error)")
@@ -298,49 +300,90 @@ struct FolioDetailView: View {
             tfDebug("no share to delete")
         }
     }
-//    private func deleteShare(_ share: CKShare) async {
-//    }
     
-    private func createShare(folio: Folio) async {
-        do {
-            let (shared, share, container) =
-            try await Storage.shared.container.share([folio], to: nil)
-            tfDebug("\(shared), \(share), \(container)")
-            share[CKShare.SystemFieldKey.title] = folio.title
-            self.share = share
-        } catch {
-            tfDebug("Failed to create share")
+    // private
+    func createShare(folio: Folio) async {
+        guard Storage.shared.existingShare(folio: folio) == nil else {
+            print("no need to create share")
+            return
         }
+        Storage.shared.shareObject(folio, to: nil ) { share, error in
+            guard error == nil, let sureshare = share else {
+                tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(String(describing: share))")
+                return
+            }
+            sureshare[CKShare.SystemFieldKey.title] = folio.title
+            self.share = sureshare
+            DispatchQueue.main.async {
+                self.vm.message = Message(text: "Created a Share")
+            }
+
+        }
+        
     }
     
-
+    
     /**
      Sharing a folio can take a while, so dispatch to a global queue so SwiftUI has a chance to show the progress view.
      @State variables are thread-safe, so there's no need to dispatch back the main queue.
      */
-    private func createNewShare(folio: Folio) {
-        //toggleProgress.toggle()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let exShare = Storage.shared.existingShare(folio: folio)
-            tfDebug("exshare is  \(String(describing: exShare))")
-            let shrs = Storage.shareTitles(Storage.shared)
-            tfDebug("### \(String(describing: shrs))")
-            Storage.shared.shareObject(folio, to: ((exShare != nil) ? exShare : nil) ) { share, error in
-                guard error == nil else {
-                    tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(share)")
-                    return
-                }
-                
-                //toggleProgress.toggle()
-                if let share = share {
-                    //share.title = folio.title + " Share"
-                    tfDebug("setting up for managing a share \(share.title)")
-                    nextSheet = .participantView(share)
-                    activeSheet = .managingSharesView(folio)
-                }
-            }
-        }
-    }
+    //    private func createNewShare(folio: Folio) {
+    //        //toggleProgress.toggle()
+    //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+    //            let exShare = Storage.shared.existingShare(folio: folio)
+    //            tfDebug("exshare is  \(String(describing: exShare))")
+    //            let shrs = Storage.shareTitles(Storage.shared)
+    //            tfDebug("### \(String(describing: shrs))")
+    //            Storage.shared.shareObject(folio, to: ((exShare != nil) ? exShare : nil) ) { share, error in
+    //                guard error == nil else {
+    //                    tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(share)")
+    //                    return
+    //                }
+    //
+    //                //toggleProgress.toggle()
+    //                if let share = share {
+    //                    //share.title = folio.title + " Share"
+    //                    tfDebug("setting up for managing a share \(share.title)")
+    //                    share[CKShare.SystemFieldKey.title] = folio.title
+    //                    nextSheet = .participantView(share)
+    //                    activeSheet = .managingSharesView(folio)
+    //                }
+    //            }
+    //        }
+    //    }
+    
+    
+    //    private func setupShare(folio: Folio) {
+    //        /*
+    //         If no CKShare record has been stored yet in iCloud, it will be created below using UICloudSharingController initialized with a preparation handler.
+    //         If it exists already, UICloudSharingController is initializes with the existing CKShare record.
+    //         */
+    //        Storage.shared.getShareRecord { result in
+    //            DispatchQueue.main.async {
+    //                let cloudSharingController: UICloudSharingController!
+    //                switch result {
+    //                case .success(let ckShareRecord):
+    //                    if let shareRecord = ckShareRecord {
+    //                        cloudSharingController = UICloudSharingController.init(share: shareRecord, container: CKContainer.default())
+    //                        nextSheet = .participantView(shareRecord)
+    //                        activeSheet = .managingSharesView(folio)
+    //                    } else {
+    //                        cloudSharingController = UICloudSharingController { /*[weak self]*/ (controller, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
+    //                            //guard let `self` = self else { return }
+    //                            Storage.shared.share(folio: folio, completion: completion)
+    //                            nextSheet = nil //.participantView(nil)
+    //                            activeSheet = .managingSharesView(folio)
+    //                        }
+    //                    }
+    //                    //tfDebug("NEED TO SETUP cloudSharingController")
+    //                    //tfDebug("setting up for managing a share \(share.title)")
+    //                    //share[CKShare.SystemFieldKey.title] = folio.title
+    //                case .failure(let error):
+    //                    fatalError("\(error)")
+    //                }
+    //            }
+    //        }
+    //    }
     
     private func string(for permission: CKShare.ParticipantPermission) -> String {
         switch permission {

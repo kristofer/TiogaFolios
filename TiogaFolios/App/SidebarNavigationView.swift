@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SidebarNavigationView: View {
     
-    @SceneStorage("selection")
-    var selection: String?
+    //@SceneStorage("selection")
+    @State
+    var selection: NavItem? = .foliolist
     
     var content: some View {
         List(selection: $selection) {
@@ -69,13 +70,13 @@ struct SidebarNavigationView: View {
                     }
                 }
 #endif
-            
-            // This is the part where the magic happens for the split view.
-            // Instead of the Text, add any view you want in place.
-            // Play here to see what fits best for you.
-            Text("Content List")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
+//
+//            // This is the part where the magic happens for the split view.
+//            // Instead of the Text, add any view you want in place.
+//            // Play here to see what fits best for you.
+//            content
+//                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//
 #if os(iOS)
             Text("Split view for iPad")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
