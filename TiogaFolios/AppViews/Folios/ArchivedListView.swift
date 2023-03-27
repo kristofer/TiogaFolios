@@ -13,7 +13,7 @@ class ArchivedListViewModel: ObservableObject {
     
     func fetchData() {
         self.folios = Folio.fetchArchivedFolios(vc: Storage.shared.vc)
-        //print("TFdebug fetch folios \(self.folios.count)")
+        //tfDebug("fetch folios \(self.folios.count)")
     }
     
 }
@@ -36,7 +36,7 @@ struct ArchivedListView: View {
                     ForEach(vm.folios) { folio in
                         VStack(spacing: 0) {
                             NavigationLink(
-                                destination: FolioView(folio: folio )) {
+                                destination: FolioDetailView(folio: folio )) {
                                     FolioCell(folio: folio)
                                 }
                         }

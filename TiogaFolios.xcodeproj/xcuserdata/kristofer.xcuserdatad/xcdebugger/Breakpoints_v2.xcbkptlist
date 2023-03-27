@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "984213F3-7FAA-4F11-ACDD-E5F94A39E0EB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TiogaFolios/AppViews/Folios/FolioDeltaView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "init(objectPassed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "26C812CF-39E4-4097-8D2B-C4A7D11E4485"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -48,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "sharefolio()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
             endingLineNumber = "292"
-            landmarkName = "createShare(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
             endingLineNumber = "116"
-            landmarkName = "body"
-            landmarkType = "24">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "42BFE41C-64DF-4E0E-817D-5841073A9197 - d2af25b1d656ef08"
@@ -244,14 +228,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 258801217c0dc7a"
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 93d329b6b8717ecd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.saveLocalFile(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -259,14 +243,14 @@
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 258801217c0dc7a"
+                  uuid = "F5462754-43D3-4940-9E4F-1C5F70D44CEE - 93d329b6b8717ecd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.saveLocalFile(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -382,8 +366,8 @@
             filePath = "TiogaFolios/AppViews/Scanner/ScannerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "savePDFtoFolio()"
             landmarkType = "7">
          </BreakpointContent>
@@ -404,14 +388,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F201CBCE-77F4-4378-8806-A007D7BDF9B9 - 258801217c0d05a"
+                  uuid = "F201CBCE-77F4-4378-8806-A007D7BDF9B9 - 93d329b6b87172ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.getDistantUrl(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -419,14 +403,14 @@
                   offsetFromSymbolStart = "268">
                </Location>
                <Location
-                  uuid = "F201CBCE-77F4-4378-8806-A007D7BDF9B9 - 258801217c0d05a"
+                  uuid = "F201CBCE-77F4-4378-8806-A007D7BDF9B9 - 93d329b6b87172ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.getDistantUrl(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -434,14 +418,14 @@
                   offsetFromSymbolStart = "400">
                </Location>
                <Location
-                  uuid = "F201CBCE-77F4-4378-8806-A007D7BDF9B9 - 258801217c0d05a"
+                  uuid = "F201CBCE-77F4-4378-8806-A007D7BDF9B9 - 93d329b6b87172ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(1) suspend resume partial function for TiogaFolios.Fetching.getDistantUrl(_: Swift.String, folio: TiogaFolios.Folio, viewContext: __C.NSManagedObjectContext, contentNote: Swift.String) async throws -&gt; ()"
                   moduleName = "TiogaFolios"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
+                  urlString = "file:///Volumes/Terabyte/kristofer/LocalProjects/TiogaFolios/TiogaFolios/Networking/Fetching.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
@@ -465,6 +449,134 @@
             endingLineNumber = "94"
             landmarkName = "handleSharedFile()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55650F94-7082-4D18-BEB5-5FBD543AA8A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Sharing/PersistenceController+Share.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "shareTitles()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76E4912B-BCA7-4062-B5F5-B064397AF0F0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "deleteShareFor(folio:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95265734-69E8-4D91-AADD-F6A51C875903"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Sharing/PersistenceController+Share.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "purgeObjectsAndRecords(with:in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7443D941-899E-4628-9AF8-F8901C1B576B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "deleteShareFor(folio:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E94E236E-B562-4C9F-89A6-2F67E1D06CD7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Storage/Storage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "container"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4AE07139-E0FA-4B7F-B157-2DFA32F5E7EE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Storage/Storage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "container"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "677F464D-22DC-4F18-9060-6582C0C25578"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/Sharing/PersistenceController+Share.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
+            landmarkName = "getShareRecord(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40DE1CBA-57AB-4DD1-9B91-0D440E761471"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
+            landmarkName = "FolioDetailView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

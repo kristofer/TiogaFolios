@@ -81,7 +81,7 @@ struct SettingsView: View {
             try viewContext.execute(batchDeleteRequest)
             try viewContext.save()
         } catch {
-            print("Delete all data in \(entityName) error :", error)
+            tfDebug("Delete all data in \(entityName) error :", error)
         }
     }
     

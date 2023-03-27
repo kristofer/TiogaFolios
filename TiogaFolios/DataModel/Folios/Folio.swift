@@ -72,8 +72,86 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("TFdebug folio count \(fetchedFolios.count)")
+        tfDebug("folio count \(fetchedFolios.count)")
         return fetchedFolios
+    }
+    
+    static func fetchPrivateFolios(vc: NSManagedObjectContext) -> [Folio] {
+        var fetchedFolios = [Folio]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
+        fetchRequest.sortDescriptors = [dateSort]
+        let notLocked = NSPredicate(format: "locked == %@", false as NSNumber)
+        fetchRequest.predicate = notLocked
+        
+        do {
+            fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
+        } catch {
+            Foundation.NSLog("No folios in store")
+        }
+        var fs = [Folio]()
+        let Store = Storage.shared
+        for f in fetchedFolios{
+            if Store.isShared(object: f) == false {
+                fs.append(f)
+            }
+        }
+        tfDebug("private folio count \(fs.count)")
+        return fs
+//        tfDebug("folio count \(fetchedFolios.count)")
+//        return fetchedFolios
+    }
+    
+    static func fetchSharedFolios(vc: NSManagedObjectContext) -> [Folio] {
+        var fetchedFolios = [Folio]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
+        fetchRequest.sortDescriptors = [dateSort]
+        let notLocked = NSPredicate(format: "locked == %@", false as NSNumber)
+        fetchRequest.predicate = notLocked
+        
+        do {
+            fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
+        } catch {
+            Foundation.NSLog("No folios in store")
+        }
+        var fs = [Folio]()
+        let Store = Storage.shared
+        for f in fetchedFolios{
+            if Store.isShared(object: f) && (Store.isOwner(object: f) == false) {
+                fs.append(f)
+            }
+        }
+        tfDebug("shared folio count \(fs.count)")
+        return fs
+//        tfDebug("folio count \(fetchedFolios.count)")
+//        return fetchedFolios
+    }
+    
+    static func fetchSharingFolios(vc: NSManagedObjectContext) -> [Folio] {
+        var fetchedFolios = [Folio]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
+        let dateSort = NSSortDescriptor(key:"lastmodified", ascending:false)
+        fetchRequest.sortDescriptors = [dateSort]
+        let notLocked = NSPredicate(format: "locked == %@", false as NSNumber)
+        fetchRequest.predicate = notLocked
+        
+        do {
+            fetchedFolios = try vc.fetch(fetchRequest) as? [Folio] ?? []
+        } catch {
+            Foundation.NSLog("No folios in store")
+        }
+        var fs = [Folio]()
+        let Store = Storage.shared
+        for f in fetchedFolios{
+            if Store.isShared(object: f) && Store.isOwner(object: f) {
+                fs.append(f)
+            }
+        }
+        tfDebug("sharing folio count \(fs.count)")
+        return fs
+//        tfDebug("folio count \(fetchedFolios.count)")
+//        return fetchedFolios
     }
     
     static func fetchFoliosAnd(vc: NSManagedObjectContext, relations: [String]) -> [Folio] {
@@ -90,7 +168,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("TFdebug folio count \(fetchedFolios.count)")
+        tfDebug("folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
 
@@ -107,7 +185,7 @@ extension Folio {
         } catch {
             Foundation.NSLog("No folios in store")
         }
-        print("TFdebug folio count \(fetchedFolios.count)")
+        tfDebug("folio count \(fetchedFolios.count)")
         return fetchedFolios
     }
     

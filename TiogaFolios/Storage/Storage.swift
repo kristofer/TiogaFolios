@@ -31,11 +31,12 @@ struct TransactionAuthor {
 final class Storage: NSObject, ObservableObject  {
     
     static let shared = Storage()
+    
     private override init() {
+        Foundation.NSLog("TFdebug INIT'ing STORAGE")
         super.init()
-//        NotificationCenter.default.addObserver(self, selector: #selector(contextWillSave(_:)), name: Notification.Name.NSManagedObjectContextWillSave, object: self.vc)
-        
     }
+    
     var vc: NSManagedObjectContext {
         
         self.container.viewContext.automaticallyMergesChangesFromParent = true
@@ -61,6 +62,7 @@ final class Storage: NSObject, ObservableObject  {
     
     lazy var container: NSPersistentCloudKitContainer = {
         
+        tfDebug("AT NSPersistentCloudKitContainer(name: Config.containerName)")
         let container = NSPersistentCloudKitContainer(name: Config.containerName)
         
 #if DEBUG
@@ -77,17 +79,18 @@ final class Storage: NSObject, ObservableObject  {
         }
         let storesURL = privateStoreDescription.url?.deletingLastPathComponent()
         privateStoreDescription.url = storesURL?.appendingPathComponent("TiogaFolios.sqlite") // would be TiogaFolios.sqlite
+
         privateStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+        //let privateStoreOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+
+        privateStoreDescription.cloudKitContainerOptions?.databaseScope = .private
+        //privateStoreDescription.cloudKitContainerOptions = privateStoreOptions
+        
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        let remoteChangeKey = "NSPersistentStoreRemoteChangeNotificationOptionKey"
-        privateStoreDescription.setOption(true as NSNumber, forKey: remoteChangeKey)
-        let cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+        //privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationOptionKey)
 
-        cloudKitContainerOptions.databaseScope = .private
-        privateStoreDescription.cloudKitContainerOptions = cloudKitContainerOptions
-
-        // TODO: 1
+        
         guard let sharedStoreDescription = privateStoreDescription
             .copy() as? NSPersistentStoreDescription else {
             fatalError(
@@ -97,25 +100,32 @@ final class Storage: NSObject, ObservableObject  {
         let sharedStoreURL = storesURL?.appendingPathComponent("TFshared.sqlite")
         sharedStoreDescription.url = sharedStoreURL
         
-        // TODO: 2
-        guard let containerIdentifier = privateStoreDescription
-            .cloudKitContainerOptions?.containerIdentifier else {
-            fatalError("Unable to get containerIdentifier")
-        }
-        let sharedStoreOptions = NSPersistentCloudKitContainerOptions(
-            containerIdentifier: containerIdentifier
-        )
-        sharedStoreOptions.databaseScope = .shared
-        sharedStoreDescription.cloudKitContainerOptions = sharedStoreOptions
+//        guard let containerIdentifier = privateStoreDescription
+//            .cloudKitContainerOptions?.containerIdentifier else {
+//            fatalError("Unable to get containerIdentifier")
+//        }
+        
+        sharedStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
+        sharedStoreDescription.cloudKitContainerOptions?.databaseScope = .shared
         sharedStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         sharedStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        sharedStoreDescription.setOption(true as NSNumber, forKey: remoteChangeKey)
+        //sharedStoreDescription.setOption(true as NSNumber, forKey: "NSPersistentStoreRemoteChangeNotificationOptionKey")
         
-        // TODO: 3
         container.persistentStoreDescriptions.append(sharedStoreDescription)
         
-        // TODO: 4
-        
+        /** Observe the following notifications:
+        - The remote change notifications from container.persistentStoreCoordinator.
+        - The .NSManagedObjectContextDidSave notifications from any context.
+        - The event change notifications from the container.
+        */
+       NotificationCenter.default.addObserver(self, selector:  #selector(type(of: self).storeRemoteChange(_:)),
+                                              name: .NSPersistentStoreRemoteChange,
+                                              object: container.persistentStoreCoordinator)
+
+//       NotificationCenter.default.addObserver(self, selector: #selector(containerEventChanged(_:)),
+//                                              name: NSPersistentCloudKitContainer.eventChangedNotification,
+//                                              object: container)
+
         
         Foundation.NSLog("TFdebug Loading: container.loadPersistentStores")
         container.loadPersistentStores { loadedStoreDescription, error in
@@ -142,6 +152,7 @@ final class Storage: NSObject, ObservableObject  {
         
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.transactionAuthor = TransactionAuthor.app
 
         /**
          Pin the viewContext to the current generation token and set it to keep itself up-to-date with local changes.
@@ -149,34 +160,12 @@ final class Storage: NSObject, ObservableObject  {
         do {
             try container.viewContext.setQueryGenerationFrom(.current)
         } catch {
-            fatalError("#\(#function): Failed to pin viewContext to the current generation:\(error)")
+            fatalError("TFdebug \(#function): Failed to pin viewContext to the current generation:\(error)")
         }
         
-        /**
-         Observe the following notifications:
-         - The remote change notifications from container.persistentStoreCoordinator.
-         - The .NSManagedObjectContextDidSave notifications from any context.
-         - The event change notifications from the container.
-         */
-        NotificationCenter.default.addObserver(self, selector: #selector(storeRemoteChange(_:)),
-                                               name: .NSPersistentStoreRemoteChange,
-                                               object: container.persistentStoreCoordinator)
-        NotificationCenter.default.addObserver(self, selector: #selector(containerEventChanged(_:)),
-                                               name: NSPersistentCloudKitContainer.eventChangedNotification,
-                                               object: container)
-
         return container
         
     }()
-    
-//    @objc func contextWillSave(_ notification: Notification) {
-//        //        print("TFdebug \(notification)")
-//        //        let context = notification.object as? NSManagedObjectContext
-//        //        let changes = context?.updatedObjects
-//        //        print("TFdebug changes \(changes)")
-//        //        let saveDate = Date()
-//
-//    }
     
     func save() {
         //Foundation.NSLog("TFdebug Storage save()")
@@ -247,7 +236,7 @@ extension Storage {
                         isShared = true
                     }
                 } catch {
-                    print("Failed to fetch share for \(objectID): \(error)")
+                    tfDebug("Failed to fetch share for \(objectID): \(error)")
                 }
             }
         }
@@ -257,7 +246,7 @@ extension Storage {
     func isOwner(object: NSManagedObject) -> Bool {
         guard isShared(object: object) else { return false }
         guard let share = try? container.fetchShares(matching: [object.objectID])[object.objectID] else {
-            print("Get ckshare error")
+            tfDebug("Get ckshare error")
             return false
         }
         if let currentUser = share.currentUserParticipant, currentUser == share.owner {
@@ -277,20 +266,20 @@ extension Storage {
         )
     }
     
-    var ckContainer: CKContainer {
-        let storeDescription = container.persistentStoreDescriptions.first
-        guard let identifier = storeDescription?
-            .cloudKitContainerOptions?.containerIdentifier else {
-            fatalError("Unable to get container identifier")
-        }
-        return CKContainer(identifier: identifier)
-    }
+//    var ckContainer: CKContainer {
+//        let storeDescription = container.persistentStoreDescriptions.first
+//        guard let identifier = storeDescription?
+//            .cloudKitContainerOptions?.containerIdentifier else {
+//            fatalError("TFdebug Unable to get container identifier")
+//        }
+//        return CKContainer(identifier: identifier)
+//    }
     
     func getShare(_ folio: Folio) -> CKShare? {
         guard isShared(object: folio) else { return nil }
         guard let shareDictionary = try? container.fetchShares(matching: [folio.objectID]),
               let share = shareDictionary[folio.objectID] else {
-            print("Unable to get CKShare")
+            tfDebug("Unable to get CKShare")
             return nil
         }
         share[CKShare.SystemFieldKey.title] = folio.title
@@ -310,7 +299,7 @@ extension Storage {
     func storeRemoteChange(_ notification: Notification) {
         guard let storeUUID = notification.userInfo?[NSStoreUUIDKey] as? String,
               [privatePersistentStore.identifier, sharedPersistentStore.identifier].contains(storeUUID) else {
-            print("\(#function): Ignore a store remote Change notification because of no valid storeUUID.")
+            tfDebug("\(#function): Ignore a store remote Change notification because of no valid storeUUID.")
             return
         }
         processHistoryAsynchronously(storeUUID: storeUUID)
@@ -323,11 +312,11 @@ extension Storage {
     func containerEventChanged(_ notification: Notification) {
          guard let value = notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey],
               let event = value as? NSPersistentCloudKitContainer.Event else {
-            print("\(#function): Failed to retrieve the container event from notification.userInfo.")
+            tfDebug("\(#function): Failed to retrieve the container event from notification.userInfo.")
             return
         }
         if event.error != nil {
-            print("\(#function): Received a persistent CloudKit container event changed notification.\n\(event)")
+            tfDebug("\(#function): Received a persistent CloudKit container event changed notification.\n\(event)")
         }
     }
 }
@@ -341,11 +330,11 @@ extension Storage {
      */
     private func processHistoryAsynchronously(storeUUID: String) {
         historyQueue.addOperation {
-//            let taskContext = self.container.newTaskContext()
-//            taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//            taskContext.performAndWait {
-//                self.performHistoryProcessing(storeUUID: storeUUID, performingContext: taskContext)
-//            }
+            let taskContext = self.container.newTaskContext()
+            taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            taskContext.performAndWait {
+                self.performHistoryProcessing(storeUUID: storeUUID, performingContext: taskContext)
+            }
         }
     }
     
@@ -369,7 +358,7 @@ extension Storage {
         guard let transactions = result?.result as? [NSPersistentHistoryTransaction] else {
             return
         }
-        // print("\(#function): Processing transactions: \(transactions.count).")
+        // tfDebug("\(#function): Processing transactions: \(transactions.count).")
 
         /**
          Post transactions so observers can update the UI, if necessary, even when transactions is empty
@@ -388,9 +377,13 @@ extension Storage {
          Limit to the private store so only owners can deduplicate the tags. Owners have full access to the private database, and so
          don't need to worry about the permissions.
          */
-        guard !transactions.isEmpty, storeUUID == privatePersistentStore.identifier else {
-            return
-        }
+        //guard !transactions.isEmpty, storeUUID == privatePersistentStore.identifier else {
+        //    return
+        //}
+        // REMOVED because of https://developer.apple.com/forums/thread/689774
+        
+        
+        
         /**
          Deduplicate the new tags.
          This only deduplicates the tags that aren't shared or have the same share.

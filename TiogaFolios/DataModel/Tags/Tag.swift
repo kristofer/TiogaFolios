@@ -11,8 +11,12 @@ import CoreData
 // this is used to store the String in Core Data, but it is a ENUM in the data model.
 extension Tag {
 
+    enum Schema: String {
+        case name, uuid, title, desc
+    }
+
     static func allTags() -> [Tag] {
-        //print("TFdebug running fetch on all tags")
+        //tfDebug("running fetch on all tags")
         let vc = Storage.shared.vc
         var fetchedTags = [Tag]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
@@ -20,7 +24,7 @@ extension Tag {
         fetchRequest.sortDescriptors = [dateSort]
         fetchedTags = try! vc.fetch(fetchRequest) as! [Tag]
 //        for t in fetchedTags {
-//            print("TFdebug \(t.title!), [\(t.kind!)]")
+//            tfDebug("\(t.title!), [\(t.kind!)]")
 //        }
         return fetchedTags
     }
@@ -39,7 +43,7 @@ extension Tag {
         fetchRequest.sortDescriptors = [dateSort]
         fetchRequest.predicate = predicate
         fetchedTags = try! vc.fetch(fetchRequest) as! [Tag]
-        //print("TFdebug tag list \(tagkind.rawValue) : \(fetchedTags.count)")
+        //tfDebug("tag list \(tagkind.rawValue) : \(fetchedTags.count)")
         return fetchedTags
     }
     
@@ -54,7 +58,7 @@ extension Tag {
         let predicate = NSPredicate(format: "title == %@ AND kind == %@ AND category == %@", title, tagkind.rawValue, tagcat.rawValue)
         fetchRequest.predicate = predicate
         fetchedTags = try! vc.fetch(fetchRequest) as! [Tag]
-        //print("TFdebug tag list \(tagkind.rawValue) : \(fetchedTags.count)")
+        //tfDebug("tag list \(tagkind.rawValue) : \(fetchedTags.count)")
         return fetchedTags
     }
     

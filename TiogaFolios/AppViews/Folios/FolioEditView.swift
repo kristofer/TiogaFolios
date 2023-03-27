@@ -27,7 +27,7 @@ struct FolioEditView: View {
                 .border(Color.gray)
                 .navigationBarTitle(Text("Edit Folio..."), displayMode: .inline)
                     .navigationBarItems(trailing: Button(action: {
-                        //print("Dismissing folio edit view...")
+                        //tfDebug("Dismissing folio edit view...")
                         folio.desc = self.descriptiontext
                         folio.touch()
                         Storage.shared.save()

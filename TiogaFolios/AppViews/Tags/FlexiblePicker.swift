@@ -70,10 +70,10 @@ struct FlexiblePicker<T: SelectableTag>: View {
         inputData[index].isSelected.toggle()
         if inputData[index].isSelected == true {
             item.attachTag(inputData[index].displayedTag)
-            //print("TFdebug attachTag \(inputData[index].displayedName)")
+            //tfDebug("attachTag \(inputData[index].displayedName)")
         } else {
             item.removeTag(inputData[index].displayedTag)
-            //print("TFdebug removeTag")
+            //tfDebug("removeTag")
         }
     }
     

@@ -17,9 +17,9 @@ class ScanViewModel: ObservableObject {
     
     init() {
         camera = DocumentCamera(
-            cancelAction: { print("User did cancel") },
+            cancelAction: { tfDebug("User did cancel") },
             resultAction: { result in
-                print("Scanned \(result)")
+                tfDebug("Scanned \(result)")
             }             // Mandatory
         )
         
@@ -31,7 +31,13 @@ class ScanViewModel: ObservableObject {
 struct ScannerView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    @Binding var activeSheet: ActiveSheet?
     var folio: Folio
+    
+    init(activeSheet: Binding<ActiveSheet?>, folio: Folio) {
+        _activeSheet = activeSheet
+        self.folio = folio
+    }
     
     @State var index = 0
     @State var scanArray = [Image]()
@@ -58,12 +64,7 @@ struct ScannerView: View {
 
             if scanArray.count > 0 {
                 Section(header: Text("Scans")) {
-                    //                        PageView(pages: scans.map { $0
-                    //                            .resizable()
-                    //                            .aspectRatio(contentMode: .fit)
-                    //                            .frame(height: 300)
-                    //                        }, currentPageIndex: $index)
-                    ForEach(0..<scanArray.count) { imageIdx in
+                    ForEach(0 ..< scanArray.count) { imageIdx in
                         scanArray[imageIdx]
                        .resizable()
                        .frame(width: 400, height: 600)
@@ -190,7 +191,7 @@ private extension VNDocumentCameraScan {
  
  ```swift
  let camera = DocumentCamera(
- cancelAction: { print("User did cancel") }  // Optional
+ cancelAction: { tfDebug("User did cancel") }  // Optional
  resultAction: { result in ... }             // Mandatory
  }
  ```

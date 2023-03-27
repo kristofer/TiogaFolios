@@ -132,9 +132,9 @@ struct FileAssetList: View {
             if let range3 = teststr.range(of: ".rtfd", options: .caseInsensitive) {
                 // match
                 self.errormsg = "error: unable to archive an RTFD file, \(selectedFile)"
-                print("error: found an RTFD file",selectedFile,range3)
+                tfDebug("error: found an RTFD file",selectedFile,range3)
             } else {
-                print("continue")
+                tfDebug("continue")
             }
             
             let blob = try Data(contentsOf: selectedFile) as Data?

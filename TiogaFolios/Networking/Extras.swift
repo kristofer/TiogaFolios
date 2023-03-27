@@ -39,7 +39,7 @@ class TestFetch {
 
             try await Fetching().getDistantUrl(testy, folio: lastfolio, viewContext: vc, contentNote: "foo")
         } catch {
-            print("unable to fetch url")
+            tfDebug("unable to fetch url")
         }
     }
     func runTest2() async {
@@ -50,7 +50,7 @@ class TestFetch {
 
             try await Fetching().getDistantUrl(testy, folio: lastfolio, viewContext: vc, contentNote: "Zip Code Wilmington")
         } catch {
-            print("unable to fetch url")
+            tfDebug("unable to fetch url")
         }
     }
 }

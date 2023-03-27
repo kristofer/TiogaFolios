@@ -38,7 +38,7 @@ struct FolioListByTag: View {
                     ForEach(Array(tag.folios! as Set as! Set<Folio>), id: \.self) { folio in
                         VStack(spacing: 0) {
                         NavigationLink(
-                            destination: FolioView(folio: folio )) {
+                            destination: FolioDetailView(folio: folio )) {
                                 FolioCell(folio: folio)
                             }
                         }
