@@ -18,10 +18,7 @@ extension Storage {
          Grab the share if the folio is already shared.
          */
         var folioShare: CKShare?
-//        if let shareSet = try? container.fetchShares(matching: [folio.objectID]),
-//           let (_, share) = shareSet.first {
-//            folioShare = share
-//        }
+
         folioShare = Storage.shared.existingShare(folio: folio)
         
         let sharingController: UICloudSharingController
@@ -109,7 +106,7 @@ extension Storage: UICloudSharingControllerDelegate {
         if let share = csc.share {
             let keys = share.allKeys()
             for k in keys {
-                let f = k.debugDescription
+                //let f = k.debugDescription
                 tfDebug("key: \(k.debugDescription)")
             }
             purgeObjectsAndRecords(with: share)
@@ -278,15 +275,6 @@ extension CKShare.ParticipantAcceptanceStatus {
 
 extension CKShare {
     var title: String {
-
-        //        guard let date = creationDate else {
-        //            return "Share-\(UUID().uuidString)"
-        //        }
-        //        let formatter = DateFormatter()
-        //        formatter.dateStyle = .short
-        //        formatter.timeStyle = .short
-        //        return "Share-" + formatter.string(from: date)
-
         return self[SystemFieldKey.title] as? String ?? "folio share"
     }
     

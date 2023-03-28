@@ -13,3 +13,5 @@ public func tfDebug(_ items: Any..., separator: String = " ", terminator: String
     nitems.insert("TFdebug ", at: 0)
     print(nitems, separator: separator, terminator: terminator)
 }
+
+

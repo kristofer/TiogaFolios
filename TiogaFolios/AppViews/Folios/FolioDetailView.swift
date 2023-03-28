@@ -294,23 +294,23 @@ struct FolioDetailView: View {
     
     // private
     func createShare(folio: Folio) async {
-        guard Storage.shared.existingShare(folio: folio) == nil else {
-            print("no need to create share")
-            return
-        }
-        Storage.shared.shareObject(folio, to: nil ) { share, error in
-            guard error == nil, let sureshare = share else {
-                tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(String(describing: share))")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            guard Storage.shared.existingShare(folio: folio) == nil else {
+                print("no need to create share")
                 return
             }
-            sureshare[CKShare.SystemFieldKey.title] = folio.title
-            self.share = sureshare
-            DispatchQueue.main.async {
-                self.vm.message = Message(text: "Created a Share")
+            Storage.shared.shareObject(folio, to: nil ) { share, error in
+                guard error == nil, let sureshare = share else {
+                    tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(String(describing: share))")
+                    return
+                }
+                sureshare[CKShare.SystemFieldKey.title] = folio.title
+                self.share = sureshare
+                DispatchQueue.main.async {
+                    self.vm.message = Message(text: "Created a Share")
+                }
             }
-
         }
-        
     }
     
     
@@ -376,51 +376,6 @@ struct FolioDetailView: View {
     //        }
     //    }
     
-    private func string(for permission: CKShare.ParticipantPermission) -> String {
-        switch permission {
-        case .unknown:
-            return "Unknown"
-        case .none:
-            return "None"
-        case .readOnly:
-            return "Read-Only"
-        case .readWrite:
-            return "Read-Write"
-        @unknown default:
-            fatalError("A new value added to CKShare.Participant.Permission")
-        }
-    }
-    
-    private func string(for role: CKShare.ParticipantRole) -> String {
-        switch role {
-        case .owner:
-            return "Owner"
-        case .privateUser:
-            return "Private User"
-        case .publicUser:
-            return "Public User"
-        case .unknown:
-            return "Unknown"
-        @unknown default:
-            fatalError("A new value added to CKShare.Participant.Role")
-        }
-    }
-    
-    private func string(for acceptanceStatus: CKShare.ParticipantAcceptanceStatus) -> String {
-        switch acceptanceStatus {
-        case .accepted:
-            return "Accepted"
-        case .removed:
-            return "Removed"
-        case .pending:
-            return "Invited"
-        case .unknown:
-            return "Unknown"
-        @unknown default:
-            fatalError("A new value added to CKShare.Participant.AcceptanceStatus")
-        }
-    }
-    
     
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
@@ -463,6 +418,52 @@ struct FolioDetailView: View {
         }
     }
     
+    // for the eventual showing of sharing statuses
+    func string(for permission: CKShare.ParticipantPermission) -> String {
+        switch permission {
+        case .unknown:
+            return "Unknown"
+        case .none:
+            return "None"
+        case .readOnly:
+            return "Read-Only"
+        case .readWrite:
+            return "Read-Write"
+        @unknown default:
+            fatalError("A new value added to CKShare.Participant.Permission")
+        }
+    }
+
+    func string(for role: CKShare.ParticipantRole) -> String {
+        switch role {
+        case .owner:
+            return "Owner"
+        case .privateUser:
+            return "Private User"
+        case .publicUser:
+            return "Public User"
+        case .unknown:
+            return "Unknown"
+        @unknown default:
+            fatalError("A new value added to CKShare.Participant.Role")
+        }
+    }
+
+    func string(for acceptanceStatus: CKShare.ParticipantAcceptanceStatus) -> String {
+        switch acceptanceStatus {
+        case .accepted:
+            return "Accepted"
+        case .removed:
+            return "Removed"
+        case .pending:
+            return "Invited"
+        case .unknown:
+            return "Unknown"
+        @unknown default:
+            fatalError("A new value added to CKShare.Participant.AcceptanceStatus")
+        }
+    }
+
 }
 
 struct FolioDetailView_Previews: PreviewProvider {

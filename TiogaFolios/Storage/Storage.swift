@@ -5,8 +5,7 @@
 //  Created by Kristofer Younger on 11/15/22.
 //
 
-import CoreData
-
+import Foundation
 import CoreData
 import QuickLook
 import CloudKit
@@ -78,17 +77,14 @@ final class Storage: NSObject, ObservableObject  {
             fatalError("Unable to get persistentStoreDescription")
         }
         let storesURL = privateStoreDescription.url?.deletingLastPathComponent()
-        privateStoreDescription.url = storesURL?.appendingPathComponent("TiogaFolios.sqlite") // would be TiogaFolios.sqlite
-
+        privateStoreDescription.url = storesURL?.appendingPathComponent("TiogaFolios.sqlite")
+        
         privateStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
-        //let privateStoreOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
 
         privateStoreDescription.cloudKitContainerOptions?.databaseScope = .private
-        //privateStoreDescription.cloudKitContainerOptions = privateStoreOptions
         
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        //privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationOptionKey)
 
         
         guard let sharedStoreDescription = privateStoreDescription
@@ -99,17 +95,11 @@ final class Storage: NSObject, ObservableObject  {
         }
         let sharedStoreURL = storesURL?.appendingPathComponent("TFshared.sqlite")
         sharedStoreDescription.url = sharedStoreURL
-        
-//        guard let containerIdentifier = privateStoreDescription
-//            .cloudKitContainerOptions?.containerIdentifier else {
-//            fatalError("Unable to get containerIdentifier")
-//        }
-        
+                
         sharedStoreDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: Config.containerIdentifier)
         sharedStoreDescription.cloudKitContainerOptions?.databaseScope = .shared
         sharedStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         sharedStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        //sharedStoreDescription.setOption(true as NSNumber, forKey: "NSPersistentStoreRemoteChangeNotificationOptionKey")
         
         container.persistentStoreDescriptions.append(sharedStoreDescription)
         
@@ -218,75 +208,6 @@ final class Storage: NSObject, ObservableObject  {
 }
 
 
-extension Storage {
-    func isShared(object: NSManagedObject) -> Bool {
-        return isShared(objectID: object.objectID)
-    }
-    
-    private func isShared(objectID: NSManagedObjectID) -> Bool {
-        var isShared = false
-        if let persistentStore = objectID.persistentStore {
-            if persistentStore == sharedPersistentStore {
-                isShared = true
-            } else {
-                let container = container
-                do {
-                    let shares = try container.fetchShares(matching: [objectID])
-                    if shares.first != nil {
-                        isShared = true
-                    }
-                } catch {
-                    tfDebug("Failed to fetch share for \(objectID): \(error)")
-                }
-            }
-        }
-        return isShared
-    }
-    
-    func isOwner(object: NSManagedObject) -> Bool {
-        guard isShared(object: object) else { return false }
-        guard let share = try? container.fetchShares(matching: [object.objectID])[object.objectID] else {
-            tfDebug("Get ckshare error")
-            return false
-        }
-        if let currentUser = share.currentUserParticipant, currentUser == share.owner {
-            return true
-        }
-        return false
-    }
-    
-    func canEdit(object: NSManagedObject) -> Bool {
-        return container.canUpdateRecord(
-            forManagedObjectWith: object.objectID
-        )
-    }
-    func canDelete(object: NSManagedObject) -> Bool {
-        return container.canDeleteRecord(
-            forManagedObjectWith: object.objectID
-        )
-    }
-    
-//    var ckContainer: CKContainer {
-//        let storeDescription = container.persistentStoreDescriptions.first
-//        guard let identifier = storeDescription?
-//            .cloudKitContainerOptions?.containerIdentifier else {
-//            fatalError("TFdebug Unable to get container identifier")
-//        }
-//        return CKContainer(identifier: identifier)
-//    }
-    
-    func getShare(_ folio: Folio) -> CKShare? {
-        guard isShared(object: folio) else { return nil }
-        guard let shareDictionary = try? container.fetchShares(matching: [folio.objectID]),
-              let share = shareDictionary[folio.objectID] else {
-            tfDebug("Unable to get CKShare")
-            return nil
-        }
-        share[CKShare.SystemFieldKey.title] = folio.title
-        return share
-    }
-    
-}
 
 // MARK: - Notification handlers that trigger history processing.
 //
