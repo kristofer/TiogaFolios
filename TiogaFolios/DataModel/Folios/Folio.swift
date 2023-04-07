@@ -154,6 +154,19 @@ extension Folio {
 //        return fetchedFolios
     }
     
+    static func sharingState(_ f: Folio) -> String {
+        let Store = Storage.shared
+        if Store.isShared(object: f) == false {
+            return "icloud.slash" // not shared
+        }
+        if Store.isShared(object: f) && (Store.isOwner(object: f) == false) {
+            return "icloud.and.arrow.down" // shared in
+        }
+        if Store.isShared(object: f) && Store.isOwner(object: f) {
+            return "icloud.and.arrow.up" // shared out
+        }
+        return "icloud"
+    }
     static func fetchFoliosAnd(vc: NSManagedObjectContext, relations: [String]) -> [Folio] {
         var fetchedFolios = [Folio]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")

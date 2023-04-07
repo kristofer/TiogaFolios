@@ -15,7 +15,7 @@ struct TiogaFoliosApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State var mainActive:Bool = false
     @State private var encourageiCloudLogin = false
-
+    
     var body: some Scene {
         WindowGroup {
             VStack {
@@ -23,27 +23,27 @@ struct TiogaFoliosApp: App {
                     MainView()
                         .environment(\.managedObjectContext, store.vc)
                         .actionSheet(isPresented: $encourageiCloudLogin) {
-                                    ActionSheet(
-                                        title: Text("Not logged into iCloud"),
-                                        message: Text("Without being logged into iCloud, this app will save everything only on this device. If you login to iCloud, the app will work from multiple devices and allow for sharing with others."),
-                                        buttons: [
-                                            .cancel { print(self.encourageiCloudLogin) },
-                                            .default(Text("Take me to iCloud Login")){
-                                                tfDebug("sending to prefs:root=CASTLE")
-                                                let settingsCloudKitUrl = URL(string:"App-Prefs:root=CASTLE")
-                                                if let url = settingsCloudKitUrl {
-                                                    if #available(iOS 10, *) {
-                                                        if UIApplication.shared.canOpenURL(url) {
-                                                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                                        }
-                                                    } else {
-                                                        UIApplication.shared.openURL(url)
-                                                    }
+                            ActionSheet(
+                                title: Text("Not logged into iCloud"),
+                                message: Text("Without being logged into iCloud, this app will save everything only on this device. If you login to iCloud, the app will work from multiple devices and allow for sharing with others."),
+                                buttons: [
+                                    .cancel { print(self.encourageiCloudLogin) },
+                                    .default(Text("Take me to iCloud Login")){
+                                        tfDebug("sending to prefs:root=CASTLE")
+                                        let settingsCloudKitUrl = URL(string:"App-Prefs:root=CASTLE")
+                                        if let url = settingsCloudKitUrl {
+                                            if #available(iOS 10, *) {
+                                                if UIApplication.shared.canOpenURL(url) {
+                                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                                 }
-                                            },
-                                        ]
-                                    )
-                                }
+                                            } else {
+                                                UIApplication.shared.openURL(url)
+                                            }
+                                        }
+                                    },
+                                ]
+                            )
+                        }
                 } else {
                     SplashView()
                 }
@@ -56,14 +56,14 @@ struct TiogaFoliosApp: App {
                 }
                 CKContainer.default().accountStatus { (accountStat, error) in
                     if (accountStat == .available) {
-                            tfDebug("iCloud is available")
-                            encourageiCloudLogin = false
-                          }
-                          else {
-                              tfDebug("iCloud is not available")
-                              encourageiCloudLogin = true
-                          }
-                        }
+                        tfDebug("iCloud is available")
+                        encourageiCloudLogin = false
+                    }
+                    else {
+                        tfDebug("iCloud is not available")
+                        encourageiCloudLogin = true
+                    }
+                }
             }
         }
         .onChange(of: scenePhase) { _ in

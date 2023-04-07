@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C02C23829E0452A00A98C42 /* FolioListSegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C02C23729E0452A00A98C42 /* FolioListSegView.swift */; };
 		5C2B2BE8295249F90056EFF3 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */; };
 		5C2B2BEA29524CB60056EFF3 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */; };
 		5C2B2BEC29536EE40056EFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */; };
@@ -143,6 +144,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C02C23729E0452A00A98C42 /* FolioListSegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioListSegView.swift; sourceTree = "<group>"; };
 		5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
 		5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				5C32399A2925772B00619645 /* FolioDeltaView.swift */,
 				5C32399B2925772B00619645 /* FolioEditView.swift */,
 				5C32399C2925772B00619645 /* FolioListView.swift */,
+				5C02C23729E0452A00A98C42 /* FolioListSegView.swift */,
 				5C82057F297877860007CF70 /* ArchivedListView.swift */,
 				5C32399D2925772B00619645 /* FolioTagItems.swift */,
 				5CB910E029AFE85C0027E41C /* FolioDetailView.swift */,
@@ -741,6 +744,7 @@
 				5C3239CE2925796F00619645 /* FontWeight.swift in Sources */,
 				5C32398129254C5F00619645 /* TemplateSources.swift in Sources */,
 				5C3C5A1829BA268100081F8D /* ParticipantView.swift in Sources */,
+				5C02C23829E0452A00A98C42 /* FolioListSegView.swift in Sources */,
 				5C3239D02925796F00619645 /* TaggerView.swift in Sources */,
 				5C32398A29254CCB00619645 /* TagSources.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,

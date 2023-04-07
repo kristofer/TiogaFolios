@@ -17,10 +17,10 @@ class FolioListViewModel: ObservableObject {
     @Published var newFolio: Folio?
     
     func fetchData() {
-        //self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
-        self.folios = Folio.fetchPrivateFolios(vc: Storage.shared.vc)
-        self.sharedfolios = Folio.fetchSharedFolios(vc: Storage.shared.vc)
-        self.sharingfolios = Folio.fetchSharingFolios(vc: Storage.shared.vc)
+        self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
+        //self.folios = Folio.fetchPrivateFolios(vc: Storage.shared.vc)
+        //self.sharedfolios = Folio.fetchSharedFolios(vc: Storage.shared.vc)
+        //self.sharingfolios = Folio.fetchSharingFolios(vc: Storage.shared.vc)
         //tfDebug("fetch folios \(self.folios.count)")
     }
     
@@ -43,12 +43,10 @@ struct FolioListView: View {
     var body: some View {
         // moved to "superview" NavigationView {
         List {
-//            Text("All Folios") // Placeholder
-//                .font(.headline)
-            Section(header: Text("Private Folios"))
+            Section(header: Text("All Folios"))
             {
                 if vm.folios.isEmpty {
-                    Text("No Private Folios.") // Placeholder
+                    Text("No Folios.") // Placeholder
                         .font(.caption2)
                 } else {
                     ForEach(vm.folios) { folio in
@@ -65,49 +63,74 @@ struct FolioListView: View {
             }
             .headerProminence(.increased).padding(4)
             .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            Section(header: Text("Folios You Are Sharing"))
-            {
-                if vm.sharingfolios.isEmpty {
-                    Text("Sharing No Folios.") // Placeholder
-                        .font(.caption2)
-                } else {
-                    ForEach(vm.sharingfolios) { folio in
-                        VStack(spacing: 0) {
-                            NavigationLink(
-                                destination: FolioDetailView(folio: folio )) {
-                                    FolioCell(folio: folio)
-                                }
-                        }
-                        
-                    }
-                    .onDelete(perform: deleteFolios)
-                }
-            }
-            .headerProminence(.increased).padding(4)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            Section(header: Text("Folios Shared with You"))
-            {
-                if vm.sharedfolios.isEmpty {
-                    Text("No one is sharing folios with you.") // Placeholder
-                        .font(.caption2)
-                } else {
-                    ForEach(vm.sharedfolios) { folio in
-                        VStack(spacing: 0) {
-                            NavigationLink(
-                                destination: FolioDetailView(folio: folio )) {
-                                    FolioCell(folio: folio)
-                                }
-                        }
-                        
-                    }
-                    .onDelete(perform: deleteFolios)
-                }
-            }
-            .headerProminence(.increased).padding(4)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+
+
+//            Text("All Folios") // Placeholder
+//                .font(.headline)
+//            Section(header: Text("Private Folios"))
+//            {
+//                if vm.folios.isEmpty {
+//                    Text("No Private Folios.") // Placeholder
+//                        .font(.caption2)
+//                } else {
+//                    ForEach(vm.folios) { folio in
+//                        VStack(spacing: 0) {
+//                            NavigationLink(
+//                                destination: FolioDetailView(folio: folio )) {
+//                                    FolioCell(folio: folio)
+//                                }
+//                        }
+//
+//                    }
+//                    .onDelete(perform: deleteFolios)
+//                }
+//            }
+//            .headerProminence(.increased).padding(4)
+//            .listRowSeparator(.hidden)
+//            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//            Section(header: Text("Folios You Are Sharing"))
+//            {
+//                if vm.sharingfolios.isEmpty {
+//                    Text("Sharing No Folios.") // Placeholder
+//                        .font(.caption2)
+//                } else {
+//                    ForEach(vm.sharingfolios) { folio in
+//                        VStack(spacing: 0) {
+//                            NavigationLink(
+//                                destination: FolioDetailView(folio: folio )) {
+//                                    FolioCell(folio: folio)
+//                                }
+//                        }
+//
+//                    }
+//                    .onDelete(perform: deleteFolios)
+//                }
+//            }
+//            .headerProminence(.increased).padding(4)
+//            .listRowSeparator(.hidden)
+//            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//            Section(header: Text("Folios Shared with You"))
+//            {
+//                if vm.sharedfolios.isEmpty {
+//                    Text("No one is sharing folios with you.") // Placeholder
+//                        .font(.caption2)
+//                } else {
+//                    ForEach(vm.sharedfolios) { folio in
+//                        VStack(spacing: 0) {
+//                            NavigationLink(
+//                                destination: FolioDetailView(folio: folio )) {
+//                                    FolioCell(folio: folio)
+//                                }
+//                        }
+//
+//                    }
+//                    .onDelete(perform: deleteFolios)
+//                }
+//            }
+//            .headerProminence(.increased).padding(4)
+//            .listRowSeparator(.hidden)
+//            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             
             
         }
@@ -133,7 +156,7 @@ struct FolioListView: View {
             }
         }
 #if os(iOS)
-        .navigationBarTitle("")
+        .navigationBarTitle("All Folios")
         .navigationBarHidden(true)
 #else
         // mac desktop

@@ -6,26 +6,35 @@ For MVP
 
 ```
     let result = Result(catching: {
-      try sometingthat_throws()
+      try somethingthat_throws()
     })
-    // will auto wrap an error, if you get one, 
-    // otherwise result is .success and has the rsultant obj(s)
+    // will auto-wrap an error, if you get one, 
+    // otherwise result is .success and has the resultant obj(s)
     completion(result)
 ```
     
 SHARING is working but brittle.
 
+Bugs
+
+- updating on the FolioDetail page...
+- tag adding?
+
+New Features
+
 - adding a folio to an existing share.
 - what does a share "mean"? is it a container between you and a set of Identities?
 - stop Sharing w/o losing data of folios
 - deduplicate of tags that get shared.
+- pictures of tag subjects
+- pictures on folios
 
 
 MVP achieved (28 Nov 2022), but no Sharing (yet)
 
 - BACKUPS
 - SHARING
-- Tag addding crash
+- Tag adding crash
 - unify the LifeEvents into the NewFolio view
 - some onboarding views
 - deleting folios, with some kind of "backup""

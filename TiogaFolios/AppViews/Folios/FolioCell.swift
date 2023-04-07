@@ -25,6 +25,8 @@ struct FolioCell: View {
                     .foregroundColor(Color.accentColor)
                 VStack(alignment: .leading) {
                     HStack {
+                        Image(systemName: Folio.sharingState(folio))
+                            .foregroundColor(.green)
                         Text(folio.title ?? "-")
                             .bold()
                     }
@@ -53,16 +55,19 @@ struct FolioCell: View {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color(.sRGB, red: colorratio, green: colorratio, blue: colorratio, opacity: 1.0), lineWidth: 2)
             )
-            topLeftButton()
+            //topLeftButton()
         }
     }
     
     @ViewBuilder
     private func topLeftButton() -> some View {
-        if storage.sharedPersistentStore.contains(manageObject: folio) {
-            Image(systemName: "person.2.circle")
-                .foregroundColor(.gray)
-        }
+//        if storage.sharedPersistentStore.contains(manageObject: folio) {
+//            Image(systemName: "person.2.circle")
+//                .foregroundColor(.gray)
+//        }
+        Image(systemName: Folio.sharingState(folio))
+            .foregroundColor(.green)
+            .padding(4)
     }
 
 }

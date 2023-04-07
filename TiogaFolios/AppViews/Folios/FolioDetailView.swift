@@ -208,6 +208,7 @@ struct FolioDetailView: View {
                     //if self.share != nil {
                     Divider()
                     Button("Start Share Folio...") { Task { await createShare(folio: vm.folio) } }
+                        .disabled(self.share != nil)
                     Button("Manage Share") { manageParticipation(folio: vm.folio) }
                     //Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
                     //}

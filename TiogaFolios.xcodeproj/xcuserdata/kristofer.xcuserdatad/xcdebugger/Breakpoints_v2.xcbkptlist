@@ -471,14 +471,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "76E4912B-BCA7-4062-B5F5-B064397AF0F0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "deleteShareFor(folio:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -509,8 +509,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "deleteShareFor(folio:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -573,8 +573,8 @@
             filePath = "TiogaFolios/AppViews/Folios/FolioDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "FolioDetailView"
             landmarkType = "14">
          </BreakpointContent>
