@@ -27,6 +27,7 @@ struct FolioCell: View {
                     HStack {
                         Image(systemName: Folio.sharingState(folio))
                             .foregroundColor(.green)
+                            .font(.system(size: 24))
                         Text(folio.title ?? "-")
                             .bold()
                     }

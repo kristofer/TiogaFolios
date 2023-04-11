@@ -90,10 +90,11 @@ struct FolioDetailView: View {
             HStack{
                 Text(vm.folio.desc ?? "-")
                     .font(.body.italic())
-                if let share = share {
-                    Text("{ \(share.title) }")
-                        .font(.caption.italic())
-                }
+            }
+            if let share = share {
+                let participants: [String] = share.participants.filter { $0.role != .owner }.map { ($0.userIdentity.nameComponents?.formatted())! }
+                Text("Sharing with \(participants.joined(separator: ", "))")
+                    .font(.caption.italic())
             }
             Divider()
             FolioTagItems(folio: vm.folio)
@@ -183,16 +184,11 @@ struct FolioDetailView: View {
     private func toolbarItems() -> some ToolbarContent {
         ToolbarItem(placement: .principal) {
             HStack {
-                if Storage.shared.sharedPersistentStore.contains(manageObject: vm.folio) {
-                    Image(systemName: "person.2.circle")
-                        .foregroundColor(Color.accentColor)
-                } else if Storage.shared.privatePersistentStore.contains(manageObject: vm.folio) {
-                    Image(systemName: "person.2.circle")
-                        .foregroundColor(Color.red)
-                } else {
-                    Image(systemName: "magazine")
-                        .foregroundColor(Color.accentColor)
-                }
+                Image(systemName: Folio.sharingState(vm.folio))
+                    .foregroundColor(.green)
+                    .font(.system(size: 24))
+//                Image(systemName: "magazine")
+//                    .foregroundColor(Color.accentColor)
                 Text(vm.folio.title ?? "")
                     .font(.body.bold())
                     .foregroundColor(Color.accentColor)
@@ -267,7 +263,7 @@ struct FolioDetailView: View {
             nextSheet = .participantView(share)
             activeSheet = .managingSharesView(vm.folio)
         }
-
+        
     }
     
     // private
@@ -434,7 +430,7 @@ struct FolioDetailView: View {
             fatalError("A new value added to CKShare.Participant.Permission")
         }
     }
-
+    
     func string(for role: CKShare.ParticipantRole) -> String {
         switch role {
         case .owner:
@@ -449,7 +445,7 @@ struct FolioDetailView: View {
             fatalError("A new value added to CKShare.Participant.Role")
         }
     }
-
+    
     func string(for acceptanceStatus: CKShare.ParticipantAcceptanceStatus) -> String {
         switch acceptanceStatus {
         case .accepted:
@@ -464,7 +460,7 @@ struct FolioDetailView: View {
             fatalError("A new value added to CKShare.Participant.AcceptanceStatus")
         }
     }
-
+    
 }
 
 struct FolioDetailView_Previews: PreviewProvider {
