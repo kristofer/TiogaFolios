@@ -58,7 +58,7 @@ class FolioVM: ObservableObject {
     func refresh() {
         tfDebug("refreshing asset list")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.folio.touch()
+            //self.folio.touch()
             self.assetList = //Asset.fetchAssets(vc: self.store.vc, folio: self.folio)
             Array(self.folio.assets as? Set<Asset> ?? [])
         }

@@ -89,6 +89,8 @@
 		5C820580297877860007CF70 /* ArchivedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82057F297877860007CF70 /* ArchivedListView.swift */; };
 		5C84346229437E9A005B0051 /* NoteEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84346129437E9A005B0051 /* NoteEditView.swift */; };
 		5C85EDE32938F6390087EFBE /* 1DecSchema.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5C85EDE22938F6390087EFBE /* 1DecSchema.txt */; };
+		5C8D5CD42A03D82300B1382F /* TagJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD32A03D82300B1382F /* TagJSON.swift */; };
+		5C8D5CD62A03DCE500B1382F /* JSONLoadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */; };
 		5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CA4EC4C29D32E48004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CB910E129AFE85C0027E41C /* FolioDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB910E029AFE85C0027E41C /* FolioDetailView.swift */; };
@@ -222,6 +224,8 @@
 		5C82057F297877860007CF70 /* ArchivedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedListView.swift; sourceTree = "<group>"; };
 		5C84346129437E9A005B0051 /* NoteEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditView.swift; sourceTree = "<group>"; };
 		5C85EDE22938F6390087EFBE /* 1DecSchema.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1DecSchema.txt; sourceTree = "<group>"; };
+		5C8D5CD32A03D82300B1382F /* TagJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagJSON.swift; sourceTree = "<group>"; };
+		5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoadStore.swift; sourceTree = "<group>"; };
 		5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+DeDupe.swift"; sourceTree = "<group>"; };
 		5CB910E029AFE85C0027E41C /* FolioDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioDetailView.swift; sourceTree = "<group>"; };
 		5CC74C06294A821D00BE831F /* AssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRow.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 				5C323976292432E600619645 /* Config.swift */,
 				5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */,
 				5C32397A29253BFD00619645 /* DataModelNotes.md */,
+				5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				5C32398929254CCA00619645 /* SelectableTag.swift */,
 				5C32398729254CCA00619645 /* Tag.swift */,
 				5C32398429254CCA00619645 /* TagSources.swift */,
+				5C8D5CD32A03D82300B1382F /* TagJSON.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */,
 				5C3239B32925774800619645 /* FolioTemplView.swift in Sources */,
 				5C32398D29254CCB00619645 /* Tag.swift in Sources */,
+				5C8D5CD42A03D82300B1382F /* TagJSON.swift in Sources */,
 				5C3239A02925772B00619645 /* FolioAddToV.swift in Sources */,
 				5C3239A32925772B00619645 /* FolioCell.swift in Sources */,
 				5C3239BD2925796200619645 /* BlobToTempFile.swift in Sources */,
@@ -774,6 +781,7 @@
 				5C3EF888292C0FB0007CAAB6 /* ChooseFolio.swift in Sources */,
 				5CDCA8122937B6B100FCF50B /* FileAssetDeltaView.swift in Sources */,
 				5CEDC3BA2963312300FDB600 /* WebView.swift in Sources */,
+				5C8D5CD62A03DCE500B1382F /* JSONLoadStore.swift in Sources */,
 				5C3239D12925796F00619645 /* TagKindListView.swift in Sources */,
 				5C2B2BEC29536EE40056EFF3 /* AppDelegate.swift in Sources */,
 			);

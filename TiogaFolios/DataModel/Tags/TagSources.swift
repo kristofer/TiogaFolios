@@ -61,10 +61,10 @@ enum TagKind: String,  CaseIterable, Identifiable, Decodable {
 
 }
 
-struct TagJSON: Decodable {
-
-    let title: String
-    let desc: String
-    let category: TagCat
-    let kind: TagKind
-}
+//struct TagJSON: Decodable {
+//
+//    let title: String
+//    let desc: String
+//    let category: TagCat
+//    let kind: TagKind
+//}

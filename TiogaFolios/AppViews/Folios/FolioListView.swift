@@ -164,11 +164,11 @@ struct FolioListView: View {
         //        }
     }
     
-    func didDismiss() {
-        isTemplatesActive = false
-        vm.newFolio = nil
-        vm.fetchData()
-    }
+//    func didDismiss() {
+//        isTemplatesActive = false
+//        vm.newFolio = nil
+//        vm.fetchData()
+//    }
     
     private func deleteFolios(offsets: IndexSet) {
         withAnimation {

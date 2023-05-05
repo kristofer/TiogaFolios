@@ -67,8 +67,8 @@ struct TiogaFoliosApp: App {
             }
         }
         .onChange(of: scenePhase) { _ in
-            //tfDebug("calling persistence Save()")
-            Storage.shared.save()
+            tfDebug("NOT calling persistence Save()")
+            //Storage.shared.save()
         }
     }
 }
