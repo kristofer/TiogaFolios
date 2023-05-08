@@ -91,6 +91,7 @@
 		5C85EDE32938F6390087EFBE /* 1DecSchema.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5C85EDE22938F6390087EFBE /* 1DecSchema.txt */; };
 		5C8D5CD42A03D82300B1382F /* TagJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD32A03D82300B1382F /* TagJSON.swift */; };
 		5C8D5CD62A03DCE500B1382F /* JSONLoadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */; };
+		5C8D5CD82A09380D00B1382F /* SharingEx in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD72A09380D00B1382F /* SharingEx */; };
 		5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CA4EC4C29D32E48004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CB910E129AFE85C0027E41C /* FolioDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB910E029AFE85C0027E41C /* FolioDetailView.swift */; };
@@ -226,6 +227,7 @@
 		5C85EDE22938F6390087EFBE /* 1DecSchema.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1DecSchema.txt; sourceTree = "<group>"; };
 		5C8D5CD32A03D82300B1382F /* TagJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagJSON.swift; sourceTree = "<group>"; };
 		5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoadStore.swift; sourceTree = "<group>"; };
+		5C8D5CD72A09380D00B1382F /* SharingEx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SharingEx; sourceTree = "<group>"; };
 		5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+DeDupe.swift"; sourceTree = "<group>"; };
 		5CB910E029AFE85C0027E41C /* FolioDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioDetailView.swift; sourceTree = "<group>"; };
 		5CC74C06294A821D00BE831F /* AssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRow.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		5C323939292431A100619645 = {
 			isa = PBXGroup;
 			children = (
+				5C8D5CD72A09380D00B1382F /* SharingEx */,
 				5CDCA80E293796F300FCF50B /* set_build_number.sh */,
 				5C32397B2925409900619645 /* NotesToDo.md */,
 				5C85EDE22938F6390087EFBE /* 1DecSchema.txt */,
@@ -678,6 +681,7 @@
 			files = (
 				5C32394D292431A300619645 /* Preview Assets.xcassets in Resources */,
 				5C85EDE32938F6390087EFBE /* 1DecSchema.txt in Resources */,
+				5C8D5CD82A09380D00B1382F /* SharingEx in Resources */,
 				5C32394A292431A300619645 /* Assets.xcassets in Resources */,
 				5C32397C2925409900619645 /* NotesToDo.md in Resources */,
 				5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */,
