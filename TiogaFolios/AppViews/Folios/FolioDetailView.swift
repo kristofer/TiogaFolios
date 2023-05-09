@@ -185,8 +185,6 @@ struct FolioDetailView: View {
                 Image(systemName: Folio.sharingState(vm.folio))
                     .foregroundColor(.green)
                     .font(.system(size: 24))
-//                Image(systemName: "magazine")
-//                    .foregroundColor(Color.accentColor)
                 Text(vm.folio.title ?? "")
                     .font(.body.bold())
                     .foregroundColor(Color.accentColor)
@@ -253,7 +251,6 @@ struct FolioDetailView: View {
     
     // private
     func manageParticipation(folio: Folio) {
-        //Storage.shared.presentCloudSharingController(folio: folio)
         self.share = Storage.shared.existingShare(folio: vm.folio)
         if let share = self.share {
             //share.title = folio.title + " Share"
