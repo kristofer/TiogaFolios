@@ -23,18 +23,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 final class SceneDelegate: NSObject, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene,
                      userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
-        
         tfDebug("windowScene userDidAcceptCloudKitShareWith \(cloudKitShareMetadata.share.title)")
         let shareStore = Storage.shared.sharedPersistentStore
         let persistentContainer = Storage.shared.container
-        persistentContainer.acceptShareInvitations(
-            from: [cloudKitShareMetadata], into: shareStore
-        ) { _, error in
+        persistentContainer.acceptShareInvitations(from: [cloudKitShareMetadata], into: shareStore, completion: { metas,error in
             if let error = error {
-                tfDebug("acceptShareInvitation error :\(error)")
+                print("acceptShareInvitation error :\(error)")
             }
-            tfDebug("accepting a share invitation")
-        }
+        })
     }
     
 }

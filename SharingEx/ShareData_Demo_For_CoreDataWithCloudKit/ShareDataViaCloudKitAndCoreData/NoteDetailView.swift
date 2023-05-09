@@ -13,7 +13,7 @@ import UIKit
 
 struct NoteDetailView: View {
     let note: Note
-    private let stack = CoreDataStack.shared
+    private let stack = Storage.shared
     @State private var showShareController = false
     @FetchRequest private var memos: FetchedResults<Memo>
     @State var sharing = false

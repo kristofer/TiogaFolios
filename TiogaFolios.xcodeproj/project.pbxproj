@@ -92,6 +92,9 @@
 		5C8D5CD42A03D82300B1382F /* TagJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD32A03D82300B1382F /* TagJSON.swift */; };
 		5C8D5CD62A03DCE500B1382F /* JSONLoadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */; };
 		5C8D5CD82A09380D00B1382F /* SharingEx in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD72A09380D00B1382F /* SharingEx */; };
+		5C8D5CDA2A09986900B1382F /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD92A09986900B1382F /* ShareController.swift */; };
+		5C8D5CDC2A0999F100B1382F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CDB2A0999F100B1382F /* ContentView.swift */; };
+		5C8D5CDE2A099A4D00B1382F /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CDD2A099A4D00B1382F /* NoteDetailView.swift */; };
 		5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CA4EC4C29D32E48004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CB910E129AFE85C0027E41C /* FolioDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB910E029AFE85C0027E41C /* FolioDetailView.swift */; };
@@ -228,6 +231,9 @@
 		5C8D5CD32A03D82300B1382F /* TagJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagJSON.swift; sourceTree = "<group>"; };
 		5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoadStore.swift; sourceTree = "<group>"; };
 		5C8D5CD72A09380D00B1382F /* SharingEx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SharingEx; sourceTree = "<group>"; };
+		5C8D5CD92A09986900B1382F /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareController.swift; path = SharingEx/ShareData_Demo_For_CoreDataWithCloudKit/ShareDataViaCloudKitAndCoreData/ShareController.swift; sourceTree = SOURCE_ROOT; };
+		5C8D5CDB2A0999F100B1382F /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = SharingEx/ShareData_Demo_For_CoreDataWithCloudKit/ShareDataViaCloudKitAndCoreData/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		5C8D5CDD2A099A4D00B1382F /* NoteDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoteDetailView.swift; path = SharingEx/ShareData_Demo_For_CoreDataWithCloudKit/ShareDataViaCloudKitAndCoreData/NoteDetailView.swift; sourceTree = SOURCE_ROOT; };
 		5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+DeDupe.swift"; sourceTree = "<group>"; };
 		5CB910E029AFE85C0027E41C /* FolioDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioDetailView.swift; sourceTree = "<group>"; };
 		5CC74C06294A821D00BE831F /* AssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRow.swift; sourceTree = "<group>"; };
@@ -540,6 +546,9 @@
 		5CB910DF299EB1620027E41C /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
+				5C8D5CDD2A099A4D00B1382F /* NoteDetailView.swift */,
+				5C8D5CDB2A0999F100B1382F /* ContentView.swift */,
+				5C8D5CD92A09986900B1382F /* ShareController.swift */,
 			);
 			path = Sharing;
 			sourceTree = "<group>";
@@ -748,6 +757,7 @@
 				5C3239A42925772B00619645 /* FolioDeltaView.swift in Sources */,
 				5C323977292432E600619645 /* Config.swift in Sources */,
 				5C3EF860292BD61A007CAAB6 /* SettingsView.swift in Sources */,
+				5C8D5CDE2A099A4D00B1382F /* NoteDetailView.swift in Sources */,
 				5C3C5A1A29BA269200081F8D /* AddToExistingShareView.swift in Sources */,
 				5C32398C29254CCB00619645 /* Fetching.swift in Sources */,
 				5C3239C02925796200619645 /* FileAssetPreview.swift in Sources */,
@@ -768,7 +778,9 @@
 				5C3239BF2925796200619645 /* FileAssetList.swift in Sources */,
 				5C3239CF2925796F00619645 /* TagEditView.swift in Sources */,
 				5C84346229437E9A005B0051 /* NoteEditView.swift in Sources */,
+				5C8D5CDC2A0999F100B1382F /* ContentView.swift in Sources */,
 				5CC74C09294B75C000BE831F /* CloudSharingController.swift in Sources */,
+				5C8D5CDA2A09986900B1382F /* ShareController.swift in Sources */,
 				5C32397E29254C0F00619645 /* Folio.swift in Sources */,
 				5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */,
 				5C3239D32925796F00619645 /* TagView.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  NoteListView.swift
 //  ShareDataViaCloudKitAndCoreData
 //
 //  Created by Yang Xu on 2021/9/9.
@@ -8,10 +8,12 @@
 import CoreData
 import SwiftUI
 
-struct ContentView: View {
-    @FetchRequest(entity: Note.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Note.timestamp, ascending: false)], animation: .default)
+struct NoteListView: View {
+    @FetchRequest(entity: Note.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Note.timestamp, ascending: false)],
+                  animation: .default)
     private var notes: FetchedResults<Note>
-    private let stack = CoreDataStack.shared
+    private let stack = Storage.shared
     @State private var id = UUID()
     var body: some View {
         NavigationView {
@@ -75,8 +77,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct NoteListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        NoteListView()
     }
 }
