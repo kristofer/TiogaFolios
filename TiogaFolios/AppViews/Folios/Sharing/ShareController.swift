@@ -33,7 +33,7 @@ struct CloudSharingView: UIViewControllerRepresentable {
     }
 }
 
-class NewCloudSharingCoordinator:NSObject,UICloudSharingControllerDelegate{
+class NewCloudSharingCoordinator: NSObject, UICloudSharingControllerDelegate {
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
         print("failed to save share\(error)")
     }

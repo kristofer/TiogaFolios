@@ -158,4 +158,13 @@ extension Storage {
         return share
     }
     
+    func delShare(_ share: CKShare?) async {
+        guard let share = share else { return }
+        do {
+            try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+        } catch {
+            print("Failed to delete ckshare in icloud, error: \(error)")
+        }
+    }
+
 }

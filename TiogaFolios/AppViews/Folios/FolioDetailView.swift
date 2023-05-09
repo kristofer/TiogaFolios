@@ -92,9 +92,7 @@ struct FolioDetailView: View {
                     .font(.body.italic())
             }
             if let share = share {
-                let participants: [String] = share.participants.filter { $0.role != .owner }.map { ($0.userIdentity.nameComponents?.formatted())! }
-                Text("Sharing with \(participants.joined(separator: ", "))")
-                    .font(.caption.italic())
+                FolioShareMetadataView(share: share)
             }
             Divider()
             FolioTagItems(folio: vm.folio)
@@ -309,70 +307,6 @@ struct FolioDetailView: View {
             }
         }
     }
-    
-    
-    /**
-     Sharing a folio can take a while, so dispatch to a global queue so SwiftUI has a chance to show the progress view.
-     @State variables are thread-safe, so there's no need to dispatch back the main queue.
-     */
-    //    private func createNewShare(folio: Folio) {
-    //        //toggleProgress.toggle()
-    //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-    //            let exShare = Storage.shared.existingShare(folio: folio)
-    //            tfDebug("exshare is  \(String(describing: exShare))")
-    //            let shrs = Storage.shareTitles(Storage.shared)
-    //            tfDebug("### \(String(describing: shrs))")
-    //            Storage.shared.shareObject(folio, to: ((exShare != nil) ? exShare : nil) ) { share, error in
-    //                guard error == nil else {
-    //                    tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(share)")
-    //                    return
-    //                }
-    //
-    //                //toggleProgress.toggle()
-    //                if let share = share {
-    //                    //share.title = folio.title + " Share"
-    //                    tfDebug("setting up for managing a share \(share.title)")
-    //                    share[CKShare.SystemFieldKey.title] = folio.title
-    //                    nextSheet = .participantView(share)
-    //                    activeSheet = .managingSharesView(folio)
-    //                }
-    //            }
-    //        }
-    //    }
-    
-    
-    //    private func setupShare(folio: Folio) {
-    //        /*
-    //         If no CKShare record has been stored yet in iCloud, it will be created below using UICloudSharingController initialized with a preparation handler.
-    //         If it exists already, UICloudSharingController is initializes with the existing CKShare record.
-    //         */
-    //        Storage.shared.getShareRecord { result in
-    //            DispatchQueue.main.async {
-    //                let cloudSharingController: UICloudSharingController!
-    //                switch result {
-    //                case .success(let ckShareRecord):
-    //                    if let shareRecord = ckShareRecord {
-    //                        cloudSharingController = UICloudSharingController.init(share: shareRecord, container: CKContainer.default())
-    //                        nextSheet = .participantView(shareRecord)
-    //                        activeSheet = .managingSharesView(folio)
-    //                    } else {
-    //                        cloudSharingController = UICloudSharingController { /*[weak self]*/ (controller, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
-    //                            //guard let `self` = self else { return }
-    //                            Storage.shared.share(folio: folio, completion: completion)
-    //                            nextSheet = nil //.participantView(nil)
-    //                            activeSheet = .managingSharesView(folio)
-    //                        }
-    //                    }
-    //                    //tfDebug("NEED TO SETUP cloudSharingController")
-    //                    //tfDebug("setting up for managing a share \(share.title)")
-    //                    //share[CKShare.SystemFieldKey.title] = folio.title
-    //                case .failure(let error):
-    //                    fatalError("\(error)")
-    //                }
-    //            }
-    //        }
-    //    }
-    
     
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
