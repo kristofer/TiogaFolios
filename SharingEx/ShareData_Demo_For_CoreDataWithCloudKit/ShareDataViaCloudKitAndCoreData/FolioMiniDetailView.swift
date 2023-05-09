@@ -11,35 +11,35 @@ import Foundation
 import SwiftUI
 import UIKit
 
-struct NoteDetailView: View {
-    let note: Note
-    private let stack = Storage.shared
+struct FolioMiniDetailView: View {
+    let folio: Folio
+    private let store = Storage.shared
     @State private var showShareController = false
-    @FetchRequest private var memos: FetchedResults<Memo>
+    @FetchRequest private var assets: FetchedResults<Asset>
     @State var sharing = false
 
-    init(note: Note) {
-        self.note = note
-        _memos = FetchRequest(entity: Memo.entity(),
-                              sortDescriptors: [NSSortDescriptor(keyPath: \Memo.timestamp, ascending: false)],
-                              predicate: NSPredicate(format: "%K = %@", #keyPath(Memo.note), note),
+    init(folio: Folio) {
+        self.folio = folio
+        _assets = FetchRequest(entity: Asset.entity(),
+                               sortDescriptors: [NSSortDescriptor(keyPath: \Asset.lastmodified, ascending: false)],
+                               predicate: NSPredicate(format: "%K = %@", #keyPath(Asset.folio), folio),
                               animation: .default)
     }
 
     var body: some View {
         List {
-            ForEach(memos) { memo in
-                Text(memo.text ?? "")
+            ForEach(assets) { asset in
+                Text(asset.title ?? "")
                     .swipeActions {
                         if canEdit {
                             Button(role: .destructive) {
-                                stack.deleteMemo(memo)
+                                //stack.deleteMemo(memo)
                             }
                             label: {
                                 Label("Del", systemImage: "trash")
                             }
                             Button {
-                                stack.changeMemoText(memo)
+                                //stack.changeMemoText(memo)
                             }
                             label: {
                                 Label("Edit", systemImage: "square.and.pencil")
@@ -67,36 +67,37 @@ struct NoteDetailView: View {
                             // openSharingController(note: note)
                                                          // popup window after generating ckshare
                             Task.detached {
-                                await createShare(note)
+                                await createShare(folio)
                             }
                         }
                     }
                     label: {
                         Image(systemName: "square.and.arrow.up")
                     }
-                    if canEdit {
-                        Button {
-                            withAnimation {
-                                stack.addMemo(note)
-                            }
-                        }
-                        label: {
-                            Image(systemName: "plus")
-                        }
-                    }
+//                    if canEdit {
+//                        Button {
+//                            withAnimation {
+//                                stack.addMemo(note)
+//                            }
+//                        }
+//                        label: {
+//                            Image(systemName: "plus")
+//                        }
+//                    }
                 }
                 .controlGroupStyle(.navigation)
             }
         }
-        .navigationTitle(note.name ?? "")
+        .navigationTitle(folio.title ?? "")
         .sheet(isPresented: $showShareController) {
-            let share = stack.getShare(note)!
-            CloudSharingView(share: share, container: stack.ckContainer, note: note)
+            let share = store.getShare(folio)!
+            let sharingContainer = Storage.shared.ckContainer
+            CloudSharingView(share: share, container: sharingContainer, folio: folio)
                 .ignoresSafeArea()
         }
     }
 
-    private func openSharingController(note: Note) {
+    private func openSharingController(folio: Folio) {
         let keyWindow = UIApplication.shared.connectedScenes
             .filter { $0.activationState == .foregroundActive }
             .map { $0 as? UIWindowScene }
@@ -106,11 +107,10 @@ struct NoteDetailView: View {
 
         let sharingController = UICloudSharingController {
             (_, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
-
-            stack.persistentContainer.share([note], to: nil) { _, share, container, error in
+            store.container.share([folio], to: nil) { _, share, container, error in
                 if let actualShare = share {
-                    note.managedObjectContext?.performAndWait {
-                        actualShare[CKShare.SystemFieldKey.title] = note.name
+                    folio.managedObjectContext?.performAndWait {
+                        actualShare[CKShare.SystemFieldKey.title] = folio.title
                     }
                 }
                 completion(share, container, error)
@@ -121,20 +121,20 @@ struct NoteDetailView: View {
     }
 
     private var isShared: Bool {
-        stack.isShared(object: note)
+        store.isShared(object: folio)
     }
 
     private var canEdit: Bool {
-        stack.canEdit(object: note)
+        store.canEdit(object: folio)
     }
 
-    func createShare(_ note: Note) async {
+    func createShare(_ folio: Folio) async {
         sharing = true
         do {
-            let (_, share, _) = try await stack.persistentContainer.share([note], to: nil)
-            share[CKShare.SystemFieldKey.title] = note.name
+            let (_, share, _) = try await store.container.share([folio], to: nil)
+            share[CKShare.SystemFieldKey.title] = folio.title
         } catch {
-            print("Faile to create share")
+            tfDebug("Failed to create share")
             sharing = false
         }
         sharing = false

@@ -138,14 +138,14 @@ extension Storage {
         )
     }
     
-//    var ckContainer: CKContainer {
-//        let storeDescription = container.persistentStoreDescriptions.first
-//        guard let identifier = storeDescription?
-//            .cloudKitContainerOptions?.containerIdentifier else {
-//            fatalError("TFdebug Unable to get container identifier")
-//        }
-//        return CKContainer(identifier: identifier)
-//    }
+    var ckContainer: CKContainer {
+        let storeDescription = container.persistentStoreDescriptions.first
+        guard let identifier = storeDescription?
+            .cloudKitContainerOptions?.containerIdentifier else {
+            fatalError("TFdebug Unable to get container identifier")
+        }
+        return CKContainer(identifier: identifier)
+    }
     
     func getShare(_ folio: Folio) -> CKShare? {
         guard isShared(object: folio) else { return nil }

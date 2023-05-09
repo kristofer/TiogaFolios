@@ -10,6 +10,7 @@ import SwiftUI
 enum NavItem {
     case foliolist
     case folioseglist
+    case foliosharelist
     case foliosearch
     case taglist
     case templatelist
@@ -55,7 +56,15 @@ struct TabBarNavigationView: View {
             .tabItem {
                 Label("Sharing", systemImage: "icloud")
             }
-            .tag(NavItem.foliolist)
+            .tag(NavItem.folioseglist)
+
+            NavigationView {
+                ShareTestListView()
+            }
+            .tabItem {
+                Label("NewSharing", systemImage: "icloud")
+            }
+            .tag(NavItem.foliosharelist)
 
 //            NavigationView {
 //                FolioTemplListView()

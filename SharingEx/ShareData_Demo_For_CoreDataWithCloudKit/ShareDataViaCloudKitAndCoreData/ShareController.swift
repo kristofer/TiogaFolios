@@ -13,18 +13,18 @@ import UIKit
 struct CloudSharingView: UIViewControllerRepresentable {
     let share: CKShare
     let container: CKContainer
-    let note:Note
+    let folio: Folio
 
-    func makeCoordinator() -> CloudSharingCoordinator {
-        CloudSharingCoordinator.shared
+    func makeCoordinator() -> NewCloudSharingCoordinator {
+        NewCloudSharingCoordinator.shared
     }
 
     func makeUIViewController(context: Context) -> UICloudSharingController {
-        share[CKShare.SystemFieldKey.title] = note.name
+        share[CKShare.SystemFieldKey.title] = folio.title
         let controller = UICloudSharingController(share: share, container: container)
         controller.modalPresentationStyle = .formSheet
         controller.delegate = context.coordinator
-        context.coordinator.note = note
+        context.coordinator.folio = folio
         return controller
     }
 
@@ -33,13 +33,13 @@ struct CloudSharingView: UIViewControllerRepresentable {
     }
 }
 
-class CloudSharingCoordinator:NSObject,UICloudSharingControllerDelegate{
+class NewCloudSharingCoordinator:NSObject,UICloudSharingControllerDelegate{
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
         print("failed to save share\(error)")
     }
 
     func itemTitle(for csc: UICloudSharingController) -> String? {
-        note?.name
+        folio?.title
     }
 
     func cloudSharingControllerDidSaveShare(_ csc: UICloudSharingController){
@@ -48,9 +48,9 @@ class CloudSharingCoordinator:NSObject,UICloudSharingControllerDelegate{
 
     func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController){
 
-        guard let note = note else {return}
-        if !stack.isOwner(object: note) {
-            stack.deleteNote(note)
+        guard let folio = folio else {return}
+        if !store.isOwner(object: folio) {
+            //stack.deleteNote(folio)
             print("删除本地共享数据 - Delete local shared data")
         }
         else {
@@ -62,9 +62,9 @@ class CloudSharingCoordinator:NSObject,UICloudSharingControllerDelegate{
             // Then call purgeObjectsAndRecordsInZone to delete the shared custom Zone on the network
         }
     }
-    static let shared = CloudSharingCoordinator()
-    let stack = CoreDataStack.shared
-    var note:Note?
+    static let shared = NewCloudSharingCoordinator()
+    let store = Storage.shared
+    var folio:Folio?
 }
 
 
