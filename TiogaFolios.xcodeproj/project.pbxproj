@@ -109,6 +109,7 @@
 		5CEDC3BA2963312300FDB600 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3B92963312300FDB600 /* WebView.swift */; };
 		5CEDC3BC2964C61400FDB600 /* SUBQUERY in Resources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BB2964C61400FDB600 /* SUBQUERY */; };
 		5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEDC3BE2964D67400FDB600 /* ScannerView.swift */; };
+		5CEE4E5D2A0BC0B200FCA9E3 /* CloudSharingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE4E5C2A0BC0B200FCA9E3 /* CloudSharingSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +248,7 @@
 		5CEDC3B92963312300FDB600 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		5CEDC3BB2964C61400FDB600 /* SUBQUERY */ = {isa = PBXFileReference; lastKnownFileType = text; path = SUBQUERY; sourceTree = "<group>"; };
 		5CEDC3BE2964D67400FDB600 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		5CEE4E5C2A0BC0B200FCA9E3 /* CloudSharingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSharingSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -526,6 +528,7 @@
 				5C3C5A1729BA268100081F8D /* ParticipantView.swift */,
 				5C3C5A1929BA269200081F8D /* AddToExistingShareView.swift */,
 				5C3C5A1B29BA26DD00081F8D /* SharePickerView.swift */,
+				5CEE4E5C2A0BC0B200FCA9E3 /* CloudSharingSheet.swift */,
 			);
 			path = Sharing;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CEE4E5D2A0BC0B200FCA9E3 /* CloudSharingSheet.swift in Sources */,
 				5C3C5A1629BA267800081F8D /* ManagingSharesView.swift in Sources */,
 				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
 				5CBFE26D2A0AD1730014C6AD /* FolioMiniDetailView.swift in Sources */,
