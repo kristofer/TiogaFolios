@@ -1,0 +1,6 @@
+project: TiogaFolios.xcodeproj
+retain_public: true
+schemes:
+- TiogaFolios
+targets:
+- TiogaFolios

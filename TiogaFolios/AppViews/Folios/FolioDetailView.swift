@@ -208,10 +208,14 @@ struct FolioDetailView: View {
 //                        }
                     }
                         .disabled(self.share != nil)
-                    Button("Manage Share") { manageParticipation(folio: vm.folio) }
+                    Button("Manage Share") {
+                        // manageParticipation(folio: vm.folio)
+                        activeSheet = .cloudSharingSheet(vm.folio)
+                    }
                         .disabled(self.share == nil)
-                    //Button("Delete Share") { Task { await deleteShareFor(folio: vm.folio)}  }
-                    //}
+                    Button("Delete Share") {
+                        Task { await deleteShareFor(folio: vm.folio)}  }
+                        .disabled(self.share == nil)
                 } label: {
                     Label("", systemImage: "contextualmenu.and.cursorarrow")
                 }
@@ -279,9 +283,15 @@ struct FolioDetailView: View {
         if let share = self.share {
             tfDebug("share \(share.title) will be deleted")
             let ckContainer = Storage.shared.cloudKitContainer
+            let persistentStore = share.persistentStore
+
             do {
+                Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
+                //Task { await Storage.shared.delShare(share) }
                 try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
                 thisContext.delete(folio)
+                Tag.dedupeTags()
+
                 Storage.shared.save()
             } catch {
                 tfDebug("Failed to delete ckshare in icloud, error: \(error)")

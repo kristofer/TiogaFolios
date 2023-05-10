@@ -59,6 +59,12 @@ struct SettingsView: View {
                 }
                 .padding()
                 
+                Button("Deduplicate Tags") {
+                    Tag.dedupeTags()
+                    Storage.shared.save()
+                }
+                .padding()
+
 //                Spacer()
 //                Button("Delete All Tags") {
 //                    deleteAll("Tag")

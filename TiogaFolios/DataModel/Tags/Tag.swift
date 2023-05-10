@@ -12,7 +12,7 @@ import CoreData
 extension Tag {
 
     enum Schema: String {
-        case name, uuid, title, desc
+        case id, title, desc
     }
 
     static func allTags() -> [Tag] {
@@ -135,6 +135,15 @@ extension Tag {
         return newTag
     }
 
+    static func dedupeTags() {
+        let all = Tag.allTags()
+        let objectIDs = all.map{ $0.objectID }
+        
+        if !objectIDs.isEmpty {
+            Storage.shared.deduplicateAndWait(tagObjectIDs: Array(objectIDs))
+        }
+
+    }
     
     func attach(blob: Asset, vc: NSManagedObjectContext) throws {
         self.addToAssets(blob)

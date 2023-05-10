@@ -18,7 +18,7 @@ extension Storage {
          Grab the share if the folio is already shared.
          */
         var folioShare: CKShare?
-
+        
         folioShare = Storage.shared.existingShare(folio: folio)
         
         let sharingController: UICloudSharingController
@@ -182,8 +182,9 @@ extension Storage {
                 tfDebug("\(#function): Failed to purge objects and records: \(error)")
             }
         }
+        
     }
-    
+        
     func existingShare(folio: Folio) -> CKShare? {
         if let shareSet = try? container.fetchShares(matching: [folio.objectID]),
            let (_, share) = shareSet.first {
@@ -476,43 +477,43 @@ extension Storage {
             return
         }
     }
-        //let query = CKQuery(recordType: "cloudkit.share", predicate: NSPredicate(value: true))
-        
-        // doc
-//        func fetch(
-//            withQuery query: CKQuery,
-//            inZoneWith zoneID: CKRecordZone.ID? = nil,
-//            desiredKeys: [CKRecord.FieldKey]? = nil,
-//            resultsLimit: Int = CKQueryOperation.maximumResults,
-//            completionHandler: @escaping (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, Error>)], queryCursor: CKQueryOperation.Cursor?), Error>) -> Void
-//        )
-//        privateDatabase.fetch(withQuery: query) { result in
-//            switch result {
-//            case .success(let returned):
-//                // .success((matchResults: [CKRecord.ID : Result<CKRecord, Error>], queryCursor: CKQueryOperation.Cursor?))
-//                let matchResults = returned.0 // [CKRecord.ID : Result<CKRecord, Error>]
-//                switch matchResults.count {
-//                case 0:
-//                    completion(.success(nil))
-//                    return
-//                case 1:
-//                    let recordResult = matchResults.values.first!
-//                    switch recordResult {
-//                    case .success(let ckRecord):
-//                        completion(.success(ckRecord as? CKShare))
-//                        return
-//                    case .failure(let error):
-//                        completion(.failure(error))
-//                        return
-//                    }
-//                default:
-//                    fatalError("More than 1 CKShare record")
-//                }
-//            case .failure(let error):
-//                completion(.failure(error))
-//                return
-//            }
-//        }
+    //let query = CKQuery(recordType: "cloudkit.share", predicate: NSPredicate(value: true))
+    
+    // doc
+    //        func fetch(
+    //            withQuery query: CKQuery,
+    //            inZoneWith zoneID: CKRecordZone.ID? = nil,
+    //            desiredKeys: [CKRecord.FieldKey]? = nil,
+    //            resultsLimit: Int = CKQueryOperation.maximumResults,
+    //            completionHandler: @escaping (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, Error>)], queryCursor: CKQueryOperation.Cursor?), Error>) -> Void
+    //        )
+    //        privateDatabase.fetch(withQuery: query) { result in
+    //            switch result {
+    //            case .success(let returned):
+    //                // .success((matchResults: [CKRecord.ID : Result<CKRecord, Error>], queryCursor: CKQueryOperation.Cursor?))
+    //                let matchResults = returned.0 // [CKRecord.ID : Result<CKRecord, Error>]
+    //                switch matchResults.count {
+    //                case 0:
+    //                    completion(.success(nil))
+    //                    return
+    //                case 1:
+    //                    let recordResult = matchResults.values.first!
+    //                    switch recordResult {
+    //                    case .success(let ckRecord):
+    //                        completion(.success(ckRecord as? CKShare))
+    //                        return
+    //                    case .failure(let error):
+    //                        completion(.failure(error))
+    //                        return
+    //                    }
+    //                default:
+    //                    fatalError("More than 1 CKShare record")
+    //                }
+    //            case .failure(let error):
+    //                completion(.failure(error))
+    //                return
+    //            }
+    //        }
     
     
 }

@@ -51,7 +51,7 @@ extension Storage {
          Fetch all tags with the same name, sorted by uuid, and return if there are no duplicates.
          */
         let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: Tag.Schema.uuid.rawValue, ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: Tag.Schema.id.rawValue, ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "\(Tag.Schema.title.rawValue) == %@", tagName)
         guard var duplicatedTags = try? performingContext.fetch(fetchRequest), duplicatedTags.count > 1 else {
             return
@@ -83,14 +83,14 @@ extension Storage {
      Remove duplicate tags from their respective photos, replacing them with the winner.
      */
     private func remove(duplicatedTags: [Tag], winner: Tag, performingContext: NSManagedObjectContext) {
-//        duplicatedTags.forEach { tag in
-//            if let photoSet = tag.photos {
-//                for case let photo as Photo in photoSet {
-//                    photo.removeFromTags(tag)
-//                    photo.addToTags(winner)
-//                }
-//            }
-//            performingContext.delete(tag)
-//        }
+        duplicatedTags.forEach { tag in
+            if let folioSet = tag.folios {
+                for case let folio as Folio in folioSet {
+                    folio.removeFromTags(tag)
+                    folio.addToTags(winner)
+                }
+            }
+            performingContext.delete(tag)
+        }
     }
 }
