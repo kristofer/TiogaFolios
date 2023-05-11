@@ -195,17 +195,10 @@ struct FolioDetailView: View {
                     Button("Add to Folio...", action: addtofolio)
                     Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
                     Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
-                    //if Storage.shared.privatePersistentStore.contains(manageObject: vm.folio) {
-                    //if self.share != nil {
                     Divider()
                     Button("Start Share Folio...") {
                         Task { await createShare(vm.folio) }
                         activeSheet = .cloudSharingSheet(vm.folio)
-//                        if !isShared {
-//                            Task.detached {
-//                                await createShare(vm.folio)
-//                            }
-//                        }
                     }
                         .disabled(self.share != nil)
                     Button("Manage Share") {
@@ -239,10 +232,10 @@ struct FolioDetailView: View {
             return
         }
         switch nextActiveSheet {
-        case .cloudSharingSheet(let share):
-            DispatchQueue.main.async {
-                //Storage.shared.presentCloudSharingController(share: share)
-            }
+//        case .cloudSharingSheet(let share):
+//            DispatchQueue.main.async {
+//                //Storage.shared.presentCloudSharingController(share: share)
+//            }
         default:
             DispatchQueue.main.async {
                 activeSheet = nextActiveSheet
@@ -276,18 +269,18 @@ struct FolioDetailView: View {
     // private
     func deleteShareFor(folio: Folio) async {
         let thisContext = Storage.shared.container.viewContext
-        let newFolio = try? folio.deepcopy(context: thisContext)
-        Storage.shared.save()
-        
         
         if let share = self.share {
+
+            let newFolio = try? folio.deepcopy(context: thisContext)
+            Storage.shared.save()
+
             tfDebug("share \(share.title) will be deleted")
             let ckContainer = Storage.shared.cloudKitContainer
             let persistentStore = share.persistentStore
 
             do {
                 Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
-                //Task { await Storage.shared.delShare(share) }
                 try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
                 thisContext.delete(folio)
                 Tag.dedupeTags()
@@ -332,16 +325,12 @@ struct FolioDetailView: View {
 //        }
 //    }
     func createShare(_ folio: Folio) async {
-        //sharing = true
         do {
             let (_, share, _) = try await Storage.shared.container.share([folio], to: nil)
             share[CKShare.SystemFieldKey.title] = folio.title
         } catch {
             tfDebug("Failed to create share")
-            //sharing = false
         }
-        //sharing = false
-        //showShareController = true
     }
 
     private func importFile(_ result: Result<[URL], Error> ) {
