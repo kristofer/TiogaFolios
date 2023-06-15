@@ -2,6 +2,32 @@
 
 For MVP
 
+## Current Issues (13 June 2023)
+
+- initial folios
+- draft of onboarding pages
+- SHARING is working but brittle. needs to not delete graph at end of share.
+- foliodetail is STILL not updating after edits
+- must be able to move an asset to a different folio
+- assets must be editable, names, etc.
+- linkage to web-based help docs? (or built into app?)
+- the list of folios doesn't seem to appear in share extension without app restart
+- Does Sharing actually work?
+
+Bugs
+
+- updating on the FolioDetail page...
+- tag adding?
+
+New Features
+
+- simply share a single Folio
+- stop Sharing w/o losing data of folios
+- deduplicate of tags that get shared.
+- pictures of tag subjects
+- pictures on folios
+
+
 ## a great idea 
 
 ```
@@ -12,24 +38,6 @@ For MVP
     // otherwise result is .success and has the resultant obj(s)
     completion(result)
 ```
-    
-SHARING is working but brittle.
-
-Bugs
-
-- updating on the FolioDetail page...
-- tag adding?
-
-New Features
-
-- adding a folio to an existing share.
-- what does a share "mean"? is it a container between you and a set of Identities?
-- stop Sharing w/o losing data of folios
-- deduplicate of tags that get shared.
-- pictures of tag subjects
-- pictures on folios
-
-
 MVP achieved (28 Nov 2022), but no Sharing (yet)
 
 - BACKUPS
