@@ -38,6 +38,7 @@ struct OnboardingViewPure: View {
                     OnboardingStepView(data: self.data[i])
                         .offset(x: CGFloat(i) * self.distance)
                         .offset(x: self.slideGesture.width - CGFloat(self.curSlideIndex) * self.distance)
+                        .animation(.easeInOut, value: self.slideGesture.width)
                         .gesture(DragGesture().onChanged{ value in
                             self.slideGesture = value.translation
                         }

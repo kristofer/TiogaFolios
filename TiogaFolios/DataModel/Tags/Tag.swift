@@ -28,6 +28,21 @@ extension Tag {
 //        }
         return fetchedTags
     }
+    
+    static func allByTitle(tt: String) -> [Tag] {
+        let vc = Storage.shared.vc
+        var fetchedTags = [Tag]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
+        let dateSort = NSSortDescriptor(key:"title", ascending:true)
+        let predicate = NSPredicate(format: "title == %@", tt)
+        fetchRequest.sortDescriptors = [dateSort]
+        fetchRequest.predicate = predicate
+        fetchedTags = try! vc.fetch(fetchRequest) as! [Tag]
+        //tfDebug("tag list \(tagkind.rawValue) : \(fetchedTags.count)")
+        return fetchedTags
+    }
+    
+
     static func allTagsSelectable() -> [SelectableTagModel] {
         let ttags = allTags()
         let tt = Array(ttags).map { SelectableTagModel(displayedTag: $0) }

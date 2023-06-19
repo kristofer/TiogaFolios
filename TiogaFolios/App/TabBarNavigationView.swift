@@ -13,6 +13,7 @@ enum NavItem {
     case foliosharelist
     case foliosearch
     case taglist
+    case tagfilterlist
     case templatelist
     case setting
     case tagkindlist
@@ -60,12 +61,21 @@ struct TabBarNavigationView: View {
             .tag(NavItem.folioseglist)
 
             NavigationView {
-                ShareTestListView()
+                FolioListByTag(TagKind.plain)
             }
             .tabItem {
-                Label("NewSharing", systemImage: "icloud")
+                Label("Tag Filter", systemImage: "tag.square")
             }
-            .tag(NavItem.foliosharelist)
+            .tag(NavItem.tagfilterlist)
+
+
+//            NavigationView {
+//                ShareTestListView()
+//            }
+//            .tabItem {
+//                Label("NewSharing", systemImage: "icloud")
+//            }
+//            .tag(NavItem.foliosharelist)
 
 //            NavigationView {
 //                FolioTemplListView()

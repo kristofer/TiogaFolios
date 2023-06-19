@@ -46,7 +46,7 @@ struct TagKindListView: View {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(kinds) { kind in
                         NavigationLink(
-                            destination: FolioListByTag(tagkind: kind)) {
+                            destination: FolioListByTag(kind)) {
                                 TagKindView(tagkind: kind)
                                     .frame(height: height)
                                 

@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-//struct TagKindView: View {
-//    let tagkind: TagKind
-//    var body: some View {
-//        VStack {
-//            ZStack {
-//                RoundedRectangle(cornerRadius: 12).foregroundColor(Color.accentColor)
-//                Image(systemName: tagkind.imgtxtFor(tagkind: tagkind))
-//                    //.imageScale(.large)
-//                    .font(.system(size: 60, weight: .bold))
-//                    .foregroundColor(.white)
-//            }
-//
-//            Text(tagkind.rawValue)
-//                .font(.title2)
-//        }
-//
-//    }
-//}
-
 
 struct FolioListByTag: View {
     let tagkind: TagKind
@@ -52,18 +33,18 @@ struct FolioListByTag: View {
         .onAppear(){
             
         }
-        .navigationBarTitle(tagkind.rawValue)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Folios by Tag")
+        //.navigationBarTitleDisplayMode(.inline)
     }
-    init(tagkind: TagKind) {
+    init(_ tagkind: TagKind) {
         self.tagkind = tagkind
-        self.tags = Tag.allByKind(tagkind: tagkind)
+        self.tags = Tag.allTags() //allByKind(tagkind: tagkind)
         
     }
 }
 
 struct FolioListByTag_Previews: PreviewProvider {
     static var previews: some View {
-        FolioListByTag(tagkind: TagKind.plain)
+        FolioListByTag(TagKind.plain)
     }
 }
