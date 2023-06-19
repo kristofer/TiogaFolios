@@ -76,6 +76,34 @@ extension Folio {
         return fetchedFolios
     }
     
+    func refetchFolio(vc: NSManagedObjectContext) -> Folio? {
+        guard let folioID = self.id else { return nil }
+        let request = NSFetchRequest<Folio>(entityName: "Folio")
+        request.predicate = NSPredicate(format: "id == %@", folioID as CVarArg)
+        
+        do {
+            return try vc.fetch(request).first
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+//    static func fetchSingleFolio(vc: NSManagedObjectContext, uuid: UUID) -> Folio? {
+//        var fetchedFolio: Folio?
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
+//        let which = NSPredicate(format: "id == %@", uuid as CVarArg)
+//        fetchRequest.predicate = which
+//
+//        do {
+//            fetchedFolio = try (vc.fetch(fetchRequest) as! Folio?)
+//            return fetchedFolio
+//        } catch {
+//            Foundation.NSLog("No folios in store")
+//        }
+//        return fetchedFolio
+//    }
+    
+
     static func fetchPrivateFolios(vc: NSManagedObjectContext) -> [Folio] {
         var fetchedFolios = [Folio]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
@@ -157,7 +185,7 @@ extension Folio {
     static func sharingState(_ f: Folio) -> String {
         let Store = Storage.shared
         if Store.isShared(object: f) == false {
-            return "icloud.slash" // not shared
+            return "icloud" // not shared was "icloud.slash"
         }
         if Store.isShared(object: f) && (Store.isOwner(object: f) == false) {
             return "icloud.and.arrow.down" // shared in

@@ -36,13 +36,15 @@ struct SidebarNavigationView: View {
                     .imageScale(.medium) })
             }
             .tag(NavItem.taglist)
-//            NavigationLink(destination: FolioTemplListView()) {
-//                Label(title: { Text("Life Events") },
-//                      icon: { Image(systemName: "square.grid.3x1.folder.badge.plus")
-//                        .font(.headline)
-//                    .imageScale(.medium) })
-//            }
-//            .tag(NavItem.templatelist)
+            
+            NavigationLink(destination: FolioListSegView()) {
+                Label(title: { Text("Sharing") },
+                      icon: { Image(systemName: "icloud")
+                        .font(.headline)
+                    .imageScale(.medium) })
+            }
+            .tag(NavItem.foliosharelist)
+
             NavigationLink(destination: SettingsView()) {
                 Label(title: { Text("Settings") },
                       icon: { Image(systemName: "gear")
@@ -50,6 +52,16 @@ struct SidebarNavigationView: View {
                     .imageScale(.medium) })
             }
             .tag(NavItem.setting)
+            
+            NavigationLink(destination: OnboardView()) {
+                Label(title: { Text("Onboarding") },
+                      icon: { Image(systemName: "questionmark.app")
+                        .font(.headline)
+                    .imageScale(.medium) })
+            }
+            .tag(NavItem.onboarding)
+
+
         }
         .listStyle(SidebarListStyle())
     }

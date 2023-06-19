@@ -35,7 +35,7 @@ enum ActiveSheet: Identifiable, Equatable {
     }
 }
 
-class FolioVM: ObservableObject {
+@MainActor class FolioVM: ObservableObject {
     @Published var folio: Folio
     @Published var assetList: [Asset]
     
@@ -56,6 +56,7 @@ class FolioVM: ObservableObject {
     }
     
     func refresh() {
+        self.folio = self.folio.refetchFolio(vc: Storage.shared.vc)!
         tfDebug("refreshing asset list")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             //self.folio.touch()
@@ -114,9 +115,6 @@ struct FolioDetailView: View {
             .refreshable {
                 vm.refresh()
             }
-            .onAppear(){
-                vm.refresh()
-            }
             .listStyle(PlainListStyle())
             .fileImporter(
                 isPresented: $vm.isImporting,
@@ -132,9 +130,9 @@ struct FolioDetailView: View {
             }
         }
         .padding()
-        .onAppear(perform: {
+        .onAppear() {
             self.share = Storage.shared.getShare(vm.folio)
-        })
+        }
         .toolbar { toolbarItems() } // title display here.
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
@@ -281,7 +279,8 @@ struct FolioDetailView: View {
 
             do {
                 Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
-                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+
+                 try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
                 thisContext.delete(folio)
                 Tag.dedupeTags()
 
@@ -304,26 +303,6 @@ struct FolioDetailView: View {
     }
 
 
-    // private
-//    func createShare(folio: Folio) async {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//            guard Storage.shared.existingShare(folio: folio) == nil else {
-//                print("no need to create share")
-//                return
-//            }
-//            Storage.shared.shareObject(folio, to: nil ) { share, error in
-//                guard error == nil, let sureshare = share else {
-//                    tfDebug("error in create share \(error.debugDescription)\nTFdebug share is \(String(describing: share))")
-//                    return
-//                }
-//                sureshare[CKShare.SystemFieldKey.title] = folio.title
-//                self.share = sureshare
-//                DispatchQueue.main.async {
-//                    self.vm.message = Message(text: "Created a Share")
-//                }
-//            }
-//        }
-//    }
     func createShare(_ folio: Folio) async {
         do {
             let (_, share, _) = try await Storage.shared.container.share([folio], to: nil)

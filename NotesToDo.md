@@ -9,7 +9,6 @@ For MVP
 - SHARING is working but brittle. needs to not delete graph at end of share.
 - foliodetail is STILL not updating after edits
 - must be able to move an asset to a different folio
-- assets must be editable, names, etc.
 - linkage to web-based help docs? (or built into app?)
 - the list of folios doesn't seem to appear in share extension without app restart
 - Does Sharing actually work?

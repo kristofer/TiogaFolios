@@ -51,6 +51,9 @@ struct TagListView: View {
                 .onDelete(perform: deleteTags)
             }
             .listStyle(PlainListStyle())
+            .onAppear {
+                vm.refreshTags()
+            }
             .refreshable {
                 await vm.reload()
             }
@@ -88,6 +91,10 @@ struct TagListView: View {
 
     func didDismiss() {
         vm.showNewTag = false
+        vm.refreshTags()
+    }
+    
+    func willAppear() {
         vm.refreshTags()
     }
     

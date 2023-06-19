@@ -16,6 +16,7 @@ enum NavItem {
     case templatelist
     case setting
     case tagkindlist
+    case onboarding
 }
 
 
@@ -81,7 +82,13 @@ struct TabBarNavigationView: View {
                     
                 }
                 .tag(NavItem.setting)
-            
+
+            OnboardView()
+                .tabItem {
+                    Label("Onboarding", systemImage: "questionmark.app")
+                }
+                .tag(NavItem.onboarding)
+
             TagKindListView()
                 .tabItem {
                     Label("Categories", systemImage: "briefcase")

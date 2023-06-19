@@ -30,7 +30,7 @@ struct FolioDeltaView: View {
     
     @ObservedObject var vm: DeltaFolioVm
     @Binding var activeSheet: ActiveSheet?
-    @FocusState private var focusedField: FocusField?
+    //@FocusState private var focusedField: FocusField?
     
     var title:String = "Archive This Folio"
     
@@ -43,20 +43,22 @@ struct FolioDeltaView: View {
         VStack {
             Form {
                 Text(vm.ttitle).font(.headline)
-                TextField("Untitled", text: $vm.folio.title ?? "")
-                    .focused($focusedField, equals: .field)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {  /// Anything over 0.5 seems to work
-                            self.focusedField = .field
-                        }
-                    }
-                TextField("description", text: $vm.folio.desc ?? "")
+                Text("title")
+                TextEditor(text: $vm.folio.title ?? "")
+                    //.focused($focusedField, equals: .field)
+                    //.onAppear {
+                    //    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {  /// Anything over 0.5 seems to work
+//                            self.focusedField = .field
+//                        }
+//                    }
+                Text("description")
+                TextEditor(text: $vm.folio.desc ?? "")
                 Toggle(title, isOn: $vm.isChecked)
                 if vm.isChecked {
                     Text("Folio Locked!")
                 }
                 
-                Divider()
+                //Divider()
                 Button(action: {
                     vm.folio.locked = vm.isChecked
                     vm.folio.touch()

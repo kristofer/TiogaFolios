@@ -67,7 +67,7 @@ struct ShareTestListView: View {
                     }
                 }
             }
-            .navigationTitle("ShareDemo")
+            .navigationTitle("Folio Sharing")
             .onAppear { id = UUID() }
         }
     }

@@ -140,6 +140,7 @@ extension Tag {
         let objectIDs = all.map{ $0.objectID }
         
         if !objectIDs.isEmpty {
+            tfDebug("Dedupe Tags, have \(objectIDs.count) tags")
             Storage.shared.deduplicateAndWait(tagObjectIDs: Array(objectIDs))
         }
 

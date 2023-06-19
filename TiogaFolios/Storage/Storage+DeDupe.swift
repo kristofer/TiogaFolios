@@ -45,6 +45,7 @@ extension Storage {
         guard let tag = performingContext.object(with: tagObjectID) as? Tag,
               let tagName = tag.title else {
             tfDebug("\(#function): Ignore a tag that was deleted: \(tagObjectID)")
+            tfDebug("\(#function): Ignore a tag that was deleted: \(tagObjectID)")
             return
         }
         /**
@@ -54,20 +55,29 @@ extension Storage {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: Tag.Schema.id.rawValue, ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "\(Tag.Schema.title.rawValue) == %@", tagName)
         guard var duplicatedTags = try? performingContext.fetch(fetchRequest), duplicatedTags.count > 1 else {
+            tfDebug("\(#function): Tag has no duplicates: \(tagObjectID) \(tagName)")
             return
         }
-        
+
+        duplicatedTags.forEach {
+            tfDebug("Tag: \(String(describing: $0.title))")
+        }
+
         /**
          Filter out the tags that aren't in the same CloudKit record zone.
          Only tags that have the same name and are in the same record zone are duplicates.
          The tag zone ID can be nil, which means it isn't a shared tag. The filter rule is still valid in that case.
          */
-        let tagZoneID = container.recordID(for: tag.objectID)?.zoneID
-        duplicatedTags = duplicatedTags.filter {
-            self.container.recordID(for: $0.objectID)?.zoneID == tagZoneID
-        }
-        
+//        let tagZoneID = container.recordID(for: tag.objectID)?.zoneID
+//        duplicatedTags = duplicatedTags.filter {
+//            self.container.recordID(for: $0.objectID)?.zoneID == tagZoneID
+//        }
+//        duplicatedTags.forEach {
+//            tfDebug("Tag: \(String(describing: $0.title))")
+//        }
+
         guard duplicatedTags.count > 1 else {
+            tfDebug("\(#function): Tag has no duplicates: \(tagObjectID) \(tagName)")
             return
         }
         /**
