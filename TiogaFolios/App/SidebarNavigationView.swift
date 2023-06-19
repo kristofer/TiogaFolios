@@ -61,6 +61,13 @@ struct SidebarNavigationView: View {
             }
             .tag(NavItem.onboarding)
 
+            NavigationLink(destination: FolioListByTag(TagKind.plain)) {
+                Label(title: { Text("Tag Filter") },
+                      icon: { Image(systemName: "tag.square")
+                        .font(.headline)
+                    .imageScale(.medium) })
+            }
+            .tag(NavItem.tagfilterlist)
 
         }
         .listStyle(SidebarListStyle())
