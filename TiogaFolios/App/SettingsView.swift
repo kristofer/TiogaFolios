@@ -73,7 +73,7 @@ struct SettingsView: View {
 //                .border(Color.blue, width: 1.0)
                 //.disabled(true)
             }
-            .navigationBarTitle("Tioga Folios")
+            .navigationBarTitle("Settings")
             
         }
         

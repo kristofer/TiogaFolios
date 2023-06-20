@@ -226,6 +226,7 @@ struct FolioDetailView: View {
      Dispatch asynchronously to the next run loop so the presentation occurs after the current sheet's dismissal.
      */
     private func sheetOnDismiss() {
+        vm.refresh()
         guard let nextActiveSheet = nextSheet else {
             return
         }
@@ -240,7 +241,6 @@ struct FolioDetailView: View {
             }
         }
         nextSheet = nil
-        vm.refresh()
     }
     
     func addtofolio() {

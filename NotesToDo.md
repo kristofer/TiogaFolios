@@ -7,12 +7,13 @@ For MVP
 - initial folios
 ~~- draft of onboarding pages~~
 - SHARING is working but brittle. needs to not delete graph at end of share.
-- foliodetail is STILL not updating after edits
+~~- foliodetail is STILL not updating after edits~~
 - must be able to move an asset to a different folio
 - linkage to web-based help docs? (or built into app?)
 - the list of folios doesn't seem to appear in share extension without app restart
+- rebuild Sharing Extension to be bigger.
 - Does Sharing actually work?
-- a TagFilterView? 
+- a TagFilterView. simple one accomplished.
 
 Bugs
 

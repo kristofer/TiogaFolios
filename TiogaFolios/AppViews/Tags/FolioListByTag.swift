@@ -10,11 +10,16 @@ import SwiftUI
 
 struct FolioListByTag: View {
     let tagkind: TagKind
-    var tags: [Tag]
-    
+    @ObservedObject var vm: ListTagVm
+
+    init(_ tagkind: TagKind) {
+        vm = ListTagVm()
+        self.tagkind = tagkind
+    }
+
     var body: some View {
         List {
-            ForEach(tags) { tag in
+            ForEach(vm.tags) { tag in
                 if !Array(tag.folios! as Set as! Set<Folio>).isEmpty {
                     Section(header: Text(tag.title!)) {
                         ForEach(Array(tag.folios! as Set as! Set<Folio>), id: \.self) { folio in
@@ -32,17 +37,17 @@ struct FolioListByTag: View {
             }
         }
         .listStyle(PlainListStyle())
+        .refreshable {
+            vm.refreshTags()
+        }
+
         .onAppear(){
-            
+            vm.refreshTags()
         }
         .navigationBarTitle("Folios by Tag")
         //.navigationBarTitleDisplayMode(.inline)
     }
-    init(_ tagkind: TagKind) {
-        self.tagkind = tagkind
-        self.tags = Tag.allTags() //allByKind(tagkind: tagkind)
-        
-    }
+
 }
 
 struct FolioListByTag_Previews: PreviewProvider {
