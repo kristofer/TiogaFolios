@@ -127,7 +127,7 @@ extension Tag {
     }
 
     static func createTag(vc: NSManagedObjectContext, named: String, kind: TagKind) -> (Tag) {
-        return Tag.createTag(vc: vc, named: "Untitled", desc: "", kind: TagKind.plain, category: TagCat.user)
+        return Tag.createTag(vc: vc, named: named, desc: "", kind: TagKind.plain, category: TagCat.user)
     }
     
     static func createTagApp(vc: NSManagedObjectContext, named: String, kind: TagKind) -> (Tag) {

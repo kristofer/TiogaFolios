@@ -8,48 +8,75 @@
 import SwiftUI
 class DeltaTagVm: ObservableObject {
     //@Binding var showNewTag: Bool
-    @Published var tag: Tag
+    //@Published var tag: Tag?
     @Published var selectedTagKind = TagKind.plain
     @Published var selectedTagCat = TagCat.user
     var ttitle: String
-    var creating = false
     
+    var tag: Tag?
+    var creating = false
+    var newTitle = "Untitled"
+    var newDesc = " - "
+    var newKind = TagKind.plain
+    var newCat = TagCat.user
+
     init(objectPassed: Tag? = nil) {
         if objectPassed == nil {
             creating = true
-            tag = Tag.createTag(vc: Storage.shared.vc, named: "NewTag", kind: .plain)
             ttitle = "Creating New Tag"
         } else {
             creating = false
             tag = objectPassed!
+            newTitle = tag?.title! ?? "unknown"
+            newDesc = tag?.desc! ?? "unknown"
+            newKind = TagKind(rawValue: (tag!.kind!)) ?? .plain
+            newCat = .user
             ttitle = "Editing Tag"
         }
     }
     
-    func cancel() {
+//    func cancel() {
+//        if creating {
+//            tfDebug("Delete tag created.")
+//            if let tag = tag {
+//                tag.managedObjectContext?.delete(tag)
+//            }
+//            Storage.shared.save()
+//        }
+//    }
+
+    func updateTag () {
         if creating {
-                tag.managedObjectContext?.delete(tag)
+            tfDebug("Tag created \(self.newTitle)")
+            tag = Tag.createTag(vc: Storage.shared.vc, named: self.newTitle, kind: self.newKind)
+            tag!.desc = self.newDesc
+        } else {
+            if let tag = self.tag {
+                tag.title = newTitle
+                tag.desc = newDesc
+                tag.kind = newKind.rawValue
+                tag.category = newCat.rawValue
+            }
         }
     }
-
 }
 
 
 struct TagEditView: View {
 
-//    enum FocusField: Hashable {
-//      case field
-//    }
-
-
     @ObservedObject var vm: DeltaTagVm
     @Binding var isPresented: Bool
+    
 //    @FocusState private var focusedField: FocusField?
     init(objectPassed: Tag? = nil, show: Binding<Bool>) {
         if objectPassed == nil {
+            tfDebug("TagEditView nil of Edit")
+
             vm = DeltaTagVm()
             self._isPresented = show
         } else {
+            tfDebug("TagEditView editing \(objectPassed?.title)")
+
             vm = DeltaTagVm(objectPassed: objectPassed)
             self._isPresented = show
         }
@@ -60,30 +87,28 @@ struct TagEditView: View {
         Form(content: {
             Section(header: Text("Tag Metadata")) {
                 // Text field
-                TextField("Name", text: Binding($vm.tag.title, ""))
-//                TextField("Description", Binding(vm.tag?.desc?, ""))
-                //TextField("Name", text: ((vm.tag).title?) ?? "")
-                //TextField("Description", (vm.tag?).desc?)
-                Picker(vm.tag.kind!, selection: $vm.selectedTagKind ) {
+                TextField("Name", text: $vm.newTitle) //Binding($vm.newTitle, ""))
+                TextField("Description", text: $vm.newDesc) //Binding(vm.tag?.desc?, ""))
+
+                Picker(vm.newKind.rawValue, selection: $vm.selectedTagKind ) {
                     ForEach(TagKind.allCases) { kind in
                         Text(kind.rawValue.capitalized).tag(kind)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
-                Text("leave as user for now")
-                Picker(vm.tag.category!, selection: $vm.selectedTagCat ) {
-                    ForEach(TagCat.allCases) { cat in
-                        Text(cat.rawValue.capitalized).tag(cat)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .disabled(true)
+//                Text("leave as user for now")
+//                Picker(vm.newCat.rawValue, selection: $vm.selectedTagCat ) {
+//                    ForEach(TagCat.allCases) { cat in
+//                        Text(cat.rawValue.capitalized).tag(cat)
+//                    }
+//                }
+//                .pickerStyle(SegmentedPickerStyle())
+//                .disabled(true)
             }
             Section {
                 // Button
                 Button(action: {
-                    vm.tag.kind = vm.selectedTagKind.rawValue
-                    vm.tag.touch()
+                    vm.updateTag()
                     Storage.shared.save()
                     isPresented = false
                 }) {
@@ -117,15 +142,11 @@ struct TagEditView: View {
 
         })
         .navigationBarTitle(vm.ttitle)
-        .onDisappear(perform: {
-            //vm.cancel()
-        })
     }
 }
 
 struct TagEditView_Previews: PreviewProvider {
     static var previews: some View {
-        //TagNewView(showNewTag: Binding(true))
         EmptyView()
     }
 }

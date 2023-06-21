@@ -90,6 +90,7 @@ struct TagListView: View {
     }
 
     func didDismiss() {
+        tfDebug("didDismiss on tag create")
         vm.showNewTag = false
         vm.refreshTags()
     }
