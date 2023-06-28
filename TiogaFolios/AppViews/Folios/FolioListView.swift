@@ -38,7 +38,7 @@ struct FolioListView: View {
     
     var body: some View {
         List {
-            Section(header: Text("All Folios"))
+            Section() //header: Text("All Folios"))
             {
                 if vm.folios.isEmpty {
                     Text("No Folios.") // Placeholder
@@ -83,7 +83,8 @@ struct FolioListView: View {
         }
 #if os(iOS)
         .navigationBarTitle("All Folios")
-        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarHidden(true)
 #else
         // mac desktop
 #endif

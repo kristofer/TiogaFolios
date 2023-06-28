@@ -29,8 +29,7 @@ struct FolioListByTag: View {
                                         FolioCell(folio: folio)
                                     }
                             }
-                            .listRowInsets(EdgeInsets(top: 2, leading: 2, bottom: 4, trailing: 0))
-                            
+                            .listRowInsets(EdgeInsets(top: 2, leading: 8, bottom: 4, trailing: 4))
                         }
                     }
                 }
@@ -45,7 +44,7 @@ struct FolioListByTag: View {
             vm.refreshTags()
         }
         .navigationBarTitle("Folios by Tag")
-        //.navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
 }
