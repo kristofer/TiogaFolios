@@ -24,7 +24,8 @@ struct MainView: View {
             TabBarNavigationView() // For iPhone
         }
         else {
-            SidebarNavigationView() // For iPad
+            // Three-column
+                SidebarNavigationView() // For iPad
         }
 #else
         SidebarNavigationView() // For mac

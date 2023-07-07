@@ -18,7 +18,6 @@ struct SettingsView: View {
     @State var newTextContent = "untitled"
     
     var body: some View {
-        NavigationView {
             VStack(alignment: .leading) {
                 Text("Version: \(UIApplication.versionBuild())")
                 Text("These are some app extras")
@@ -75,7 +74,6 @@ struct SettingsView: View {
             }
             .navigationBarTitle("Settings")
             
-        }
         
     }
     

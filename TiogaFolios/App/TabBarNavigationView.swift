@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-enum NavItem {
+enum NavItem: String, Identifiable, CaseIterable {
+    var id: String { rawValue }
+
     case foliolist
     case folioseglist
     case foliosharelist

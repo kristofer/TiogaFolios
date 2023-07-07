@@ -58,11 +58,9 @@ struct TagListView: View {
                 await vm.reload()
             }
             .toolbar {
-#if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-#endif
                 ToolbarItem {
                     Button(action:  {
                         vm.showNewTag = true
@@ -78,15 +76,8 @@ struct TagListView: View {
                     }
                 }
             }
-#if os(iOS)
-            .navigationBarTitle("")
+            .navigationBarTitle("Tags (Categories)")
             .navigationBarTitleDisplayMode(.inline)
-#else
-            
-#endif
-
-//            Text("Select a tag")
-//        }
     }
 
     func didDismiss() {

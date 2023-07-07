@@ -119,11 +119,9 @@ struct FolioListSegView: View {
             vm.fetchData()
         }
         .toolbar {
-#if os(iOS)
             ToolbarItem(placement: .bottomBar) {
                 EditButton()
             }
-#endif
             ToolbarItem(placement: .bottomBar) {
                 NavigationLink(
                     destination:FolioTemplListView(isActive: $isTemplatesActive)) {
@@ -132,12 +130,9 @@ struct FolioListSegView: View {
                 //.isDetailLink(false)
             }
         }
-#if os(iOS)
-        .navigationBarTitle("All Folios")
-        .navigationBarHidden(true)
-#else
-        // mac desktop
-#endif
+        .navigationBarTitle("Current Folio Sharing")
+        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarHidden(true)
         //        }
     }
     
