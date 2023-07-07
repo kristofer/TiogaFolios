@@ -14,7 +14,9 @@ struct OnboardingStepView: View {
         VStack {
             Image(data.image)
                 .resizable()
-                .scaledToFit()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 360, height: 360)
+                //.scaledToFit()
 //                .border(.gray)
                 .shadow(color: .gray, radius: 5, x: 5, y: 5)
                 .padding(.bottom, 20)
