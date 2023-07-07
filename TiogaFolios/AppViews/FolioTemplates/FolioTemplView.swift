@@ -46,7 +46,7 @@ struct FolioTemplView: View {
                 }
             }
             Divider()
-            Text("Items in the template:")
+            Text("Example Items:")
                 .font(.body.bold())
             List {
                 ForEach(Array(template.assets ?? []), id: \.self) { tag in
@@ -72,7 +72,7 @@ struct FolioTemplView: View {
             }) {
                 HStack {
                     Spacer()
-                    Text("Create Folio from Template")
+                    Text("Create Folio from Example")
                     Spacer()
                 }
             }

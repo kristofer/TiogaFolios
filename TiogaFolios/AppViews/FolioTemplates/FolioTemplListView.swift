@@ -54,9 +54,9 @@ struct FolioTemplListView: View {
             }
             }
             .listStyle(PlainListStyle())
-            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Life Event Templates")
+            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Life Event Examples")
 #if os(iOS)
-            .navigationBarTitle("New Folio from Template")
+            .navigationBarTitle("New Folio from Example")
             .navigationBarTitleDisplayMode(.inline)
 #else
             // mac desktop
