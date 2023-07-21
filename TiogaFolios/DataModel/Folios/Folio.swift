@@ -9,6 +9,11 @@ import Foundation
 import CoreData
 import UniformTypeIdentifiers
 
+import UIKit
+
+@objc(Folio)
+public class Folio: NSManagedObject { }
+
 extension Folio {
     
     // designated base constructor

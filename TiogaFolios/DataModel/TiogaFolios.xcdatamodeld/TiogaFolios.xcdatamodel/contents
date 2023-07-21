@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G419" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Asset" representedClassName="Asset" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Asset" representedClassName=".Asset" syncable="YES" codeGenerationType="category">
         <attribute name="blob" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -18,7 +18,7 @@
         <relationship name="previews" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preview" inverseName="asset" inverseEntity="Preview"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="assets" inverseEntity="Tag"/>
     </entity>
-    <entity name="Folio" representedClassName="Folio" syncable="YES" codeGenerationType="class">
+    <entity name="Folio" representedClassName=".Folio" syncable="YES" codeGenerationType="category">
         <attribute name="desc" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -53,7 +53,7 @@
         <attribute name="sequence" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="asset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Asset" inverseName="previews" inverseEntity="Asset"/>
     </entity>
-    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+    <entity name="Tag" representedClassName=".Tag" syncable="YES" codeGenerationType="category">
         <attribute name="category" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

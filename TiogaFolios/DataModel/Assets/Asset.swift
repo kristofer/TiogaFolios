@@ -18,6 +18,11 @@ protocol Assetable {
     func removeAsset(_ asset: Asset)
 }
 
+
+@objc(Asset)
+public class Asset: NSManagedObject { }
+
+
 // ASSET - a file of some kind, perhaps a 
 extension Asset {
     convenience init(vc: NSManagedObjectContext, title: String, path: String, mimetype: String, uttype: String) {

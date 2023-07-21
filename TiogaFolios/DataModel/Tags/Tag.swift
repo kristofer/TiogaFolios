@@ -8,6 +8,68 @@
 import Foundation
 import CoreData
 
+extension CodingUserInfoKey {
+  static let managedObjectContext = CodingUserInfoKey(rawValue: "managedObjectContext")!
+}
+
+@objc(Tag)
+public class Tag: NSManagedObject, Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case title = "Title"
+        case desc = "Desc"
+        case category = "Category"
+        case favorite = "Favorite"
+        case lastmodified = "LastModified"
+        case ref = "Ref"
+        case refstring = "RefString"
+        case thumbnail = "Thumbnail"
+    }
+
+    enum DecoderConfigurationError: Error {
+      case missingManagedObjectContext
+    }
+
+    required convenience public init(from decoder: Decoder) throws {
+        guard let context = decoder.userInfo[CodingUserInfoKey.managedObjectContext] as? NSManagedObjectContext else {
+          throw DecoderConfigurationError.missingManagedObjectContext
+        }
+
+        self.init(context: context)
+
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try values.decode(UUID.self, forKey: .id)
+        self.title = try values.decode(String.self, forKey: .title)
+        self.desc = try values.decode(String.self, forKey: .desc)
+        self.category = try values.decode(String.self, forKey: .category)
+        self.favorite = try values.decode(Bool.self, forKey: .favorite)
+        self.lastmodified = try values.decode(Date.self, forKey: .lastmodified)
+        self.ref = try values.decode(URL.self, forKey: .ref)
+        self.refstring = try values.decode(String.self, forKey: .refstring)
+        self.thumbnail = try values.decode(Data.self, forKey: .thumbnail)
+        
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(id, forKey: .id)
+        try container.encode(title, forKey: .title)
+        try container.encode(desc, forKey: .desc)
+        try container.encode(category, forKey: .category)
+        try container.encode(favorite, forKey: .favorite)
+        try container.encode(lastmodified, forKey: .lastmodified)
+        try container.encode(ref, forKey: .ref)
+        try container.encode(refstring, forKey: .refstring)
+        try container.encode(thumbnail, forKey: .thumbnail)
+
+    }
+
+
+}
+
 // this is used to store the String in Core Data, but it is a ENUM in the data model.
 extension Tag {
 

@@ -34,7 +34,7 @@ struct OnboardingViewPure: View {
             Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             ZStack(alignment: .center) {
-                ForEach(0..<data.count) { i in
+                ForEach(0..<data.count, id: \.self) { i in
                     OnboardingStepView(data: self.data[i])
                         .offset(x: CGFloat(i) * self.distance)
                         .offset(x: self.slideGesture.width - CGFloat(self.curSlideIndex) * self.distance)
@@ -99,7 +99,7 @@ struct OnboardingViewPure: View {
     
     func progressView() -> some View {
         HStack {
-            ForEach(0..<data.count) { i in
+            ForEach(0..<data.count, id: \.self) { i in
                 Circle()
                     .scaledToFit()
                     .frame(width: 10)

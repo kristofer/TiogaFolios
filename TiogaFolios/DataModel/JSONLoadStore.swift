@@ -12,8 +12,14 @@ extension NSManagedObject {
   func toJSON() -> String? {
     let keys = Array(self.entity.attributesByName.keys)
     let dict = self.dictionaryWithValues(forKeys: keys)
+      
+//      let encoder = JSONEncoder()
+//      let formatter = DateFormatter()
+//      formatter.dateStyle = .full
+//      formatter.timeStyle = .full
+//      encoder.dateEncodingStrategy = .formatted(formatter)
     do {
-        let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        let jsonData = try JSONSerialization.data(withJSONObject: dict, options: [.prettyPrinted])
         let reqJSONStr = String(data: jsonData, encoding: .utf8)
         return reqJSONStr
     }

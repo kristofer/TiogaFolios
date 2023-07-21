@@ -77,7 +77,6 @@
 		5C3EF87E292BDD52007CAAB6 /* Folio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32397D29254C0F00619645 /* Folio.swift */; };
 		5C3EF87F292BDD57007CAAB6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C323976292432E600619645 /* Config.swift */; };
 		5C3EF880292BDD5B007CAAB6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32394E292431A300619645 /* Storage.swift */; };
-		5C3EF881292BDD71007CAAB6 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
 		5C3EF882292BDDAA007CAAB6 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398629254CCA00619645 /* Fetching.swift */; };
 		5C3EF883292BDDF1007CAAB6 /* SelectableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398929254CCA00619645 /* SelectableTag.swift */; };
 		5C3EF884292BDDFB007CAAB6 /* TagSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32398429254CCA00619645 /* TagSources.swift */; };
@@ -93,6 +92,7 @@
 		5C8D5CD62A03DCE500B1382F /* JSONLoadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */; };
 		5C8D5CD82A09380D00B1382F /* SharingEx in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD72A09380D00B1382F /* SharingEx */; };
 		5C8D5CDA2A09986900B1382F /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD92A09986900B1382F /* ShareController.swift */; };
+		5C9231A22A6989C1004845F8 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
 		5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CA4EC4C29D32E48004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CB910E129AFE85C0027E41C /* FolioDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB910E029AFE85C0027E41C /* FolioDetailView.swift */; };
@@ -856,7 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C3EF881292BDD71007CAAB6 /* TiogaFolios.xcdatamodeld in Sources */,
+				5C9231A22A6989C1004845F8 /* TiogaFolios.xcdatamodeld in Sources */,
 				5CA4EC4C29D32E48004D11BB /* Storage+DeDupe.swift in Sources */,
 				5C3EF87D292BDD4E007CAAB6 /* Tag.swift in Sources */,
 				5C3EF880292BDD5B007CAAB6 /* Storage.swift in Sources */,
@@ -1169,6 +1169,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Archive It/Archive It.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20000059;
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
@@ -1196,6 +1197,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Archive It/Archive It.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20000059;
 				DEVELOPMENT_TEAM = S7ZKK95T9U;

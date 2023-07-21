@@ -58,6 +58,11 @@ struct SettingsView: View {
                 }
                 .padding()
                 
+                Button("Dump All Data to JSON...") {
+                    jsonify()
+                }
+                .padding()
+                
                 Button("Deduplicate Tags") {
                     Tag.dedupeTags()
                     Storage.shared.save()
@@ -91,6 +96,25 @@ struct SettingsView: View {
     
     func reloadAll() {
         viewContext.refreshAllObjects()
+    }
+    
+    // work on export tools
+    func jsonify() {
+//        let folios = Folio.fetchFolios(vc: viewContext)
+//        for f in folios {
+//            let str = f.toJSON()
+//            print("folio json: \(String(describing: str))")
+//        }
+        let tags = Tag.allTags()
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        for t in tags {
+            //let str = t.toJSON()
+            let jsonData = (try? encoder.encode(t))!
+            let reqJSONStr = String(data: jsonData, encoding: .utf8)
+
+            print("tag json: \(String(describing: reqJSONStr))")
+        }
     }
 }
 
