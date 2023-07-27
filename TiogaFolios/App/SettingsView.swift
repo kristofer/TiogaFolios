@@ -99,6 +99,7 @@ struct SettingsView: View {
     }
     
     // work on export tools
+    // https://www.donnywals.com/using-codable-with-core-data-and-nsmanagedobject/
     func jsonify() {
 //        let folios = Folio.fetchFolios(vc: viewContext)
 //        for f in folios {
