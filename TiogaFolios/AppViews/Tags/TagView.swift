@@ -46,7 +46,7 @@ struct TagView: View {
         }
         .padding()
         .navigationTitle("")
-        .navigationViewStyle(.automatic)
+//        .navigationViewStyle(.automatic)
         .sheet(isPresented: $isEditing) {
             TagEditView(objectPassed: tag, show: $isEditing)
         }

@@ -10,6 +10,19 @@ import Foundation
 import SwiftUI
 import CoreData
 
+extension UIDevice {
+    static var idiom: UIUserInterfaceIdiom {
+        UIDevice.current.userInterfaceIdiom
+    }
+    static var isIpad: Bool {
+        idiom == .pad
+      }
+      
+      static var isiPhone: Bool {
+        idiom == .phone
+      }
+}
+
 struct MainView: View {
     // @Environment(\.managedObjectContext) private var viewContext
     
@@ -20,12 +33,10 @@ struct MainView: View {
     @ViewBuilder
     var body: some View {
 #if os(iOS)
-        if horizontalSizeClass == .compact {
+        if UIDevice.isIpad {
+            SidebarNavigationView() // iPad view
+        } else {
             TabBarNavigationView() // For iPhone
-        }
-        else {
-            // Three-column
-                SidebarNavigationView() // For iPad
         }
 #else
         SidebarNavigationView() // For mac
