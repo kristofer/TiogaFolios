@@ -30,8 +30,9 @@ class FolioListViewModel: ObservableObject {
 
 struct FolioListView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var vm = FolioListViewModel()
-    
+//    @ObservedObject var vm = FolioListViewModel()
+    @StateObject var vm = FolioListViewModel()
+
     @State private var isTemplatesActive = false
     
     init() { }

@@ -71,7 +71,8 @@ struct FolioDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var vm: FolioVM
-    
+    //@StateObject var vm: FolioVM
+
     @State private var activeSheet: ActiveSheet?
     /**
      The next active sheet to present after dismissing the current sheet.
