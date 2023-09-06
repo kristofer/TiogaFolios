@@ -52,7 +52,7 @@ struct TabBarNavigationView: View {
     var body: some View {
         TabView(selection: $selection) {
             
-            NavigationView {
+            NavigationStack {
                 FolioListView()
             }
             .tabItem {
@@ -60,7 +60,7 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.foliolist)
             
-            NavigationView {
+            NavigationStack {
                 SearchFolioView()
             }
             .tabItem {
@@ -68,7 +68,7 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.foliosearch)
             
-            NavigationView {
+            NavigationStack {
                 TagListView()
             }
             .tabItem {
@@ -76,7 +76,7 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.taglist)
 
-            NavigationView {
+            NavigationStack {
                 FolioListSegView()
             }
             .tabItem {
@@ -84,7 +84,7 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.folioseglist)
 
-            NavigationView {
+            NavigationStack {
                 FolioListByTag(TagKind.plain)
             }
             .tabItem {
@@ -123,11 +123,13 @@ struct TabBarNavigationView: View {
                 }
                 .tag(NavItem.onboarding)
 
-            TagKindListView()
-                .tabItem {
-                    Label("Categories", systemImage: "briefcase")
-                }
-                .tag(NavItem.tagkindlist)
+//            NavigationStack {
+//                TagKindListView()
+//            }
+//                .tabItem {
+//                    Label("Categories", systemImage: "briefcase")
+//                }
+//                .tag(NavItem.tagkindlist)
             
             ////#if !os(macOS)
             ////                DocScannerView(viewModel: DocScannerViewModel())

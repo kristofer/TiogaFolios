@@ -30,58 +30,65 @@ class FolioListViewModel: ObservableObject {
 
 struct FolioListView: View {
     @Environment(\.managedObjectContext) private var viewContext
-//    @ObservedObject var vm = FolioListViewModel()
+    //    @ObservedObject var vm = FolioListViewModel()
     @StateObject var vm = FolioListViewModel()
-
+    
     @State private var isTemplatesActive = false
     
     init() { }
     
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        List {
-            Section() //header: Text("All Folios"))
-            {
-                if vm.folios.isEmpty {
-                    Text("No Folios.") // Placeholder
-                        .font(.caption2)
-                } else {
-                    ForEach(vm.folios) { folio in
-                        VStack(spacing: 0) {
-                            NavigationLink(
-                                destination: FolioDetailView(folio: folio )) {
-                                    FolioCell(folio: folio)
-                                }
+            List {
+                Section() //header: Text("All Folios"))
+                {
+                    if vm.folios.isEmpty {
+                        Text("No Folios.") // Placeholder
+                            .font(.caption2)
+                    } else {
+                        ForEach(vm.folios) { folio in
+                            VStack(spacing: 0) {
+                                NavigationLink(
+                                    destination: FolioDetailView(folio: folio )) {
+                                        FolioCell(folio: folio)
+                                    }
+                            }
+                            
                         }
+                        .onDelete(perform: deleteFolios)
                         
                     }
-                    .onDelete(perform: deleteFolios)
+                }
+                .headerProminence(.increased).padding(4)
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+            }
+            .listStyle(PlainListStyle())
+            .refreshable {
+                vm.fetchData()
+            }
+            .onAppear(){
+                vm.fetchData()
+            }
+            .toolbar {
+#if os(iOS)
+                ToolbarItem(placement: .bottomBar) {
+                    EditButton()
+                }
+#endif
+                ToolbarItem(placement: .bottomBar) {
+                    NavigationLink(
+                        destination:FolioTemplListView(isActive: $isTemplatesActive)) {
+                            Label("New Folio", systemImage: "plus")
+                        }
+                    //.isDetailLink(false)
                 }
             }
-            .headerProminence(.increased).padding(4)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
-        }
-        .listStyle(PlainListStyle())
-        .refreshable {
-            vm.fetchData()
-        }
-        .onAppear(){
-            vm.fetchData()
-        }
-        .toolbar {
-#if os(iOS)
-            ToolbarItem(placement: .bottomBar) {
-                EditButton()
-            }
-#endif
-            ToolbarItem(placement: .bottomBar) {
-                NavigationLink(
-                    destination:FolioTemplListView(isActive: $isTemplatesActive)) {
-                        Label("New Folio", systemImage: "plus")
-                    }
-                //.isDetailLink(false)
-            }
-        }
+
 #if os(iOS)
         .navigationBarTitle("All Folios")
         .navigationBarTitleDisplayMode(.inline)
@@ -91,7 +98,7 @@ struct FolioListView: View {
 #endif
         //        }
     }
-       
+    
     private func deleteFolios(offsets: IndexSet) {
         withAnimation {
             offsets.map { vm.folios[$0] }.forEach(Storage.shared.vc.delete)

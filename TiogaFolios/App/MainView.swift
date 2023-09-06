@@ -33,11 +33,11 @@ struct MainView: View {
     @ViewBuilder
     var body: some View {
 #if os(iOS)
-        if UIDevice.isIpad {
-            SidebarNavigationView() // iPad view
-        } else {
+//        if UIDevice.isIpad {
+//            SidebarNavigationView() // iPad view
+//        } else {
             TabBarNavigationView() // For iPhone
-        }
+//        }
 #else
         SidebarNavigationView() // For mac
             .frame(minWidth: 900, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
