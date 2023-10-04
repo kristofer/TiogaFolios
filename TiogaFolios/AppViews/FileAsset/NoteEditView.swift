@@ -13,47 +13,56 @@ extension Binding {
     }
 }
 struct NoteEditView: View {
-    @ObservedObject var vm : FileAssetDetailVM
+    //@ObservedObject var vm : FileAssetDetailVM
+    @Environment(\.managedObjectContext) var moc
+    
+    //@EnvironmentObject var vm: FileAssetDetailVM
+    
+    @StateObject var fileasset: Asset
     @Binding var isEditing: Bool
     @State var contentText: String = ""
 
-
+    let tracker = InstanceTracker("NoteEditView")
+    
     var body: some View {
-        HStack {
-            Text("Editing...")
-                .font(.caption)
-            Spacer()
-            Button(action: {
-                isEditing = false
-                vm.fileasset.setBlob(contentText.data(using: .utf8)!)
-                vm.fileasset.lastmodified = Date()
-                vm.fileasset.touch()
-                Storage.shared.save()
-                vm.resetTempFile()
-            }) {
-                Text("Save ")+Text(Image(systemName: "square.and.arrow.down"))
+        tracker {
+            VStack {
+                HStack {
+                    Text("Editing...")
+                        .font(.caption)
+                    Spacer()
+                    Button(action: {
+                        isEditing = false
+                        fileasset.setBlob(contentText.data(using: .utf8)!)
+                        fileasset.lastmodified = Date()
+                        fileasset.touch()
+                        do {
+                            try moc.save()
+                        } catch {
+                            tfDebug(error)
+                        }
+                    }) {
+                        Text("Save ")+Text(Image(systemName: "square.and.arrow.down"))
+                    }
+                    .font(.caption)
+                    .buttonStyle(.borderedProminent)
+                    
+                }
+                .padding()
+                VStack {
+                    TextField("Title", text: $fileasset.title.toUnwrapped(defaultValue: ""))
+                        .padding(5)
+                    Divider()
+                    TextField("Description", text: $fileasset.desc.toUnwrapped(defaultValue: ""))
+                        .padding(5)
+                }
+                Divider()
+                TextEditor(text: $contentText)
+                    .border(.gray)
+                    .padding(2)
             }
-            .font(.caption)
-            .buttonStyle(.borderedProminent)
-//            .padding(5.0)
-//            .foregroundColor(.white)
-//            .background(Color.green)
-//            .clipShape(RoundedRectangle(cornerRadius: 5))
-            
         }
-        .padding()
-        VStack {
-            TextField("Title", text: $vm.fileasset.title.toUnwrapped(defaultValue: ""))
-                .padding(5)
-            Divider()
-            TextField("Description", text: $vm.fileasset.desc.toUnwrapped(defaultValue: ""))
-                .padding(5)
-        }
-        Divider()
-        TextEditor(text: $contentText)
-            //.onAppear(perform: { UITextView.appearance().backgroundColor = .clear })
-            .border(.gray)
-            .padding(2)
+        
     }
 }
 

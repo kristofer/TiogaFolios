@@ -52,7 +52,7 @@ struct FileAssetList: View {
             List {
                 ForEach(vm.docs) { doc in
                     NavigationLink(
-                        destination: FileAssetDetail(anAsset: doc, showAssignTo: true)) { //doc: doc)) {
+                        destination: FileAssetDetail(vm: FileAssetDetailVM(anAsset: doc, showAssignTo: true))) { //doc: doc)) {
                             Label("\(String(describing: (doc.title ?? "nil doc name"))) \(String(describing: (doc.desc ?? "")))", systemImage: iconFor(doc))
                         }
                 }

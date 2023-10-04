@@ -55,7 +55,7 @@ struct FileAssetEditList: View {
                 List {
                     ForEach(vm.docs) { doc in
                         NavigationLink(
-                            destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) {
+                            destination: FileAssetDetail(vm: FileAssetDetailVM(anAsset: doc, showAssignTo: false))) {
                                 AssetRow(asset: doc)
                             }
                     }

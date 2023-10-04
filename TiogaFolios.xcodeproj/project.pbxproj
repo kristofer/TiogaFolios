@@ -114,6 +114,7 @@
 		5CF13CA92A40AE1800B7B21C /* OnboardingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13CA52A40AE1800B7B21C /* OnboardingStepView.swift */; };
 		5CF13CAA2A40AE1800B7B21C /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13CA62A40AE1800B7B21C /* OnboardingDataModel.swift */; };
 		5CF13CAB2A40AE1800B7B21C /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13CA72A40AE1800B7B21C /* OnboardView.swift */; };
+		5CF610852ACCA7B000BA68F4 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF610842ACCA7B000BA68F4 /* Debugging.swift */; };
 		5CF821C42A4B58EB00659100 /* WideNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF821C32A4B58EB00659100 /* WideNavView.swift */; };
 /* End PBXBuildFile section */
 
@@ -258,6 +259,7 @@
 		5CF13CA52A40AE1800B7B21C /* OnboardingStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingStepView.swift; sourceTree = "<group>"; };
 		5CF13CA62A40AE1800B7B21C /* OnboardingDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
 		5CF13CA72A40AE1800B7B21C /* OnboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		5CF610842ACCA7B000BA68F4 /* Debugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		5CF821C32A4B58EB00659100 /* WideNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideNavView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -377,6 +379,7 @@
 				5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */,
 				5C3EF861292BD8F4007CAAB6 /* SplashView.swift */,
 				5C7D96DE29BF664A00D9948D /* Globals.swift */,
+				5CF610842ACCA7B000BA68F4 /* Debugging.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				5C3239CB2925796F00619645 /* ContentTagView.swift in Sources */,
 				5CF821C42A4B58EB00659100 /* WideNavView.swift in Sources */,
 				5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */,
+				5CF610852ACCA7B000BA68F4 /* Debugging.swift in Sources */,
 				5C32394F292431A300619645 /* Storage.swift in Sources */,
 				5CF13CAB2A40AE1800B7B21C /* OnboardView.swift in Sources */,
 				5C3239B12925774800619645 /* FolioTemplCell.swift in Sources */,

@@ -105,10 +105,10 @@ struct FolioDetailView: View {
                 Button("Edit List") { activeSheet = .editAssetsView(vm.folio) }
             }
             List { Section {
-                ForEach(vm.assetList, id: \.self) { doc in
+                ForEach(vm.assetList, id: \.self) { asset in
                     NavigationLink(
-                        destination: FileAssetDetail(anAsset: doc, showAssignTo: false)) { //doc: doc)) {
-                            AssetRow(asset: doc)
+                        destination:  FileAssetDetail(vm: FileAssetDetailVM(anAsset: asset, showAssignTo: false))) {
+                            AssetRow(asset: asset)
                         }
                 }}
                 

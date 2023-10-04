@@ -9,10 +9,10 @@ import SwiftUI
 import QuickLook
 
 struct PreviewController: UIViewControllerRepresentable {
-    let url: URL
+    var url: URL
     
     func makeUIViewController(context: Context) -> QLPreviewController {
-        //tfDebug("makeUIViewController")
+        tfDebug("TFdebug makeUIViewController")
 
         let controller = QLPreviewController()
         controller.dataSource = context.coordinator
@@ -21,7 +21,7 @@ struct PreviewController: UIViewControllerRepresentable {
     
     func updateUIViewController(
         _ uiViewController: QLPreviewController, context: Context) {
-            //tfDebug("updateUIViewController")
+            tfDebug("TFdebug updateUIViewController")
         }
     
     
@@ -31,7 +31,7 @@ struct PreviewController: UIViewControllerRepresentable {
     
     class Coordinator: QLPreviewControllerDataSource {
         
-        let parent: PreviewController
+        var parent: PreviewController
         
         init(parent: PreviewController) {
             self.parent = parent
@@ -45,7 +45,7 @@ struct PreviewController: UIViewControllerRepresentable {
             _ controller: QLPreviewController,
             previewItemAt index: Int
         ) -> QLPreviewItem {
-            //tfDebug("previewController previewItemAt:")
+            tfDebug("TFdebug previewController previewItemAt: \(parent.url.absoluteString)")
 
             return parent.url as NSURL
         }
@@ -55,9 +55,12 @@ struct PreviewController: UIViewControllerRepresentable {
 struct FileAssetPreview: View {
     var tFile: TemporaryFile
     
+    let tracker = InstanceTracker("FileAssetPreview")
     var body: some View {
-        PreviewController(url: self.tFile.fileURL)
-            .border(.blue)
+        tracker {
+            PreviewController(url: self.tFile.fileURL)
+                .border(.blue)
+        }
     }
 }
 
