@@ -13,12 +13,9 @@ extension Binding {
     }
 }
 struct NoteEditView: View {
-    //@ObservedObject var vm : FileAssetDetailVM
     @Environment(\.managedObjectContext) var moc
-    
-    //@EnvironmentObject var vm: FileAssetDetailVM
-    
-    @StateObject var fileasset: Asset
+        
+    @Binding var fileasset: Asset
     @Binding var isEditing: Bool
     @State var contentText: String = ""
 
@@ -60,6 +57,9 @@ struct NoteEditView: View {
                 TextEditor(text: $contentText)
                     .border(.gray)
                     .padding(2)
+                    .onAppear(){
+                        self.contentText = String(decoding: fileasset.blob!, as: UTF8.self)
+                    }
             }
         }
         

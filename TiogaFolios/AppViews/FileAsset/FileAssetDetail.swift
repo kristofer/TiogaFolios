@@ -28,8 +28,6 @@ final class FileAssetDetailVM: ObservableObject {
         let fname = "tempfile." + (UTType(anAsset.uttype!)?.preferredFilenameExtension ?? "txt")
         tempFile = try! TemporaryFile(creatingTempDirectoryForFilename: fname)
         
-        //
-        //tfDebug("showing assignto \(showAssignTo)")
         showAssign = showAssignTo
     }
     
@@ -143,9 +141,13 @@ struct FileAssetDetail: View {
                             WebView(url: URL(string: vm.fileasset.pathname ?? "https://tiogadigital.com")!)
                                 .padding(2)
                         } else {
-                            Text(String(decoding: vm.fileasset.blob!, as: UTF8.self))
-                            FileAssetPreview(tFile: vm.tempFile)
-                                .padding(2)
+                            //Text(String(decoding: vm.fileasset.blob!, as: UTF8.self))
+                            if vm.fileasset.isDocumentEditable() {
+                                TextEditor(text: .constant(String(decoding: vm.fileasset.blob!, as: UTF8.self)))
+                            } else {
+                                FileAssetPreview(tURL: vm.tempFile.fileURL)
+                                    .padding(2)
+                            }
                         }
                     }
                 }
@@ -157,10 +159,7 @@ struct FileAssetDetail: View {
                 }
                 .padding(5.0)
                 .sheet(isPresented: $isEditing, onDismiss: { vm.resetTempFile() }, content: {
-                    //NoteEditView(vm: vm, isEditing: $isEditing, contentText: String(decoding: vm.fileasset.blob!, as: UTF8.self))
-                    NoteEditView(fileasset: vm.fileasset, isEditing: $isEditing, contentText: String(decoding: vm.fileasset.blob!, as: UTF8.self))
-                        //.environmentObject(vm)
-                    
+                    NoteEditView(fileasset: $vm.fileasset, isEditing: $isEditing)
                 })
                 
             }

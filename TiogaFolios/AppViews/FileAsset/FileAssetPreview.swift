@@ -22,6 +22,7 @@ struct PreviewController: UIViewControllerRepresentable {
     func updateUIViewController(
         _ uiViewController: QLPreviewController, context: Context) {
             tfDebug("TFdebug updateUIViewController")
+            //uiViewController.reloadData()
         }
     
     
@@ -53,14 +54,14 @@ struct PreviewController: UIViewControllerRepresentable {
     }
 }
 struct FileAssetPreview: View {
-    var tFile: TemporaryFile
+    @State var tURL: URL
     
     let tracker = InstanceTracker("FileAssetPreview")
     var body: some View {
         tracker {
-            PreviewController(url: self.tFile.fileURL)
+            PreviewController(url: self.tURL)
                 .border(.blue)
-        }
+            }
     }
 }
 

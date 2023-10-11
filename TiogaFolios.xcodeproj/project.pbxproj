@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C02C23829E0452A00A98C42 /* FolioListSegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C02C23729E0452A00A98C42 /* FolioListSegView.swift */; };
+		5C14F6362AD581D0008FE159 /* NoteEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14F6352AD581D0008FE159 /* NoteEditor.swift */; };
 		5C2B2BE8295249F90056EFF3 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */; };
 		5C2B2BEA29524CB60056EFF3 /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */; };
 		5C2B2BEC29536EE40056EFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */; };
@@ -158,6 +159,7 @@
 
 /* Begin PBXFileReference section */
 		5C02C23729E0452A00A98C42 /* FolioListSegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioListSegView.swift; sourceTree = "<group>"; };
+		5C14F6352AD581D0008FE159 /* NoteEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditor.swift; sourceTree = "<group>"; };
 		5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
 		5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				5C3239B92925796200619645 /* FileAssetDetail.swift */,
 				5C7533E5297ADABB006867D3 /* MissingAssetView.swift */,
 				5C84346129437E9A005B0051 /* NoteEditView.swift */,
+				5C14F6352AD581D0008FE159 /* NoteEditor.swift */,
 				5C3C5A1329B7849800081F8D /* NewNoteView.swift */,
 				5C3239BA2925796200619645 /* FileAssetList.swift */,
 				5CE60D30296C84490050304D /* FileAssetEditList.swift */,
@@ -757,6 +760,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CEE4E5D2A0BC0B200FCA9E3 /* CloudSharingSheet.swift in Sources */,
+				5C14F6362AD581D0008FE159 /* NoteEditor.swift in Sources */,
 				5C3C5A1629BA267800081F8D /* ManagingSharesView.swift in Sources */,
 				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
 				5CBFE26D2A0AD1730014C6AD /* FolioMiniDetailView.swift in Sources */,
