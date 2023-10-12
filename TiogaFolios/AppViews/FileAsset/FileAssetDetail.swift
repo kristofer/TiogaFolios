@@ -141,9 +141,12 @@ struct FileAssetDetail: View {
                             WebView(url: URL(string: vm.fileasset.pathname ?? "https://tiogadigital.com")!)
                                 .padding(2)
                         } else {
-                            //Text(String(decoding: vm.fileasset.blob!, as: UTF8.self))
                             if vm.fileasset.isDocumentEditable() {
-                                TextEditor(text: .constant(String(decoding: vm.fileasset.blob!, as: UTF8.self)))
+                                if let actualBlob = vm.fileasset.blob {
+                                    TextEditor(text: .constant(String(decoding: actualBlob, as: UTF8.self)))
+                                } else {
+                                    Text("Empty Note")
+                                }
                             } else {
                                 FileAssetPreview(tURL: vm.tempFile.fileURL)
                                     .padding(2)
@@ -153,8 +156,10 @@ struct FileAssetDetail: View {
                 }
                 Spacer()
                 HStack{
-                    Text("Filetype: \(vm.fileasset.mimetype!)")
-                        .font(.caption)
+                    if let mime = vm.fileasset.mimetype {
+                        Text("Filetype: \(mime)")
+                            .font(.caption)
+                    }
                     Spacer()
                 }
                 .padding(5.0)
