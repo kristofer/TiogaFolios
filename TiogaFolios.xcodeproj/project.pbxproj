@@ -59,6 +59,7 @@
 		5C3239D22925796F00619645 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C92925796F00619645 /* TagListView.swift */; };
 		5C3239D32925796F00619645 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239CA2925796F00619645 /* TagView.swift */; };
 		5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3239D529257BF700619645 /* CloudKit.framework */; };
+		5C32D2942AD830A600E4CF5B /* FolioDetailAssetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32D2932AD830A600E4CF5B /* FolioDetailAssetList.swift */; };
 		5C3C5A12299D570D00081F8D /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A11299D570D00081F8D /* StorageHelper.swift */; };
 		5C3C5A1429B7849800081F8D /* NewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1329B7849800081F8D /* NewNoteView.swift */; };
 		5C3C5A1629BA267800081F8D /* ManagingSharesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */; };
@@ -216,6 +217,7 @@
 		5C3239C92925796F00619645 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		5C3239CA2925796F00619645 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		5C3239D529257BF700619645 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		5C32D2932AD830A600E4CF5B /* FolioDetailAssetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioDetailAssetList.swift; sourceTree = "<group>"; };
 		5C3C5A11299D570D00081F8D /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
 		5C3C5A1329B7849800081F8D /* NewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteView.swift; sourceTree = "<group>"; };
 		5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagingSharesView.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				5C3C5A2129BB87AE00081F8D /* Sharing */,
 				5C3239962925772B00619645 /* FolioAddToV.swift */,
 				5CB910E029AFE85C0027E41C /* FolioDetailView.swift */,
+				5C32D2932AD830A600E4CF5B /* FolioDetailAssetList.swift */,
 				5C32399C2925772B00619645 /* FolioListView.swift */,
 				5C3239972925772B00619645 /* FolioCardItems.swift */,
 				5C3239982925772B00619645 /* FolioCardV.swift */,
@@ -792,6 +795,7 @@
 				5C3239D22925796F00619645 /* TagListView.swift in Sources */,
 				5CBFE2692A0A8E6A0014C6AD /* ShareTestListView.swift in Sources */,
 				5C3239A52925772B00619645 /* FolioEditView.swift in Sources */,
+				5C32D2942AD830A600E4CF5B /* FolioDetailAssetList.swift in Sources */,
 				5CF13CA82A40AE1800B7B21C /* OnboardingViewPure.swift in Sources */,
 				5CF13CA92A40AE1800B7B21C /* OnboardingStepView.swift in Sources */,
 				5C3239BC2925796200619645 /* AttachDocs.swift in Sources */,

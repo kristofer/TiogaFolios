@@ -99,24 +99,7 @@ struct FolioDetailView: View {
             Divider()
             FolioTagItems(folio: vm.folio)
             Divider()
-            HStack {
-                Text("Attached Documents").font(.caption2.italic())
-                Spacer()
-                Button("Edit List") { activeSheet = .editAssetsView(vm.folio) }
-            }
-            List { Section {
-                ForEach(vm.assetList, id: \.self) { asset in
-                    NavigationLink(
-                        destination:  FileAssetDetail(vm: FileAssetDetailVM(anAsset: asset, showAssignTo: false))) {
-                            AssetRow(asset: asset)
-                        }
-                }}
-                
-            }
-            .refreshable {
-                vm.refresh()
-            }
-            .listStyle(PlainListStyle())
+            FolioDetailAssetList(vm: vm)
             .fileImporter(
                 isPresented: $vm.isImporting,
                 allowedContentTypes: [UTType.content, UTType.compositeContent],
