@@ -95,6 +95,10 @@
 		5C8D5CD82A09380D00B1382F /* SharingEx in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD72A09380D00B1382F /* SharingEx */; };
 		5C8D5CDA2A09986900B1382F /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD92A09986900B1382F /* ShareController.swift */; };
 		5C9231A22A6989C1004845F8 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
+		5C92C8B92AE2FA4700F593BD /* NewNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8B82AE2FA4700F593BD /* NewNavView.swift */; };
+		5C92C8BB2AE2FAE700F593BD /* NewSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8BA2AE2FAE700F593BD /* NewSidebar.swift */; };
+		5C92C8BF2AE2FB4D00F593BD /* NewFolioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8BE2AE2FB4D00F593BD /* NewFolioDetail.swift */; };
+		5C92C8C12AE2FF5300F593BD /* NavItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8C02AE2FF5300F593BD /* NavItem.swift */; };
 		5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CA4EC4C29D32E48004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
 		5CB910E129AFE85C0027E41C /* FolioDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB910E029AFE85C0027E41C /* FolioDetailView.swift */; };
@@ -243,6 +247,10 @@
 		5C8D5CD52A03DCE500B1382F /* JSONLoadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoadStore.swift; sourceTree = "<group>"; };
 		5C8D5CD72A09380D00B1382F /* SharingEx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SharingEx; sourceTree = "<group>"; };
 		5C8D5CD92A09986900B1382F /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareController.swift; path = TiogaFolios/AppViews/Folios/Sharing/ShareController.swift; sourceTree = SOURCE_ROOT; };
+		5C92C8B82AE2FA4700F593BD /* NewNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNavView.swift; sourceTree = "<group>"; };
+		5C92C8BA2AE2FAE700F593BD /* NewSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSidebar.swift; sourceTree = "<group>"; };
+		5C92C8BE2AE2FB4D00F593BD /* NewFolioDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolioDetail.swift; sourceTree = "<group>"; };
+		5C92C8C02AE2FF5300F593BD /* NavItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavItem.swift; sourceTree = "<group>"; };
 		5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+DeDupe.swift"; sourceTree = "<group>"; };
 		5CB910E029AFE85C0027E41C /* FolioDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioDetailView.swift; sourceTree = "<group>"; };
 		5CBFE2682A0A8E6A0014C6AD /* ShareTestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTestListView.swift; sourceTree = "<group>"; };
@@ -303,6 +311,7 @@
 		5C323939292431A100619645 = {
 			isa = PBXGroup;
 			children = (
+				5C92C8C02AE2FF5300F593BD /* NavItem.swift */,
 				5C8D5CD72A09380D00B1382F /* SharingEx */,
 				5CDCA80E293796F300FCF50B /* set_build_number.sh */,
 				5C32397B2925409900619645 /* NotesToDo.md */,
@@ -376,6 +385,9 @@
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
 				5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */,
 				5C32399329254DFC00619645 /* MainView.swift */,
+				5C92C8B82AE2FA4700F593BD /* NewNavView.swift */,
+				5C92C8BE2AE2FB4D00F593BD /* NewFolioDetail.swift */,
+				5C92C8BA2AE2FAE700F593BD /* NewSidebar.swift */,
 				5CF821C32A4B58EB00659100 /* WideNavView.swift */,
 				5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */,
 				5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */,
@@ -763,12 +775,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CEE4E5D2A0BC0B200FCA9E3 /* CloudSharingSheet.swift in Sources */,
+				5C92C8BF2AE2FB4D00F593BD /* NewFolioDetail.swift in Sources */,
 				5C14F6362AD581D0008FE159 /* NoteEditor.swift in Sources */,
 				5C3C5A1629BA267800081F8D /* ManagingSharesView.swift in Sources */,
 				5C32398E29254CCB00619645 /* Extras.swift in Sources */,
 				5CBFE26D2A0AD1730014C6AD /* FolioMiniDetailView.swift in Sources */,
 				5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */,
 				5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */,
+				5C92C8BB2AE2FAE700F593BD /* NewSidebar.swift in Sources */,
 				5C3239B32925774800619645 /* FolioTemplView.swift in Sources */,
 				5C32398D29254CCB00619645 /* Tag.swift in Sources */,
 				5C8D5CD42A03D82300B1382F /* TagJSON.swift in Sources */,
@@ -787,6 +801,7 @@
 				5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */,
 				5CF610852ACCA7B000BA68F4 /* Debugging.swift in Sources */,
 				5C32394F292431A300619645 /* Storage.swift in Sources */,
+				5C92C8C12AE2FF5300F593BD /* NavItem.swift in Sources */,
 				5CF13CAB2A40AE1800B7B21C /* OnboardView.swift in Sources */,
 				5C3239B12925774800619645 /* FolioTemplCell.swift in Sources */,
 				5C3239A62925772B00619645 /* FolioListView.swift in Sources */,
@@ -813,6 +828,7 @@
 				5C3C5A1829BA268100081F8D /* ParticipantView.swift in Sources */,
 				5C02C23829E0452A00A98C42 /* FolioListSegView.swift in Sources */,
 				5C3239D02925796F00619645 /* TaggerView.swift in Sources */,
+				5C92C8B92AE2FA4700F593BD /* NewNavView.swift in Sources */,
 				5C32398A29254CCB00619645 /* TagSources.swift in Sources */,
 				5C323946292431A100619645 /* TiogaFoliosApp.swift in Sources */,
 				5CB910E129AFE85C0027E41C /* FolioDetailView.swift in Sources */,

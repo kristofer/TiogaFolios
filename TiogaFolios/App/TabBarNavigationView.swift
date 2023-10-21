@@ -7,44 +7,6 @@
 
 import SwiftUI
 
-enum NavItem: String, Identifiable, CaseIterable {
-    var id: String { rawValue }
-
-    case foliolist
-    case folioseglist
-    case foliosharelist
-    case foliosearch
-    case taglist
-    case tagfilterlist
-    case templatelist
-    case setting
-    case tagkindlist
-    case onboarding
-    
-    func labelFor() -> (ttext: String, ticon: String) {
-        switch self {
-        case .foliolist :
-            return ("Folios", "archivebox")
-        case .foliosearch :
-            return ("Search", "magnifyingglass")
-        case .taglist :
-            return ("Tags", "tag")
-        case .foliosharelist :
-            return ("Sharing", "icloud")
-        case .setting :
-            return ("Settings", "gear")
-        case .onboarding :
-            return ("Onboarding", "questionmark.app")
-        case .tagfilterlist :
-            return ("Tag Filter", "tag.square")
-        default:
-            return ("Folios", "archivebox")
-        }
-    }
-
-}
-
-
 struct TabBarNavigationView: View {
     
     @State private var selection: NavItem = .foliolist
