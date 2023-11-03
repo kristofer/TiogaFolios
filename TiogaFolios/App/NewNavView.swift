@@ -16,7 +16,7 @@ struct NewNavView: View {
             SidebarNavigationView()
                 .navigationSplitViewColumnWidth(200)
         } content: {
-            detailView()
+            EmptyView()
                 .navigationSplitViewColumnWidth(200)
         } detail: {
             NewFolioDetail()
