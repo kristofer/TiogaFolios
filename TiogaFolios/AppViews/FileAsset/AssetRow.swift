@@ -21,10 +21,10 @@ struct AssetRow: View {
     @State private var image: Image?
 
     var body: some View {
-        HStack {
+        VStack {
             image?
             .resizable()
-            .frame(width: 40, height: 60)
+            //.frame(width: 40, height: 60)
             .border(.gray)
             VStack(alignment: .leading) {
                 Text("\(asset.title ?? "none")")

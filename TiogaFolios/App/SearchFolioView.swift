@@ -69,42 +69,83 @@ class FolioSearchViewModel: ObservableObject {
 struct SearchFolioView: View {
     @ObservedObject var vm = FolioSearchViewModel()
     //@Environment(\.dismissSearch) var dismissSearch
-    
+    @State private var selection: Folio? = nil // Nothing selected by default.
+
     var body: some View {
-        VStack {
-//            //NavigationView {
-                List {
-                    Section(header: Text("Folios"))
-                    {
-                        ForEach(vm.folios) { folio in
-                            VStack(spacing: 0) {
-                                NavigationLink(
-                                    destination: FolioDetailView(folio: folio )) {
-                                        FolioCell(folio: folio)
-                                    }
-                            }
-                            
-                        }
-                    }
-                    .headerProminence(.increased).padding(4)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                }
-                .navigationBarTitle("Search")
-                .navigationBarTitleDisplayMode(.inline)
-                .listStyle(PlainListStyle())
-                .refreshable {
-                    
-                }
-//                .toolbar {
-//                    .navigationBarTitle("Search")
-//                    .navigationBarHidden(true)
+        NavigationSplitView{
+//            
+//            VStack {
+//                //            //NavigationView {
+//                List {
+//                    Section(header: Text("Folios"))
+//                    {
+//                        ForEach(vm.folios) { folio in
+//                            VStack(spacing: 0) {
+//                                NavigationLink(
+//                                    destination: FolioDetailView(folio: folio )) {
+//                                        FolioCell(folio: folio)
+//                                    }
+//                            }
+//                            
+//                        }
+//                    }
+//                    .headerProminence(.increased).padding(4)
+//                    .listRowSeparator(.hidden)
+//                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
 //                }
+//                .navigationBarTitle("Search")
+//                .navigationBarTitleDisplayMode(.inline)
+//                .listStyle(PlainListStyle())
+//                .refreshable {
+//                    
+//                }
+//                //                .toolbar {
+//                //                    .navigationBarTitle("Search")
+//                //                    .navigationBarHidden(true)
+//                //                }
+//                //            }
 //            }
-        }
-        .searchable(text: $vm.searchQuery)
-        .onSubmit(of: .search) {
-            vm.doSearch(vm.searchQuery)
+            List(vm.folios, id: \.self, selection: $selection) { folio in
+                NavigationLink(value: folio) {
+                    FolioCell(folio: folio)
+                }
+                .listRowSeparator(.hidden)
+                .headerProminence(.increased).padding(4)
+                .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+            }
+            .listStyle(PlainListStyle())
+            .refreshable {
+                vm.fetchData()
+            }
+            .onAppear(){
+                vm.fetchData()
+            }
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    EditButton()
+                }
+//                ToolbarItem(placement: .bottomBar) {
+//                    NavigationLink(
+//                        destination:FolioTemplListView(isActive: $isTemplatesActive)) {
+//                            Label("New Folio", systemImage: "plus")
+//                        }
+//                    //.isDetailLink(false)
+//                }
+            }
+            
+            .navigationBarTitle("All Folios")
+            .navigationBarTitleDisplayMode(.inline)
+
+            .searchable(text: $vm.searchQuery)
+            .onSubmit(of: .search) {
+                vm.doSearch(vm.searchQuery)
+            }
+        } detail: {
+            if let folio = selection {
+                FolioDetailView(folio: folio )
+            } else {
+                Text("No results.")
+            }
         }
         
         

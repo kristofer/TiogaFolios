@@ -94,6 +94,45 @@ struct FolioDetailView: View {
                 .padding(5)
             VStack(alignment: .leading){
                 // other header stuff in navigation section
+                HStack {
+                    Image(systemName: Folio.sharingState(vm.folio))
+                        .foregroundColor(.green)
+                        .font(.system(size: 24))
+                    Text(vm.folio.title ?? "")
+                        .font(.body.bold())
+                        .foregroundColor(Color.accentColor)
+                    Spacer()
+                    Menu {
+                        Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }
+                        Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
+                        Divider()
+                        Button("Add to Folio...", action: addtofolio)
+                        Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
+                        Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
+                        Divider()
+                        Button("Start Share Folio...") {
+                            Task { await createShare(vm.folio) }
+                            activeSheet = .cloudSharingSheet(vm.folio)
+                        }
+                        .disabled(self.share != nil)
+                        Button("Manage Share") {
+                            // manageParticipation(folio: vm.folio)
+                            activeSheet = .cloudSharingSheet(vm.folio)
+                        }
+                        .disabled(self.share == nil)
+                        Button("Delete Share") {
+                            Task { await deleteShareFor(folio: vm.folio)}  }
+                        .disabled(self.share == nil)
+                    } label: {
+                        Label("", systemImage: "contextualmenu.and.cursorarrow")
+                    }
+                    .alert(item: $vm.message) { message in
+                        Alert(
+                            title: Text(message.text),
+                            dismissButton: .cancel()
+                        )
+                    }
+                }
                 HStack{
                     Text(vm.folio.desc ?? "-")
                         .font(.body.italic())
@@ -104,19 +143,21 @@ struct FolioDetailView: View {
                 Divider()
                 FolioTagItems(folio: vm.folio)
                 Divider()
-                FolioDetailAssetList(vm: vm)
-                    .fileImporter(
-                        isPresented: $vm.isImporting,
-                        allowedContentTypes: [UTType.content, UTType.compositeContent],
-                        allowsMultipleSelection: false
-                    ) { result in
-                        importFile(result)
-                    }
-                    .alert(isPresented: $vm.showAlert) {
-                        Alert(title: Text("Unable to Archive File"),
-                              message: Text("\(vm.showError!.localizedDescription) \(self.vm.errormsg)"),
-                              dismissButton: .default(Text("Ok")))
-                    }
+                NavigationStack() {
+                    FolioDetailAssetList(vm: vm)
+                        .fileImporter(
+                            isPresented: $vm.isImporting,
+                            allowedContentTypes: [UTType.content, UTType.compositeContent],
+                            allowsMultipleSelection: false
+                        ) { result in
+                            importFile(result)
+                        }
+                        .alert(isPresented: $vm.showAlert) {
+                            Alert(title: Text("Unable to Archive File"),
+                                  message: Text("\(vm.showError!.localizedDescription) \(self.vm.errormsg)"),
+                                  dismissButton: .default(Text("Ok")))
+                        }
+                }
             }
             .padding()
             .onAppear() {
@@ -168,45 +209,6 @@ struct FolioDetailView: View {
     @ToolbarContentBuilder
     private func toolbarItems() -> some ToolbarContent {
         ToolbarItem(placement: .principal) {
-            HStack {
-                Image(systemName: Folio.sharingState(vm.folio))
-                    .foregroundColor(.green)
-                    .font(.system(size: 24))
-                Text(vm.folio.title ?? "")
-                    .font(.body.bold())
-                    .foregroundColor(Color.accentColor)
-                Spacer()
-                Menu {
-                    Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }
-                    Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
-                    Divider()
-                    Button("Add to Folio...", action: addtofolio)
-                    Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
-                    Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
-                    Divider()
-                    Button("Start Share Folio...") {
-                        Task { await createShare(vm.folio) }
-                        activeSheet = .cloudSharingSheet(vm.folio)
-                    }
-                    .disabled(self.share != nil)
-                    Button("Manage Share") {
-                        // manageParticipation(folio: vm.folio)
-                        activeSheet = .cloudSharingSheet(vm.folio)
-                    }
-                    .disabled(self.share == nil)
-                    Button("Delete Share") {
-                        Task { await deleteShareFor(folio: vm.folio)}  }
-                    .disabled(self.share == nil)
-                } label: {
-                    Label("", systemImage: "contextualmenu.and.cursorarrow")
-                }
-                .alert(item: $vm.message) { message in
-                    Alert(
-                        title: Text(message.text),
-                        dismissButton: .cancel()
-                    )
-                }
-            }
             
         }
     }
