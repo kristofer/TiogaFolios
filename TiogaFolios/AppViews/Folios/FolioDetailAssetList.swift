@@ -10,7 +10,7 @@ import SwiftUI
 struct FolioDetailAssetList: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @StateObject var vm: FolioVM
+    @ObservedObject var vm: FolioVM
     
     var body: some View {
         GridView()

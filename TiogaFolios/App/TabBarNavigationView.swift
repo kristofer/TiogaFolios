@@ -22,11 +22,11 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.foliolist)
             
-            SearchFolioView()
-            .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
-            }
-            .tag(NavItem.foliosearch)
+//            SearchFolioView()
+//            .tabItem {
+//                Label("Search", systemImage: "magnifyingglass")
+//            }
+//            .tag(NavItem.foliosearch)
             
             NavigationStack {
                 TagListView()

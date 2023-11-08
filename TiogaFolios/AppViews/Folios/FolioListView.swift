@@ -139,8 +139,8 @@ struct FolioListView: View {
 
             //.navigationBarHidden(true)
         } detail: {
-            if let folio = selection {
-                FolioDetailView(folio: folio )
+            if let thisone = selection {
+                FolioDetailView(folio: thisone )
             } else {
                 Text("No folio selected.")
             }
