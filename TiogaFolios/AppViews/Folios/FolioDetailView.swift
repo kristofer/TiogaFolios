@@ -72,7 +72,7 @@ struct FolioDetailView: View {
     
     @ObservedObject var vm: FolioVM
     //@StateObject var vm: FolioVM
-
+    
     @State private var activeSheet: ActiveSheet?
     /**
      The next active sheet to present after dismissing the current sheet.
@@ -87,42 +87,48 @@ struct FolioDetailView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading){
-            // other header stuff in navigation section
-            HStack{
-                Text(vm.folio.desc ?? "-")
-                    .font(.body.italic())
+        ZStack {
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(.white)
+                .shadow(radius: 10)
+                .padding(5)
+            VStack(alignment: .leading){
+                // other header stuff in navigation section
+                HStack{
+                    Text(vm.folio.desc ?? "-")
+                        .font(.body.italic())
+                }
+                if let share = share {
+                    FolioShareMetadataView(share: share)
+                }
+                Divider()
+                FolioTagItems(folio: vm.folio)
+                Divider()
+                FolioDetailAssetList(vm: vm)
+                    .fileImporter(
+                        isPresented: $vm.isImporting,
+                        allowedContentTypes: [UTType.content, UTType.compositeContent],
+                        allowsMultipleSelection: false
+                    ) { result in
+                        importFile(result)
+                    }
+                    .alert(isPresented: $vm.showAlert) {
+                        Alert(title: Text("Unable to Archive File"),
+                              message: Text("\(vm.showError!.localizedDescription) \(self.vm.errormsg)"),
+                              dismissButton: .default(Text("Ok")))
+                    }
             }
-            if let share = share {
-                FolioShareMetadataView(share: share)
+            .padding()
+            .onAppear() {
+                self.share = Storage.shared.getShare(vm.folio)
             }
-            Divider()
-            FolioTagItems(folio: vm.folio)
-            Divider()
-            FolioDetailAssetList(vm: vm)
-            .fileImporter(
-                isPresented: $vm.isImporting,
-                allowedContentTypes: [UTType.content, UTType.compositeContent],
-                allowsMultipleSelection: false
-            ) { result in
-                importFile(result)
+            .toolbar { toolbarItems() } // title display here.
+            .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
+                sheetView(with: item)
             }
-            .alert(isPresented: $vm.showAlert) {
-                Alert(title: Text("Unable to Archive File"),
-                      message: Text("\(vm.showError!.localizedDescription) \(self.vm.errormsg)"),
-                      dismissButton: .default(Text("Ok")))
-            }
+            
         }
-        .padding()
-        .onAppear() {
-            self.share = Storage.shared.getShare(vm.folio)
-        }
-        .toolbar { toolbarItems() } // title display here.
-        .navigationBarTitleDisplayMode(.inline)
-        .sheet(item: $activeSheet, onDismiss: sheetOnDismiss) { item in
-            sheetView(with: item)
-        }
-        
     }
     
     @ViewBuilder
@@ -131,7 +137,7 @@ struct FolioDetailView: View {
             
         case .cloudSharingSheet(let folio):
             CloudSharingSheet(activeSheet: $activeSheet, folio: folio)
-
+            
         case .participantView(let share):
             ParticipantView(activeSheet: $activeSheet, share: share)
             
@@ -182,15 +188,15 @@ struct FolioDetailView: View {
                         Task { await createShare(vm.folio) }
                         activeSheet = .cloudSharingSheet(vm.folio)
                     }
-                        .disabled(self.share != nil)
+                    .disabled(self.share != nil)
                     Button("Manage Share") {
                         // manageParticipation(folio: vm.folio)
                         activeSheet = .cloudSharingSheet(vm.folio)
                     }
-                        .disabled(self.share == nil)
+                    .disabled(self.share == nil)
                     Button("Delete Share") {
                         Task { await deleteShareFor(folio: vm.folio)}  }
-                        .disabled(self.share == nil)
+                    .disabled(self.share == nil)
                 } label: {
                     Label("", systemImage: "contextualmenu.and.cursorarrow")
                 }
@@ -215,10 +221,10 @@ struct FolioDetailView: View {
             return
         }
         switch nextActiveSheet {
-//        case .cloudSharingSheet(let share):
-//            DispatchQueue.main.async {
-//                //Storage.shared.presentCloudSharingController(share: share)
-//            }
+            //        case .cloudSharingSheet(let share):
+            //            DispatchQueue.main.async {
+            //                //Storage.shared.presentCloudSharingController(share: share)
+            //            }
         default:
             DispatchQueue.main.async {
                 activeSheet = nextActiveSheet
@@ -253,21 +259,21 @@ struct FolioDetailView: View {
         let thisContext = Storage.shared.container.viewContext
         
         if let share = self.share {
-
+            
             let newFolio = try? folio.deepcopy(context: thisContext)
             Storage.shared.save()
-
+            
             tfDebug("share \(share.title) will be deleted")
             let ckContainer = Storage.shared.cloudKitContainer
             let persistentStore = share.persistentStore
-
+            
             do {
                 Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
-
-                 try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+                
+                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
                 thisContext.delete(folio)
                 Tag.dedupeTags()
-
+                
                 Storage.shared.save()
             } catch {
                 tfDebug("Failed to delete ckshare in icloud, error: \(error)")
@@ -281,12 +287,12 @@ struct FolioDetailView: View {
     private var isShared: Bool {
         Storage.shared.isShared(object: vm.folio)
     }
-
+    
     private var canEdit: Bool {
         Storage.shared.canEdit(object: vm.folio)
     }
-
-
+    
+    
     func createShare(_ folio: Folio) async {
         do {
             let (_, share, _) = try await Storage.shared.container.share([folio], to: nil)
@@ -295,7 +301,7 @@ struct FolioDetailView: View {
             tfDebug("Failed to create share")
         }
     }
-
+    
     private func importFile(_ result: Result<[URL], Error> ) {
         do {
             guard let selectedFile: URL = try result.get().first else { return }

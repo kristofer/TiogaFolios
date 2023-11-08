@@ -26,19 +26,12 @@ extension UIDevice {
 struct MainView: View {
     // @Environment(\.managedObjectContext) private var viewContext
     
-#if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-#endif
     
     @ViewBuilder
     var body: some View {
-#if os(iOS)
-    TabBarNavigationView() // For iPhone
+        TabBarNavigationView()
         //NewNavView()
-#else
-        SidebarNavigationView() // For mac
-            .frame(minWidth: 900, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
-#endif
     }
     
 }

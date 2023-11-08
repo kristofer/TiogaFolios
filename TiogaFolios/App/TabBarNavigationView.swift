@@ -14,9 +14,9 @@ struct TabBarNavigationView: View {
     var body: some View {
         TabView(selection: $selection) {
             
-            NavigationStack {
+            //NavigationStack {
                 FolioListView()
-            }
+            //}
             .tabItem {
                 Label("Folios", systemImage: "archivebox")
             }
@@ -54,7 +54,6 @@ struct TabBarNavigationView: View {
             }
             .tag(NavItem.tagfilterlist)
 
-
 //            NavigationView {
 //                ShareTestListView()
 //            }
@@ -62,16 +61,7 @@ struct TabBarNavigationView: View {
 //                Label("NewSharing", systemImage: "icloud")
 //            }
 //            .tag(NavItem.foliosharelist)
-
-//            NavigationView {
-//                FolioTemplListView()
-//                
-//            }
-//            .tabItem {
-//                Label("Life Events", systemImage: "square.grid.3x1.folder.badge.plus")
-//            }
-//            .tag(NavItem.templatelist)
-            
+           
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
@@ -84,7 +74,6 @@ struct TabBarNavigationView: View {
                     Label("Onboarding", systemImage: "questionmark.app")
                 }
                 .tag(NavItem.onboarding)
-
 //            NavigationStack {
 //                TagKindListView()
 //            }
@@ -92,14 +81,6 @@ struct TabBarNavigationView: View {
 //                    Label("Categories", systemImage: "briefcase")
 //                }
 //                .tag(NavItem.tagkindlist)
-            
-            ////#if !os(macOS)
-            ////                DocScannerView(viewModel: DocScannerViewModel())
-            ////                    .tabItem {
-            ////                        Label("Scan", systemImage: "scanner.fill")
-            ////                    }
-            ////#endif
-
         }
     }
 }

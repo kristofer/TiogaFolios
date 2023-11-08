@@ -34,7 +34,8 @@ struct FolioListView: View {
     @StateObject var vm = FolioListViewModel()
     
     @State private var isTemplatesActive = false
-    
+    @State private var selection: Folio? = nil // Nothing selected by default.
+
     init() { }
     
     let columns = [
@@ -43,28 +44,13 @@ struct FolioListView: View {
     ]
     
     var body: some View {
-            List {
-                Section() //header: Text("All Folios"))
-                {
-                    if vm.folios.isEmpty {
-                        Text("No Folios.") // Placeholder
-                            .font(.caption2)
-                    } else {
-                        ForEach(vm.folios) { folio in
-                            VStack(spacing: 0) {
-                                NavigationLink(
-                                    destination: FolioDetailView(folio: folio )) {
-                                        FolioCell(folio: folio)
-                                    }
-                            }
-                            
-                        }
-                        .onDelete(perform: deleteFolios)
-                        
-                    }
+        NavigationSplitView{
+            List(vm.folios, id: \.self, selection: $selection) { folio in
+                NavigationLink(value: folio) {
+                    FolioCell(folio: folio)
                 }
-                .headerProminence(.increased).padding(4)
                 .listRowSeparator(.hidden)
+                .headerProminence(.increased).padding(4)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
             }
             .listStyle(PlainListStyle())
@@ -75,11 +61,9 @@ struct FolioListView: View {
                 vm.fetchData()
             }
             .toolbar {
-#if os(iOS)
                 ToolbarItem(placement: .bottomBar) {
                     EditButton()
                 }
-#endif
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink(
                         destination:FolioTemplListView(isActive: $isTemplatesActive)) {
@@ -88,15 +72,17 @@ struct FolioListView: View {
                     //.isDetailLink(false)
                 }
             }
-
-#if os(iOS)
-        .navigationBarTitle("All Folios")
-        .navigationBarTitleDisplayMode(.inline)
-        //.navigationBarHidden(true)
-#else
-        // mac desktop
-#endif
-        //        }
+            
+            .navigationBarTitle("All Folios")
+            .navigationBarTitleDisplayMode(.inline)
+            //.navigationBarHidden(true)
+        } detail: {
+            if let folio = selection {
+                FolioDetailView(folio: folio )
+            } else {
+                Text("No folio selected.")
+            }
+        }
     }
     
     private func deleteFolios(offsets: IndexSet) {
