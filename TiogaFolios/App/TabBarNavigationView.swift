@@ -35,7 +35,6 @@ struct TabBarNavigationView: View {
                 Label("Tags", systemImage: "tag")
             }
             .tag(NavItem.taglist)
-
             NavigationStack {
                 FolioListSegView()
             }
@@ -43,7 +42,7 @@ struct TabBarNavigationView: View {
                 Label("Sharing", systemImage: "icloud")
             }
             .tag(NavItem.folioseglist)
-
+#if DEBUG
             NavigationStack {
                 FolioListByTag(TagKind.plain)
             }
@@ -51,7 +50,7 @@ struct TabBarNavigationView: View {
                 Label("Tag Filter", systemImage: "tag.square")
             }
             .tag(NavItem.tagfilterlist)
-
+#endif
 //            NavigationView {
 //                ShareTestListView()
 //            }
@@ -59,14 +58,15 @@ struct TabBarNavigationView: View {
 //                Label("NewSharing", systemImage: "icloud")
 //            }
 //            .tag(NavItem.foliosharelist)
-           
+#if DEBUG
+
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                     
                 }
                 .tag(NavItem.setting)
-
+#endif
             OnboardView()
                 .tabItem {
                     Label("Onboarding", systemImage: "questionmark.app")
