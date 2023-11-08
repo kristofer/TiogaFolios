@@ -1057,7 +1057,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20000063;
+				CURRENT_PROJECT_VERSION = 20000091;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
@@ -1074,7 +1074,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFolios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1091,7 +1091,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TiogaFolios/TiogaFolios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20000063;
+				CURRENT_PROJECT_VERSION = 20000091;
 				DEVELOPMENT_ASSET_PATHS = "\"TiogaFolios/Preview Content\"";
 				DEVELOPMENT_TEAM = S7ZKK95T9U;
 				ENABLE_PREVIEWS = YES;
@@ -1108,7 +1108,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = co.tioga.TiogaFolios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
