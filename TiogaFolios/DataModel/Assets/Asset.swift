@@ -197,6 +197,20 @@ extension Asset {
         return newDoc
     }
 
+    static func makeNewPDFDoc(named: String, content: Data) -> Asset {
+        //tfDebug("\(named) \(UTType.text.identifier)")
+        let newDoc = Asset(vc: Storage.shared.vc, title: named, path: named, mimetype: UTType.pdf.preferredMIMEType ?? "com.adobe.pdf", uttype: UTType.pdf.identifier)
+        newDoc.setBlob(content)
+        return newDoc
+    }
+
+    static func makeNewURLDoc(named: String, content: Data) -> Asset {
+        //tfDebug("\(named) \(UTType.text.identifier)")
+        let newDoc = Asset(vc: Storage.shared.vc, title: named, path: named, mimetype: UTType.url.preferredMIMEType ?? "public.url", uttype: UTType.url.identifier)
+        newDoc.setBlob(content)
+        return newDoc
+    }
+
 
 }
 extension Asset: Comparable {

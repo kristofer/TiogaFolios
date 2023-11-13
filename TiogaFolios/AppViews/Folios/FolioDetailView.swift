@@ -65,6 +65,10 @@ enum ActiveSheet: Identifiable, Equatable {
         }
     }
     
+    func flushChanges() {
+        Storage.shared.vc.flushChanges()
+    }
+    
 }
 
 struct FolioDetailView: View {

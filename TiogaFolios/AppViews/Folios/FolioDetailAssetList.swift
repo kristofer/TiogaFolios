@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
+import CoreData
 
 struct FolioDetailAssetList: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -57,6 +59,8 @@ struct GridItemView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             AssetRow(asset: asset)
+                //.frame(width: size, height: size)
+
 //            AsyncImage(url: item.thumbnail) { image in
 //                image
 //                    .resizable()
@@ -64,7 +68,6 @@ struct GridItemView: View {
 //            } placeholder: {
 //                ProgressView()
 //            }
-            .frame(width: size, height: size)
         }
     }
 }
@@ -129,28 +132,55 @@ struct GridView: View {
                 }
                 .padding()
             }
+            .onDrop(of: ["public.url","public.file-url", "public.text", UTType.pdf.identifier], isTargeted: nil) { providers -> Bool in
+                //print("dropped")
+                print(providers)
+                providers.forEach { item in
+                    if item.hasItemConformingToTypeIdentifier("public.text") {
+                        item.loadDataRepresentation(forTypeIdentifier: "public.text") { data, error in
+                            guard error == nil else {
+                                print("loading prob \(String(describing: error))")
+                                return
+                            }
+                            let fname = item.suggestedName?.split(separator: ".").map(String.init).first ?? "unknown"
+                            if let data = data {
+                                //self.addNoteWith(title: fname, body: String(decoding: data, as: UTF8.self))
+                                _ = Asset.makeNewTextDoc(named: fname, content: String(decoding: data, as: UTF8.self))
+                                self.vm.flushChanges()
+                            }
+                        }
+                    }
+                    if item.hasItemConformingToTypeIdentifier(UTType.pdf.identifier) {
+                        item.loadDataRepresentation(forTypeIdentifier: UTType.pdf.identifier) { data, error in
+                            guard error == nil else {
+                                print("loading prob \(String(describing: error))")
+                                return
+                            }
+                            let fname = item.suggestedName ?? "untitled pdf"//?.split(separator: ".").map(String.init).first ?? "unknown"
+                            if let data = data {
+                                _ = Asset.makeNewPDFDoc(named: fname, content: data)
+                                self.vm.flushChanges()
+                                
+                            }
+                        }
+                    }
+                    if item.hasItemConformingToTypeIdentifier("public.url") {
+                        item.loadDataRepresentation(forTypeIdentifier: "public.url") { data, error in
+                            guard error == nil else {
+                                print("loading prob \(String(describing: error))")
+                                return
+                            }
+                            let fname = item.suggestedName ?? "unknown"
+                            if let data = data {
+                                _ = Asset.makeNewURLDoc(named: fname, content: data)
+                                self.vm.flushChanges()
+                            }
+                        }
+                    }
+                }
+                return true
+            }
         }
-//        .navigationBarTitle("Assets")
         .navigationBarTitleDisplayMode(.inline)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//            }
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button {
-//                    isAddingPhoto = true
-//                } label: {
-//                    Image(systemName: "plus")
-//                }
-//                .disabled(isEditing)
-//            }
-//        }
     }
 }
-
-
-//struct GridView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GridView().environmentObject(DataModel())
-//            .previewDevice("iPad (8th generation)")
-//    }
-//}

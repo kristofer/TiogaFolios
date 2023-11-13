@@ -344,6 +344,21 @@ extension Storage {
     }
 }
 
+extension NSManagedObjectContext {
+    func flushChanges() {
+        if self.hasChanges {
+            do {
+                try self.save()
+            } catch {
+                let nserror = error as NSError
+                print("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+        
+    }
+}
+
+
 // A VERY CLEAN
 //
 //lazy var persistentContainer: NSPersistentCloudKitContainer = {
