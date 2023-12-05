@@ -17,13 +17,13 @@ struct FolioTagItems: View {
                 ForEach(Array(folio.tags as? Set<Tag> ?? []), id: \.self) { tag in
                     Text(tag.title ?? "??")
                         .font(.caption)
-                        .foregroundColor(Color.accentColor)
+                        //.foregroundColor(Color.accentColor)
                         .padding(2)
                         .overlay(
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.accentColor, lineWidth: 1)
+                        .strokeBorder(lineWidth: 1, antialiased: true)
                         )
-                        .padding(1)
+//                        .padding(1)
                 }
             }
         }.frame(height: 28)

@@ -103,7 +103,7 @@ struct FolioDetailView: View {
                         .foregroundColor(.green)
                         .font(.system(size: 24))
                     Text(vm.folio.title ?? "")
-                        .font(.body.bold())
+                        .font(.title2.bold())
                         .foregroundColor(Color.accentColor)
                     Spacer()
                     Menu {

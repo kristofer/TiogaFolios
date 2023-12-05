@@ -22,7 +22,7 @@ struct NoteEditView: View {
     let tracker = InstanceTracker("NoteEditView")
     
     var body: some View {
-        tracker {
+        //tracker {
             VStack {
                 HStack {
                     Text("Editing...")
@@ -61,7 +61,7 @@ struct NoteEditView: View {
                         self.contentText = String(decoding: fileasset.blob!, as: UTF8.self)
                     }
             }
-        }
+        //}
         
     }
 }

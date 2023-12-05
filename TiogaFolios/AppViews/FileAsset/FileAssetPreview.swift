@@ -22,7 +22,10 @@ struct PreviewController: UIViewControllerRepresentable {
     func updateUIViewController(
         _ uiViewController: QLPreviewController, context: Context) {
             tfDebug("TFdebug updateUIViewController")
-            //uiViewController.reloadData()
+            if context.coordinator.parent.url.absoluteURL != self.url.absoluteURL {
+                context.coordinator.urlToDisplay = self.url
+                uiViewController.refreshCurrentPreviewItem()
+            }
         }
     
     
@@ -33,9 +36,11 @@ struct PreviewController: UIViewControllerRepresentable {
     class Coordinator: QLPreviewControllerDataSource {
         
         var parent: PreviewController
-        
+        var urlToDisplay: URL
+
         init(parent: PreviewController) {
             self.parent = parent
+            self.urlToDisplay = parent.url
         }
         
         func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
@@ -48,7 +53,7 @@ struct PreviewController: UIViewControllerRepresentable {
         ) -> QLPreviewItem {
             tfDebug("TFdebug previewController previewItemAt: \(parent.url.absoluteString)")
 
-            return parent.url as NSURL
+            return self.urlToDisplay as QLPreviewItem
         }
         
     }
@@ -58,10 +63,10 @@ struct FileAssetPreview: View {
     
     let tracker = InstanceTracker("FileAssetPreview")
     var body: some View {
-        tracker {
+        //tracker {
             PreviewController(url: self.tURL)
                 .border(.blue)
-            }
+            //}
     }
 }
 

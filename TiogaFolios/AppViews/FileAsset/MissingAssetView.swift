@@ -10,11 +10,12 @@ import SwiftUI
 struct MissingAssetView: View {
     var body: some View {
         Spacer()
-        Text("Empty Document")
+        Text("No Document Here Yet.")
             .font(.title2)
         
         Text("")
-        Text("To replace this empty document with yours, click the blue Add + button.")
+        Text("To replace this empty document with one of yours, click the blue Add + button.")
+        Text("You can also delete this empty document holder, if you'd like.")
         Spacer()
     }
 }

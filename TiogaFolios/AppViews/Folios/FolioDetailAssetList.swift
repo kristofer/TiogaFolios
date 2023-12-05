@@ -17,6 +17,60 @@ struct FolioDetailAssetList: View {
     var body: some View {
         GridView()
             .environmentObject(vm)
+            .onDrop(of: ["public.url","public.file-url", "public.text", "com.adobe.pdf"], isTargeted: nil) { providers -> Bool in
+                print(providers)
+                print(providers.count)
+                providers.forEach { item in
+                    if item.hasItemConformingToTypeIdentifier("public.text") {
+                        item.loadDataRepresentation(forTypeIdentifier: "public.text") { data, error in
+                            guard error == nil else {
+                                print("loading prob \(String(describing: error))")
+                                return
+                            }
+                            let fname = item.suggestedName?.split(separator: ".").map(String.init).first ?? "unknown"
+                            if let data = data {
+                                //self.addNoteWith(title: fname, body: String(decoding: data, as: UTF8.self))
+                                let td = Asset.makeNewTextDoc(named: fname, content: String(decoding: data, as: UTF8.self))
+                                vm.folio.addToAssets(td)
+
+                                self.vm.flushChanges()
+                            }
+                        }
+                    }
+                    if item.hasItemConformingToTypeIdentifier("com.adobe.pdf") {
+                        item.loadDataRepresentation(forTypeIdentifier: "com.adobe.pdf") { data, error in
+                            guard error == nil else {
+                                print("loading prob \(String(describing: error))")
+                                return
+                            }
+                            let fname = item.suggestedName ?? "untitled pdf"//?.split(separator: ".").map(String.init).first ?? "unknown"
+                            if let data = data {
+                                let td = Asset.makeNewPDFDoc(named: fname, content: data)
+                                vm.folio.addToAssets(td)
+                                self.vm.flushChanges()
+                                
+                            }
+                        }
+                    }
+                    if item.hasItemConformingToTypeIdentifier("public.url") {
+                        item.loadDataRepresentation(forTypeIdentifier: "public.url") { data, error in
+                            guard error == nil else {
+                                print("loading prob \(String(describing: error))")
+                                return
+                            }
+                            let fname = item.suggestedName ?? "unknown"
+                            if let data = data {
+                                let td = Asset.makeNewURLDoc(named: fname, content: data)
+                                vm.folio.addToAssets(td)
+
+                                self.vm.flushChanges()
+                            }
+                        }
+                    }
+                }
+                vm.refresh()
+                return true
+            }
             //.navigationViewStyle(.stack)
 //        HStack {
 //            Text("Attached Documents").font(.caption2.italic())
@@ -132,54 +186,7 @@ struct GridView: View {
                 }
                 .padding()
             }
-            .onDrop(of: ["public.url","public.file-url", "public.text", UTType.pdf.identifier], isTargeted: nil) { providers -> Bool in
-                //print("dropped")
-                print(providers)
-                providers.forEach { item in
-                    if item.hasItemConformingToTypeIdentifier("public.text") {
-                        item.loadDataRepresentation(forTypeIdentifier: "public.text") { data, error in
-                            guard error == nil else {
-                                print("loading prob \(String(describing: error))")
-                                return
-                            }
-                            let fname = item.suggestedName?.split(separator: ".").map(String.init).first ?? "unknown"
-                            if let data = data {
-                                //self.addNoteWith(title: fname, body: String(decoding: data, as: UTF8.self))
-                                _ = Asset.makeNewTextDoc(named: fname, content: String(decoding: data, as: UTF8.self))
-                                self.vm.flushChanges()
-                            }
-                        }
-                    }
-                    if item.hasItemConformingToTypeIdentifier(UTType.pdf.identifier) {
-                        item.loadDataRepresentation(forTypeIdentifier: UTType.pdf.identifier) { data, error in
-                            guard error == nil else {
-                                print("loading prob \(String(describing: error))")
-                                return
-                            }
-                            let fname = item.suggestedName ?? "untitled pdf"//?.split(separator: ".").map(String.init).first ?? "unknown"
-                            if let data = data {
-                                _ = Asset.makeNewPDFDoc(named: fname, content: data)
-                                self.vm.flushChanges()
-                                
-                            }
-                        }
-                    }
-                    if item.hasItemConformingToTypeIdentifier("public.url") {
-                        item.loadDataRepresentation(forTypeIdentifier: "public.url") { data, error in
-                            guard error == nil else {
-                                print("loading prob \(String(describing: error))")
-                                return
-                            }
-                            let fname = item.suggestedName ?? "unknown"
-                            if let data = data {
-                                _ = Asset.makeNewURLDoc(named: fname, content: data)
-                                self.vm.flushChanges()
-                            }
-                        }
-                    }
-                }
-                return true
-            }
+
         }
         .navigationBarTitleDisplayMode(.inline)
     }

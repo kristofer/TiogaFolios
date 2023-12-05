@@ -22,16 +22,16 @@ struct FolioCell: View {
         ZStack(alignment: .topTrailing) {
             HStack(alignment: .top) {
                 Image(systemName: "magazine")
-                    .foregroundColor(Color.accentColor)
+                    //.foregroundColor(Color.accentColor)
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: Folio.sharingState(folio))
-                            .foregroundColor(.green)
+                            //.foregroundColor(.green)
                             .font(.system(size: 24))
                         Text(folio.title ?? "-")
                             .bold()
                     }
-                    .foregroundColor(Color.accentColor)
+                    //.foregroundColor(Color.accentColor)
                     
                     Text(folio.desc ?? "-")
                         .font(.caption.italic())
