@@ -61,7 +61,7 @@ enum NavItem: String, Identifiable, CaseIterable {
         case .onboarding :
             return ("Onboarding", "questionmark.app")
         case .tagfilterlist :
-            return ("Tag Filter", "tag.square")
+            return ("Folios By Tag", "tag.square")
         default:
             return ("Folios", "archivebox")
         }

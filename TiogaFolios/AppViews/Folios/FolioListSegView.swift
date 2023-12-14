@@ -45,7 +45,7 @@ struct FolioListSegView: View {
     var body: some View {
         // moved to "superview" NavigationView {
         List {
-            Section(header: Text("Private Folios").foregroundColor(Color.primary))
+            Section(header: Text("Private Folios (Locked, Unshared)").foregroundColor(Color.primary))
             {
                 if vm.folios.isEmpty {
                     Text("No Private Folios.") // Placeholder

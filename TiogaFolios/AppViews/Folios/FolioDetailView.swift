@@ -53,6 +53,9 @@ enum ActiveSheet: Identifiable, Equatable {
     init(folio: Folio) {
         self.folio = folio
         self.assetList = Array(folio.assets as? Set<Asset> ?? [])
+        self.assetList.sort {
+            $0.lastmodified! > $1.lastmodified!
+        }
     }
     
     func refresh() {
@@ -60,8 +63,10 @@ enum ActiveSheet: Identifiable, Equatable {
         tfDebug("refreshing asset list")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             //self.folio.touch()
-            self.assetList = //Asset.fetchAssets(vc: self.store.vc, folio: self.folio)
-            Array(self.folio.assets as? Set<Asset> ?? [])
+            self.assetList = Array(self.folio.assets as? Set<Asset> ?? [])
+            self.assetList.sort {
+                $0.lastmodified! > $1.lastmodified!
+            }
         }
     }
     
@@ -99,12 +104,12 @@ struct FolioDetailView: View {
             VStack(alignment: .leading){
                 // other header stuff in navigation section
                 HStack {
-                    Image(systemName: Folio.sharingState(vm.folio))
-                        .foregroundColor(.green)
-                        .font(.system(size: 24))
                     Text(vm.folio.title ?? "")
                         .font(.title2.bold())
                         .foregroundColor(Color.accentColor)
+                    Image(systemName: Folio.sharingState(vm.folio))
+                        .foregroundColor(Color.accentColor)
+                        .font(.system(size: 24))
                     Spacer()
                     Menu {
                         Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }

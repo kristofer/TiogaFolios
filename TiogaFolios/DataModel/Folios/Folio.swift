@@ -190,7 +190,7 @@ extension Folio {
     static func sharingState(_ f: Folio) -> String {
         let Store = Storage.shared
         if Store.isShared(object: f) == false {
-            return "icloud" // not shared was "icloud.slash"
+            return "lock.icloud" // not shared was "icloud.slash"
         }
         if Store.isShared(object: f) && (Store.isOwner(object: f) == false) {
             return "icloud.and.arrow.down" // shared in

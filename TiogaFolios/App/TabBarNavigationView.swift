@@ -47,7 +47,7 @@ struct TabBarNavigationView: View {
                 FolioListByTag(TagKind.plain)
             }
             .tabItem {
-                Label("Tag Filter", systemImage: "tag.square")
+                Label("Folios By Tag", systemImage: "tag.square")
             }
             .tag(NavItem.tagfilterlist)
 #endif
