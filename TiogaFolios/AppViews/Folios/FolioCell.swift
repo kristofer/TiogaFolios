@@ -45,13 +45,12 @@ struct FolioCell: View {
                     }
                 }
             }
-            .padding(5)
             //.background(.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(.sRGB, red: colorratio, green: colorratio, blue: colorratio, opacity: 1.0), lineWidth: 2)
-            )
-            //topLeftButton()
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 8)
+//                    .stroke(Color(.sRGB, red: colorratio, green: colorratio, blue: colorratio, opacity: 1.0), lineWidth: 2)
+//            )
+//            //topLeftButton()
         }
     }
     
