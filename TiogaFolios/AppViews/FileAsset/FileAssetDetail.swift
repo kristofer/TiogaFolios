@@ -91,6 +91,7 @@ struct FileAssetDetail: View {
     //let tracker = InstanceTracker("FileAssetDetail")
     var body: some View {
         //tracker {
+//        tracker {
             ZStack {
                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                     .fill(.white)
@@ -228,6 +229,7 @@ struct FileAssetDetail: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
         //}
+//        }
         
     }
 }
