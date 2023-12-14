@@ -41,10 +41,6 @@ struct FolioCell: View {
                         .lineLimit(2)
                         .padding(.bottom, 2)
                     HStack {
-                    
-                    HStack {
-                        Text("\(folio.tags?.count ?? 0)")
-                            .font(.caption.italic())
                         FolioTagItems(folio: folio)
                     }
                 }
