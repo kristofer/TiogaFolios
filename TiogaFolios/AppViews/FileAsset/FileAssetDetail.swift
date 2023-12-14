@@ -87,11 +87,13 @@ struct FileAssetDetail: View {
     @State var isEditingMetadata = false
     
     
-    let tracker = InstanceTracker("FileAssetDetail")
     //let tracker = InstanceTracker("FileAssetDetail")
     var body: some View {
+<<<<<<< Updated upstream
         //tracker {
+=======
 //        tracker {
+>>>>>>> Stashed changes
             ZStack {
                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                     .fill(.white)
@@ -228,8 +230,11 @@ struct FileAssetDetail: View {
                 //.navigationBarItems(trailing: EditButton())
                 .navigationBarTitleDisplayMode(.inline)
             }
+<<<<<<< Updated upstream
         //}
+=======
 //        }
+>>>>>>> Stashed changes
         
     }
 }
