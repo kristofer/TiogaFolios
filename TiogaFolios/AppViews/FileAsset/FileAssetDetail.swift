@@ -88,6 +88,7 @@ struct FileAssetDetail: View {
     
     
     let tracker = InstanceTracker("FileAssetDetail")
+    //let tracker = InstanceTracker("FileAssetDetail")
     var body: some View {
         //tracker {
             ZStack {
