@@ -68,6 +68,11 @@ struct FileAssetPreview: View {
             PreviewController(url: self.tURL)
                 .border(.blue)
             //}
+//        tracker {
+            PreviewController(url: self.tURL)
+                .border(.blue)
+//            }
+>>>>>>> Stashed changes
     }
 }
 
