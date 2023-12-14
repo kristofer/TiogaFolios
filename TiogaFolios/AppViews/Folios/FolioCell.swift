@@ -20,6 +20,10 @@ struct FolioCell: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(.white)
+                .shadow(radius: 5)
+                .padding(5)
             HStack(alignment: .top) {
                 Image(systemName: "magazine")
                     //.foregroundColor(Color.accentColor)
@@ -33,6 +37,8 @@ struct FolioCell: View {
 >>>>>>> Stashed changes
                         Text(folio.title ?? "-")
                             .bold()
+                        Image(systemName: Folio.sharingState(folio))
+                            .font(.system(size: 24))
                     }
                     //.foregroundColor(Color.accentColor)
                     
@@ -40,11 +46,21 @@ struct FolioCell: View {
                         .font(.caption.italic())
                         .lineLimit(2)
                         .padding(.bottom, 2)
+//                    HStack {
+//                        Text("\(folio.assets?.count ?? 0)")
+//                            .font(.caption.italic())
+//                        FolioCardItems(folio: folio)
+//                    }
+                        .foregroundColor(Color.accentColor)
+
                     HStack {
+//                        Text("\(folio.tags?.count ?? 0)")
+//                            .font(.caption.italic())
                         FolioTagItems(folio: folio)
                     }
                 }
             }
+            .padding()
             //.background(.white)
 //            .overlay(
 //                RoundedRectangle(cornerRadius: 8)
