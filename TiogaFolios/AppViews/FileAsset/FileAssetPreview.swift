@@ -61,18 +61,9 @@ struct PreviewController: UIViewControllerRepresentable {
 struct FileAssetPreview: View {
     @State var tURL: URL
     
-    //let tracker = InstanceTracker("FileAssetPreview")
     var body: some View {
-<<<<<<< Updated upstream
-        //tracker {
             PreviewController(url: self.tURL)
                 .border(.blue)
-            //}
-//        tracker {
-            PreviewController(url: self.tURL)
-                .border(.blue)
-//            }
->>>>>>> Stashed changes
     }
 }
 

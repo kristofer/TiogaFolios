@@ -19,14 +19,8 @@ struct NoteEditView: View {
     @Binding var isEditing: Bool
     @State var contentText: String = ""
 
-    //let tracker = InstanceTracker("NoteEditView")
     
     var body: some View {
-<<<<<<< Updated upstream
-        //tracker {
-=======
-//        tracker {
->>>>>>> Stashed changes
             VStack {
                 HStack {
                     Text("Editing...")
@@ -65,12 +59,6 @@ struct NoteEditView: View {
                         self.contentText = String(decoding: fileasset.blob!, as: UTF8.self)
                     }
             }
-<<<<<<< Updated upstream
-        //}
-=======
- //       }
->>>>>>> Stashed changes
-        
     }
 }
 

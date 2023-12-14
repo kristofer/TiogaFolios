@@ -26,21 +26,15 @@ struct FolioCell: View {
                 .padding(5)
             HStack(alignment: .top) {
                 Image(systemName: "magazine")
-                    //.foregroundColor(Color.accentColor)
+                    .foregroundColor(Color.accentColor)
                 VStack(alignment: .leading) {
                     HStack {
-<<<<<<< Updated upstream
-                        Image(systemName: Folio.sharingState(folio))
-                            //.foregroundColor(.green)
-                            .font(.system(size: 24))
-=======
->>>>>>> Stashed changes
                         Text(folio.title ?? "-")
                             .bold()
                         Image(systemName: Folio.sharingState(folio))
                             .font(.system(size: 24))
                     }
-                    //.foregroundColor(Color.accentColor)
+                    .foregroundColor(Color.accentColor)
                     
                     Text(folio.desc ?? "-")
                         .font(.caption.italic())
@@ -51,13 +45,15 @@ struct FolioCell: View {
 //                            .font(.caption.italic())
 //                        FolioCardItems(folio: folio)
 //                    }
-                        .foregroundColor(Color.accentColor)
+                    .foregroundColor(Color.accentColor)
 
                     HStack {
 //                        Text("\(folio.tags?.count ?? 0)")
 //                            .font(.caption.italic())
                         FolioTagItems(folio: folio)
                     }
+                    .foregroundColor(Color.accentColor)
+
                 }
             }
             .padding()

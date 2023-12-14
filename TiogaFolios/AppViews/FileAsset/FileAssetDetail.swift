@@ -89,11 +89,6 @@ struct FileAssetDetail: View {
     
     //let tracker = InstanceTracker("FileAssetDetail")
     var body: some View {
-<<<<<<< Updated upstream
-        //tracker {
-=======
-//        tracker {
->>>>>>> Stashed changes
             ZStack {
                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                     .fill(.white)
@@ -229,13 +224,7 @@ struct FileAssetDetail: View {
                 .navigationTitle("\(vm.fileasset.title!)")
                 //.navigationBarItems(trailing: EditButton())
                 .navigationBarTitleDisplayMode(.inline)
-            }
-<<<<<<< Updated upstream
-        //}
-=======
-//        }
->>>>>>> Stashed changes
-        
+            }        
     }
 }
 

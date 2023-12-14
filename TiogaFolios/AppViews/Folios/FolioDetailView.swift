@@ -145,12 +145,13 @@ struct FolioDetailView: View {
                 HStack{
                     Text(vm.folio.desc ?? "-")
                         .font(.body.italic())
+                        .foregroundColor(Color.accentColor)
                 }
                 if let share = share {
                     FolioShareMetadataView(share: share)
                 }
                 Divider()
-                FolioTagItems(folio: vm.folio)
+                FolioTagItems(folio: vm.folio).foregroundColor(Color.accentColor)
                 Divider()
                 NavigationStack() {
                     FolioDetailAssetList(vm: vm)
