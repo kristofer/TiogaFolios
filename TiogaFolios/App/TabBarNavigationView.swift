@@ -60,12 +60,12 @@ struct TabBarNavigationView: View {
 //            .tag(NavItem.foliosharelist)
 #if DEBUG
 
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                    
-                }
-                .tag(NavItem.setting)
+//            SettingsView()
+//                .tabItem {
+//                    Label("Settings", systemImage: "gear")
+//                    
+//                }
+//                .tag(NavItem.setting)
 #endif
             OnboardView()
                 .tabItem {

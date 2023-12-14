@@ -23,12 +23,12 @@ struct AssetRow: View {
     var body: some View {
         VStack {
             image?
-            //.resizable()
+            .resizable()
             //.frame(width: 40, height: 60)
                 .border(.gray.opacity(0.3))
             VStack(alignment: .leading) {
                 Text("\(asset.title ?? "none")")
-                    .font(.body)
+                    .font(.caption)
             }
         }
         .onAppear(perform: loadImage)
