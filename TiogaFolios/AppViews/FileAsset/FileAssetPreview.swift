@@ -63,6 +63,7 @@ struct FileAssetPreview: View {
     
     //let tracker = InstanceTracker("FileAssetPreview")
     var body: some View {
+<<<<<<< Updated upstream
         //tracker {
             PreviewController(url: self.tURL)
                 .border(.blue)
