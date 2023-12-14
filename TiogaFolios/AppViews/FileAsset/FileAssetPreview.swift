@@ -61,7 +61,7 @@ struct PreviewController: UIViewControllerRepresentable {
 struct FileAssetPreview: View {
     @State var tURL: URL
     
-    let tracker = InstanceTracker("FileAssetPreview")
+    //let tracker = InstanceTracker("FileAssetPreview")
     var body: some View {
         //tracker {
             PreviewController(url: self.tURL)
