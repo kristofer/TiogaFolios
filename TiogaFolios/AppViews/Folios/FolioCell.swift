@@ -25,9 +25,12 @@ struct FolioCell: View {
                     //.foregroundColor(Color.accentColor)
                 VStack(alignment: .leading) {
                     HStack {
+<<<<<<< Updated upstream
                         Image(systemName: Folio.sharingState(folio))
                             //.foregroundColor(.green)
                             .font(.system(size: 24))
+=======
+>>>>>>> Stashed changes
                         Text(folio.title ?? "-")
                             .bold()
                     }
@@ -38,10 +41,6 @@ struct FolioCell: View {
                         .lineLimit(2)
                         .padding(.bottom, 2)
                     HStack {
-                        Text("\(folio.assets?.count ?? 0)")
-                            .font(.caption.italic())
-                        FolioCardItems(folio: folio)
-                    }
                     
                     HStack {
                         Text("\(folio.tags?.count ?? 0)")
