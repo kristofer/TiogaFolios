@@ -30,7 +30,7 @@ struct FolioTemplListView: View {
     }
     
     init(isActive:  Binding<Bool>) {
-        UITableView.appearance().backgroundColor = .clear // Uses UIColor
+        //UITableView.appearance().backgroundColor = .clear // Uses UIColor
         _isTemplatesActive = isActive
         vm = FolioTemplListViewModel()
     }

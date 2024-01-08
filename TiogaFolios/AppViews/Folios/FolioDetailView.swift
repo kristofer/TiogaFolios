@@ -98,7 +98,7 @@ struct FolioDetailView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(.white)
+                //.fill(.white)
                 .shadow(radius: 10)
                 .padding(5)
             VStack(alignment: .leading){

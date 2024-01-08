@@ -42,7 +42,7 @@ class CustomShareViewController: UIViewController {
     private lazy var textField: UITextField = {
             let textField = UITextField()
             textField.text = "some value"
-            textField.backgroundColor = .white
+            //textField.backgroundColor = .white
             textField.translatesAutoresizingMaskIntoConstraints = false
 
             return textField

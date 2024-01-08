@@ -32,7 +32,7 @@ class ShareSelectViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.FolioCell, for: indexPath)
         cell.textLabel?.text = folios[indexPath.row].title
-        cell.backgroundColor = .clear
+        //cell.backgroundColor = .clear
         return cell
         
     }
@@ -45,14 +45,13 @@ class ShareSelectViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .clear
+        //tableView.backgroundColor = .clear
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifiers.FolioCell)
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         title = "Select Folio"
         view.addSubview(tableView)
     }

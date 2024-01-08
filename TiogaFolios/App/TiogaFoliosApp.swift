@@ -22,6 +22,7 @@ struct TiogaFoliosApp: App {
                 if self.mainActive {
                     MainView()
                         .environment(\.managedObjectContext, store.vc)
+                        .environment(\.font, Font.custom("Baskerville", size: 16))
                         .actionSheet(isPresented: $encourageiCloudLogin) {
                             ActionSheet(
                                 title: Text("Not logged into iCloud"),

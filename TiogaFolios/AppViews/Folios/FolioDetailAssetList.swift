@@ -177,7 +177,7 @@ struct GridView: View {
                                     Image(systemName: "xmark.square.fill")
                                                 .font(Font.title)
                                                 .symbolRenderingMode(.palette)
-                                                .foregroundStyle(.white, .red)
+                                                //.foregroundStyle(.white, .red)
                                 }
                                 .offset(x: 7, y: -7)
                             }

@@ -15,14 +15,14 @@ struct Message: Identifiable {
 struct FolioCell: View {
     @ObservedObject var folio: Folio
     
-    let colorratio = 220/255.0
+    //let colorratio = 220/255.0
     private let storage = Storage.shared
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(.white)
-                .shadow(radius: 5)
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                //.fill(.white)
+                .shadow(radius: 3)
                 //.padding(3)
             HStack(alignment: .top) {
                 Image(systemName: "magazine")
