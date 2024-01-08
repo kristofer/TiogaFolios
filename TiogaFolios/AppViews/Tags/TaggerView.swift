@@ -78,7 +78,7 @@ struct TagEntry: View {
             .autocapitalization(.none)
             Spacer()
             Image(systemName: "plus.circle")
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 .onTapGesture {
                     addTag(newTag)
                 }
@@ -190,7 +190,7 @@ struct TagBody: View {
         .foregroundColor(.white)
         .font(.caption2)
         .padding(4)
-        .background(Color.blue.cornerRadius(5))
+        .background(Color.accentColor.cornerRadius(5))
         .padding(4)
 //        .onTapGesture {
 //            tags = tags.filter({ $0 != tag })

@@ -20,10 +20,10 @@ struct FolioCell: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .fill(.white)
                 .shadow(radius: 5)
-                .padding(5)
+                //.padding(3)
             HStack(alignment: .top) {
                 Image(systemName: "magazine")
                     .foregroundColor(Color.accentColor)
@@ -56,13 +56,7 @@ struct FolioCell: View {
 
                 }
             }
-            .padding()
-            //.background(.white)
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 8)
-//                    .stroke(Color(.sRGB, red: colorratio, green: colorratio, blue: colorratio, opacity: 1.0), lineWidth: 2)
-//            )
-//            //topLeftButton()
+            .padding(5)
         }
     }
     

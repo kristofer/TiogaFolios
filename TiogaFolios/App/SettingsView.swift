@@ -74,7 +74,7 @@ struct SettingsView: View {
 //                    deleteAll("Tag")
 //                }
 //                .padding(20.0)
-//                .border(Color.blue, width: 1.0)
+//                .border(.accentColor, width: 1.0)
                 //.disabled(true)
             }
             .navigationBarTitle("Settings")

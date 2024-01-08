@@ -103,8 +103,8 @@ struct FolioListView: View {
                     FolioCell(folio: folio)
                 }
                 .listRowSeparator(.hidden)
-                .headerProminence(.increased).padding(4)
-                .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+                .headerProminence(.increased).padding(6)
+                .listRowInsets(EdgeInsets(top: 1, leading: 0, bottom: 2, trailing: 2))
             }
             .listStyle(PlainListStyle())
             .refreshable {

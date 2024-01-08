@@ -20,7 +20,7 @@ struct FlexiblePicker<T: SelectableTag>: View {
     var selectedColor: Color = .blue
     var notSelectedColor: Color = .clear
     var borderWidth: CGFloat = 2
-    var borderColor: Color = .blue
+    var borderColor: Color = .accentColor
     var alignment: HorizontalAlignment = .center
     var cornerRadius: CGFloat = 10
     var isSelectable: Bool = true

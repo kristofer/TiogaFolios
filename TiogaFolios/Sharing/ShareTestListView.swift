@@ -28,7 +28,7 @@ struct ShareTestListView: View {
                             if stack.isShared(object: folio) {
                                 if stack.isOwner(object: folio) {
                                     Image(systemName: "person.2.fill")
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(.accentColor)
                                 } else {
                                     Image(systemName: "person.fill")
                                         .foregroundColor(.green)

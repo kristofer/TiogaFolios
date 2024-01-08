@@ -63,7 +63,6 @@ struct FileAssetPreview: View {
     
     var body: some View {
             PreviewController(url: self.tURL)
-                .border(.blue)
     }
 }
 
