@@ -109,7 +109,7 @@ extension Storage: UICloudSharingControllerDelegate {
                 //let f = k.debugDescription
                 tfDebug("key: \(k.debugDescription)")
             }
-            purgeObjectsAndRecords(with: share)
+            //purgeObjectsAndRecords(with: share)
         }
     }
     

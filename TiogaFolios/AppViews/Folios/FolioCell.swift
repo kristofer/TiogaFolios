@@ -21,7 +21,7 @@ struct FolioCell: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             RoundedRectangle(cornerRadius: 6, style: .continuous)
-                //.fill(.white)
+                .fill(.background)
                 .shadow(radius: 3)
                 //.padding(3)
             HStack(alignment: .top) {
