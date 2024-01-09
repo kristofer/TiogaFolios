@@ -329,11 +329,13 @@ extension NSManagedObject {
         if let storedCopy = alreadyCopied[self.objectID] {
             return storedCopy
         }
+        // already entity has been copied.
         
+        // but if here, make a copy of the object
         let cloned = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
         alreadyCopied[self.objectID] = cloned
         
-        // Loop through all attributes and assign then to the clone
+        // Loop through all attributes and assign them to the clone (new object)
         NSEntityDescription
             .entity(forEntityName: entityName, in: context)?
             .attributesByName

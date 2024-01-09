@@ -279,18 +279,18 @@ struct FolioDetailView: View {
             let ckContainer = Storage.shared.cloudKitContainer
             let persistentStore = share.persistentStore
             
-            do {
-                Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
-                
-                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
-                thisContext.delete(folio)
-                Tag.dedupeTags()
-                
-                Storage.shared.save()
-            } catch {
-                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
-            }
-            self.share = nil
+//            do {
+//                Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
+//                
+//                try await ckContainer.privateCloudDatabase.deleteRecord(withID: share.recordID)
+//                thisContext.delete(folio)
+//                Tag.dedupeTags()
+//                
+//                Storage.shared.save()
+//            } catch {
+//                tfDebug("Failed to delete ckshare in icloud, error: \(error)")
+//            }
+//            self.share = nil
         } else {
             tfDebug("no share to delete")
         }
