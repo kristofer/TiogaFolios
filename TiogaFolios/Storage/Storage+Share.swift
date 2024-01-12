@@ -13,77 +13,77 @@ import CloudKit
 // MARK: - Convenient methods for managing sharing.
 //
 extension Storage {
-    func presentCloudSharingController(folio: Folio) {
-        /**
-         Grab the share if the folio is already shared.
-         */
-        var folioShare: CKShare?
-        
-        folioShare = Storage.shared.existingShare(folio: folio)
-        
-        let sharingController: UICloudSharingController
-        if folioShare == nil {
-            sharingController = newSharingController(unsharedFolio: folio, persistenceController: self)
-        } else {
-            sharingController = UICloudSharingController(share: folioShare!, container: cloudKitContainer)
-        }
-        sharingController.delegate = self
-        /**
-         Setting the presentation style to .formSheet so there's no need to specify sourceView, sourceItem, or sourceRect.
-         */
-        if let viewController = rootViewController {
-            sharingController.modalPresentationStyle = .formSheet
-            viewController.present(sharingController, animated: true)
-        }
-    }
+//    func presentCloudSharingController(folio: Folio) {
+//        /**
+//         Grab the share if the folio is already shared.
+//         */
+//        var folioShare: CKShare?
+//        
+//        folioShare = Storage.shared.existingShare(folio: folio)
+//        
+//        let sharingController: UICloudSharingController
+//        if folioShare == nil {
+//            sharingController = newSharingController(unsharedFolio: folio, persistenceController: self)
+//        } else {
+//            sharingController = UICloudSharingController(share: folioShare!, container: cloudKitContainer)
+//        }
+//        sharingController.delegate = self
+//        /**
+//         Setting the presentation style to .formSheet so there's no need to specify sourceView, sourceItem, or sourceRect.
+//         */
+//        if let viewController = rootViewController {
+//            sharingController.modalPresentationStyle = .formSheet
+//            viewController.present(sharingController, animated: true)
+//        }
+//    }
+//    
+//    func presentCloudSharingController(share: CKShare) {
+//        let sharingController = UICloudSharingController(share: share, container: cloudKitContainer)
+//        sharingController.delegate = self
+//        /**
+//         Setting the presentation style to .formSheet so there's no need to specify sourceView, sourceItem, or sourceRect.
+//         */
+//        if let viewController = rootViewController {
+//            sharingController.modalPresentationStyle = .formSheet
+//            viewController.present(sharingController, animated: true)
+//        }
+//    }
     
-    func presentCloudSharingController(share: CKShare) {
-        let sharingController = UICloudSharingController(share: share, container: cloudKitContainer)
-        sharingController.delegate = self
-        /**
-         Setting the presentation style to .formSheet so there's no need to specify sourceView, sourceItem, or sourceRect.
-         */
-        if let viewController = rootViewController {
-            sharingController.modalPresentationStyle = .formSheet
-            viewController.present(sharingController, animated: true)
-        }
-    }
-    
-    private func newSharingController(unsharedFolio: Folio, persistenceController: Storage) -> UICloudSharingController {
-        return UICloudSharingController { (_, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
-            /**
-             The app doesn't specify a share intentionally, so Core Data creates a new share (zone).
-             CloudKit has a limit on how many zones a database can have, so this app provides an option for users to use an existing share.
-             
-             If the share's publicPermission is CKShareParticipantPermissionNone, only private participants can accept the share.
-             Private participants mean the participants an app adds to a share by calling CKShare.addParticipant.
-             If the share is more permissive, and is, therefore, a public share, anyone with the shareURL can accept it,
-             or self-add themselves to it.
-             The default value of publicPermission is CKShare.ParticipantPermission.none.
-             */
-            self.container.share([unsharedFolio], to: nil) { objectIDs, share, container, error in
-                if let share = share {
-                    self.configure(share: share, with: unsharedFolio)
-                }
-                completion(share, container, error)
-            }
-        }
-    }
-    
-    private var rootViewController: UIViewController? {
-        for scene in UIApplication.shared.connectedScenes {
-            if scene.activationState == .foregroundActive,
-               let sceneDelegate = (scene as? UIWindowScene)?.delegate as? UIWindowSceneDelegate,
-               let window = sceneDelegate.window {
-                return window?.rootViewController
-            }
-        }
-        tfDebug("\(#function): Failed to retrieve the window's root view controller.")
-        return nil
-    }
+//    private func newSharingController(unsharedFolio: Folio, persistenceController: Storage) -> UICloudSharingController {
+//        return UICloudSharingController { (_, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
+//            /**
+//             The app doesn't specify a share intentionally, so Core Data creates a new share (zone).
+//             CloudKit has a limit on how many zones a database can have, so this app provides an option for users to use an existing share.
+//             
+//             If the share's publicPermission is CKShareParticipantPermissionNone, only private participants can accept the share.
+//             Private participants mean the participants an app adds to a share by calling CKShare.addParticipant.
+//             If the share is more permissive, and is, therefore, a public share, anyone with the shareURL can accept it,
+//             or self-add themselves to it.
+//             The default value of publicPermission is CKShare.ParticipantPermission.none.
+//             */
+//            self.container.share([unsharedFolio], to: nil) { objectIDs, share, container, error in
+//                if let share = share {
+//                    self.configure(share: share, with: unsharedFolio)
+//                }
+//                completion(share, container, error)
+//            }
+//        }
+//    }
+//    
+//    private var rootViewController: UIViewController? {
+//        for scene in UIApplication.shared.connectedScenes {
+//            if scene.activationState == .foregroundActive,
+//               let sceneDelegate = (scene as? UIWindowScene)?.delegate as? UIWindowSceneDelegate,
+//               let window = sceneDelegate.window {
+//                return window?.rootViewController
+//            }
+//        }
+//        tfDebug("\(#function): Failed to retrieve the window's root view controller.")
+//        return nil
+//    }
 }
 
-extension Storage: UICloudSharingControllerDelegate {
+//extension Storage: UICloudSharingControllerDelegate {
     /**
      CloudKit triggers the delegate method in two cases:
      - An owner stops sharing a share.
@@ -101,38 +101,38 @@ extension Storage: UICloudSharingControllerDelegate {
      The purge API posts an NSPersistentStoreRemoteChange notification after finishing its job, so observe the notification to update
      the UI, if necessary.
      */
-    func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController) {
-        tfDebug("\n\n\(#function) DISABLED\n")
-        if let share = csc.share {
-            let keys = share.allKeys()
-            for k in keys {
-                //let f = k.debugDescription
-                tfDebug("key: \(k.debugDescription)")
-            }
-            //purgeObjectsAndRecords(with: share)
-        }
-    }
+//    func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController) {
+//        tfDebug("\n\n\(#function) DISABLED\n")
+//        if let share = csc.share {
+//            let keys = share.allKeys()
+//            for k in keys {
+//                //let f = k.debugDescription
+//                tfDebug("key: \(k.debugDescription)")
+//            }
+//            //purgeObjectsAndRecords(with: share)
+//        }
+//    }
+//    
+//    func cloudSharingControllerDidSaveShare(_ csc: UICloudSharingController) {
+//        if let share = csc.share, let persistentStore = share.persistentStore {
+//            container.persistUpdatedShare(share, in: persistentStore) { (share, error) in
+//                if let error = error {
+//                    tfDebug("\(#function): Failed to persist updated share: \(error)")
+//                } else {
+//                    tfDebug("\(#function): successful")
+//                }
+//            }
+//        }
+//    }
     
-    func cloudSharingControllerDidSaveShare(_ csc: UICloudSharingController) {
-        if let share = csc.share, let persistentStore = share.persistentStore {
-            container.persistUpdatedShare(share, in: persistentStore) { (share, error) in
-                if let error = error {
-                    tfDebug("\(#function): Failed to persist updated share: \(error)")
-                } else {
-                    tfDebug("\(#function): successful")
-                }
-            }
-        }
-    }
-    
-    func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
-        tfDebug("\(#function): Failed to save a share: \(error)")
-    }
-    
-    func itemTitle(for csc: UICloudSharingController) -> String? {
-        return csc.share?.title ?? "Shared Folio"
-    }
-}
+//    func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
+//        tfDebug("\(#function): Failed to save a share: \(error)")
+//    }
+//    
+//    func itemTitle(for csc: UICloudSharingController) -> String? {
+//        return csc.share?.title ?? "Shared Folio"
+//    }
+//}
 
 extension Storage {
     
