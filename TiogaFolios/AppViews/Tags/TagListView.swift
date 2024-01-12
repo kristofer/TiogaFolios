@@ -43,9 +43,7 @@ struct TagListView: View {
             List {
                 ForEach(vm.tags) { tag in
                     NavigationLink( destination: TagView(tag: tag)) {
-                        Label("\(String(describing: (tag.title ?? "huh?")))",
-                              systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind!)! )
-                                  )
+                        TagCell(tag: tag)
                         }
                 }
                 .onDelete(perform: deleteTags)
@@ -60,6 +58,18 @@ struct TagListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action:  {
+                        Tag.dedupeTags()
+                        Storage.shared.save()
+                        vm.refreshTags()
+                    }) {
+                    HStack {
+                        Text("DeDupe")
+                        }
+                    }
+
                 }
                 ToolbarItem {
                     Button(action:  {

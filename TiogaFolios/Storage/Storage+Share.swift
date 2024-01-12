@@ -102,7 +102,7 @@ extension Storage: UICloudSharingControllerDelegate {
      the UI, if necessary.
      */
     func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController) {
-        
+        tfDebug("\n\n\(#function) DISABLED\n")
         if let share = csc.share {
             let keys = share.allKeys()
             for k in keys {
@@ -150,9 +150,10 @@ extension Storage {
              record zone, which can lead to duplicated tags.
              */
             if existingShare != nil {
-                if let tagObjectIDs = objectIDs?.filter({ $0.entity.name == "Tag" }), !tagObjectIDs.isEmpty {
-                    self.deduplicateAndWait(tagObjectIDs: Array(tagObjectIDs))
-                }
+                
+//                if let tagObjectIDs = objectIDs?.filter({ $0.entity.name == "Tag" }), !tagObjectIDs.isEmpty {
+//                    self.deduplicateAndWait(tagObjectIDs: Array(tagObjectIDs))
+//                }
             } else {
                 self.configure(share: share)
             }

@@ -24,10 +24,11 @@ struct AssetRow: View {
         VStack {
             image?
             .resizable()
-            //.frame(width: 40, height: 60)
                 .border(.gray.opacity(0.3))
             VStack(alignment: .leading) {
                 Text("\(asset.title ?? "none")")
+                    .font(.caption)
+                Text("\(asset.id?.uuidString ?? "none")")
                     .font(.caption)
             }
         }

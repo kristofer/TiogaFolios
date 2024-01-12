@@ -54,7 +54,7 @@ struct ManagingSharesView: View {
         .padding(20)
 
         Button("Manage With UICloudSharingController") {
-            if let share = Storage.shared.existingShare(folio: folio) {
+            if let _ = Storage.shared.existingShare(folio: folio) {
                 nextSheet = .cloudSharingSheet(folio)
                 activeSheet = nil
             }

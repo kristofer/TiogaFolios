@@ -42,13 +42,13 @@ struct CloudSharingSheet: View {
         }
     }
     
-    private func purgeShare(_ share: CKShare, in persistentStore: NSPersistentStore?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
-            Task { await Storage.shared.delShare(share) }
-            activeSheet = nil
-        }
-    }
+//    private func purgeShare(_ share: CKShare, in persistentStore: NSPersistentStore?) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
+//            Task { await Storage.shared.delShare(share) }
+//            activeSheet = nil
+//        }
+//    }
 
 }
 

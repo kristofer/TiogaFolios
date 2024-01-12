@@ -34,27 +34,26 @@ struct FolioCell: View {
                         Image(systemName: Folio.sharingState(folio))
                             .font(.system(size: 24))
                     }
-                    .foregroundColor(Color.accentColor)
                     
                     Text(folio.desc ?? "-")
                         .font(.caption.italic())
                         .lineLimit(2)
                         .padding(.bottom, 2)
-//                    HStack {
-//                        Text("\(folio.assets?.count ?? 0)")
-//                            .font(.caption.italic())
-//                        FolioCardItems(folio: folio)
-//                    }
-                    .foregroundColor(Color.accentColor)
+                    HStack {
+                        Text("\(folio.assets?.count ?? 0)")
+                            .font(.caption.italic())
+                        FolioCardItems(folio: folio)
+                    }
 
                     HStack {
 //                        Text("\(folio.tags?.count ?? 0)")
 //                            .font(.caption.italic())
                         FolioTagItems(folio: folio)
                     }
-                    .foregroundColor(Color.accentColor)
-
+                    Text(folio.id?.uuidString ?? "no uuid")
                 }
+                .foregroundColor(Color.accentColor)
+
             }
             .padding(5)
         }

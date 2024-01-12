@@ -212,15 +212,44 @@ extension Tag {
         return newTag
     }
 
-    static func dedupeTags() {
-        let all = Tag.allTags()
-        let objectIDs = all.map{ $0.objectID }
-        
-        if !objectIDs.isEmpty {
-            tfDebug("Dedupe Tags, have \(objectIDs.count) tags")
-            Storage.shared.deduplicateAndWait(tagObjectIDs: Array(objectIDs))
-        }
+    static func dedupeTags() { // DOES not save the viewContext
+        tfDebug("Dedupe Tags")
+        let vc = Storage.shared.vc
 
+        let all = Tag.allTags()
+        var foundDict = [String: Tag]()
+        var tagsToDelete = [Tag]()
+        
+        for t in all {
+            if let tuuid = t.id?.uuidString {
+                if foundDict.updateValue(t, forKey: tuuid) == nil {
+                    //tfDebug("Would keep (inserting) \(tuuid)")
+                } else {
+                    //tfDebug("Would REMOVE duplicate tag \(t.id?.uuidString ?? "no uuid")")
+                    tagsToDelete.append(t)
+                }
+            }
+        }
+        
+        for t in tagsToDelete {
+            if let tuuid = t.id?.uuidString {
+                // get tag that survived
+                if let survivedTag = foundDict[tuuid] {
+                    // copy each asset/folio from t to survivedTag
+                    if let assets = survivedTag.assets {
+                        for asset in assets {
+                            try? survivedTag.attach(blob: asset as! Asset, vc: vc)
+                        }
+                    }
+                    if let folios = survivedTag.folios {
+                        for folio in folios {
+                            try? survivedTag.attach(folio: folio as! Folio, vc: vc)
+                        }
+                    }
+                }
+                vc.delete(t)
+            }
+        }
     }
     
     func attach(blob: Asset, vc: NSManagedObjectContext) throws {
