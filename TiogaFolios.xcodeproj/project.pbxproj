@@ -342,7 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				5CF13CA32A40ADE700B7B21C /* Onboard */,
-				5CB910DF299EB1620027E41C /* Sharing */,
+				5CB910DF299EB1620027E41C /* DeadCode */,
 				5C323978292433E000619645 /* TiogaFolios.entitlements */,
 				5C3C5A1F29BB878200081F8D /* Storage */,
 				5C3239792925363700619645 /* DataModel */,
@@ -583,13 +583,13 @@
 			path = "Archive It";
 			sourceTree = "<group>";
 		};
-		5CB910DF299EB1620027E41C /* Sharing */ = {
+		5CB910DF299EB1620027E41C /* DeadCode */ = {
 			isa = PBXGroup;
 			children = (
 				5CBFE26C2A0AD1730014C6AD /* FolioMiniDetailView.swift */,
 				5CBFE2682A0A8E6A0014C6AD /* ShareTestListView.swift */,
 			);
-			path = Sharing;
+			path = DeadCode;
 			sourceTree = "<group>";
 		};
 		5CEDC3BD2964D65700FDB600 /* Scanner */ = {

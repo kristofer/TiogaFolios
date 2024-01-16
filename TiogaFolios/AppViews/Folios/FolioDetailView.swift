@@ -146,6 +146,7 @@ struct FolioDetailView: View {
                     Text(vm.folio.desc ?? "-")
                         .font(.body.italic())
                         .foregroundColor(Color.accentColor)
+                    Text(folioDateFormatter.string(from: vm.folio.lastmodified!))
                 }
                 if let share = share {
                     FolioShareMetadataView(share: share)
@@ -252,6 +253,13 @@ struct FolioDetailView: View {
         }
     }
     
+    private let folioDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+
     // error The owner stopped sharing, or you don’t have permission to open it.
     
     // private

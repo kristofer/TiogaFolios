@@ -64,7 +64,7 @@ struct ScannerView: View {
 
             if scanArray.count > 0 {
                 Section(header: Text("Scans")) {
-                    ForEach(0 ..< scanArray.count) { imageIdx in
+                    ForEach(0 ..< scanArray.count, id: \.self) { imageIdx in
                         scanArray[imageIdx]
                        .resizable()
                        .frame(width: 400, height: 600)
