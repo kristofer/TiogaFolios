@@ -88,6 +88,8 @@ struct FolioListView: View {
     
     @State private var isTemplatesActive = false
     @State private var selection: Folio? = nil // Nothing selected by default.
+    @State private var showingDeleteAlert = false
+    @State private var itemToDelete: Folio? = nil
 
     init() { }
     
@@ -101,7 +103,17 @@ struct FolioListView: View {
             List(vm.folios, id: \.self, selection: $selection) { folio in
                 NavigationLink(value: folio) {
                     FolioCell(folio: folio)
+                        
                 }
+                .swipeActions {
+                     Button {
+                         self.itemToDelete = folio
+                         showingDeleteAlert = true
+                     } label: {
+                         Label("Delete", systemImage: "trash")
+                     }
+                 }
+                 .tint(.red)
                 .listRowSeparator(.hidden)
                 .headerProminence(.increased).padding(6)
                 .listRowInsets(EdgeInsets(top: 1, leading: 0, bottom: 2, trailing: 2))
@@ -113,6 +125,12 @@ struct FolioListView: View {
             .onAppear(){
                 vm.fetchData()
             }
+            .alert("Confirm?", isPresented: $showingDeleteAlert, actions: {
+                Button("Delete", role: .destructive, action: {
+                     deleteItem(itemToDelete)
+                })
+            })
+
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     EditButton()
@@ -153,6 +171,16 @@ struct FolioListView: View {
         }
         Storage.shared.save()
         vm.fetchData()
+    }
+    
+    func deleteItem(_ item: NSManagedObject?) {
+        guard let item else { return }
+        Storage.shared.vc.delete(item)
+        do {
+            try Storage.shared.vc.save()
+        } catch let error {
+            print("Error: \(error)")
+        }
     }
 }
 
