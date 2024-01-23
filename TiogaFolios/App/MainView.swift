@@ -21,6 +21,11 @@ extension UIDevice {
       static var isiPhone: Bool {
         idiom == .phone
       }
+    
+    static var runningOnMac: Bool {
+        print("running on mac: \(ProcessInfo().isMacCatalystApp)")
+        return ProcessInfo().isMacCatalystApp
+    }
 }
 
 struct MainView: View {

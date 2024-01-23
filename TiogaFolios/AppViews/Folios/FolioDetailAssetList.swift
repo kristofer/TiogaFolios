@@ -108,11 +108,11 @@ struct FolioDetailAssetList: View {
 struct GridItemView: View {
     let size: Double
     let asset: Asset
-    let smaller = 0.8
+    let smaller = 0.9
     var body: some View {
         ZStack(alignment: .topTrailing) {
             AssetRow(asset: asset)
-                .frame(width: (size*smaller)*0.8, height: (size*smaller))
+                .frame(width: (size*smaller)*0.77, height: (size*smaller))
         }
     }
 }
