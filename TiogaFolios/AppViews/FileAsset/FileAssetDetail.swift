@@ -178,13 +178,13 @@ struct FileAssetDetail: View {
                 .onAppear() {
                     vm.loadTempFile()
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("< Back") {
-                            dismiss()
-                        }
-                    }
-                }
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarLeading) {
+//                        Button("< Back") {
+//                            dismiss()
+//                        }
+//                    }
+//                }
                 .fileImporter(
                     isPresented: $vm.isImporting,
                     allowedContentTypes: [UTType.content, UTType.compositeContent],

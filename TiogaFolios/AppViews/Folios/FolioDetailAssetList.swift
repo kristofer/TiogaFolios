@@ -151,11 +151,11 @@ struct GridView: View {
                 LazyVGrid(columns: gridColumns) {
                     ForEach(vm.assetList) { asset in
                         GeometryReader { geo in
-                            NavigationLink(destination:
-                                            FileAssetDetail(vm: FileAssetDetailVM(anAsset: asset, showAssignTo: false))) {
+                            NavigationLink(value: asset) {
                                 GridItemView(size: geo.size.height, asset: asset)
                             }
                         }
+                        .navigationDestination(for: Asset.self, destination: {asset in FileAssetDetail(vm: FileAssetDetailVM(anAsset: asset, showAssignTo: false))})
                         .cornerRadius(8.0)
                         .aspectRatio(1, contentMode: .fit)
                         .overlay(alignment: .topTrailing) {

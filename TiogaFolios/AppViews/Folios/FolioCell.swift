@@ -50,7 +50,7 @@ struct FolioCell: View {
 //                            .font(.caption.italic())
                         FolioTagItems(folio: folio)
                     }
-                    Text(folio.id?.uuidString ?? "no uuid")
+                    //Text(folio.id?.uuidString ?? "no uuid")
                 }
                 .foregroundColor(Color.accentColor)
 

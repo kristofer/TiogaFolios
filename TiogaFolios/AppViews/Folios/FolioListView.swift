@@ -157,13 +157,14 @@ struct FolioListView: View {
 
             //.navigationBarHidden(true)
         } detail: {
-            ZStack {
-                if let thisone = selection {
-                    FolioDetailView(folio: thisone )
-                } else {
-                    Text("No folio selected.")
-                }
-            }
+            NavigationStack {
+                ZStack {
+                    if let thisone = selection {
+                        FolioDetailView(folio: thisone )
+                    } else {
+                        Text("No folio selected.")
+                    }
+                }}
         }
     }
     
