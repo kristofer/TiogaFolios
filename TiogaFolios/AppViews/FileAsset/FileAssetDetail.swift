@@ -178,6 +178,13 @@ struct FileAssetDetail: View {
                 .onAppear() {
                     vm.loadTempFile()
                 }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("< Back") {
+                            dismiss()
+                        }
+                    }
+                }
                 .fileImporter(
                     isPresented: $vm.isImporting,
                     allowedContentTypes: [UTType.content, UTType.compositeContent],
@@ -224,7 +231,7 @@ struct FileAssetDetail: View {
                 .navigationTitle("\(vm.fileasset.title!)")
                 //.navigationBarItems(trailing: EditButton())
                 .navigationBarTitleDisplayMode(.inline)
-            }        
+            }
     }
 }
 

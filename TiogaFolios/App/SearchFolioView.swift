@@ -133,7 +133,7 @@ struct SearchFolioView: View {
 //                }
             }
             
-            .navigationBarTitle("All Folios")
+            .navigationBarTitle("Folios")
             .navigationBarTitleDisplayMode(.inline)
 
             .searchable(text: $vm.searchQuery)

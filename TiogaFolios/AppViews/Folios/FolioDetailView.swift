@@ -154,7 +154,7 @@ struct FolioDetailView: View {
                 Divider()
                 FolioTagItems(folio: vm.folio).foregroundColor(Color.accentColor)
                 Divider()
-                NavigationStack() {
+                //NavigationLink("FOOBAR") {
                     FolioDetailAssetList(vm: vm)
                         .fileImporter(
                             isPresented: $vm.isImporting,
@@ -168,7 +168,7 @@ struct FolioDetailView: View {
                                   message: Text("\(vm.showError!.localizedDescription) \(self.vm.errormsg)"),
                                   dismissButton: .default(Text("Ok")))
                         }
-                }
+                //}
             }
             .padding()
             .onAppear() {

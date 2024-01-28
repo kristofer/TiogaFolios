@@ -144,7 +144,7 @@ struct FolioListView: View {
                 }
             }
             
-            .navigationBarTitle("All Folios")
+            .navigationBarTitle("Folios")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $vm.searchQuery)
 //            .onSubmit(of: .search) {
@@ -157,10 +157,12 @@ struct FolioListView: View {
 
             //.navigationBarHidden(true)
         } detail: {
-            if let thisone = selection {
-                FolioDetailView(folio: thisone )
-            } else {
-                Text("No folio selected.")
+            ZStack {
+                if let thisone = selection {
+                    FolioDetailView(folio: thisone )
+                } else {
+                    Text("No folio selected.")
+                }
             }
         }
     }
