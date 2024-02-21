@@ -12,9 +12,12 @@ struct TagCell: View {
     
     var body: some View {
         HStack {
-            Label("\(String(describing: (tag.title ?? "huh?")))",
+            Label("\(String(describing: (tag.title ?? "No Tag Name")))",
                   systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind!)!))
-            Text(tag.id?.uuidString ?? "no uuid")
+            Text(" - ")
+            Text("\(String(describing: (tag.kind ?? "No Tag Type")))")
+                .italic()
+            //Text(tag.id?.uuidString ?? "no uuid")
         }
     }
 }

@@ -57,7 +57,7 @@
 		5C3239D02925796F00619645 /* TaggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C72925796F00619645 /* TaggerView.swift */; };
 		5C3239D12925796F00619645 /* TagKindListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C82925796F00619645 /* TagKindListView.swift */; };
 		5C3239D22925796F00619645 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239C92925796F00619645 /* TagListView.swift */; };
-		5C3239D32925796F00619645 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239CA2925796F00619645 /* TagView.swift */; };
+		5C3239D32925796F00619645 /* TagDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3239CA2925796F00619645 /* TagDetailView.swift */; };
 		5C3239D629257BF800619645 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3239D529257BF700619645 /* CloudKit.framework */; };
 		5C32D2942AD830A600E4CF5B /* FolioDetailAssetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32D2932AD830A600E4CF5B /* FolioDetailAssetList.swift */; };
 		5C3C5A12299D570D00081F8D /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C5A11299D570D00081F8D /* StorageHelper.swift */; };
@@ -220,7 +220,7 @@
 		5C3239C72925796F00619645 /* TaggerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggerView.swift; sourceTree = "<group>"; };
 		5C3239C82925796F00619645 /* TagKindListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagKindListView.swift; sourceTree = "<group>"; };
 		5C3239C92925796F00619645 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
-		5C3239CA2925796F00619645 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		5C3239CA2925796F00619645 /* TagDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailView.swift; sourceTree = "<group>"; };
 		5C3239D529257BF700619645 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5C32D2932AD830A600E4CF5B /* FolioDetailAssetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioDetailAssetList.swift; sourceTree = "<group>"; };
 		5C3C5A11299D570D00081F8D /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
@@ -532,7 +532,7 @@
 				5C3239C82925796F00619645 /* TagKindListView.swift */,
 				5C3239C92925796F00619645 /* TagListView.swift */,
 				5C5BAAE12B506D27005AD47A /* TagCell.swift */,
-				5C3239CA2925796F00619645 /* TagView.swift */,
+				5C3239CA2925796F00619645 /* TagDetailView.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -847,7 +847,7 @@
 				5C8D5CDA2A09986900B1382F /* ShareController.swift in Sources */,
 				5C32397E29254C0F00619645 /* Folio.swift in Sources */,
 				5C32398F29254CCB00619645 /* SelectableTag.swift in Sources */,
-				5C3239D32925796F00619645 /* TagView.swift in Sources */,
+				5C3239D32925796F00619645 /* TagDetailView.swift in Sources */,
 				5C3239A72925772B00619645 /* FolioTagItems.swift in Sources */,
 				5C2B2BE8295249F90056EFF3 /* TabBarNavigationView.swift in Sources */,
 				5C32399429254DFC00619645 /* MainView.swift in Sources */,

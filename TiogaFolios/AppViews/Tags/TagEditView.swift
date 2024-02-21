@@ -75,16 +75,16 @@ struct TagEditView: View {
 
     @ObservedObject var tag: Tag
     @Binding var isPresented: Bool
-    @State var selectedTagKind = TagKind.plain
+    @State var selectedTagKind: TagKind
     @State var selectedTagCat = TagCat.user
 
 //    @FocusState private var focusedField: FocusField?
     init(objectPassed: Tag? = nil, show: Binding<Bool>) {
         self._isPresented = show
-        tfDebug("TagEditView editing \(String(describing: objectPassed?.title))")
         if let tag = objectPassed {
             self.tag = tag
-            self.selectedTagKind = TagKind(rawValue: tag.kind!) ?? TagKind.plain
+            self.selectedTagKind = TagKind.withLabel(tag.kind ?? "meta")!
+            tfDebug("TagEditView editing \(String(describing: self.selectedTagKind))")
             self.selectedTagCat = TagCat(rawValue: tag.category!) ?? TagCat.user
             self._isPresented = show
             return
@@ -92,12 +92,32 @@ struct TagEditView: View {
 
         tfDebug("TagEditView nil of Edit")
         self.tag = Tag.createTag(vc: Storage.shared.vc, named: "untitled", kind: .plain)
+        self.selectedTagKind = TagKind.withLabel("plain")!
     }
 
-
+    
+    /// <#Description#>
     var body: some View {
+        //Text("TagEditView")
         Form(content: {
-            Section(header: Text("Tag Metadata")) {
+//            Section{
+            Button(action: {
+                tag.kind = selectedTagKind.rawValue
+                tag.category = TagCat.user.rawValue
+                Storage.shared.save()
+                isPresented = false
+            }) {
+                HStack {
+                    Spacer()
+                    Text("Save Tag")
+                    Spacer()
+                }
+            }
+            .buttonStyle(.borderedProminent)
+                
+//            }
+
+            Section(header: Text("Tag Details")) {
                 // Text field
                 TextField("Name", text: $tag.title.toUnwrapped(defaultValue: ""))
                 TextField("Description", text: $tag.desc.toUnwrapped(defaultValue: ""))
@@ -108,40 +128,25 @@ struct TagEditView: View {
                 }
                 .pickerStyle(WheelPickerStyle())
             }
-            Section {
-                // Button
-                Button(action: {
-                    tag.kind = selectedTagKind.rawValue
-                    tag.category = TagCat.user.rawValue
-                    Storage.shared.save()
-                    isPresented = false
-                }) {
-                    HStack {
-                        Spacer()
-                        Text("Save")
-                        Spacer()
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-                Spacer()
-                Button(action: {
-                    Tag.loadAppTags()
-                }) {
-                    HStack {
-                        Spacer()
-                        Text("Add Application Tags")
-                        Spacer()
-                    }
-                }
-                .foregroundColor(.white)
-                .padding(10)
-                .background(Color.secondary)
-                .cornerRadius(8)
-
-            }
-
+//            Section {
+//                // Button
+//                Spacer()
+//                Button(action: {
+//                    Tag.loadAppTags()
+//                }) {
+//                    HStack {
+//                        Spacer()
+//                        Text("Add Application Tags")
+//                        Spacer()
+//                    }
+//                }
+//                .foregroundColor(.white)
+//                .padding(10)
+//                .background(Color.secondary)
+//                .cornerRadius(8)
+//            }
+//
         })
-        .navigationBarTitle("Changing Tag")
     }
 }
 //struct TagEditView: View {

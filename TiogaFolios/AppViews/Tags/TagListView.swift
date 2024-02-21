@@ -42,7 +42,7 @@ struct TagListView: View {
 //            NavigationView {
             List {
                 ForEach(vm.tags) { tag in
-                    NavigationLink( destination: TagView(tag: tag)) {
+                    NavigationLink( destination: TagDetailView(tag: tag)) {
                         TagCell(tag: tag)
                         }
                 }

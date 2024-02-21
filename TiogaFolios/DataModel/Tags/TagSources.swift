@@ -22,6 +22,11 @@ enum TagKind: String,  CaseIterable, Identifiable, Decodable {
     
     var id: String { self.rawValue }
 
+    static func withLabel(_ label: String) -> TagKind? {
+        return self.allCases.first{ "\($0)" == label }
+    }
+    // usage: TagKind.withLabel("estate") -> .estate
+
     func imgtxtFor(tagkind: TagKind) -> String {
         switch tagkind {
         case .estate:

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TagView: View {
+struct TagDetailView: View {
     // @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var tag: Tag
 
@@ -15,10 +15,11 @@ struct TagView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10.0){
+            Text("TagDetailView")
             Text(tag.title ?? "?wha?")
                 .font(.title2)
             Text(tag.desc ?? " ")
-                .font(.body)
+                .font(.body).italic()
             HStack{
                 Label(tag.kind ?? TagKind.plain.rawValue,
                       systemImage: tag.imgtxtFor(tagkind: TagKind(rawValue: tag.kind ?? TagKind.plain.rawValue) ?? TagKind.plain))
@@ -40,12 +41,16 @@ struct TagView: View {
             Text(String(describing: tag.id!) )
                 .font(.caption2)
                 .padding(10.0)
-            Button("Edit...") {
-                isEditing = true
-            }
         }
         .padding()
         .navigationTitle("")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Edit") {
+                    isEditing = true
+                }
+            }
+        }
         .sheet(isPresented: $isEditing) {
             TagEditView(objectPassed: tag, show: $isEditing)
         }
@@ -56,6 +61,6 @@ struct TagView: View {
 
 struct TagView_Previews: PreviewProvider {
     static var previews: some View {
-        TagView(tag: Tag())
+        TagDetailView(tag: Tag())
     }
 }
