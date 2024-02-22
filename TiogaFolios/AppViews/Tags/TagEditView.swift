@@ -72,18 +72,19 @@ import CoreData
 
 
 struct TagEditView: View {
+    @Environment(\.dismiss) var dismiss
 
     @ObservedObject var tag: Tag
     @Binding var isPresented: Bool
     @State var selectedTagKind: TagKind
     @State var selectedTagCat = TagCat.user
 
-//    @FocusState private var focusedField: FocusField?
     init(objectPassed: Tag? = nil, show: Binding<Bool>) {
         self._isPresented = show
+
         if let tag = objectPassed {
             self.tag = tag
-            self.selectedTagKind = TagKind.withLabel(tag.kind ?? "meta")!
+            _selectedTagKind = State<TagKind>(initialValue: TagKind.withLabel(tag.kind ?? "meta")!)
             tfDebug("TagEditView editing \(String(describing: self.selectedTagKind))")
             self.selectedTagCat = TagCat(rawValue: tag.category!) ?? TagCat.user
             self._isPresented = show
@@ -92,11 +93,10 @@ struct TagEditView: View {
 
         tfDebug("TagEditView nil of Edit")
         self.tag = Tag.createTag(vc: Storage.shared.vc, named: "untitled", kind: .plain)
-        self.selectedTagKind = TagKind.withLabel("plain")!
+        _selectedTagKind = State<TagKind>(initialValue: TagKind.withLabel("plain")!)
     }
 
     
-    /// <#Description#>
     var body: some View {
         //Text("TagEditView")
         Form(content: {
@@ -105,7 +105,8 @@ struct TagEditView: View {
                 tag.kind = selectedTagKind.rawValue
                 tag.category = TagCat.user.rawValue
                 Storage.shared.save()
-                isPresented = false
+//                isPresented = false
+                dismiss()
             }) {
                 HStack {
                     Spacer()
@@ -120,7 +121,9 @@ struct TagEditView: View {
             Section(header: Text("Tag Details")) {
                 // Text field
                 TextField("Name", text: $tag.title.toUnwrapped(defaultValue: ""))
+                    .font(.title)
                 TextField("Description", text: $tag.desc.toUnwrapped(defaultValue: ""))
+                    .font(.title2).italic()
                 Picker("Kind", selection: $selectedTagKind ) {
                     ForEach(TagKind.allCases) { kind in
                         Text(kind.rawValue.capitalized).tag(kind)
@@ -149,76 +152,7 @@ struct TagEditView: View {
         })
     }
 }
-//struct TagEditView: View {
-//
-//    @ObservedObject var vm: DeltaTagVM
-//    @Binding var isPresented: Bool
-//
-////    @FocusState private var focusedField: FocusField?
-//    init(objectPassed: Tag? = nil, show: Binding<Bool>) {
-//        if objectPassed == nil {
-//            tfDebug("TagEditView nil of Edit")
-//
-//            self.vm = DeltaTagVM()
-//            self._isPresented = show
-//        } else {
-//            tfDebug("TagEditView editing \(String(describing: objectPassed?.title))")
-//
-//            vm = DeltaTagVM(objectPassed: objectPassed)
-//            self._isPresented = show
-//        }
-//    }
-//
-//
-//    var body: some View {
-//        Form(content: {
-//            Section(header: Text("Tag Metadata")) {
-//                // Text field
-//                TextField("Name", text: $vm.newTitle) //Binding($vm.newTitle, ""))
-//                TextField("Description", text: $vm.newDesc) //Binding(vm.tag?.desc?, ""))
-//
-//                Picker(vm.newKind.rawValue, selection: $vm.selectedTagKind ) {
-//                    ForEach(TagKind.allCases) { kind in
-//                        Text(kind.rawValue.capitalized).tag(kind)
-//                    }
-//                }
-//                .pickerStyle(WheelPickerStyle())
-//            }
-//            Section {
-//                // Button
-//                Button(action: {
-//                    vm.updateTag()
-//                    Storage.shared.save()
-//                    isPresented = false
-//                }) {
-//                    HStack {
-//                        Spacer()
-//                        Text("Save")
-//                        Spacer()
-//                    }
-//                }
-//                .buttonStyle(.borderedProminent)
-//                Spacer()
-//                Button(action: {
-//                    Tag.loadAppTags()
-//                }) {
-//                    HStack {
-//                        Spacer()
-//                        Text("Add Application Tags")
-//                        Spacer()
-//                    }
-//                }
-//                .foregroundColor(.white)
-//                .padding(10)
-//                .background(Color.secondary)
-//                .cornerRadius(8)
-//
-//            }
-//
-//        })
-//        .navigationBarTitle(vm.ttitle)
-//    }
-//}
+
 
 struct TagEditView_Previews: PreviewProvider {
     static var previews: some View {

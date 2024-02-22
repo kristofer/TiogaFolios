@@ -39,12 +39,12 @@ struct TagListView: View {
     
     
     var body: some View {
-//            NavigationView {
+        NavigationView {
             List {
                 ForEach(vm.tags) { tag in
                     NavigationLink( destination: TagDetailView(tag: tag)) {
                         TagCell(tag: tag)
-                        }
+                    }
                 }
                 .onDelete(perform: deleteTags)
             }
@@ -65,19 +65,19 @@ struct TagListView: View {
                         Storage.shared.save()
                         vm.refreshTags()
                     }) {
-                    HStack {
-                        Text("DeDupe")
+                        HStack {
+                            Text("DeDupe")
                         }
                     }
-
+                    
                 }
                 ToolbarItem {
                     Button(action:  {
                         vm.showNewTag = true
                     }) {
-                    HStack {
-                        Text("Add Tag")
-                        Image(systemName: "plus")
+                        HStack {
+                            Text("Add Tag")
+                            Image(systemName: "plus")
                         }
                     }
                     .sheet(isPresented: $vm.showNewTag, onDismiss: didDismiss)
@@ -86,8 +86,9 @@ struct TagListView: View {
                     }
                 }
             }
-            .navigationBarTitle("Tags (Categories)")
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationBarTitle("Tags (Categories)")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     func didDismiss() {

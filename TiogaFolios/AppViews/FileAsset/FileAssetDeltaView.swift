@@ -24,11 +24,11 @@ class DeltaAssetVm: ObservableObject {
         }
     }
     
-    func cancel() {
+//    func cancel() {
 //        if creating {
 //            self.asset.managedObjectContext?.delete(self.asset)
 //        }
-    }
+//    }
 
 }
 
@@ -38,18 +38,17 @@ struct FileAssetDeltaView: View {
           case field
         }
 
+    @Environment(\.dismiss) var dismiss
+
 
         @ObservedObject var vm: DeltaAssetVm
-        @Binding var isPresented: Bool
         @FocusState private var focusedField: FocusField?
 
-        init(objectPassed: Asset? = nil, show: Binding<Bool>) {
+        init(objectPassed: Asset? = nil) {
             if objectPassed == nil {
                 vm = DeltaAssetVm()
-                self._isPresented = show
             } else {
                 vm = DeltaAssetVm(objectPassed: objectPassed)
-                self._isPresented = show
             }
         }
 
@@ -70,7 +69,8 @@ struct FileAssetDeltaView: View {
                     Button(action: {
                         vm.asset.touch()
                         Storage.shared.save()
-                        isPresented = false
+                        //isPresented = false
+                        dismiss()
                     }) {
                         HStack {
                             Spacer()
@@ -86,28 +86,32 @@ struct FileAssetDeltaView: View {
                 }
                 .padding(20)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottom)
-                VStack(alignment: .leading) {
+                HStack(alignment: .top) {
                     Text(vm.asset.pathname ?? "no pathname")
                         .font(.caption.italic())
-                    Text(vm.asset.source?.absoluteString ?? "no source")
+                    Spacer()
+                    Text(vm.asset.source?.absoluteString ?? "no URL")
                         .font(.caption.italic())
+                    Spacer()
                     Text(vm.asset.uttype ?? "no uttype")
                         .font(.caption.italic())
-//                    Text(vm.asset.modDate()?.formatted() ?? "no date found.")
-//                        .font(.caption.italic())
+                    Spacer()
+                    Text(vm.asset.lastmodified?.formatted() ?? "no date found.")
+                        .font(.caption.italic())
 
                 }
-                Button(action: {
-                    vm.cancel()
-                    isPresented = false
-                }) {
-                    HStack {
-                        Spacer()
-                        Text("Cancel")
-                        Spacer()
-                    }
-                }
-                .buttonStyle(.bordered)
+                .padding(5)
+//                Button(action: {
+//                    vm.cancel()
+//                    isPresented = false
+//                }) {
+//                    HStack {
+//                        Spacer()
+//                        Text("Cancel")
+//                        Spacer()
+//                    }
+//                }
+//                .buttonStyle(.bordered)
 //                .foregroundColor(Color.accentColor)
 //                .padding(10)
 //                .cornerRadius(8)

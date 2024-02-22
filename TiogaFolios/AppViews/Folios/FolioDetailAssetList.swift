@@ -70,7 +70,8 @@ struct FolioDetailAssetList: View {
                 }
                 vm.refresh()
                 return true
-            }
+            } //.onDrop
+        
             //.navigationViewStyle(.stack)
 //        HStack {
 //            Text("Attached Documents").font(.caption2.italic())
@@ -155,7 +156,7 @@ struct GridView: View {
                                 GridItemView(size: geo.size.height, asset: asset)
                             }
                         }
-                        .navigationDestination(for: Asset.self, destination: {asset in FileAssetDetail(vm: FileAssetDetailVM(anAsset: asset, showAssignTo: false))})
+                        
                         .cornerRadius(8.0)
                         .aspectRatio(1, contentMode: .fit)
                         .overlay(alignment: .topTrailing) {
@@ -176,6 +177,9 @@ struct GridView: View {
                     }
                 }
                 .padding()
+                .navigationDestination(for: Asset.self, destination: {asset in
+                    FileAssetDetail(vm: FileAssetDetailVM(anAsset: asset, showAssignTo: false))
+                }) //need to put this outside of the ContainingView (here, LVGrid)
             }
 
         }

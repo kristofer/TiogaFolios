@@ -119,10 +119,10 @@ struct FolioListSegView: View {
             vm.fetchData()
         }
         .toolbar {
-            ToolbarItem(placement: .bottomBar) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
-            ToolbarItem(placement: .bottomBar) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(
                     destination:FolioTemplListView(isActive: $isTemplatesActive)) {
                         Label("New Folio", systemImage: "plus")

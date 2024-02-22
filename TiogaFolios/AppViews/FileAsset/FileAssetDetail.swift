@@ -91,7 +91,7 @@ struct FileAssetDetail: View {
     var body: some View {
             ZStack {
                 RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    //.fill(.white)
+                    .fill(.background)
                     .shadow(radius: 10)
                     .padding(5)
                 VStack(alignment: .leading) {
@@ -101,28 +101,8 @@ struct FileAssetDetail: View {
                                 .font(.caption)
                                 .padding()
                             Spacer()
-                            if vm.fileasset.isDocumentEditable() {
-                                Button(action: {
-                                    isEditing = true
-                                }) {
-                                    Label("Edit ", systemImage: "square.and.pencil")
-                                }
-                                .font(.caption)
-                                .buttonStyle(.borderedProminent)
-                            } else {
-                                Button {
-                                    self.isEditingMetadata = true
-                                } label: {
-                                    Image(systemName: "square.and.pencil")
-                                }
-                                .sheet(isPresented: $isEditingMetadata) {
-                                    FileAssetDeltaView(objectPassed: vm.fileasset, show: $isEditingMetadata)
-                                }
-                            }
-                            
                         }
                         .padding(2)
-                        
                         Divider()
                         if vm.isBlobEmpty {
                             VStack {
@@ -158,15 +138,17 @@ struct FileAssetDetail: View {
                             }
                         }
                     }
-                    Spacer()
                     HStack{
                         if let mime = vm.fileasset.mimetype {
                             Text("Filetype: \(mime)")
                                 .font(.caption)
+                                .padding(5)
                         }
                         Spacer()
+                        Text("\(vm.fileasset.id?.uuidString ?? "none")")
+                            .font(.caption)
+                            .padding(5)
                     }
-                    .padding(5.0)
                     .sheet(isPresented: $isEditing, onDismiss: { vm.resetTempFile() }, content: {
                         NoteEditView(fileasset: $vm.fileasset, isEditing: $isEditing)
                     })
@@ -178,13 +160,6 @@ struct FileAssetDetail: View {
                 .onAppear() {
                     vm.loadTempFile()
                 }
-//                .toolbar {
-//                    ToolbarItem(placement: .navigationBarLeading) {
-//                        Button("< Back") {
-//                            dismiss()
-//                        }
-//                    }
-//                }
                 .fileImporter(
                     isPresented: $vm.isImporting,
                     allowedContentTypes: [UTType.content, UTType.compositeContent],
@@ -231,6 +206,25 @@ struct FileAssetDetail: View {
                 .navigationTitle("\(vm.fileasset.title!)")
                 //.navigationBarItems(trailing: EditButton())
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if vm.fileasset.isDocumentEditable() {
+                            Button(action: {
+                                isEditing = true
+                            }) {
+                                Label("Edit ", systemImage: "square.and.pencil")
+                            }
+                            .font(.caption)
+                            .buttonStyle(.borderedProminent)
+                        } else {
+                            NavigationLink(destination: FileAssetDeltaView(objectPassed: vm.fileasset)
+                            ) {
+                                Label("Edit", systemImage: "square.and.pencil")
+                            }
+                        }
+                    }
+                }
+
             }
     }
 }

@@ -28,9 +28,7 @@ struct TabBarNavigationView: View {
 //            }
 //            .tag(NavItem.foliosearch)
             
-            NavigationStack {
                 TagListView()
-            }
             .tabItem {
                 Label("Tags", systemImage: "tag")
             }

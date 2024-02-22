@@ -155,7 +155,7 @@ struct FolioDetailView: View {
                 FolioTagItems(folio: vm.folio).foregroundColor(Color.accentColor)
                 Divider()
                 //NavigationLink("FOOBAR") {
-                    FolioDetailAssetList(vm: vm)
+                FolioDetailAssetList(vm: vm)
                         .fileImporter(
                             isPresented: $vm.isImporting,
                             allowedContentTypes: [UTType.content, UTType.compositeContent],

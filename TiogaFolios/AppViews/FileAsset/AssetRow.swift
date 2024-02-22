@@ -27,9 +27,11 @@ struct AssetRow: View {
                 .border(.gray.opacity(0.3))
             VStack(alignment: .leading) {
                 Text("\(asset.title ?? "none")")
-                    .font(.caption)
-                Text("\(asset.id?.uuidString ?? "none")")
-                    .font(.caption)
+                    .font(.subheadline)
+                if asset.desc != nil && asset.desc != "" {
+                    Text("\(asset.desc ?? "none")")
+                        .font(.caption)
+                }
             }
         }
         .onAppear(perform: loadImage)
