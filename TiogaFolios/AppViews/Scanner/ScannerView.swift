@@ -41,6 +41,7 @@ struct ScannerView: View {
     
     @State var index = 0
     @State var scanArray = [Image]()
+    @State var scanArrayCount = 0
     @State var isScanning = false
     @State var hasScanned = false
     @State var pdfResult: Data?
@@ -64,12 +65,12 @@ struct ScannerView: View {
 
             if scanArray.count > 0 {
                 Section(header: Text("Scans")) {
-                    ForEach(0 ..< scanArray.count, id: \.self) { imageIdx in
-                        scanArray[imageIdx]
-                       .resizable()
-                       .frame(width: 400, height: 600)
-                       .aspectRatio(contentMode: .fit)
-                    }
+                        ForEach(0 ..< scanArrayCount, id: \.self) { imageIdx in
+                            scanArray[imageIdx]
+                                .resizable()
+                                .frame(width: 400, height: 600)
+                                .aspectRatio(contentMode: .fit)
+                        }
                 }
             }
             
@@ -103,6 +104,7 @@ struct ScannerView: View {
         case .success(let scan): do {
             if scan.scans.count > 0 {
                 hasScanned = true
+                scanArrayCount = scan.scans.count
             }
             saveImages(scan.scans)
             savePDF(scan.makePDFFromScans)

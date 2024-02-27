@@ -14,7 +14,6 @@ struct ManagingSharesView: View {
     @Binding var nextSheet: ActiveSheet?
     var folio: Folio
 
-    @State private var toggleProgress: Bool = false
     @State private var selection: String?
 
     var body: some View {
@@ -26,10 +25,6 @@ struct ManagingSharesView: View {
             } else {
                 Text("No Folio/Share for Sharing.")
             }
-            
-//            if toggleProgress {
-//                ProgressView()
-//            }
         }
     }
     
@@ -63,10 +58,8 @@ struct ManagingSharesView: View {
     }
     
     private func purgeShare(_ share: CKShare, in persistentStore: NSPersistentStore?) {
-        toggleProgress.toggle()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             Storage.shared.purgeObjectsAndRecords(with: share, in: persistentStore)
-            toggleProgress.toggle()
             activeSheet = nil
         }
     }
