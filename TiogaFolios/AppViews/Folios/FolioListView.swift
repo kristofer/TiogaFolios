@@ -50,9 +50,9 @@ class FolioListViewModel: ObservableObject {
         //        )
         let tagPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ || tags.desc CONTAINS[cd] %@ ", srchStr, srchStr )
         
-        let tagHiddenPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ ", hiddenTags )
-        if hiddenTags != "" {
-            allPred = NSPredicate(value: false)
+        var tagHiddenPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ ", hiddenTags )
+        if hiddenTags == "" {
+            tagHiddenPredicate = NSPredicate(value: true)
         }
         
         let descPredicate = NSPredicate(
@@ -65,15 +65,17 @@ class FolioListViewModel: ObservableObject {
         // an "and" compound predicate, all the component
         // predicates must be true for the object.
         
-        fetchRequest.predicate = NSCompoundPredicate(
+        fetchRequest.predicate = 
+        NSCompoundPredicate(andPredicateWithSubpredicates: [
+            tagHiddenPredicate,
+            NSCompoundPredicate(
             orPredicateWithSubpredicates: [
                 titlePredicate,
                 descPredicate,
                 tagPredicate,
-                tagHiddenPredicate,
                 allPred
             ]
-        )
+        )])
         
         // Get a reference to a NSManagedObjectContext
         let context = persistentContainer.vc
