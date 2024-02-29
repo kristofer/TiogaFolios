@@ -107,6 +107,7 @@
 		5CBFE26B2A0AD05F0014C6AD /* FolioShareMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBFE26A2A0AD05F0014C6AD /* FolioShareMetadataView.swift */; };
 		5CBFE26D2A0AD1730014C6AD /* FolioMiniDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBFE26C2A0AD1730014C6AD /* FolioMiniDetailView.swift */; };
 		5CC74C07294A821D00BE831F /* AssetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC74C06294A821D00BE831F /* AssetRow.swift */; };
+		5CD772BC2B90B9D6005F4363 /* TagRestrictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD772BB2B90B9D6005F4363 /* TagRestrictView.swift */; };
 		5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */; };
 		5CDCA80D293518AE00FCF50B /* SearchFolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */; };
 		5CDCA80F293796F300FCF50B /* set_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CDCA80E293796F300FCF50B /* set_build_number.sh */; };
@@ -259,6 +260,7 @@
 		5CBFE26A2A0AD05F0014C6AD /* FolioShareMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioShareMetadataView.swift; sourceTree = "<group>"; };
 		5CBFE26C2A0AD1730014C6AD /* FolioMiniDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioMiniDetailView.swift; sourceTree = "<group>"; };
 		5CC74C06294A821D00BE831F /* AssetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRow.swift; sourceTree = "<group>"; };
+		5CD772BB2B90B9D6005F4363 /* TagRestrictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRestrictView.swift; sourceTree = "<group>"; };
 		5CDCA80A2933BDA200FCF50B /* FolioViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolioViewMenu.swift; sourceTree = "<group>"; };
 		5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolioView.swift; sourceTree = "<group>"; };
 		5CDCA80E293796F300FCF50B /* set_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_build_number.sh; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */,
 				5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */,
 				5C3EF85F292BD61A007CAAB6 /* SettingsView.swift */,
+				5CD772BB2B90B9D6005F4363 /* TagRestrictView.swift */,
 				5C3EF861292BD8F4007CAAB6 /* SplashView.swift */,
 				5C7D96DE29BF664A00D9948D /* Globals.swift */,
 				5CF610842ACCA7B000BA68F4 /* Debugging.swift */,
@@ -792,6 +795,7 @@
 				5C3239A02925772B00619645 /* FolioAddToV.swift in Sources */,
 				5C3239A32925772B00619645 /* FolioCell.swift in Sources */,
 				5C3239BD2925796200619645 /* BlobToTempFile.swift in Sources */,
+				5CD772BC2B90B9D6005F4363 /* TagRestrictView.swift in Sources */,
 				5C3239A92925772B00619645 /* FolioVM.swift in Sources */,
 				5CF13CAA2A40AE1800B7B21C /* OnboardingDataModel.swift in Sources */,
 				5CEDC3BF2964D67400FDB600 /* ScannerView.swift in Sources */,

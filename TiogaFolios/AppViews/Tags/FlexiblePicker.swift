@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct FlexiblePicker<T: SelectableTag>: View {
+struct FlexiblePicker<T: SelectableTag, F:Taggable>: View {
     
     @Binding var inputData: [T]
-    var item: Folio
+    var item: F
     
     var fontWeight: FontWeight = .medium
     var fontSize: CGFloat = 16

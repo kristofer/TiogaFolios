@@ -2,6 +2,18 @@
 
 For MVP
 
+## Issues on 29 Feb 2024
+
+- sharing testing
+- starter/demo folios?
+- setting for showing Only things tagged a specific tag?
+- starter/de tags?
+- PATH selection and navigation
+
+A folio view where the listed folios are restricted to ones that re tagged with a specific tag.
+
+
+
 ## Current Issues (19 June 2023)
 
 - initial folios

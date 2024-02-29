@@ -16,6 +16,8 @@ class FolioListViewModel: ObservableObject {
     
     @Published var newFolio: Folio?
     @Published var searchQuery = ""
+    @Published var hiddenTags = ""
+    var hiddenTagsSelected = [Tag]()
 
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
@@ -47,7 +49,11 @@ class FolioListViewModel: ObservableObject {
         //            format: "tags = %@", srchStr
         //        )
         let tagPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ || tags.desc CONTAINS[cd] %@ ", srchStr, srchStr )
-
+        
+        let tagHiddenPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ ", hiddenTags )
+        if hiddenTags != "" {
+            allPred = NSPredicate(value: false)
+        }
         
         let descPredicate = NSPredicate(
             format: "desc CONTAINS[CD] %@", srchStr
@@ -58,11 +64,13 @@ class FolioListViewModel: ObservableObject {
         // In other words, for an object to be returned by
         // an "and" compound predicate, all the component
         // predicates must be true for the object.
+        
         fetchRequest.predicate = NSCompoundPredicate(
             orPredicateWithSubpredicates: [
                 titlePredicate,
                 descPredicate,
                 tagPredicate,
+                tagHiddenPredicate,
                 allPred
             ]
         )
@@ -80,6 +88,25 @@ class FolioListViewModel: ObservableObject {
     }
 
 }
+
+extension FolioListViewModel: Taggable {
+    func attachTag(_ tag: Tag) {
+        if let title = tag.title {
+            self.hiddenTags.append(title)
+            self.hiddenTagsSelected.append(tag)
+        }
+    }
+    
+    func removeTag(_ tag: Tag) {
+        if let title = tag.title {
+            self.hiddenTags = self.hiddenTags.replacingOccurrences(of: title, with: "")
+            if let index = self.hiddenTagsSelected.firstIndex(of: tag) {
+                self.hiddenTagsSelected.remove(at: index)
+            }
+        }
+    }
+}
+
 
 struct FolioListView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -100,6 +127,7 @@ struct FolioListView: View {
     
     var body: some View {
         NavigationSplitView{
+            TagRestrictView(flvm: vm)
             List(vm.folios, id: \.self, selection: $selection) { folio in
                 NavigationLink(value: folio) {
                     FolioCell(folio: folio)
@@ -147,11 +175,11 @@ struct FolioListView: View {
             .navigationBarTitle("Folios")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $vm.searchQuery)
-//            .onSubmit(of: .search) {
-//                vm.doSearch(vm.searchQuery)
-//            }
             .onChange(of: $vm.searchQuery.wrappedValue, perform: { _ in
                 vm.doSearch(vm.searchQuery)
+            })
+            .onChange(of: $vm.hiddenTags.wrappedValue, perform: { _ in
+                        vm.doSearch(vm.searchQuery)
             })
 
 

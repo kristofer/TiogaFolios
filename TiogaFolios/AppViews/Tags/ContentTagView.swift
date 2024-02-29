@@ -46,7 +46,7 @@ struct ContentTagView: View {
     var body: some View {
         VStack{
             Text("Tags assigned")
-            FlexiblePicker<SelectableTagModel>(inputData: $vm.tags, item: folio)
+            FlexiblePicker<SelectableTagModel,Folio>(inputData: $vm.tags, item: folio)
             Spacer()
             Button("Done.") { activeSheet = nil }
                 .buttonStyle(.bordered)
