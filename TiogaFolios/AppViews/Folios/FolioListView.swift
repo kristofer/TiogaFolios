@@ -129,21 +129,25 @@ struct FolioListView: View {
     
     var body: some View {
         NavigationSplitView{
-            TagRestrictView(flvm: vm)
+            VStack {
+//                TagRestrictView(flvm: vm)
+            DisclosureGroup("  Filter by tag") {
+                tagRestrict()
+            }
             List(vm.folios, id: \.self, selection: $selection) { folio in
                 NavigationLink(value: folio) {
                     FolioCell(folio: folio)
-                        
+                    
                 }
                 .swipeActions {
-                     Button {
-                         self.itemToDelete = folio
-                         showingDeleteAlert = true
-                     } label: {
-                         Label("Delete", systemImage: "trash")
-                     }
-                 }
-                 .tint(.red)
+                    Button {
+                        self.itemToDelete = folio
+                        showingDeleteAlert = true
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
+                .tint(.red)
                 .listRowSeparator(.hidden)
                 .headerProminence(.increased).padding(6)
                 .listRowInsets(EdgeInsets(top: 1, leading: 0, bottom: 2, trailing: 2))
@@ -157,10 +161,10 @@ struct FolioListView: View {
             }
             .alert("Confirm?", isPresented: $showingDeleteAlert, actions: {
                 Button("Delete", role: .destructive, action: {
-                     deleteItem(itemToDelete)
+                    deleteItem(itemToDelete)
                 })
             })
-
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
@@ -181,9 +185,9 @@ struct FolioListView: View {
                 vm.doSearch(vm.searchQuery)
             })
             .onChange(of: $vm.hiddenTags.wrappedValue, perform: { _ in
-                        vm.doSearch(vm.searchQuery)
+                vm.doSearch(vm.searchQuery)
             })
-
+        }
 
             //.navigationBarHidden(true)
         } detail: {
@@ -213,6 +217,14 @@ struct FolioListView: View {
             try Storage.shared.vc.save()
         } catch let error {
             print("Error: \(error)")
+        }
+    }
+    
+    @ViewBuilder
+    func tagRestrict() -> some View {
+        HStack {
+            TagRestrictView(flvm: vm)
+                .frame(height: 300)
         }
     }
 }
