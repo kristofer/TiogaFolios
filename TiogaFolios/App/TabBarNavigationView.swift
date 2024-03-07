@@ -56,15 +56,14 @@ struct TabBarNavigationView: View {
 //                Label("NewSharing", systemImage: "icloud")
 //            }
 //            .tag(NavItem.foliosharelist)
-#if DEBUG
 
-//            SettingsView()
-//                .tabItem {
-//                    Label("Settings", systemImage: "gear")
-//                    
-//                }
-//                .tag(NavItem.setting)
-#endif
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                    
+                }
+                .tag(NavItem.setting)
+
             OnboardView()
                 .tabItem {
                     Label("Onboarding", systemImage: "questionmark.app")
