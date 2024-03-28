@@ -73,7 +73,7 @@ extension Asset {
                 return
             } else if let thumb = thumbnail {
                 self.thumbnail = thumb.uiImage.pngData() // image available
-                //self.store.saveMainContext()
+                Storage.shared.save()
             }
         }
     }

@@ -18,7 +18,7 @@ class FolioListViewModel: ObservableObject {
     @Published var searchQuery = ""
     @Published var hiddenTags = ""
     var hiddenTagsSelected = [Tag]()
-
+    
     func fetchData() {
         self.folios = Folio.fetchFolios(vc: Storage.shared.vc)
     }
@@ -36,7 +36,7 @@ class FolioListViewModel: ObservableObject {
         //let fetchRequest: NSFetchRequest<Folio>
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folio")
         var allPred = NSPredicate(value: false)
-
+        
         if srchStr == "" {
             allPred = NSPredicate(value: true)
         }
@@ -65,17 +65,17 @@ class FolioListViewModel: ObservableObject {
         // an "and" compound predicate, all the component
         // predicates must be true for the object.
         
-        fetchRequest.predicate = 
+        fetchRequest.predicate =
         NSCompoundPredicate(andPredicateWithSubpredicates: [
             tagHiddenPredicate,
             NSCompoundPredicate(
-            orPredicateWithSubpredicates: [
-                titlePredicate,
-                descPredicate,
-                tagPredicate,
-                allPred
-            ]
-        )])
+                orPredicateWithSubpredicates: [
+                    titlePredicate,
+                    descPredicate,
+                    tagPredicate,
+                    allPred
+                ]
+            )])
         
         // Get a reference to a NSManagedObjectContext
         let context = persistentContainer.vc
@@ -88,7 +88,7 @@ class FolioListViewModel: ObservableObject {
             
         }
     }
-
+    
 }
 
 extension FolioListViewModel: Taggable {
@@ -119,7 +119,7 @@ struct FolioListView: View {
     @State private var selection: Folio? = nil // Nothing selected by default.
     @State private var showingDeleteAlert = false
     @State private var itemToDelete: Folio? = nil
-
+    
     init() { }
     
     let columns = [
@@ -130,66 +130,64 @@ struct FolioListView: View {
     var body: some View {
         NavigationSplitView{
             VStack {
-//                TagRestrictView(flvm: vm)
-            DisclosureGroup("  Filter by tag") {
-                tagRestrict()
-            }
-            List(vm.folios, id: \.self, selection: $selection) { folio in
-                NavigationLink(value: folio) {
-                    FolioCell(folio: folio)
-                    
+                //                TagRestrictView(flvm: vm)
+                DisclosureGroup("  Filter by tag") {
+                    tagRestrict()
                 }
-                .swipeActions {
-                    Button {
-                        self.itemToDelete = folio
-                        showingDeleteAlert = true
-                    } label: {
-                        Label("Delete", systemImage: "trash")
+                List(vm.folios, id: \.self, selection: $selection) { folio in
+                    NavigationLink(value: folio) {
+                        FolioCell(folio: folio)
+                    }
+//                    .swipeActions {
+//                                Button(
+//                                    role: .destructive,
+//                                    action: {
+//                                        self.itemToDelete = folio
+//                                        self.showingDeleteAlert = true
+//                                    }) {
+//                                        Image(systemName: "trash")
+//                                    }
+//                            }
+//                            .confirmationDialog(
+//                                "Are you sure?",
+//                                isPresented: $showingDeleteAlert
+//                            ) {
+//                                Button("Yes") {
+//                                    withAnimation {
+//                                        deleteItem(itemToDelete)
+//                                    }
+//                                }
+//                            }
+                }
+                .listStyle(PlainListStyle())
+                .refreshable {
+                    vm.fetchData()
+                }
+                .onAppear(){
+                    vm.fetchData()
+                }
+                .toolbar {
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        EditButton()
+//                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(
+                            destination:FolioTemplListView(isActive: $isTemplatesActive)) {
+                                Label("New Folio", systemImage: "plus")
+                            }
                     }
                 }
-                .tint(.red)
-                .listRowSeparator(.hidden)
-                .headerProminence(.increased).padding(6)
-                .listRowInsets(EdgeInsets(top: 1, leading: 0, bottom: 2, trailing: 2))
-            }
-            .listStyle(PlainListStyle())
-            .refreshable {
-                vm.fetchData()
-            }
-            .onAppear(){
-                vm.fetchData()
-            }
-            .alert("Confirm?", isPresented: $showingDeleteAlert, actions: {
-                Button("Delete", role: .destructive, action: {
-                    deleteItem(itemToDelete)
+                
+                .navigationBarTitle("Folios")
+                .navigationBarTitleDisplayMode(.inline)
+                .searchable(text: $vm.searchQuery)
+                .onChange(of: $vm.searchQuery.wrappedValue, perform: { _ in
+                    vm.doSearch(vm.searchQuery)
                 })
-            })
-            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(
-                        destination:FolioTemplListView(isActive: $isTemplatesActive)) {
-                            Label("New Folio", systemImage: "plus")
-                        }
-                    //.isDetailLink(false)
-                }
+                .onChange(of: $vm.hiddenTags.wrappedValue, perform: { _ in
+                    vm.doSearch(vm.searchQuery)
+                })
             }
-            
-            .navigationBarTitle("Folios")
-            .navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $vm.searchQuery)
-            .onChange(of: $vm.searchQuery.wrappedValue, perform: { _ in
-                vm.doSearch(vm.searchQuery)
-            })
-            .onChange(of: $vm.hiddenTags.wrappedValue, perform: { _ in
-                vm.doSearch(vm.searchQuery)
-            })
-        }
-
-            //.navigationBarHidden(true)
         } detail: {
             NavigationStack {
                 ZStack {

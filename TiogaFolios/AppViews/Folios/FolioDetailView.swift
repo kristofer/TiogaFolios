@@ -107,6 +107,12 @@ struct FolioDetailView: View {
                     Text(vm.folio.title ?? "")
                         .font(.title2.bold())
                         .foregroundColor(Color.accentColor)
+                    // archivebox.circle.fill
+                    if vm.folio.locked {
+                        Image(systemName: "archivebox.circle.fill")
+                            .foregroundColor(Color.accentColor)
+                            .font(.system(size: 24))
+                    }
                     Image(systemName: Folio.sharingState(vm.folio))
                         .foregroundColor(Color.accentColor)
                         .font(.system(size: 24))
@@ -118,6 +124,12 @@ struct FolioDetailView: View {
                         Button("Add to Folio...", action: addtofolio)
                         Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
                         Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
+                        Divider()
+                        Button("Archive Folio") {
+                            vm.folio.locked.toggle()
+                            vm.folio.touch()
+                            Storage.shared.save()
+                        }
                         Divider()
                         Button("Start Share Folio...") {
                             Task { await createShare(vm.folio) }
@@ -349,6 +361,7 @@ struct FolioDetailView: View {
                                       mimetype: UTType(typeID)?.preferredMIMEType! ?? Asset.defaultBlobMimeType(),
                                       uttype: typeID)
                 fileasset.setBlob(blob)
+                fileasset.thumbnailCreate(URL(fileURLWithPath: selectedFile.absoluteString))
                 vm.folio.addToAssets(fileasset)
                 vm.folio.touch()
                 Storage.shared.save()
