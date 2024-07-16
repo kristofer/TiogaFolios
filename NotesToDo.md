@@ -1,5 +1,19 @@
 # Tioga Folio
 
+## Issues for July 2024
+
+July2024 Immediates
+
+- use folio uuids for a path “last selected” memory
+- deletes; restrict deletes if tou dont own it (shares), confirm deletes always
+- add FaceID to open app
+- add panic button? removes all cached docs ICE
+- new images for onboarding; onboarding on first launch
+- codehavn blog; first launch article
+- REMOVE TAGs (and maybe add people,places,things)
+- (done) REMOVE the listing of UNSHARED folios from the sharing tab
+
+
 For MVP
 
 ## Issues on 29 Feb 2024

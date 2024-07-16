@@ -45,27 +45,27 @@ struct FolioListSegView: View {
     var body: some View {
         // moved to "superview" NavigationView {
         List {
-            Section(header: Text("Private Folios (Locked, Unshared)").foregroundColor(Color.primary))
-            {
-                if vm.folios.isEmpty {
-                    Text("No Private Folios.") // Placeholder
-                        .font(.caption2)
-                } else {
-                    ForEach(vm.folios) { folio in
-                        VStack(spacing: 0) {
-                            NavigationLink(
-                                destination: FolioDetailView(folio: folio )) {
-                                    FolioCell(folio: folio)
-                                }
-                        }
-
-                    }
-                    .onDelete(perform: deleteFolios)
-                }
-            }
-            .headerProminence(.increased).padding(4)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//            Section(header: Text("Private Folios (Locked, Unshared)").foregroundColor(Color.primary))
+//            {
+//                if vm.folios.isEmpty {
+//                    Text("No Private Folios.") // Placeholder
+//                        .font(.caption2)
+//                } else {
+//                    ForEach(vm.folios) { folio in
+//                        VStack(spacing: 0) {
+//                            NavigationLink(
+//                                destination: FolioDetailView(folio: folio )) {
+//                                    FolioCell(folio: folio)
+//                                }
+//                        }
+//
+//                    }
+//                    .onDelete(perform: deleteFolios)
+//                }
+//            }
+//            .headerProminence(.increased).padding(4)
+//            .listRowSeparator(.hidden)
+//            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             Section(header: Text("Folios You Are Sharing").foregroundColor(.green))
             {
                 if vm.sharingfolios.isEmpty {
@@ -81,7 +81,7 @@ struct FolioListSegView: View {
                         }
 
                     }
-                    .onDelete(perform: deleteFolios)
+                    //.onDelete(perform: deleteFolios)
                 }
             }
             .headerProminence(.increased).padding(4)
@@ -102,7 +102,7 @@ struct FolioListSegView: View {
                         }
 
                     }
-                    .onDelete(perform: deleteFolios)
+                    //.onDelete(perform: deleteFolios)
                 }
             }
             .headerProminence(.increased).padding(4)
@@ -119,9 +119,9 @@ struct FolioListSegView: View {
             vm.fetchData()
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                EditButton()
+//            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(
                     destination:FolioTemplListView(isActive: $isTemplatesActive)) {

@@ -38,7 +38,7 @@ extension Folio {
     }
 
     static func emptyFolio() -> (Folio) {
-        return Folio.createFolio(vc: Storage.shared.vc, title: "", desc: "")
+        return Folio.createFolio(vc: Storage.shared.vc, title: "untitled", desc: "")
     }
     
     static func createFolioFromTemplate(_ template: FolioTemplate) -> Folio {

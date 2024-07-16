@@ -97,7 +97,6 @@
 		5C8D5CDA2A09986900B1382F /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5CD92A09986900B1382F /* ShareController.swift */; };
 		5C9231A22A6989C1004845F8 /* TiogaFolios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C323950292431A300619645 /* TiogaFolios.xcdatamodeld */; };
 		5C92C8B92AE2FA4700F593BD /* NewNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8B82AE2FA4700F593BD /* NewNavView.swift */; };
-		5C92C8BB2AE2FAE700F593BD /* NewSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8BA2AE2FAE700F593BD /* NewSidebar.swift */; };
 		5C92C8BF2AE2FB4D00F593BD /* NewFolioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8BE2AE2FB4D00F593BD /* NewFolioDetail.swift */; };
 		5C92C8C12AE2FF5300F593BD /* NavItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92C8C02AE2FF5300F593BD /* NavItem.swift */; };
 		5CA4EC4A29D32AE1004D11BB /* Storage+DeDupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */; };
@@ -251,7 +250,6 @@
 		5C8D5CD72A09380D00B1382F /* SharingEx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SharingEx; sourceTree = "<group>"; };
 		5C8D5CD92A09986900B1382F /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareController.swift; path = TiogaFolios/AppViews/Folios/Sharing/ShareController.swift; sourceTree = SOURCE_ROOT; };
 		5C92C8B82AE2FA4700F593BD /* NewNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNavView.swift; sourceTree = "<group>"; };
-		5C92C8BA2AE2FAE700F593BD /* NewSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSidebar.swift; sourceTree = "<group>"; };
 		5C92C8BE2AE2FB4D00F593BD /* NewFolioDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolioDetail.swift; sourceTree = "<group>"; };
 		5C92C8C02AE2FF5300F593BD /* NavItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavItem.swift; sourceTree = "<group>"; };
 		5CA4EC4929D32AE1004D11BB /* Storage+DeDupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+DeDupe.swift"; sourceTree = "<group>"; };
@@ -392,7 +390,6 @@
 				5C2B2BE7295249F90056EFF3 /* TabBarNavigationView.swift */,
 				5C92C8B82AE2FA4700F593BD /* NewNavView.swift */,
 				5C92C8BE2AE2FB4D00F593BD /* NewFolioDetail.swift */,
-				5C92C8BA2AE2FAE700F593BD /* NewSidebar.swift */,
 				5CF821C32A4B58EB00659100 /* WideNavView.swift */,
 				5C2B2BE929524CB60056EFF3 /* SidebarNavigationView.swift */,
 				5CDCA80C293518AE00FCF50B /* SearchFolioView.swift */,
@@ -788,7 +785,6 @@
 				5CBFE26D2A0AD1730014C6AD /* FolioMiniDetailView.swift in Sources */,
 				5C3EF862292BD8F4007CAAB6 /* SplashView.swift in Sources */,
 				5CDCA80B2933BDA200FCF50B /* FolioViewMenu.swift in Sources */,
-				5C92C8BB2AE2FAE700F593BD /* NewSidebar.swift in Sources */,
 				5C3239B32925774800619645 /* FolioTemplView.swift in Sources */,
 				5C32398D29254CCB00619645 /* Tag.swift in Sources */,
 				5C8D5CD42A03D82300B1382F /* TagJSON.swift in Sources */,

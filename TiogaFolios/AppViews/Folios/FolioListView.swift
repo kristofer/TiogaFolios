@@ -48,12 +48,13 @@ class FolioListViewModel: ObservableObject {
         //        let tagPredicate = NSPredicate(
         //            format: "tags = %@", srchStr
         //        )
-        let tagPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ || tags.desc CONTAINS[cd] %@ ", srchStr, srchStr )
-        
-        var tagHiddenPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ ", hiddenTags )
-        if hiddenTags == "" {
-            tagHiddenPredicate = NSPredicate(value: true)
-        }
+// REMOVE TAGS
+//        let tagPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ || tags.desc CONTAINS[cd] %@ ", srchStr, srchStr )
+//        
+//        var tagHiddenPredicate = NSPredicate(format: "ANY tags.title CONTAINS[cd] %@ ", hiddenTags )
+//        if hiddenTags == "" {
+//            tagHiddenPredicate = NSPredicate(value: true)
+//        }
         
         let descPredicate = NSPredicate(
             format: "desc CONTAINS[CD] %@", srchStr
@@ -67,12 +68,14 @@ class FolioListViewModel: ObservableObject {
         
         fetchRequest.predicate =
         NSCompoundPredicate(andPredicateWithSubpredicates: [
-            tagHiddenPredicate,
+            // REMOVE TAGS
+//            tagHiddenPredicate,
             NSCompoundPredicate(
                 orPredicateWithSubpredicates: [
                     titlePredicate,
                     descPredicate,
-                    tagPredicate,
+// REMOVE TAGS
+//                    tagPredicate,
                     allPred
                 ]
             )])
@@ -131,9 +134,11 @@ struct FolioListView: View {
         NavigationSplitView{
             VStack {
                 //                TagRestrictView(flvm: vm)
-                DisclosureGroup("  Filter by tag") {
-                    tagRestrict()
-                }
+                
+// REMOVE TAGS
+//                DisclosureGroup("  Filter by tag") {
+//                    tagRestrict()
+//                }
                 List(vm.folios, id: \.self, selection: $selection) { folio in
                     NavigationLink(value: folio) {
                         FolioCell(folio: folio)
@@ -194,7 +199,7 @@ struct FolioListView: View {
                     if let thisone = selection {
                         FolioDetailView(folio: thisone )
                     } else {
-                        Text("No folio selected.")
+                        Text("No folio selected. Click the icon is upper left of screen.")
                     }
                 }}
         }

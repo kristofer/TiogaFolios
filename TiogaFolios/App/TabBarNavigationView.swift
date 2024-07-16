@@ -28,11 +28,13 @@ struct TabBarNavigationView: View {
 //            }
 //            .tag(NavItem.foliosearch)
             
-                TagListView()
-            .tabItem {
-                Label("Tags", systemImage: "tag")
-            }
-            .tag(NavItem.taglist)
+// REMOVE TAGS
+//                TagListView()
+//            .tabItem {
+//                Label("Tags", systemImage: "tag")
+//            }
+//            .tag(NavItem.taglist)
+
             NavigationStack {
                 FolioListSegView()
             }
@@ -40,15 +42,15 @@ struct TabBarNavigationView: View {
                 Label("Sharing", systemImage: "icloud")
             }
             .tag(NavItem.folioseglist)
-#if DEBUG
-            NavigationStack {
-                FolioListByTag(TagKind.plain)
-            }
-            .tabItem {
-                Label("Folios By Tag", systemImage: "tag.square")
-            }
-            .tag(NavItem.tagfilterlist)
-#endif
+//#if DEBUG
+//            NavigationStack {
+//                FolioListByTag(TagKind.plain)
+//            }
+//            .tabItem {
+//                Label("Folios By Tag", systemImage: "tag.square")
+//            }
+//            .tag(NavItem.tagfilterlist)
+//#endif
 //            NavigationView {
 //                ShareTestListView()
 //            }

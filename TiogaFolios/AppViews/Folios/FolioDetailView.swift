@@ -16,7 +16,8 @@ enum ActiveSheet: Identifiable, Equatable {
     case cloudSharingSheet(Folio)
     case managingSharesView(Folio)
     case sharePicker(Folio)
-    case taggingView(Folio)
+// REMOVE TAGS
+//    case taggingView(Folio)
     case addNoteView(Folio)
     case deltaFolioView(Folio)
     case scanningView(Folio)
@@ -119,7 +120,8 @@ struct FolioDetailView: View {
                     Spacer()
                     Menu {
                         Button("Edit Folio Name...") { activeSheet = .deltaFolioView(vm.folio) }
-                        Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
+                        //REMOVE TAGS
+                        //Button("Change Tags...") { activeSheet = .taggingView(vm.folio) }
                         Divider()
                         Button("Add to Folio...", action: addtofolio)
                         Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
@@ -163,9 +165,10 @@ struct FolioDetailView: View {
                 if let share = share {
                     FolioShareMetadataView(share: share)
                 }
-                Divider()
-                FolioTagItems(folio: vm.folio).foregroundColor(Color.accentColor)
-                Divider()
+// REMOVE TAGS
+                //                Divider()
+//                FolioTagItems(folio: vm.folio).foregroundColor(Color.accentColor)
+//                Divider()
                 //NavigationLink("FOOBAR") {
                 FolioDetailAssetList(vm: vm)
                         .fileImporter(
@@ -210,9 +213,10 @@ struct FolioDetailView: View {
             
         case .sharePicker(let folio):
             AddToExistingShareView(activeSheet: $activeSheet, folio: folio)
-            
-        case .taggingView(let folio):
-            ContentTagView(activeSheet: $activeSheet, folio: folio)
+
+// REMOVE TAGS
+//        case .taggingView(let folio):
+//            ContentTagView(activeSheet: $activeSheet, folio: folio)
             
         case .deltaFolioView(let folio):
             FolioDeltaView(activeSheet: $activeSheet, folio: folio)

@@ -45,11 +45,12 @@ struct FolioCell: View {
                         FolioCardItems(folio: folio)
                     }
 
-                    HStack {
+//                    HStack {
 //                        Text("\(folio.tags?.count ?? 0)")
 //                            .font(.caption.italic())
-                        FolioTagItems(folio: folio)
-                    }
+                        // REMOVE TAGS
+//                        FolioTagItems(folio: folio)
+//                    }
                     //Text(folio.id?.uuidString ?? "no uuid")
                 }
                 .foregroundColor(Color.accentColor)
