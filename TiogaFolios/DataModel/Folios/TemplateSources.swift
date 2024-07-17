@@ -159,7 +159,7 @@ let templateSources = """
             }
         ]
     },
-//        {
+    {
         "title": "Checking",
         "desc": "",
         "tags": [

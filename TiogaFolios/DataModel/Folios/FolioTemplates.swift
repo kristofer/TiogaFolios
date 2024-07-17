@@ -98,10 +98,8 @@ func decodeTemplatesFromString(_ data: Data) -> [ FolioTemplate ] {
         tfDebug("Type '\(type)' mismatch:", context.debugDescription)
         tfDebug("codingPath:", context.codingPath)
     } catch {
-        tfDebug("error: ", error)
-    }//    } catch {
-//        tfDebug("\(error.localizedDescription)")
-//    }
+        tfDebug("error: ", error.localizedDescription)
+    }  
     return []
 }
 

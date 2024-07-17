@@ -91,6 +91,9 @@ struct FolioDetailView: View {
     @State private var nextSheet: ActiveSheet?
     @State private var share: CKShare?
     
+    @State private var showArchiveAlert = false
+    @State private var archiveConfirmed = false
+
     init(folio: Folio) {
         vm = FolioVM(folio: folio)
         //assets = FolioVM.assetsForFolio(folio)
@@ -127,12 +130,6 @@ struct FolioDetailView: View {
                         Button("Scan to Folio...") { activeSheet = .scanningView(vm.folio) }
                         Button("Add Note...") { activeSheet = .addNoteView(vm.folio) }
                         Divider()
-                        Button("Archive Folio") {
-                            vm.folio.locked.toggle()
-                            vm.folio.touch()
-                            Storage.shared.save()
-                        }
-                        Divider()
                         Button("Start Share Folio...") {
                             Task { await createShare(vm.folio) }
                             activeSheet = .cloudSharingSheet(vm.folio)
@@ -146,6 +143,10 @@ struct FolioDetailView: View {
                         Button("Delete Share") {
                             Task { await deleteShareFor(folio: vm.folio)}  }
                         .disabled(self.share == nil)
+                        Divider()
+                        Button("Archive this Folio...") {
+                            showArchiveAlert = true
+                        }
                     } label: {
                         Label("", systemImage: "contextualmenu.and.cursorarrow")
                     }
@@ -166,10 +167,9 @@ struct FolioDetailView: View {
                     FolioShareMetadataView(share: share)
                 }
 // REMOVE TAGS
-                //                Divider()
+//                Divider()
 //                FolioTagItems(folio: vm.folio).foregroundColor(Color.accentColor)
 //                Divider()
-                //NavigationLink("FOOBAR") {
                 FolioDetailAssetList(vm: vm)
                         .fileImporter(
                             isPresented: $vm.isImporting,
@@ -183,7 +183,6 @@ struct FolioDetailView: View {
                                   message: Text("\(vm.showError!.localizedDescription) \(self.vm.errormsg)"),
                                   dismissButton: .default(Text("Ok")))
                         }
-                //}
             }
             .padding()
             .onAppear() {
@@ -196,6 +195,24 @@ struct FolioDetailView: View {
             }
             
         }
+        .alert(isPresented: $showArchiveAlert) {
+            Alert(
+                title: Text("Confirm Folio Archive"),
+                message: Text("Are you sure you want to archive this Folio? (You can un-archive if you need to.)"),
+                primaryButton: .destructive(Text("Archive")) {
+                    archiveConfirmed = true
+                    // Perform delete action here
+                    vm.folio.locked.toggle()
+                    vm.folio.touch()
+                    Storage.shared.save()
+                },
+                secondaryButton: .cancel()
+            )
+        }
+        if archiveConfirmed {
+            Text("This Folio was archived.")
+        }
+
     }
     
     @ViewBuilder
@@ -213,10 +230,10 @@ struct FolioDetailView: View {
             
         case .sharePicker(let folio):
             AddToExistingShareView(activeSheet: $activeSheet, folio: folio)
-
-// REMOVE TAGS
-//        case .taggingView(let folio):
-//            ContentTagView(activeSheet: $activeSheet, folio: folio)
+            
+            // REMOVE TAGS
+            //        case .taggingView(let folio):
+            //            ContentTagView(activeSheet: $activeSheet, folio: folio)
             
         case .deltaFolioView(let folio):
             FolioDeltaView(activeSheet: $activeSheet, folio: folio)
@@ -229,7 +246,6 @@ struct FolioDetailView: View {
             
         case .editAssetsView(let folio):
             FileAssetEditList(activeSheet: $activeSheet, folio: folio)
-            
         }
     }
     

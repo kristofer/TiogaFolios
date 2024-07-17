@@ -112,6 +112,17 @@ extension FolioListViewModel: Taggable {
     }
 }
 
+extension UUID: RawRepresentable {
+    public var rawValue: String {
+        self.uuidString
+    }
+
+    public typealias RawValue = String
+
+    public init?(rawValue: RawValue) {
+        self.init(uuidString: rawValue)
+    }
+}
 
 struct FolioListView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -123,17 +134,24 @@ struct FolioListView: View {
     @State private var showingDeleteAlert = false
     @State private var itemToDelete: Folio? = nil
     
+    @AppStorage("selectedFolio") private var selectedFolio: UUID?
+    @State private var selectedFolioId: UUID? = nil
+    
     init() { }
     
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    func setPick(folio: Folio) {
+        self.selectedFolioId = folio.id
+        self.selectedFolio = folio.id
+    }
+    
+//    let columns = [
+//        GridItem(.flexible()),
+//        GridItem(.flexible())
+//    ]
     
     var body: some View {
         NavigationSplitView{
             VStack {
-                //                TagRestrictView(flvm: vm)
                 
 // REMOVE TAGS
 //                DisclosureGroup("  Filter by tag") {
@@ -143,26 +161,6 @@ struct FolioListView: View {
                     NavigationLink(value: folio) {
                         FolioCell(folio: folio)
                     }
-//                    .swipeActions {
-//                                Button(
-//                                    role: .destructive,
-//                                    action: {
-//                                        self.itemToDelete = folio
-//                                        self.showingDeleteAlert = true
-//                                    }) {
-//                                        Image(systemName: "trash")
-//                                    }
-//                            }
-//                            .confirmationDialog(
-//                                "Are you sure?",
-//                                isPresented: $showingDeleteAlert
-//                            ) {
-//                                Button("Yes") {
-//                                    withAnimation {
-//                                        deleteItem(itemToDelete)
-//                                    }
-//                                }
-//                            }
                 }
                 .listStyle(PlainListStyle())
                 .refreshable {
@@ -172,9 +170,6 @@ struct FolioListView: View {
                     vm.fetchData()
                 }
                 .toolbar {
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        EditButton()
-//                    }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink(
                             destination:FolioTemplListView(isActive: $isTemplatesActive)) {
@@ -205,31 +200,31 @@ struct FolioListView: View {
         }
     }
     
-    private func deleteFolios(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { vm.folios[$0] }.forEach(Storage.shared.vc.delete)
-        }
-        Storage.shared.save()
-        vm.fetchData()
-    }
+//    private func deleteFolios(offsets: IndexSet) {
+//        withAnimation {
+//            offsets.map { vm.folios[$0] }.forEach(Storage.shared.vc.delete)
+//        }
+//        Storage.shared.save()
+//        vm.fetchData()
+//    }
+//    
+//    func deleteItem(_ item: NSManagedObject?) {
+//        guard let item else { return }
+//        Storage.shared.vc.delete(item)
+//        do {
+//            try Storage.shared.vc.save()
+//        } catch let error {
+//            print("Error: \(error)")
+//        }
+//    }
     
-    func deleteItem(_ item: NSManagedObject?) {
-        guard let item else { return }
-        Storage.shared.vc.delete(item)
-        do {
-            try Storage.shared.vc.save()
-        } catch let error {
-            print("Error: \(error)")
-        }
-    }
-    
-    @ViewBuilder
-    func tagRestrict() -> some View {
-        HStack {
-            TagRestrictView(flvm: vm)
-                .frame(height: 300)
-        }
-    }
+//    @ViewBuilder
+//    func tagRestrict() -> some View {
+//        HStack {
+//            TagRestrictView(flvm: vm)
+//                .frame(height: 300)
+//        }
+//    }
 }
 
 struct FolioListView_Previews: PreviewProvider {
