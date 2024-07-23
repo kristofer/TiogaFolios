@@ -313,8 +313,6 @@
 		5C323939292431A100619645 = {
 			isa = PBXGroup;
 			children = (
-				5C92C8C02AE2FF5300F593BD /* NavItem.swift */,
-				5C8D5CD72A09380D00B1382F /* SharingEx */,
 				5CDCA80E293796F300FCF50B /* set_build_number.sh */,
 				5C32397B2925409900619645 /* NotesToDo.md */,
 				5C85EDE22938F6390087EFBE /* 1DecSchema.txt */,
@@ -384,6 +382,7 @@
 		5C323975292432B900619645 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5C92C8C02AE2FF5300F593BD /* NavItem.swift */,
 				5C323945292431A100619645 /* TiogaFoliosApp.swift */,
 				5C2B2BEB29536EE40056EFF3 /* AppDelegate.swift */,
 				5C32399329254DFC00619645 /* MainView.swift */,
@@ -559,6 +558,7 @@
 		5C3C5A2129BB87AE00081F8D /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
+				5C8D5CD72A09380D00B1382F /* SharingEx */,
 				5C8D5CD92A09986900B1382F /* ShareController.swift */,
 				5C3C5A1529BA267800081F8D /* ManagingSharesView.swift */,
 				5C3C5A1729BA268100081F8D /* ParticipantView.swift */,
