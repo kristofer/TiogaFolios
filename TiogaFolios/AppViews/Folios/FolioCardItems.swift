@@ -21,14 +21,15 @@ struct FolioCardItems: View {
     }
 
     var body: some View {
-        ScrollView (.horizontal, showsIndicators: false) {
-             LazyHStack { //.sorted(by: >)
+//        ScrollView (.horizontal, showsIndicators: false) {
+//        LazyHStack { //.sorted(by: >)
+            LazyVStack(alignment: .leading, spacing: 5) { //.sorted(by: >)
                  ForEach(assetList, id: \.self) { doc in
                      Label("\(String(describing: (doc.title ?? "nil doc name")))", systemImage: "doc.richtext")
                          .font(.caption)
                  }
              }
-        }.frame(height: 20)
+//        }.frame(height: 20)
     }
 }
 

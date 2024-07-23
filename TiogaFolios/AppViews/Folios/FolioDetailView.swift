@@ -163,7 +163,7 @@ struct FolioDetailView: View {
                         .foregroundColor(Color.accentColor)
                     Text(folioDateFormatter.string(from: vm.folio.lastmodified!))
                 }
-                if let share = share {
+                if let share = share, Storage.shared.isShared(object: vm.folio) {
                     FolioShareMetadataView(share: share)
                 }
 // REMOVE TAGS
@@ -186,7 +186,9 @@ struct FolioDetailView: View {
             }
             .padding()
             .onAppear() {
-                self.share = Storage.shared.getShare(vm.folio)
+                if Storage.shared.isShared(object: vm.folio) {
+                    self.share = Storage.shared.getShare(vm.folio)
+                }
             }
             .toolbar { toolbarItems() } // title display here.
             .navigationBarTitleDisplayMode(.inline)

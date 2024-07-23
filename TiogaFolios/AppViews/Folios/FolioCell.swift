@@ -40,8 +40,8 @@ struct FolioCell: View {
                         .lineLimit(2)
                         .padding(.bottom, 2)
                     HStack {
-                        Text("\(folio.assets?.count ?? 0)")
-                            .font(.caption.italic())
+//                        Text("\(folio.assets?.count ?? 0)")
+//                            .font(.caption.italic())
                         FolioCardItems(folio: folio)
                     }
 
