@@ -1,5 +1,7 @@
 # Tioga Folio
 
+### Moved much of the current work to Github Issues on the Repo (23 July 2024)
+
 ## Issues for July 2024
 
 July2024 Immediates
@@ -10,8 +12,8 @@ July2024 Immediates
 - add panic button? removes all cached docs ICE
 - new images for onboarding; onboarding on first launch
 - codehavn blog; first launch article
-- REMOVE TAGs (and maybe add people,places,things)
-- (done) REMOVE the listing of UNSHARED folios from the sharing tab
+~~- REMOVE TAGs (and maybe add people,places,things)~~
+~~- (done) REMOVE the listing of UNSHARED folios from the sharing tab~~
 
 
 For MVP
