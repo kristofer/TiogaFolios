@@ -85,6 +85,17 @@ struct SettingsView: View {
                     }
                     .padding()
                     .buttonStyle(.bordered)
+                    
+                    Button("List All Data in Dirs...") {
+                        dropDirList("docs", dir: .documentDirectory)
+                        dropDirList("lib", dir: .libraryDirectory)
+                        dropDirList("cache", dir: .cachesDirectory)
+                        dropDirList("user", dir: .userDirectory)
+                        //dropDirList("trash", dir: .trashDirectory)
+                    }
+                    .padding()
+                    .buttonStyle(.bordered)
+
                 })
                 //                Spacer()
                 //                Button("Delete All Tags") {
@@ -134,6 +145,38 @@ struct SettingsView: View {
             print("tag json: \(String(describing: reqJSONStr))")
         }
     }
+    
+    func dropDirList(_ label: String, dir: FileManager.SearchPathDirectory) {
+        do {
+            // Get the document directory url
+            let documentDirectory = try FileManager.default.url(
+                for: dir,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            )
+            print(label, documentDirectory.path)
+            // Get the directory contents urls (including subfolders urls)
+            let directoryContents = try FileManager.default.contentsOfDirectory(
+                at: documentDirectory,
+                includingPropertiesForKeys: nil
+            )
+            print("directoryContents:", directoryContents.map { $0.localizedName ?? $0.lastPathComponent })
+            for url in directoryContents {
+                print(url.localizedName ?? url.lastPathComponent)
+            }
+            
+//            // if you would like to hide the file extension
+//            for var url in directoryContents {
+//                url.hasHiddenExtension = true
+//            }
+            for url in directoryContents {
+                print(url.localizedName ?? url.lastPathComponent)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
@@ -141,3 +184,19 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
+
+extension URL {
+    var typeIdentifier: String? { (try? resourceValues(forKeys: [.typeIdentifierKey]))?.typeIdentifier }
+    var isMP3: Bool { typeIdentifier == "public.mp3" }
+    var localizedName: String? { (try? resourceValues(forKeys: [.localizedNameKey]))?.localizedName }
+    var hasHiddenExtension: Bool {
+        get { (try? resourceValues(forKeys: [.hasHiddenExtensionKey]))?.hasHiddenExtension == true }
+        set {
+            var resourceValues = URLResourceValues()
+            resourceValues.hasHiddenExtension = newValue
+            try? setResourceValues(resourceValues)
+        }
+    }
+}
+
+
