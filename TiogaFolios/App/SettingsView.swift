@@ -78,13 +78,13 @@ struct SettingsView: View {
                     }
                     .padding()
                     .buttonStyle(.bordered)
-                    
-                    Button("Deduplicate Tags") {
-                        Tag.dedupeTags()
-                        Storage.shared.save()
-                    }
-                    .padding()
-                    .buttonStyle(.bordered)
+// REMOVE TAGS
+//                    Button("Deduplicate Tags") {
+//                        Tag.dedupeTags()
+//                        Storage.shared.save()
+//                    }
+//                    .padding()
+//                    .buttonStyle(.bordered)
                     
                     Button("List All Data in Dirs...") {
                         dropDirList("docs", dir: .documentDirectory)
